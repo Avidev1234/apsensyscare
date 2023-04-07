@@ -1,0 +1,129 @@
+
+.form {
+    position: relative;
+    width: 95%;
+    max-width: 500px;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .close {
+    text-align: right;
+    
+}
+ .close a {
+    text-decoration: none;
+    color: white;
+}
+ .close h1 {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: -2px -2px 6px rgba(255,255,255,.2), 2px 2px 6px rgba(0,0,0,.8);
+    color: white;
+    cursor: pointer;
+}
+ .form input,
+ .form button {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    outline: none;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    background-color: #916fda;
+    color: inherit;
+}
+.form input{
+    padding-left: 20px;
+}
+ .form input::placeholder,
+ .form textarea::placeholder {
+    color: rgb(250, 250, 250);
+    opacity: .7;
+}
+ .form button:active,
+ .form input {
+    /* cursor: url('http://localhost:3000/Untitled_design__3_-removebg-preview.png'),auto; */
+    -webkit-appearance: none; /* fixes bug in Safari on iOS */
+    box-shadow: inset -2px -2px 6px rgba(255,255,255,.2), inset 2px 2px 6px rgba(187, 187, 187, 0.8);
+}
+ 
+ .form button {
+    width: 50%;
+    margin-top: 8px;
+    box-shadow: -2px -2px 6px rgba(255,255,255,.2), 2px 2px 6px rgba(0,0,0,.8);
+    letter-spacing: 3px;
+    background-color: transparent;
+    cursor: pointer;
+}
+ .form .card {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+ .form .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 5px;
+}
+ .form .face {
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+    background-color: transparent;
+    padding: 10px;
+    box-shadow: -2px -2px 6px rgba(255,255,255,.2), 2px 2px 6px rgba(0,0,0,.8);
+    border-radius: 30px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    /* background-image: linear-gradient(135deg,#334,#445,#334); */
+}
+.passwordCont{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.passwordCont input{
+    padding-right: 45px;
+}
+.passwordCont div{
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+}
+.GoogleSignup {
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 20px;
+    box-shadow: -2px -2px 6px rgba(255,255,255,.2), 2px 2px 6px rgba(0,0,0,.8);
+    /* letter-spacing: 3px; */
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+
+}
+.GoogleSignup:active{
+    box-shadow: inset -2px -2px 6px rgba(255,255,255,.2), inset 2px 2px 6px rgba(187, 187, 187, 0.8);
+
+}
+.GoogleSignup p{
+    margin: 4px;
+}
