@@ -1,24 +1,39 @@
-import express  from "express";
-import Connection from "./DB/db.js";
+//const express = require('express');
+import express, { response } from 'express'
+import { db } from './connection/config/db.js'
 import cor from 'cors'
-import Router from "./Router/Router.js";
+import multer from 'multer';
+import moment from 'moment';
+import Router from "./routes/route.js";
 
-const app=express();
+const app = express();
 app.use(cor());
 app.use(express.json())
-
+const PORT = 2306;
+// it redirects all endpoints to route.js file
 app.use('/', Router);
-
-
-const PORT=8000;
-
-const db=Connection();
-if(db){
-    console.log("hmm ji")
+if (db) {
+    console.log("successfully connected");
+} else {
+    console.log("error");
 }
-console.log(db)
-
-app.listen(PORT,()=>console.log(`server running on port ${PORT}`))
+// -------------------------------------------------
 
 
+// img storage confing
 
+// -------------------------------------------------
+console.log("hello before");
+
+//post request for posting blogs
+app.post('/blog',(req, res) => {
+   console.log('hello');
+})
+//post request for getting blogs data for top slider
+
+
+
+
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`);
+})
