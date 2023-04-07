@@ -34,5 +34,7 @@ Router.post('/details/:id', (req, res) => {
     })
 })
 
+
+
 console.log("hii iam route");
 export default Router;

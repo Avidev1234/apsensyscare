@@ -26,12 +26,10 @@ if (db) {
 console.log("hello before");
 
 //post request for posting blogs
-app.post('/blog',(req, res) => {
-   console.log('hello');
+app.post('/site_user',(req, res) => {
+   console.log(req);
 })
 //post request for getting blogs data for top slider
-
-
 
 
 app.listen(PORT, () => {

@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/site_user',
     createProxyMiddleware({
-      target: 'http://localhost:8000',
+      target: 'http://localhost:2306',
       changeOrigin: true,
     })
   );

@@ -92,7 +92,7 @@ const Login = ({ handelLogin }) => {
 
   // --------------------------work for signup user-----------------------------------
   const handelSignUp=async ()=>{
-    const response = await axios.post("http://localhost:2306/site_user",signup)
+    const response = await axios.post("/site_user",signup)
             .then((req, res) => {
                 console.log("done");
             })
