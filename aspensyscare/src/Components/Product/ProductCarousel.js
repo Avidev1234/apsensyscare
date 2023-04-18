@@ -3,7 +3,7 @@ import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import Slider from 'react-slick'
-import "./Carousel.css";
+// import "./Carousel.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactImageMagnify from 'react-image-magnify';
@@ -53,7 +53,7 @@ const ProductCarousel = (props) => {
 
         >
           {data.map((item) => (
-            <Box style={{ width: '550px', height: '450px', border: '2px solid red' }}>
+            <Box style={{ width: 'auto', height: '450px', border: '2px solid red' }}>
               <ReactImageMagnify {...{
                 smallImage: {
                   alt: 'Wristwatch by Ted Baker London',

@@ -19,6 +19,9 @@ const ProductCont = styled(Stack)`
     justify-content: center;
     align-items: center;
     margin-top:20px;
+    @media (min-width:1440px){
+      width:auto;
+    }
 `
 const ProductDetailsBox = styled(Box)`
     width:90%;

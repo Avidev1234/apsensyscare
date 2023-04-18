@@ -20,6 +20,7 @@ border-radius: 16px;
 }
 .slick-prev {
   left: 15px;
+  background-color: none;
 }
 .carousel .slick-next {
   right: 0;
@@ -45,3 +46,4 @@ border-radius: 16px;
   transform: scale(1.1);
   transition: 500ms;
 }
+

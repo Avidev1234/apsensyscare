@@ -14,7 +14,6 @@ const Homecont = styled(Stack)`
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:5px;
   background-color:#d9d9d9
 `
 const Homebox = styled(Box)`

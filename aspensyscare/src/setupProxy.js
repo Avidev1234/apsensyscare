@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/site_user',
     createProxyMiddleware({
-      target: 'http://localhost:2306',
+      target: 'http://localhost:80/apsensyscare/backendapi',
       changeOrigin: true,
     })
   );

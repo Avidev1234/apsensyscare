@@ -10,6 +10,7 @@ const LoginCont = styled(Box)`
   width:100%;
   height:100%;
   position:fixed;
+  left:0;
   display:flex;
   justify-content:center ;
   align-items:center;
@@ -65,14 +66,14 @@ const LoginRight = styled(Box)`
   flex-direction:column;
   position:relative;
 `
-const signupInitialvalue={
-  phone:'',
-  email:'',
-  password:''
+const signupInitialvalue = {
+  phone: '',
+  email: '',
+  password: ''
 }
 
 const Login = ({ handelLogin }) => {
-// --------------------------work for password input visiable or hidden and open login /sign up-----------------------------------
+  // --------------------------work for password input visiable or hidden and open login /sign up-----------------------------------
   const [showPassword, setShowPassword] = React.useState(false);
   const [showSignup, setShowSignup] = React.useState(true);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -85,18 +86,19 @@ const Login = ({ handelLogin }) => {
     handleClickShowPassword();
   }
   // --------------------------getting all user inputs for signup -----------------------------------
-  const [signup,setSignUp]=useState(signupInitialvalue);
-  const handleInputs=(e)=>{
-    setSignUp({...signup,[e.target.name]:e.target.value})
+  const [signup, setSignUp] = useState(signupInitialvalue);
+  const handleInputs = (e) => {
+    setSignUp({ ...signup, [e.target.name]: e.target.value })
   }
 
   // --------------------------work for signup user-----------------------------------
-  const handelSignUp=async ()=>{
-    const response = await axios.post("/site_user",signup)
-            .then((req, res) => {
-                console.log("done");
-            })
-            .catch((err) => { console.log(err) })
+  const handelSignUp = async () => {
+    await axios.post("/site_user", signup)
+      .then((req, res) => {
+        console.log("done");
+        handelLogin(false,1);
+      })
+      .catch((err) => { console.log(err) })
   }
   return (
     <LoginCont >
@@ -172,10 +174,10 @@ const Login = ({ handelLogin }) => {
                       <div className="face">
                         <form action="" method="post" style={{ width: '90%' }}>
                           <div className="wrap">
-                            <input type="text" name="phone" onChange={(e)=>{handleInputs(e)}} autoComplete="off" value={signup.phone} placeholder="Phone" required />
-                            <input type="email" name="email" onChange={(e)=>{handleInputs(e)}} autoComplete="off" value={signup.email} placeholder="Email" required />
+                            <input type="text" name="phone" onChange={(e) => { handleInputs(e) }} autoComplete="off" value={signup.phone} placeholder="Phone" required />
+                            <input type="email" name="email" onChange={(e) => { handleInputs(e) }} autoComplete="off" value={signup.email} placeholder="Email" required />
                             <div className='passwordCont'>
-                              <input type={showPassword ? 'text' : 'password'} onChange={(e)=>{handleInputs(e)}}
+                              <input type={showPassword ? 'text' : 'password'} onChange={(e) => { handleInputs(e) }}
                                 name="password" value={signup.password} autoComplete="off" placeholder="Password" required />
                               <div onClick={handleClickShowPassword}
                                 onMouseDown={handleMouseDownPassword}

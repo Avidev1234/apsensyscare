@@ -3,17 +3,18 @@
   "name": "Create Apsensys App Sample",
   "icons": [
     {
-      "src": "A LOGO 4-01-01.png",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "favicon.ico",
+      "sizes": "48x48",
       "type": "image/x-icon"
     },
     {
-      "src": "A LOGO 4-01-01.png",
+      "src": "android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
+      ,"purpose": "maskable"
     },
     {
-      "src": "A LOGO 4-01-01.png",
+      "src": "android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
