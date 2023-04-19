@@ -287,7 +287,6 @@ function Navbar(props) {
                       <Button variant='contained' color="success" onClick={()=>handelLogin(true,0)}>Login</Button>
                     </div>
                 }
-
               </div>
             )}
           </Box>
