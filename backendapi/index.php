@@ -7,11 +7,14 @@ include('./sitepackages/includes/include.php');
 
 
 $REQUEST_URI=$_SERVER['REQUEST_URI'];
-$uri=str_replace('/apsensyscare/backendapi','',$REQUEST_URI);
+$uri=str_replace('/apsensyscare/backendapi/backend_api','',$REQUEST_URI);
 echo $uri;
-if($uri=='/site_user')
+if($uri==='/site_user')
 {
     include('./sitepackages/inbuilt/pages/SignUp.php');
+    die;
+}else if($uri==='/login_user'){
+    include('./sitepackages/inbuilt/pages/Login.php');
     die;
 }
 ?>

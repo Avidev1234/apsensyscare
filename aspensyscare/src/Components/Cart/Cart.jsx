@@ -309,6 +309,7 @@ const Cart = () => {
                                 </Box>
                                 {/* ----------------------Price box end------------------ */}
                             </Box>
+                            
                             <Button variant='contained' onClick={handleOpen('panel2')}
                                 style={{ backgroundColor: 'green', marginTop: '10px' }}>Select Address
                             </Button>
