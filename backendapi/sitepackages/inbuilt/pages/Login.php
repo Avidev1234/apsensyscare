@@ -8,9 +8,8 @@ switch($method){
         $password= $user->password ;
         $phone= $user->phone;
         $Date=date("Y-m-d h:i:sa");
-        $arr=['rud','test'];
         if($totalRow=$objQuery->fetchNumRow("`site_user`","`phone_number`='".$phone."' AND `password`='".$password."'")){
-            print_r($arr) ;
+            echo $totalRow;
         }else{
             echo "false";
         }

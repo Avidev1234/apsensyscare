@@ -5,16 +5,20 @@ error_reporting(E_ALL);
 
 include('./sitepackages/includes/include.php');
 
-
 $REQUEST_URI=$_SERVER['REQUEST_URI'];
-$uri=str_replace('/apsensyscare/backendapi/backend_api','',$REQUEST_URI);
-echo $uri;
+$uri=str_replace('/apsensyscare/backendapi','',$REQUEST_URI);
+// echo $REQUEST_URI;
+// echo '<br/>';
+// echo $uri;
 if($uri==='/site_user')
 {
     include('./sitepackages/inbuilt/pages/SignUp.php');
     die;
 }else if($uri==='/login_user'){
     include('./sitepackages/inbuilt/pages/Login.php');
+    die;
+}else if($uri==='/fatch_baner'){
+    include('./sitepackages/inbuilt/pages/Baner.php');
     die;
 }
 ?>

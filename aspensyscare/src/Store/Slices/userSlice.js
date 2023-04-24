@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchUsers = createAsyncThunk('user/fetchUsers', async(login) => {
     return await axios
-        .post('/backend_api/login_user',login)
+        .post("/login_user",login)
         .then((response) => response.data)
 });
 
