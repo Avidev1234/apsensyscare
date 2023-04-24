@@ -5,7 +5,7 @@ $method=$_SERVER['REQUEST_METHOD'];
 switch($method){
     case "POST":
         $json_data = array();
-        if($totalRow=$objQuery->fetchResults("banners")){
+        if($totalRow=$objQuery->fetchResults("product_category")){
             while($fetchRow= mysqli_fetch_assoc($totalRow))
             {
                 $json_data[] = $fetchRow;
@@ -13,7 +13,7 @@ switch($method){
         }else{
             echo "false";
         }
-        echo json_encode(['banner'=>$json_data]);
+        echo json_encode(['category'=>$json_data]);
 }
 ?>
 

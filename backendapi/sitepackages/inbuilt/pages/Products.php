@@ -13,7 +13,7 @@ switch($method){
         }else{
             echo "false";
         }
-        echo json_encode(['banner'=>$json_data]);
+        echo json_encode(['product'=>$json_data]);
 }
 ?>
 

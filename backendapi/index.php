@@ -21,4 +21,11 @@ if($uri==='/site_user')
     include('./sitepackages/inbuilt/pages/Baner.php');
     die;
 }
+else if($uri==='/fatch_category'){
+    include('./sitepackages/inbuilt/pages/Category.php');
+    die;
+}else if($uri==='/products'){
+    include('./sitepackages/inbuilt/pages/Products.php');
+    die;
+}
 ?>

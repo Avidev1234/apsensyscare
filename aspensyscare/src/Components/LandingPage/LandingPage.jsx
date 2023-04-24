@@ -6,6 +6,8 @@ import { Box } from '@mui/material';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBanner } from '../../Store/Slices/bannerSlice';
+import { fetchCategory } from '../../Store/Slices/categorySclice';
+import { AllProducts } from '../../Store/Slices/productSlice';
 
 const LandingBox = styled(Box)`
 width:97.77vw;
@@ -19,15 +21,18 @@ height:auto;
 
 const LandingPage = () => {
   const dispatch = useDispatch();
-  const banner = useSelector((state) => state.user);
-  console.log(banner)
   useEffect(() => {
+    async function fetchData() {
       try {
-        dispatch(fetchBanner());
+        await dispatch(fetchBanner());
+        await dispatch(fetchCategory());
+        await dispatch(AllProducts());
       } catch (error) {
-        console.log("hello");
+        console.log(error);
       }
-    
+    }
+    fetchData();
+
   }, [])
   return (
     <LandingBox>

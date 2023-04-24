@@ -52,7 +52,7 @@ const Partationcont_sec = styled(Box)`
 const Product = () => {
   useEffect(() => {
     // 👇️ scroll to top on page load
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
   return (
     <ProductCont>
@@ -65,11 +65,11 @@ const Product = () => {
         </Partationcont>
       </ProductDetailsBox>
       <ProductDetailsBox>
-        <Rating/>
-        <TopQuestion/>
+        <Rating />
+        <TopQuestion />
       </ProductDetailsBox>
       <Partationcont_sec>
-        <RecentViews/>
+        <RecentViews />
       </Partationcont_sec>
     </ProductCont>
   )

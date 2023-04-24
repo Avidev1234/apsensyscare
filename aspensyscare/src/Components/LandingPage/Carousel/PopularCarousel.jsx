@@ -85,7 +85,7 @@ const PopularCarousel = () => {
         <Slider className= "center"
         centerMode= {true}
         infinite= {true}
-        centerPadding= "0px"
+        centerPadding= "5px"
         slidesToShow= {2}
         speed= {500}
         rows= {2}
@@ -97,9 +97,8 @@ const PopularCarousel = () => {
           products.map((val, i) => {
             try {
               return (
-                <Stack gap={5} style={{ width: '250px' }} key={i.toString()}>
-                  <CarouselCard val={val} />
-
+                <Stack  style={{ width: '250px',display:'flex',gap:'5px' }} key={i.toString()}>
+                  <CarouselCard val={val} style={{margin:'0px 10px'}}/>
                 </Stack>
               )
 
