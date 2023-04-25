@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const PosterCont = styled(Box)`
 width:100%;
-height:300px;
+height:350px;
 margin-top:18px;
 display:flex;
 padding:20px;
@@ -34,14 +34,14 @@ const Poster = () => {
                 {banners.loading && <div>Loading...</div>}
                 {!banners.loading && banners.error ? <div>Error: {banners.error}</div> : null}
                 {!banners.loading && banners.banner.banner !== undefined ? (
-                    <img style={{ width: '100%', height: '300px' }} src={`${banner[0].banner_image}`} alt={`${banner[0].alt_name}`} />
+                    <img style={{ width: '100%', height: '350px',borderRadius:'20px' }} src={`./Image/Poster/${banner[1].banner_image}`} alt={`${banner[0].alt_name}`} />
                 ) : null}
             </Poster1>
             <Poster1>
                 {banners.loading && <div>Loading...</div>}
                 {!banners.loading && banners.error ? <div>Error: {banners.error}</div> : null}
                 {!banners.loading && banners.banner.banner !== undefined ? (
-                    <img style={{ width: '100%', height: '300px' }} src={`${banner[0].banner_image}`} alt={`${banner[0].alt_name}`} />
+                    <img style={{ width: '100%', height: '350px',borderRadius:'20px' }} src={`./Image/Poster/${banner[1].banner_image}`} alt={`${banner[0].alt_name}`} />
                 ) : null}
             </Poster1>
         </PosterCont>

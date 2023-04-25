@@ -27,5 +27,12 @@ else if($uri==='/fatch_category'){
 }else if($uri==='/products'){
     include('./sitepackages/inbuilt/pages/Products.php');
     die;
+}else if($uri==='/productdetails'){
+    include('./sitepackages/inbuilt/pages/ProductData.php');
+    die;
+}
+else if($uri==='/size'){
+    include('./sitepackages/inbuilt/pages/Size.php');
+    die;
 }
 ?>

@@ -26,7 +26,6 @@ const LandingPage = () => {
       try {
         await dispatch(fetchBanner());
         await dispatch(fetchCategory());
-        await dispatch(AllProducts());
       } catch (error) {
         console.log(error);
       }

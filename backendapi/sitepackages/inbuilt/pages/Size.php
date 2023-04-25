@@ -5,7 +5,7 @@ $method=$_SERVER['REQUEST_METHOD'];
 switch($method){
     case "POST":
         $json_data = array();
-        if($totalRow=$objQuery->fetchResults("product")){
+        if($totalRow=$objQuery->fetchResults("product_size")){
             while($fetchRow= mysqli_fetch_assoc($totalRow))
             {
                 $json_data[] = $fetchRow;
@@ -13,7 +13,8 @@ switch($method){
         }else{
             echo "false";
         }
-        echo json_encode(['product'=>$json_data]);
+        echo json_encode(['size'=>$json_data]);
 }
+
 ?>
 

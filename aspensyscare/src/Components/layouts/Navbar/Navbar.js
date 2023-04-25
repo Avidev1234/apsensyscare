@@ -166,7 +166,7 @@ function Navbar(props) {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             onClick={() => navigate('/')}
           >
-            <img src="./apsensys-technologies.png" height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
+            <img src="./aspensyscare.png" height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {/* {navItems.map((item) => (
@@ -174,8 +174,6 @@ function Navbar(props) {
                 {item}
               </Button>
             ))} */}
-
-
             {auth && (
               <div
                 style={{ display: 'flex', flexDirection: 'row', gap: '2rem' }}

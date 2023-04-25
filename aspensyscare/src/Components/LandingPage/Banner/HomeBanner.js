@@ -47,10 +47,11 @@ const HomeBanner = () => {
         </Typography>
           <Button  variant="contained" style={{borderRadius:'16px',textTransform:'none',backgroundColor:'#62b660'}}>know more</Button>
       </HomeBannerCont> */}
+
       {banners.loading && <div>Loading...</div>}
       {!banners.loading && banners.error? <div>Error: {banners.error}</div> : null}
       {!banners.loading && banners.banner.banner!==undefined? (
-        <img style={{width:'100%',height:'300px'}} src={`${banner[0].banner_image}`} alt='Clean_image'/>
+        <img style={{width:'100%',height:'300px'}} src={`./Image/Poster/${banner[0].banner_image}`} alt='Clean_image'/>
       ):null}
       
     </HBanner>

@@ -7,7 +7,26 @@ import Category from './Components/CategoryPage/Categorypage';
 import Cart from './Components/Cart/Cart';
 import Wishlist from './Components/WishList/Wishlist';
 import Login from './Components/Login/Login';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { AllProducts } from './Store/Slices/productSlice';
+import { productData } from './Store/Slices/productEntrySlice';
+import { fatchSizes } from './Store/Slices/sizeSlice';
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        dispatch(AllProducts());
+        dispatch(productData());
+        dispatch(fatchSizes());
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+
+  }, [])
   return (
     <>
       <BrowserRouter>

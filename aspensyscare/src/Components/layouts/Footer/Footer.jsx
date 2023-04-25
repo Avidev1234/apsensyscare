@@ -60,7 +60,7 @@ const Footer = () => {
       <FooterBoxCont>
         <FooterBox style={{width:'35%',marginRight:'15px'}}>
           <Box>
-            <img width="200px" height="40px" src='/apsensys technologies-01-01.png' alt='' />
+            <img width="200px" height="40px" src='./aspensyscare.png' alt='' />
           </Box>
           <Box style={{paddingLeft:"10px"}}>
             <Typography variant='h3' style={{ fontSize: '18px' }}>Contact</Typography>

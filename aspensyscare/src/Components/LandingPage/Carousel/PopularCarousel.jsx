@@ -3,6 +3,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import CarouselCard from "./CarouselCard";
 import Slider from "react-slick";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 const CarouselCont = styled(Box)`
   width:85%;
@@ -16,7 +17,7 @@ const Homecont = styled(Stack)`
   align-items:center;
   padding:10px;
 `
-const products = [
+const products1 = [
   {
     name: '1',
   },
@@ -75,40 +76,38 @@ const NextBtn = (props) => {
 };
 
 const PopularCarousel = () => {
-
+  const Products = useSelector((state) => state.product);
+  const { product } = Products.products;
   return (
     <Homecont width={'100%'}>
       <Box padding={'20px'} width={'93%'}>
         <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '600', color: 'black' }}>Popular Products</Typography>
       </Box>
       <CarouselCont>
-        <Slider className= "center"
-        centerMode= {true}
-        infinite= {true}
-        centerPadding= "5px"
-        slidesToShow= {2}
-        speed= {500}
-        rows= {2}
-        slidesPerRow= {2}
-        prevArrow={<PreviousBtn />}
-        nextArrow={<NextBtn />}
+        <Slider className="center"
+          centerMode={true}
+          infinite={true}
+          centerPadding="5px"
+          slidesToShow={2}
+          speed={500}
+          rows={2}
+          slidesPerRow={2}
+          prevArrow={<PreviousBtn />}
+          nextArrow={<NextBtn />}
         >
-        {
-          products.map((val, i) => {
-            try {
+          {Products.loading && <div>Loading...</div>}
+          {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
+          {!Products.loading && Products.products.product !== undefined ? (
+            product.map((val, i) => {
               return (
-                <Stack  style={{ width: '250px',display:'flex',gap:'5px' }} key={i.toString()}>
-                  <CarouselCard val={val} style={{margin:'0px 10px'}}/>
+                <Stack style={{ width: '250px', display: 'flex', gap: '5px' }} key={i.toString()}>
+                  <CarouselCard val={val} style={{ margin: '0px 10px' }} />
                 </Stack>
               )
-
-            } catch (err) {
-              console.log(err)
-            }
-          })
-        }
-      </Slider>
-    </CarouselCont>
+            })
+          ) : null}
+        </Slider>
+      </CarouselCont>
     </Homecont >
   )
 }
