@@ -43,7 +43,7 @@ const CarouselCard = ({ val }) => {
     // handling cart
 
     const handleCart=(product)=>{
-        dispatch(addToCart(product));
+        dispatch(addToCart([product,itemsize]));
         navigate('/cart')
     }
     try {

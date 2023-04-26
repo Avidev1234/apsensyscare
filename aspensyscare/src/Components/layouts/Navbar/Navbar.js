@@ -23,6 +23,8 @@ import LanguageIcon from '@mui/icons-material/Language';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import Login from '../../Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTotals } from '../../../Store/Slices/cartSlice';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -135,17 +137,25 @@ function Navbar(props) {
     setleLang(null);
   };
 
-  const [openLogin,setOpenLogin]=React.useState(false)
+  const [openLogin, setOpenLogin] = React.useState(false)
   const [login, setLogin] = React.useState(false);
 
-  const handelLogin=(text,id)=>{
+  const handelLogin = (text, id) => {
     setOpenLogin(text);
     setLogin(true);
-    
+
   }
 
 
   const navigate = useNavigate();
+
+
+  // getting data for cart
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  React.useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -239,14 +249,14 @@ function Navbar(props) {
                     aria-label="account of current user"
                     color="black"
                   >
-                    <StyledBadge badgeContent={3} color="secondary">
+                    <StyledBadge badgeContent={cart.cartTotalQuantity} color="secondary">
                       <ShoppingCartCheckoutIcon />
                     </StyledBadge>
                   </IconButton>
                   Cart
                 </AvtarIcon>
                 {
-                  login?
+                  login ?
                     <div className="MuiBox-root css-dxza1q">
                       <AvtarIcon>
                         <IconButton
@@ -282,7 +292,7 @@ function Navbar(props) {
                     </div>
                     :
                     <div className="MuiBox-root css-dxza1q">
-                      <Button variant='contained' color="success" onClick={()=>handelLogin(true,0)}>Login</Button>
+                      <Button variant='contained' color="success" onClick={() => handelLogin(true, 0)}>Login</Button>
                     </div>
                 }
               </div>
@@ -310,7 +320,7 @@ function Navbar(props) {
       <Box component="main" sx={{ p: 0 }}>
         <Toolbar />
       </Box>
-      {openLogin?<Login handelLogin={handelLogin}/>:''}
+      {openLogin ? <Login handelLogin={handelLogin} /> : ''}
     </Box>
   );
 }
