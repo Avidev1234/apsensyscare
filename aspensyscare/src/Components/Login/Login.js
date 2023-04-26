@@ -128,7 +128,7 @@ const Login = ({ handelLogin }) => {
       <LoginBox>
         <LoginBoxCont>
           <LoginLeft>
-            <img alt="" height='70px' width="290px" src="/apsensys-technologies.png" />
+            <img alt="" height='50px' width="180px" src="/aspensyscare.png" />
           </LoginLeft>
           <LoginRight>
             <Box style={{ width: 'auto', top: '13px', right: '13px', display: 'flex', position: 'absolute', justifyContent: 'flex-end' }}>

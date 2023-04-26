@@ -3,12 +3,13 @@ import { Box, Button, Card, CardActionArea, CardContent, CardMedia, IconButton, 
 import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+// import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { useNavigate } from "react-router-dom";
 import "./carousal.css"
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+// import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { useDispatch, useSelector } from 'react-redux';
-import { productData } from '../../../Store/Slices/productEntrySlice';
+import { addToCart } from '../../../Store/Slices/cartSlice';
+// import { productData } from '../../../Store/Slices/productEntrySlice';
 const CardImage = styled(CardMedia)`
 width:auto;
 `
@@ -37,6 +38,14 @@ const CarouselCard = ({ val }) => {
         const  sizeindex = size!==undefined ? size.findIndex((item) => item.id === sizeid):'null';
         itemsize= size!==undefined ?size[sizeindex]['size_value']:null;
     }
+
+
+    // handling cart
+
+    const handleCart=(product)=>{
+        dispatch(addToCart(product));
+        navigate('/cart')
+    }
     try {
         const iconcolor = val.color ? val.color : '';
         return (
@@ -60,7 +69,6 @@ const CarouselCard = ({ val }) => {
                                 {`${itemsize} ml`}
                             </button>
                         </Box>
-
                         <Typography variant="body2" color="text.secondary">
                             product description
                         </Typography>
@@ -84,7 +92,9 @@ const CarouselCard = ({ val }) => {
                         border: '2px solid #62b660',
                         color: '#62b660',
                         padding: '5px 8px'
-                    }}>Add to cart</Button>
+                    }}
+                    onClick={()=>handleCart(val)}
+                    >Add to cart</Button>
             </Card>
         )
     } catch (err) { }

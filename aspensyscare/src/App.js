@@ -12,6 +12,8 @@ import { useEffect } from 'react';
 import { AllProducts } from './Store/Slices/productSlice';
 import { productData } from './Store/Slices/productEntrySlice';
 import { fatchSizes } from './Store/Slices/sizeSlice';
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,6 +32,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <ToastContainer />
         <Routes>
           <Route path='/' element={<LandingPage />}>
             <Route index element={<Home />} />

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button,  FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useEffect, useState } from 'react';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
@@ -7,6 +7,16 @@ import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import RecentViews from '../LandingPage/Carousel/RecentViews';
 import AddIcon from '@mui/icons-material/Add';
+import { useDispatch, useSelector } from "react-redux";
+import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import {
+    addToCart,
+    clearCart,
+    decreaseCart,
+    getTotals,
+    removeFromCart,
+} from "../../Store/Slices/cartSlice";
 const Container = styled(Box)`
     width:100%;
     display:flex;
@@ -41,7 +51,7 @@ const AmountDetailscont = styled(Box)`
     padding:10px;
     background-color:#d9d9d9;
 `
-const AmountDetailsrow=styled(Box)`
+const AmountDetailsrow = styled(Box)`
     display:flex;
     flex-direction:row;
     justify-content:space-between;
@@ -62,21 +72,13 @@ const SizeButtom = styled(Button)`
     min-width: 50px;
     font-size: 12px;
 `
-const ButtomBox = styled(Box)`
-    width:100%;
-    height:auto;
-    display:flex;
-    flex-direction:row;
-    flex-wrap:nowrap;
-    gap:10px;
-    align-items:center;
-    margin-top:5px;
-`
+
 const Cart = () => {
+    const dispatch = useDispatch();
     useEffect(() => {
-    // 👇️ scroll to top on page load
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }, []);
+        // 👇️ scroll to top on page load
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, []);
     const [expandedItem, setExpandedItem] = useState('panel1');
     const [expandedAddress, setExpandedAddress] = useState();
     const [expandedPay, setExpandedPay] = useState();
@@ -89,13 +91,13 @@ const Cart = () => {
             setExpandedPay(false)
             setExpandedAddress(false)
             setExpandedItem(panel)
-            
+
         }
         if (panel === 'panel2') {
             setExpandedPay(false)
             setExpandedItem(false)
             setExpandedAddress(panel)
-            window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         }
         if (panel === 'panel3') {
             setExpandedItem(false)
@@ -111,7 +113,7 @@ const Cart = () => {
             setExpandedPay(false)
             setExpandedAddress(false)
             setExpandedItem(panel)
-           
+
         }
         if (panel === 'panel2') {
             setExpandedPay(false)
@@ -156,10 +158,26 @@ const Cart = () => {
     }
     // payment start
 
-
     const handleSubmitpayment = () => {
         console.log('hello ia m payment')
     }
+
+    const cart = useSelector((state) => state.cart);
+
+    useEffect(() => {
+        dispatch(getTotals());
+    }, [cart, dispatch]);
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
+    };
+    const handleDecreaseCart = (product) => {
+        dispatch(decreaseCart(product));
+    };
+    const handleRemoveFromCart = (product) => {
+        dispatch(removeFromCart(product));
+    };
+    let total = ''
     return (
         <Container >
             <Headdingcont >
@@ -187,129 +205,49 @@ const Cart = () => {
                                 <Typography style={{ width: '15%', padding: '5px', display: 'flex', justifyContent: 'flex-end' }}>price</Typography>
                             </Box>
 
-                            <Box style={{ width: '95%', display: 'flex', flexDirection: 'raw', flexWrap: 'nowrap', alignItems: 'center', borderBottom: '2px solid #d9d9d9' }}>
-                                {/* ----------------------item box start------------------ */}
-                                <Box style={{ width: '45%', display: 'flex', flexDirection: 'raw', alignItems: 'flex-start', padding: '5px', marginTop: '10px' }}>
-                                    <Box style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
-                                        <img width="auto" style={{ backgroundColor: '#d9d9d9' }}
-                                            height={100} alt="" src='./Image/products/small-dish-wash01.png' />
-                                        <Box style={{ width: '100%', display: 'flex', flexDirection: 'raw', justifyContent: 'space-between' }}>
-                                            <Typography variant='subtitle2' style={{ fontSize: '12px', color: 'red', cursor: 'pointer' }}>remove</Typography>
-                                            <Typography variant='subtitle2' style={{ fontSize: '12px', color: 'blue', cursor: 'pointer' }}>move to wishlist</Typography>
-                                        </Box>
-                                    </Box>
-                                    <Typography variant='h2'
-                                        style={{ padding: '5px', fontSize: '16px', fontWeight: 600, }}>product name(50ml)
-                                    </Typography>
-                                </Box>
-                                {/* ----------------------item box end------------------ */}
-                                {/* ----------------------size box start------------------ */}
-                                <Box style={{ width: '20%', padding: '5px', display: 'flex', justifyContent: 'space-around' }}>
-                                    <Box><SizeButtom variant='contained' style={{ backgroundColor: 'green' }} >50ml</SizeButtom></Box>
-                                    <Box><SizeButtom variant='contained' style={{ backgroundColor: 'gray' }}>100ml</SizeButtom></Box>
-                                </Box>
-                                {/* ----------------------size box end------------------ */}
-                                {/* ----------------------Quantity box start------------------ */}
-                                <Box style={{ width: '20%', padding: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <RemoveCircleRoundedIcon style={{ fontSize: '18px', }} />
-                                    <input
-                                        type="text"
-                                        value={val}
-                                        onChange={(e) => handelvalue(e.target.value)}
-                                        style={{ width: '60px', height: '25px', border: '2px solid black', display: 'flex', textAlign: 'center', borderRadius: '3px' }} />
-                                    <AddCircleRoundedIcon style={{ fontSize: '18px', }} />
-                                </Box>
-                                {/* ----------------------Quantity box end------------------ */}
-                                {/* ----------------------Price box start------------------ */}
-                                <Box style={{ width: '15%', padding: '5px', display: 'flex', justifyContent: 'flex-end' }}>
-                                    <CurrencyRupeeIcon style={{ fontSize: '16px' }} />
-                                    <Typography variant='h2' style={{ fontSize: '14px', fontWeight: 600 }}>750</Typography>
-                                </Box>
-                                {/* ----------------------Price box end------------------ */}
-                            </Box>
+                            {cart.cartItems &&
+                                cart.cartItems.map((cartItem) => (
 
-                            <Box style={{ width: '95%', display: 'flex', flexDirection: 'raw', flexWrap: 'nowrap', alignItems: 'center', borderBottom: '2px solid #d9d9d9' }}>
-                                {/* ----------------------item box start------------------ */}
-                                <Box style={{ width: '45%', display: 'flex', flexDirection: 'raw', alignItems: 'flex-start', padding: '5px', marginTop: '10px' }}>
-                                    <Box style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
-                                        <img width="auto" style={{ backgroundColor: '#d9d9d9' }}
-                                            height={100} alt="" src='./Image/products/small-dish-wash01.png' />
-                                        <Box style={{ width: '100%', display: 'flex', flexDirection: 'raw', justifyContent: 'space-between' }}>
-                                            <Typography variant='subtitle2' style={{ fontSize: '12px', color: 'red', cursor: 'pointer' }}>remove</Typography>
-                                            <Typography variant='subtitle2' style={{ fontSize: '12px', color: 'blue', cursor: 'pointer' }}>move to wishlist</Typography>
-                                        </Box>
-                                    </Box>
-                                    <Typography variant='h2'
-                                        style={{ padding: '5px', fontSize: '16px', fontWeight: 600, }}>product name(50ml)
-                                    </Typography>
-                                </Box>
-                                {/* ----------------------item box end------------------ */}
-                                {/* ----------------------size box start------------------ */}
-                                <Box style={{ width: '20%', padding: '5px', display: 'flex', justifyContent: 'space-around' }}>
-                                    <Box><SizeButtom variant='contained' style={{ backgroundColor: 'green' }} >50ml</SizeButtom></Box>
-                                    <Box><SizeButtom variant='contained' style={{ backgroundColor: 'gray' }}>100ml</SizeButtom></Box>
-                                </Box>
-                                {/* ----------------------size box end------------------ */}
-                                {/* ----------------------Quantity box start------------------ */}
-                                <Box style={{ width: '20%', padding: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <RemoveCircleRoundedIcon style={{ fontSize: '18px', }} />
-                                    <input
-                                        type="text"
-                                        value={val}
-                                        onChange={(e) => handelvalue(e.target.value)}
-                                        style={{ width: '60px', height: '25px', border: '2px solid black', display: 'flex', textAlign: 'center', borderRadius: '3px' }} />
-                                    <AddCircleRoundedIcon style={{ fontSize: '18px', }} />
-                                </Box>
-                                {/* ----------------------Quantity box end------------------ */}
-                                {/* ----------------------Price box start------------------ */}
-                                <Box style={{ width: '15%', padding: '5px', display: 'flex', justifyContent: 'flex-end' }}>
-                                    <CurrencyRupeeIcon style={{ fontSize: '16px' }} />
-                                    <Typography variant='h2' style={{ fontSize: '14px', fontWeight: 600 }}>750</Typography>
-                                </Box>
-                                {/* ----------------------Price box end------------------ */}
-                            </Box>
+                                    <Box style={{ width: '95%', display: 'flex', flexDirection: 'raw', flexWrap: 'nowrap', alignItems: 'center', borderBottom: '2px solid #d9d9d9' }}>
 
-                            <Box style={{ width: '95%', display: 'flex', flexDirection: 'raw', flexWrap: 'nowrap', alignItems: 'center', borderBottom: '2px solid #d9d9d9' }}>
-                                {/* ----------------------item box start------------------ */}
-                                <Box style={{ width: '45%', display: 'flex', flexDirection: 'raw', alignItems: 'flex-start', padding: '5px', marginTop: '10px' }}>
-                                    <Box style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
-                                        <img width="auto" style={{ backgroundColor: '#d9d9d9' }}
-                                            height={100} alt="" src='./Image/products/small-dish-wash01.png' />
-                                        <Box style={{ width: '100%', display: 'flex', flexDirection: 'raw', justifyContent: 'space-between' }}>
-                                            <Typography variant='subtitle2' style={{ fontSize: '12px', color: 'red', cursor: 'pointer' }}>remove</Typography>
-                                            <Typography variant='subtitle2' style={{ fontSize: '12px', color: 'blue', cursor: 'pointer' }}>move to wishlist</Typography>
+                                        {/* ----------------------item box start------------------ */}
+                                        <Box style={{ width: '45%', display: 'flex', flexDirection: 'raw', alignItems: 'flex-start', padding: '5px', marginTop: '10px' }}>
+                                            <Box style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
+                                                <img width="auto" style={{ backgroundColor: '#d9d9d9' }}
+                                                    height={100} alt={cartItem.name} src={`./Image/all_products/${cartItem.product_image}`} />
+                                                <Box style={{ width: '100%', display: 'flex', flexDirection: 'raw', justifyContent: 'space-between' }}>
+                                                    <Typography variant='subtitle2' style={{ fontSize: '12px', color: 'red', cursor: 'pointer' }}
+                                                        onClick={() => handleRemoveFromCart(cartItem)}
+                                                    >remove</Typography>
+                                                    <Typography variant='subtitle2' style={{ fontSize: '12px', color: 'blue', cursor: 'pointer' }}>move to wishlist</Typography>
+                                                </Box>
+                                            </Box>
+                                            <Typography variant='h2'
+                                                style={{ padding: '5px', fontSize: '16px', fontWeight: 600, }}>{cartItem.name}(50ml)
+                                            </Typography>
                                         </Box>
+                                        {/* ----------------------item box end------------------ */}
+                                        {/* ----------------------size box start------------------ */}
+                                        <Box style={{ width: '20%', padding: '5px', display: 'flex', justifyContent: 'space-around' }}>
+                                            <Box><SizeButtom variant='contained' style={{ backgroundColor: 'green' }} >50ml</SizeButtom></Box>
+                                            <Box><SizeButtom variant='contained' style={{ backgroundColor: 'gray' }}>100ml</SizeButtom></Box>
+                                        </Box>
+                                        {/* ----------------------size box end------------------ */}
+                                        {/* ----------------------Quantity box start------------------ */}
+                                        <Box style={{ width: '20%', padding: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                            <RemoveCircleRoundedIcon style={{ fontSize: '18px', cursor: 'pointer' }} onClick={() => handleDecreaseCart(cartItem)} />
+                                            <Box style={{ width: '30px', height: 'max-content', textAlign: 'center' }}>{cartItem.cartQuantity}</Box>
+                                            <AddCircleRoundedIcon style={{ fontSize: '18px', cursor: 'pointer' }} onClick={() => handleAddToCart(cartItem)} />
+                                        </Box>
+                                        {/* ----------------------Quantity box end------------------ */}
+                                        {/* ----------------------Price box start------------------ */}
+                                        <Box style={{ width: '15%', padding: '5px', display: 'flex', justifyContent: 'flex-end' }}>
+                                            <CurrencyRupeeIcon style={{ fontSize: '16px' }} />
+                                            <Typography variant='h2' style={{ fontSize: '14px', fontWeight: 600 }}>{cartItem.price}</Typography>
+                                        </Box>
+                                        {/* ----------------------Price box end------------------ */}
                                     </Box>
-                                    <Typography variant='h2'
-                                        style={{ padding: '5px', fontSize: '16px', fontWeight: 600, }}>product name(50ml)
-                                    </Typography>
-                                </Box>
-                                {/* ----------------------item box end------------------ */}
-                                {/* ----------------------size box start------------------ */}
-                                <Box style={{ width: '20%', padding: '5px', display: 'flex', justifyContent: 'space-around' }}>
-                                    <Box><SizeButtom variant='contained' style={{ backgroundColor: 'green' }} >50ml</SizeButtom></Box>
-                                    <Box><SizeButtom variant='contained' style={{ backgroundColor: 'gray' }}>100ml</SizeButtom></Box>
-                                </Box>
-                                {/* ----------------------size box end------------------ */}
-                                {/* ----------------------Quantity box start------------------ */}
-                                <Box style={{ width: '20%', padding: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <RemoveCircleRoundedIcon style={{ fontSize: '18px', }} />
-                                    <input
-                                        type="text"
-                                        value={val}
-                                        onChange={(e) => handelvalue(e.target.value)}
-                                        style={{ width: '60px', height: '25px', border: '2px solid black', display: 'flex', textAlign: 'center', borderRadius: '3px' }} />
-                                    <AddCircleRoundedIcon style={{ fontSize: '18px', }} />
-                                </Box>
-                                {/* ----------------------Quantity box end------------------ */}
-                                {/* ----------------------Price box start------------------ */}
-                                <Box style={{ width: '15%', padding: '5px', display: 'flex', justifyContent: 'flex-end' }}>
-                                    <CurrencyRupeeIcon style={{ fontSize: '16px' }} />
-                                    <Typography variant='h2' style={{ fontSize: '14px', fontWeight: 600 }}>750</Typography>
-                                </Box>
-                                {/* ----------------------Price box end------------------ */}
-                            </Box>
-                            
+                                ))}
                             <Button variant='contained' onClick={handleOpen('panel2')}
                                 style={{ backgroundColor: 'green', marginTop: '10px' }}>Select Address
                             </Button>
@@ -345,7 +283,7 @@ const Cart = () => {
                                                 <Typography variant='body' style={{}}>9898988989</Typography>
                                             </Box>
                                             <Box style={{ display: 'flex', flexDirection: 'row' }}   >
-                                                <Typography variant='h2' style={{ fontSize: '12px', fontWeight: 600 ,color:'gray'}}>
+                                                <Typography variant='h2' style={{ fontSize: '12px', fontWeight: 600, color: 'gray' }}>
                                                     name jkhjkhdf dfjdsfhsd afhjdfh djafdlaf, gghgfdhdfh fghdf hdfghfgdhfg hdg fg h dgh fghdghghfg hfgdhdf
                                                 </Typography>
                                             </Box>
@@ -361,7 +299,7 @@ const Cart = () => {
                                                 <Typography variant='body' style={{}}>9898988989</Typography>
                                             </Box>
                                             <Box style={{ display: 'flex', flexDirection: 'row' }}   >
-                                                <Typography variant='h2' style={{ fontSize: '12px', fontWeight: 600 ,color:'gray'}}>
+                                                <Typography variant='h2' style={{ fontSize: '12px', fontWeight: 600, color: 'gray' }}>
                                                     name jkhjkhdf dfjdsfhsd afhjdfh djafdlaf, gghgfdhdfh fghdf hdfghfgdhfg hdg fg h dgh fghdghghfg hfgdhdf
                                                 </Typography>
                                             </Box>
@@ -425,25 +363,42 @@ const Cart = () => {
                     </Accordion>
                 </Detailescont>
                 <Amountcont>
-                <Typography style={{ fontSize: '16px',fontWeight:600 }}>Price details</Typography>
-                    <AmountDetailscont>
-                        <AmountDetailsrow style={{borderBottom:'1.4px solid gray'}}>
-                            <Typography>Price</Typography>
-                            <Typography><CurrencyRupeeIcon style={{ fontSize: '14px' }} />1300</Typography>
+                    <Typography style={{ fontSize: '16px', fontWeight: 600 }}>Price details</Typography>
+                    <AmountDetailscont >
+                        <AmountDetailsrow style={{ borderBottom: '1.4px solid gray' }}>
+                            <Typography style={{fontWeight:'600'}}>Price</Typography>
+                            <Typography>
+                            <Box style={{ minWidth: '70px', height: 'max-content', textAlign: 'center' }}>
+                                <CurrencyRupeeIcon style={{ fontSize: '14px' }} />{cart.cartTotalAmount}
+                            </Box>
+                            </Typography>
                         </AmountDetailsrow>
-                        <AmountDetailsrow style={{borderBottom:'1.4px solid gray'}}>
-                            <Typography>Discount</Typography>
-                            <Typography><CurrencyRupeeIcon style={{ fontSize: '14px' }} />50</Typography>
+                        <AmountDetailsrow style={{ borderBottom: '1.4px solid gray', }}>
+                            <Typography style={{fontWeight:'600'}}>Discount</Typography>
+                            <Typography style={{display:'flex',flexWrap:'nowrap',alignItems:'center'}}>
+                                <RemoveOutlinedIcon style={{ color: 'red',fontSize:'14px' }} />
+
+                                <Box style={{ width: '70px', height: 'max-content', textAlign: 'center' }}>
+                                    <CurrencyRupeeIcon style={{ fontSize: '14px' }} />
+                                    50
+                                </Box>
+                            </Typography>
                         </AmountDetailsrow>
-                        <AmountDetailsrow style={{borderBottom:'1.4px solid gray'}}>
-                            <Typography>Delivery</Typography>
-                            <Typography><CurrencyRupeeIcon style={{ fontSize: '14px' }} />100</Typography>
+                        <AmountDetailsrow style={{ borderBottom: '1.4px solid gray' }}>
+                            <Typography style={{fontWeight:'600'}}>Delivery</Typography>
+                            <Typography style={{display:'flex',flexWrap:'nowrap',alignItems:'center'}}>
+                                <AddOutlinedIcon style={{ color: 'green' ,fontSize:'14px'}} />
+                                <Box style={{ width: '70px', height: 'max-content', textAlign: 'center' }}>
+                                    <CurrencyRupeeIcon style={{ fontSize: '14px' }} />
+                                    50
+                                </Box>
+                            </Typography>
                         </AmountDetailsrow>
                     </AmountDetailscont>
                     <AmountDetailscont>
                         <AmountDetailsrow>
-                            <Typography>Subtotal</Typography>
-                            <Typography><CurrencyRupeeIcon style={{ fontSize: '14px' }} />1350</Typography>
+                            <Typography style={{fontWeight:'600'}}>Subtotal</Typography>
+                            <Typography><CurrencyRupeeIcon style={{ fontSize: '14px' }} />{cart.cartTotalAmount - 50 + 50}</Typography>
                         </AmountDetailsrow>
                     </AmountDetailscont>
                 </Amountcont>
