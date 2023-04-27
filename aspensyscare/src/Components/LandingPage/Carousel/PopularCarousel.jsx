@@ -97,7 +97,7 @@ const PopularCarousel = () => {
           prevArrow={<PreviousBtn />}
           nextArrow={<NextBtn />}
         >
-          {Products.loading && skeletonloading.map((items) => {return(<Skeleton variant="rounded" animation="wave" width={200} height={200} />)})}
+          {Products.loading && skeletonloading.map((items) => {return(<Skeleton variant="rounded" animation="wave" width={232} height={270} />)})}
           {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
           {!Products.loading && Products.products.product !== undefined ? (
             product.map((val, i) => {
