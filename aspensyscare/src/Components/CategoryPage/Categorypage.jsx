@@ -167,7 +167,7 @@ const Categorypage = () => {
                     </Box>
                 </CategoryItems>
             </Categorycont>
-        </CategoryBox >
+        </CategoryBox>
 
     )
 }

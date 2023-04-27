@@ -3,6 +3,7 @@ import { Box, Card, CardActionArea, CardContent, Stack, Typography } from '@mui/
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from '@mui/material/Skeleton';
 
 const CardCont = styled(Box)`
     display:flex;
@@ -15,6 +16,7 @@ const CardCont = styled(Box)`
     
 `
 const products = []
+const skeletonloading = [1,2,3,4];
 const Category = () => {
     const navigate = useNavigate();
     const categories = useSelector((state) => state.category);
@@ -24,14 +26,14 @@ const Category = () => {
             <Box padding={'20px'} width={'80%'}>
                 <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '600', color: 'black', marginLeft: '43px' }}>Shop by Our Categories</Typography>
             </Box>
-            <CardCont >
-                {categories.loading && <div>Loading...</div>}
+            <CardCont>
+                {categories.loading && skeletonloading.map((items) => {return(<Skeleton variant="rectangular" animation="wave" width={200} height={200} />)})}
                 {!categories.loading && categories.error ? <div>Error: {categories.error}</div> : null}
                 {!categories.loading && categories.category.category!==undefined ? (
                         category.map((val, key) => {
                             return (
                                 <Card style={{ width: '200px', height: '200px', backgroundColor: '#62b660', cursor: 'pointer' }}
-                                    key={key}
+                                    key={key.toString()}
                                 >
                                     <CardActionArea onClick={() => navigate('/category', { state: { name: val.name } })}>
                                         <CardContent>
@@ -45,15 +47,7 @@ const Category = () => {
                             )
                         })
                 ) : null}
-
-
-
-
-
-
                 
-
-
             </CardCont>
         </Stack>
     )
