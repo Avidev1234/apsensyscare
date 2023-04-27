@@ -33,7 +33,7 @@ const Category = () => {
                                 <Card style={{ width: '200px', height: '200px', backgroundColor: '#62b660', cursor: 'pointer' }}
                                     key={key}
                                 >
-                                    <CardActionArea onClick={() => navigate('/category', { state: { name: val.name } })}>
+                                    <CardActionArea onClick={() => navigate('/category', { state: { id: val.id } })}>
                                         <CardContent>
                                             <Typography sx={{ fontSize: 14, display: 'flex', justifyContent: 'center' }} color="white" gutterBottom>
                                                 {val.category_name}

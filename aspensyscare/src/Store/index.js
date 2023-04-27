@@ -5,6 +5,7 @@ import categorySclice from "./Slices/categorySclice";
 import productSlice from "./Slices/productSlice";
 import detailsSlice from "./Slices/productEntrySlice";
 import sizeSlice from "./Slices/sizeSlice";
+import cartSlice from "./Slices/cartSlice";
 const store = configureStore({
     reducer: {
         users: userSlice,
@@ -13,6 +14,7 @@ const store = configureStore({
         product:productSlice,
         productdetails:detailsSlice,
         size:sizeSlice,
+        cart:cartSlice,
     },
 });
 
