@@ -4,6 +4,7 @@ import CarouselCard from "./CarouselCard";
 import Slider from "react-slick";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useSelector } from "react-redux";
+import Skeleton from '@mui/material/Skeleton';
 
 const CarouselCont = styled(Box)`
   width:85%;
@@ -56,6 +57,7 @@ const products1 = [
   }
 ];
 
+const skeletonloading = [1,2,3,4,5,6,7,8];
 
 const PreviousBtn = (props) => {
   // console.log(props);
@@ -95,7 +97,7 @@ const PopularCarousel = () => {
           prevArrow={<PreviousBtn />}
           nextArrow={<NextBtn />}
         >
-          {Products.loading && <div>Loading...</div>}
+          {Products.loading && skeletonloading.map((items) => {return(<Skeleton variant="rounded" animation="wave" width={200} height={200} />)})}
           {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
           {!Products.loading && Products.products.product !== undefined ? (
             product.map((val, i) => {
@@ -108,7 +110,7 @@ const PopularCarousel = () => {
           ) : null}
         </Slider>
       </CarouselCont>
-    </Homecont >
+    </Homecont>
   )
 }
 
