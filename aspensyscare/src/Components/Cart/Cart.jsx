@@ -188,11 +188,8 @@ const Cart = () => {
                     <Box style={{width:'100%',height:'70vh',display:'flex',justifyContent:'center',alignItems:'center'}}>
                         <Typography variant='h1' style={{fontSize:'20px',fontWeight:'600',color:'red'}}>Your cart is empty</Typography>
                     </Box>
-
                 )
-
                 :
-
                 <Container_Cart>
                     <Detailescont>
                         <Accordion expanded={expandedItem === 'panel1'}>

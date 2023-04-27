@@ -49,7 +49,7 @@ const CarouselCard = ({ val }) => {
     try {
         const iconcolor = val.color ? val.color : '';
         return (
-            <Card>
+            <Card style={{minWidth:'200px'}}>
                 <FevIcon aria-label="add to favorites">
                     <FavoriteIcon style={{ color: iconcolor }} />
                 </FevIcon>
