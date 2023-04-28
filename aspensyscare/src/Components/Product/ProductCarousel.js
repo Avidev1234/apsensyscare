@@ -17,13 +17,13 @@ const BoxCont = styled(Box)`
 }
 `
 var data = [
-  './Image/products/yellow-bodywash-with-lime.png',
-  './Image/products/front-dish-wash.jpg'
-  , './Image/products/backt-dish-wash.jpg'
-  , './Image/products/white-dish-wash (2).jpg'
-  , './Image/products/front-and-back-side-dishwash.jpg',
-  './Image/products/white-dish-wash (2).jpg', 
-  './Image/products/front-and-back-side-dishwash.jpg'
+  './Image/products/dishwash-gel-250ml-1.png',
+  './Image/products/dishwash-gel-250ml-2.png'
+]
+var data1 = [
+  './Image/products/dishwash-gel-250ml-3.png',
+  './Image/products/dishwash-gel-250ml-4.png'
+  
 ]
 const ProductCarousel = (props) => {
   const [nav1, Setnav1] = useState();
@@ -61,7 +61,7 @@ const ProductCarousel = (props) => {
                   isFluidWidth: false,
                   src: item,
                   height: 460,
-                  width: 150,
+                  width: 250,
                   sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
                 },
                 largeImage: {
@@ -71,7 +71,7 @@ const ProductCarousel = (props) => {
                 },
                 enlargedImagePortalId: 'portal',
                 enlargedImageContainerDimensions: {
-                  width: '450%',
+                  width: '250%',
                   height: '105%',                },
                 shouldUsePositiveSpaceLens: true
               }}
@@ -91,9 +91,9 @@ const ProductCarousel = (props) => {
         nextArrow={<NextBtn />}
         dotsClass="slick-dots custom-indicator"
       >
-        {data.map((item) => (
+        {data1.map((item) => (
           <div style={{ width: "100%", height: "10%", margin: "10px" }}>
-            <img src={item} alt="" style={{ width: "100%", height: "10vh", objectFit: "contain", cursor: 'pointer' }} />
+            <img src={item} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer' }} />
           </div>
         ))}
       </Slider>

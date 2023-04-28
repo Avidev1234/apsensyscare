@@ -25,6 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import Login from '../../Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTotals } from '../../../Store/Slices/cartSlice';
+import "./navbar.css";
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -177,27 +178,28 @@ function Navbar(props) {
           >
             <img src="./aspensyscare.png" height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-between' }} className='sidewidth'>
             {/* {navItems.map((item) => (
               <Button key={item} sx={{ color: '#000' }}>
                 {item}
               </Button>
             ))} */}
+            <AvtarIcon style={{margin:'auto'}}>
+              <Search >
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </Search>
+            </AvtarIcon>
             {auth && (
               <div
                 style={{ display: 'flex', flexDirection: 'row', gap: '2rem' }}
               >
-                <AvtarIcon >
-                  <Search >
-                    <SearchIconWrapper>
-                      <SearchIcon />
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                      placeholder="Search…"
-                      inputProps={{ 'aria-label': 'search' }}
-                    />
-                  </Search>
-                </AvtarIcon>
+
                 <AvtarIcon>
                   <IconButton size="small">
                     <LanguageIcon
