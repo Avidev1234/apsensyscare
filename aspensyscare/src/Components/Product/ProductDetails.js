@@ -87,7 +87,8 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
-const ProductDetails = () => {
+const ProductDetails = (product) => {
+    // console.log(product.products.name)
     const [buttomone, setbuttomone] = useState(true);
     const [buttomtwo, setbuttomtwo] = useState(false);
 
@@ -105,7 +106,7 @@ const ProductDetails = () => {
     })
     const [val, setVal] = useState(1);
     const handelvalue = (str) => {
-        console.log(str)
+        // console.log(str)
         const replaced = str.match(/\d+/);
         if (replaced !== '') {
             setVal(replaced[0]);
@@ -125,7 +126,7 @@ const ProductDetails = () => {
                 style={portal}
             />
             <div>
-                <Typography variant='h3' style={{ fontSize: '18px', fontWeight: '700', marginTop: '8px' }}>Product Name</Typography>
+                <Typography variant='h3' style={{ fontSize: '18px', fontWeight: '700', marginTop: '8px' }}>{product.products.name.replace(/-/g, ' ').toUpperCase()}</Typography>
                 <Typography variant='subtitle2' style={{ fontSize: '12px', fontWeight: '500', color: 'gray' }}>
                     Product category:Skin care</Typography>
             </div>
@@ -140,7 +141,7 @@ const ProductDetails = () => {
             </div>
             <div>
                 <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '700', marginTop: '8px' }}>
-                    <CurrencyRupeeIcon style={{ fontSize: '20px' }} />500.00
+                    <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{product.products.price}.00
                     <Typography variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
                         Inclusive of all Taxes
                     </Typography>
