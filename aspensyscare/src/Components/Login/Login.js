@@ -12,9 +12,6 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 
-
-var md5 = require('md5');
-
 const LoginCont = styled(Box)`
   width: 100%;
   height: 100%;
