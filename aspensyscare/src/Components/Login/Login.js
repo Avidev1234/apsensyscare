@@ -11,6 +11,10 @@ import { fetchUsers } from "../../Store/Slices/userSlice";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
+
+
+var md5 = require('md5');
+
 const LoginCont = styled(Box)`
   width: 100%;
   height: 100%;
@@ -95,14 +99,14 @@ const Login = ({ handelLogin }) => {
   };
   // --------------------------getting all user inputs for signup_user -----------------------------------
   const [signup, setSignUp] = useState(signupInitialvalue);
-  const handleInputs = (e) => {
-    setSignUp({ ...signup, [e.target.name]: e.target.value });
+  const handleInputs = (values) => {
+    setSignUp({ ...signup, [values.target.name]: values.target.value });
   };
 
   // --------------------------work for signup user-----------------------------------
-  const handelSignUp = async () => {
+  const handelSignUp = async (values) => {
     await axios
-      .post("/backend_api/site_user", signup)
+      .post("/site_user", values)
       .then((req, res) => {
         console.log("done");
         handelLogin(false, 1);
@@ -119,7 +123,7 @@ const Login = ({ handelLogin }) => {
   // ---------------------------work for login user------------------------------------
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const handelLoginuser = async () => {
+  const handelLoginuser = async (values) => {
     try {
       dispatch(fetchUsers(login));
     } catch (error) {
@@ -129,14 +133,16 @@ const Login = ({ handelLogin }) => {
 
   const SignupSchema = Yup.object().shape({
     phone: Yup.string()
-      .min(1, "Not a Phone Number!")
-      .max(10, "Too Long!")
+      .matches(/^[6-9]\d{9}$/, {
+        message: "Please enter valid number.",
+        excludeEmptyString: false,
+      })
       .required("Required"),
     password: Yup.string()
       .required("No password provided.")
       .min(8, "Password is too short - should be 8 chars minimum.")
-      .matches(/[a-zA-Z]/, "Password can only contain Latin letters.").required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
+      .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+    email: Yup.string().email("Invalid email").required("Required")
   });
 
   const LoginSchema = Yup.object().shape({
@@ -147,7 +153,8 @@ const Login = ({ handelLogin }) => {
     password: Yup.string()
       .required("No password provided.")
       .min(8, "Password is too short - should be 8 chars minimum.")
-      .matches(/[a-zA-Z]/, "Password can only contain Latin letters.").required("Required"),
+      .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
+      .required("Required")
   });
 
   return (
@@ -156,12 +163,7 @@ const Login = ({ handelLogin }) => {
       <LoginBox>
         <LoginBoxCont>
           <LoginLeft>
-            <img
-              alt=""
-              height="70px"
-              width="290px"
-              src="/apsensys-technologies.png"
-            />
+            <img alt=""  src="/aspensyscare.png" />
           </LoginLeft>
           <LoginRight>
             <Box
@@ -211,6 +213,7 @@ const Login = ({ handelLogin }) => {
                         onSubmit={(values) => {
                           // same shape as initial values
                           console.log(values);
+                          handelLoginuser(values)
                         }}
                       >
                         {({ errors, touched }) => (
@@ -218,7 +221,7 @@ const Login = ({ handelLogin }) => {
                             <div className="wrap">
                               <Field
                                 name="phone"
-                                type="number"
+                                type="text"
                                 placeholder="Phone"
                               />
                               {errors.phone && touched.phone ? (
@@ -341,6 +344,7 @@ const Login = ({ handelLogin }) => {
                         onSubmit={(values) => {
                           // same shape as initial values
                           console.log(values);
+                          handelSignUp(values);
                         }}
                       >
                         {({ errors, touched }) => (
