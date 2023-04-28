@@ -160,7 +160,7 @@ const Login = ({ handelLogin }) => {
               alt=""
               height="70px"
               width="290px"
-              src="/apsensys-technologies.png"
+              src="./aspensyscare.png"
             />
           </LoginLeft>
           <LoginRight>

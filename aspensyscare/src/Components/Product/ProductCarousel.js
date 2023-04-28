@@ -3,7 +3,7 @@ import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import Slider from 'react-slick'
-// import "./Carousel.css";
+ import "./Carousel.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactImageMagnify from 'react-image-magnify';
@@ -17,12 +17,13 @@ const BoxCont = styled(Box)`
 }
 `
 var data = [
-  './Image/products/white-dish-wash.jpg',
+  './Image/products/yellow-bodywash-with-lime.png',
   './Image/products/front-dish-wash.jpg'
   , './Image/products/backt-dish-wash.jpg'
   , './Image/products/white-dish-wash (2).jpg'
   , './Image/products/front-and-back-side-dishwash.jpg',
-  './Image/products/white-dish-wash (2).jpg', './Image/products/front-and-back-side-dishwash.jpg'
+  './Image/products/white-dish-wash (2).jpg', 
+  './Image/products/front-and-back-side-dishwash.jpg'
 ]
 const ProductCarousel = (props) => {
   const [nav1, Setnav1] = useState();
@@ -50,7 +51,7 @@ const ProductCarousel = (props) => {
         <Slider
           asNavFor={nav2}
           ref={slider => (Setnav1(slider))}
-
+          arrows={false}
         >
           {data.map((item) => (
             <Box style={{ width: 'auto', height: '450px', border: '2px solid red' }}>
@@ -60,7 +61,7 @@ const ProductCarousel = (props) => {
                   isFluidWidth: false,
                   src: item,
                   height: 460,
-                  width: 530,
+                  width: 150,
                   sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
                 },
                 largeImage: {
@@ -70,9 +71,8 @@ const ProductCarousel = (props) => {
                 },
                 enlargedImagePortalId: 'portal',
                 enlargedImageContainerDimensions: {
-                  width: '100%',
-                  height: '100%',
-                },
+                  width: '450%',
+                  height: '105%',                },
                 shouldUsePositiveSpaceLens: true
               }}
               />

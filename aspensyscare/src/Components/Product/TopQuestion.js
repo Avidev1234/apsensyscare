@@ -99,7 +99,7 @@ const TopQuestion = () => {
                         Top Questions
                     </Typography>
                     <TopReviewsinside>
-                        <Box >
+                        <div >
                             <Typography variant='h2' style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                                 Q: how are you
                             </Typography>
@@ -107,12 +107,12 @@ const TopQuestion = () => {
                             style={{ width: '100%', fontSize: '14px', fontWeight: '600',padding: '10px', paddingTop: '-30px' }}>
                                 A: Nice Product
                             </Typography>
-                        </Box>
-                        <Box style={{ width: '50%' }}>
+                        </div>
+                        <div style={{ width: '50%' }}>
                             <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400',marginTop:'12px', color: 'grey' }}>
                                 3 years ago
                             </Typography>
-                        </Box>
+                        </div>
                     </TopReviewsinside>
                     
                     <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '600', padding: '10px',color:'grey' }}>
@@ -129,7 +129,7 @@ const TopQuestion = () => {
                         style={{ width: '100%' }}>
                         <CardContent style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 0 }}>
                         <TopReviewsinside>
-                        <Box >
+                        <div >
                             <Typography variant='h2' style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                                 Q: how are you
                             </Typography>
@@ -137,15 +137,15 @@ const TopQuestion = () => {
                             style={{ width: '100%', fontSize: '14px', fontWeight: '600',padding: '10px', paddingTop: '-30px' }}>
                                 A: Nice Product
                             </Typography>
-                        </Box>
-                        <Box style={{ width: '50%' }}>
+                        </div>
+                        <div style={{ width: '50%' }}>
                             <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400',marginTop:'12px', color: 'grey' }}>
                                 3 years ago
                             </Typography>
-                        </Box>
+                        </div>
                     </TopReviewsinside>
                     <TopReviewsinside>
-                        <Box >
+                        <div >
                             <Typography variant='h2' style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                                 Q: how are you
                             </Typography>
@@ -153,12 +153,12 @@ const TopQuestion = () => {
                             style={{ width: '100%', fontSize: '14px', fontWeight: '600',padding: '10px', paddingTop: '-30px' }}>
                                 A: Nice Product
                             </Typography>
-                        </Box>
-                        <Box style={{ width: '50%' }}>
+                        </div>
+                        <div style={{ width: '50%' }}>
                             <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400',marginTop:'12px', color: 'grey' }}>
                                 3 years ago
                             </Typography>
-                        </Box>
+                        </div>
                     </TopReviewsinside>
                         </CardContent>
                     </Collapse>
