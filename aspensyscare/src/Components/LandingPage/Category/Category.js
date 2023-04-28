@@ -15,7 +15,6 @@ const CardCont = styled(Box)`
     gap:15px;
     
 `
-const products = []
 const skeletonloading = [1,2,3,4];
 const Category = () => {
     const navigate = useNavigate();

@@ -120,8 +120,8 @@ const Categorypage = () => {
             {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
             <Categorycont>
                 <CategoryType>
-                    <Box style={{ width: '70%' }}>
-                        <Box style={{ width: '100%', borderBottom: '2px solid grey' }}>
+                    <div style={{ width: '70%' }}>
+                        <div style={{ width: '100%', borderBottom: '2px solid grey' }}>
                             <Typography style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center',cursor:'pointer' }} onClick={handleExpandClick}>
                                 Price
                                 <ExpandMore
@@ -133,7 +133,7 @@ const Categorypage = () => {
                                     <ExpandMoreIcon />
                                 </ExpandMore>
                             </Typography>
-                        </Box>
+                        </div>
                         <Collapse in={expanded} timeout="auto" unmountOnExit
                             style={{ width: '100%' }}>
                             <CardContent
@@ -146,20 +146,22 @@ const Categorypage = () => {
                                 />
                             </CardContent>
                         </Collapse>
-                    </Box>
+                    </div>
                     <Divider />
                 </CategoryType>
                 <CategoryItems>
                     {!Products.loading && Products.products.product !== undefined && categoryProducts.length !== 0 ? (
                         categoryProducts.map((val, i) => {
                             return (
-                                <Box style={{ width: '232px' }}>
+                                <div style={{ width: '232px' }}>
                                     <CarouselCard val={val} />
-                                </Box>
+                                </div>
                             )
                         })
                     ) :
-                        skeletonloading.map((items) => {return(<Skeleton variant="rounded" animation="wave" width={232} height={270} />)})
+                        <Box style={{ width: '100%', height: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <Typography variant='h1' style={{ fontSize: '20px', fontWeight: '600', color: 'red' }}>No Products.</Typography>
+                        </Box>
                     }
                 </CategoryItems>
             </Categorycont>

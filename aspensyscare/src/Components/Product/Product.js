@@ -8,6 +8,7 @@ import ProductCarousel from './ProductCarousel'
 import ProductDetails from './ProductDetails'
 import Rating from './Rating'
 import TopQuestion from './TopQuestion'
+import { useLocation } from 'react-router-dom'
 
 
 const ProductCont = styled(Stack)`
@@ -54,6 +55,8 @@ const Product = () => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
+  const value = useLocation();
+  console.log(value.state.id)
   return (
     <ProductCont>
       <ProductDetailsBox>

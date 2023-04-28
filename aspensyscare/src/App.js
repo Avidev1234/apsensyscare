@@ -14,14 +14,17 @@ import { productData } from './Store/Slices/productEntrySlice';
 import { fatchSizes } from './Store/Slices/sizeSlice';
 import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { fetchCategory } from './Store/Slices/categorySclice';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     async function fetchData() {
       try {
+        dispatch(fetchCategory());
         dispatch(AllProducts());
         dispatch(productData());
         dispatch(fatchSizes());
+
       } catch (error) {
         console.log(error);
       }

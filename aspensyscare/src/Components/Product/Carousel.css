@@ -46,4 +46,8 @@ border-radius: 16px;
   transform: scale(1.1);
   transition: 500ms;
 }
+.css-0{
+  width: auto !important;
+  margin: auto;
+}
 

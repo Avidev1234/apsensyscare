@@ -1,11 +1,10 @@
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Button, InputBase, OutlinedInput, Typography } from '@mui/material'
+import { Box, Button, InputBase,  Typography } from '@mui/material'
 import React, { useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
-import { grey } from '@mui/material/colors';
 
 const Detailscont = styled(Box)`
     width:100%;
@@ -115,7 +114,9 @@ const ProductDetails = () => {
     const portal={
         position: 'absolute',
         zIndex:9,
-        
+        marginRight:'10px',
+        height:'500px',
+        width:'500px'
     }
     return (
         <Detailscont>
@@ -123,28 +124,28 @@ const ProductDetails = () => {
                 id="portal"
                 style={portal}
             />
-            <Box>
+            <div>
                 <Typography variant='h3' style={{ fontSize: '18px', fontWeight: '700', marginTop: '8px' }}>Product Name</Typography>
                 <Typography variant='subtitle2' style={{ fontSize: '12px', fontWeight: '500', color: 'gray' }}>
                     Product category:Skin care</Typography>
-            </Box>
+            </div>
             <Rattingcont>
                 4<StarIcon style={{ fontSize: '12px' }} />
             </Rattingcont>
-            <Box>
+            <div>
                 <Typography variant='subtitle2' style={{ fontSize: '13px', fontWeight: '500', color: 'black' }}>
                     It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                     It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
                 </Typography>
-            </Box>
-            <Box>
+            </div>
+            <div>
                 <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '700', marginTop: '8px' }}>
                     <CurrencyRupeeIcon style={{ fontSize: '20px' }} />500.00
                     <Typography variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
                         Inclusive of all Taxes
                     </Typography>
                 </Typography>
-            </Box>
+            </div>
             <ButtomBox>
                 <Button variant='contained' style={buttomonestyle}>50ml</Button>
                 <Button variant='contained' style={buttomtwostyle}>100ml</Button>
