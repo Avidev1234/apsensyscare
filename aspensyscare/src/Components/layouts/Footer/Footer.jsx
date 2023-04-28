@@ -59,21 +59,21 @@ const Footer = () => {
     <FooterCont>
       <FooterBoxCont>
         <FooterBox style={{width:'35%',marginRight:'15px'}}>
-          <Box>
+          <div>
             <img width="200px" height="40px" src='./aspensyscare.png' alt='' />
-          </Box>
-          <Box style={{paddingLeft:"10px"}}>
+          </div>
+          <div style={{paddingLeft:"10px"}}>
             <Typography variant='h3' style={{ fontSize: '18px' }}>Contact</Typography>
             <br/>
             <Typography variant='body' style={{ fontSize: '14px', height: '100px' }}>
             2M95+8CC, Service Rd, Vijaya Bank Colony, Kallumantapa, Horamavu, Bengaluru, Karnataka 560043
             </Typography>
-          </Box>
+          </div>
         </FooterBox>
         <FooterBox >
           <Typography variant='h3' style={{ fontSize: '18px' }}>QUICK LINK</Typography>
           <br/>
-          <Box style={{
+          <div style={{
             fontSize: '14px', height: 'auto', display: 'flex', justifyContent: 'center',
             alignContent: 'center', flexDirection: 'column'
           }}>
@@ -85,12 +85,12 @@ const Footer = () => {
             <FooterTypography variant='body'>Herb Finder</FooterTypography>
             <FooterTypography variant='body'>Loyalty Program</FooterTypography>
             <FooterTypography variant='body'></FooterTypography>
-          </Box>
+          </div>
         </FooterBox>
         <FooterBox >
           <Typography variant='h3' style={{ fontSize: '18px' }}>LEGAL</Typography>
           <br />
-          <Box style={{
+          <div style={{
             fontSize: '14px', height: '100px', display: 'flex', justifyContent: 'center',
             alignContent: 'center', flexDirection: 'column'
           }}>
@@ -99,12 +99,12 @@ const Footer = () => {
             <FooterTypography variant='body'>Return Policy</FooterTypography>
             <FooterTypography variant='body'>Terms of use</FooterTypography>
             <FooterTypography variant='body'>Privacy Policy</FooterTypography>
-          </Box>
+          </div>
         </FooterBox>
         <FooterBox >
           <Typography variant='h3' style={{ fontSize: '18px' }}>HELP</Typography>
           <br />
-          <Box style={{
+          <div style={{
             fontSize: '14px', height: 'auto', display: 'flex', justifyContent: 'center',
             alignContent: 'center', flexDirection: 'column'
           }}>
@@ -114,7 +114,7 @@ const Footer = () => {
             <FooterTypography variant='body'>FAQs</FooterTypography>
             <FooterTypography variant='body'>Health Help</FooterTypography>
             <FooterTypography variant='body'>Herb Finder</FooterTypography>
-          </Box>
+          </div>
         </FooterBox>
         
       </FooterBoxCont>

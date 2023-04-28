@@ -22,7 +22,7 @@ const CarouselCard = ({ val }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // console.log(val.id)
+    console.log(val.id)
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
 
@@ -53,7 +53,7 @@ const CarouselCard = ({ val }) => {
                 <FevIcon aria-label="add to favorites">
                     <FavoriteIcon style={{ color: iconcolor }} />
                 </FevIcon>
-                <CardActionArea onClick={() => navigate('/product')}>
+                <CardActionArea onClick={() => navigate('/product', { state: { id: val.id } })}>
                     <CardImage
                         component="img"
                         height="140px"

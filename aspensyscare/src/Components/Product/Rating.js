@@ -104,7 +104,7 @@ const Rating = () => {
         </RatingBox>
         {/* stars */}
         <RatingBox>
-          <Box>
+          <div>
             <IconButton aria-label="add to favorites">
               <StarBorderIcon />
             </IconButton>
@@ -120,16 +120,16 @@ const Rating = () => {
             <IconButton aria-label="add to favorites">
               <StarBorderIcon />
             </IconButton>
-          </Box>
+          </div>
           <Typography variant='subtitle2'>Rate This Products</Typography>
 
         </RatingBox>
         {/* rating button */}
         <RatingBox>
-          <Box>
+          <div>
             <RatingButton >Write a Review</RatingButton>
             <RatingButton>Ask a question</RatingButton>
-          </Box>
+          </div>
         </RatingBox>
       </Rattingcont>
       <Divider />
@@ -140,54 +140,54 @@ const Rating = () => {
             Top Reviews
           </Typography>
           <TopReviewsinside>
-            <Box style={{ width: '50%' }}>
+            <div style={{ width: '50%' }}>
               <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
                 Tarun
               </Typography>
               <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '-20px', color: 'grey' }}>
                 3 years ago
               </Typography>
-            </Box>
-            <Box style={{ width: '50%' }}>
+            </div>
+            <div style={{ width: '50%' }}>
               <Typography variant='h2' style={{ width: '100%', height: '30px', overflow: 'hidden', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                 Nice Product
               </Typography>
-            </Box>
+            </div>
           </TopReviewsinside>
           <hr class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root" />
           <TopReviewsinside>
-            <Box style={{ width: '50%' }}>
+            <div style={{ width: '50%' }}>
               <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
                 Tarun
               </Typography>
               <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '-20px', color: 'grey' }}>
                 3 years ago
               </Typography>
-            </Box>
-            <Box style={{ width: '50%' }}>
+            </div>
+            <div style={{ width: '50%' }}>
               <Typography variant='h2' style={{ width: '100%', height: '30px', overflow: 'hidden', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                 Nice Product
               </Typography>
-            </Box>
+            </div>
           </TopReviewsinside>
           <hr class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root" />
           <TopReviewsinside>
-            <Box style={{ width: '50%' }}>
+            <div style={{ width: '50%' }}>
               <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
                 Tarun
               </Typography>
               <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '-20px', color: 'grey' }}>
                 3 years ago
               </Typography>
-            </Box>
-            <Box style={{ width: '50%' }}>
+            </div>
+            <div style={{ width: '50%' }}>
               <Typography variant='h2' style={{ width: '100%', height: '30px', overflow: 'hidden', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                 Nice Productfgdhg ghd kdfghd kgh dfghkdfgk kdfghdfdf
                 Nice Productfgdhg ghd kdfghd kgh dfghkdfgk kdfghdfdf
                 Nice Productfgdhg ghd kdfghd kgh dfghkdfgk kdfghdfdf
                 Nice Productfgdhg ghd kdfghd kgh dfghkdfgk kdfghdfdf
               </Typography>
-            </Box>
+            </div>
           </TopReviewsinside>
           <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '600', padding: '10px',color:'grey' }}>
             see all reviews<ExpandMore
@@ -203,34 +203,34 @@ const Rating = () => {
           style={{width:'100%'}}>
             <CardContent style={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',padding:0}}>
               <TopReviewsinside>
-                <Box style={{ width: '50%' }}>
+                <div style={{ width: '50%' }}>
                   <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
                     Tarun
                   </Typography>
                   <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '-20px', color: 'grey' }}>
                     3 years ago
                   </Typography>
-                </Box>
-                <Box style={{ width: '50%' }}>
+                </div>
+                <div style={{ width: '50%' }}>
                   <Typography variant='h2' style={{ width: '100%', height: '30px', overflow: 'hidden', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                     Nice Product
                   </Typography>
-                </Box>
+                </div>
               </TopReviewsinside>
               <TopReviewsinside>
-                <Box style={{ width: '50%' }}>
+                <div style={{ width: '50%' }}>
                   <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
                     Tarun
                   </Typography>
                   <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '-20px', color: 'grey' }}>
                     3 years ago
                   </Typography>
-                </Box>
-                <Box style={{ width: '50%' }}>
+                </div>
+                <div style={{ width: '50%' }}>
                   <Typography variant='h2' style={{ width: '100%', height: '30px', overflow: 'hidden', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                     Nice Product
                   </Typography>
-                </Box>
+                </div>
               </TopReviewsinside>
             </CardContent>
           </Collapse>
