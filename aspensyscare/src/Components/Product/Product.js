@@ -56,15 +56,15 @@ const Product = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
   const value = useLocation();
-  console.log(value.state.id)
+  // console.log(value.state)
   return (
     <ProductCont>
       <ProductDetailsBox>
         <Partationcont>
-          <ProductCarousel />
+          <ProductCarousel image={value.state.image} />
         </Partationcont>
         <Partationcont>
-          <ProductDetails />
+          <ProductDetails products={value.state} />
         </Partationcont>
       </ProductDetailsBox>
       <ProductDetailsBox>

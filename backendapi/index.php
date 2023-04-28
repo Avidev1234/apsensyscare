@@ -8,8 +8,8 @@ include('./sitepackages/includes/include.php');
 $REQUEST_URI=$_SERVER['REQUEST_URI'];
 $uri=str_replace('/apsensyscare/backendapi','',$REQUEST_URI);
 // echo $REQUEST_URI;
-// echo '<br/>';
-// echo $uri;
+//  echo '<br/>';
+//  echo $uri;
 if($uri==='/site_user')
 {
     include('./sitepackages/inbuilt/pages/SignUp.php');

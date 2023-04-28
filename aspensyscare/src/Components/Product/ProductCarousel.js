@@ -25,7 +25,9 @@ var data1 = [
   './Image/products/dishwash-gel-250ml-4.png'
   
 ]
-const ProductCarousel = (props) => {
+const ProductCarousel = (image) => {
+
+
   const [nav1, Setnav1] = useState();
   const [nav2, Setnav2] = useState();
   const PreviousBtn = (props) => {
@@ -45,6 +47,12 @@ const ProductCarousel = (props) => {
       </div>
     );
   };
+
+
+  let ProductImage = `./Image/all_products/${image.image}`;
+
+  console.log(ProductImage)
+
   return (
     <BoxCont>
       <Box style={{boxShadow:'0 3px 10px rgb(0 0 0 / 0.2)',marginBottom: '15px'}}>
@@ -53,7 +61,7 @@ const ProductCarousel = (props) => {
           ref={slider => (Setnav1(slider))}
           arrows={false}
         >
-          {data.map((item) => (
+          {/* {data.map((item) => (
             <Box style={{ width: 'auto', height: '450px', border: '2px solid red' }}>
               <ReactImageMagnify {...{
                 smallImage: {
@@ -77,7 +85,30 @@ const ProductCarousel = (props) => {
               }}
               />
             </Box>
-          ))}
+          ))} */}
+          <Box style={{ width: 'auto', height: '450px', border: '2px solid red' }}>
+              <ReactImageMagnify {...{
+                smallImage: {
+                  alt: 'Wristwatch by Ted Baker London',
+                  isFluidWidth: false,
+                  src: ProductImage,
+                  height: 460,
+                  width: 250,
+                  sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
+                },
+                largeImage: {
+                  src: ProductImage,
+                  width: 2100,
+                  height: 1800
+                },
+                enlargedImagePortalId: 'portal',
+                enlargedImageContainerDimensions: {
+                  width: '250%',
+                  height: '105%',                },
+                shouldUsePositiveSpaceLens: true
+              }}
+              />
+            </Box>
         </Slider>
       </Box>
 
