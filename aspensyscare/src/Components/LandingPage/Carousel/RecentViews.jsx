@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import "./style.css"
 import { useSelector } from 'react-redux';
+import Skeleton from '@mui/material/Skeleton';
 
 const CarouselCont = styled(Box)`
     width:85%;
@@ -23,6 +24,7 @@ const val = {
   name: '1'
 }
 
+const skeletonloading = [1,2,3,4];
 
 const PreviousBtn = (props) => {
   // console.log(props);
@@ -91,7 +93,7 @@ const RecentViews = () => {
           nextArrow={<NextBtn />}
         {...settings}
                 >
-        {Products.loading && <div>Loading...</div>}
+        {Products.loading && skeletonloading.map((items) => {return(<Skeleton variant="rectangular" animation="wave" width={232} height={270} />)})}
         {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
         {!Products.loading && Products.products.product !== undefined ? (
           product.slice(0, 5).map((val, i) => {

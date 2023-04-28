@@ -6,6 +6,7 @@ import { Routes, Route, useParams, useLocation } from 'react-router-dom';
 import CarouselCard from '../LandingPage/Carousel/CarouselCard';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
+import Skeleton from '@mui/material/Skeleton';
 
 const CategoryBox = styled(Box)`
 width:100%;
@@ -83,6 +84,8 @@ const PrettoSlider = styled(Slider)({
         },
     },
 });
+
+const skeletonloading = [1,2,3,4,5,6,7,8];
 const Categorypage = () => {
     useEffect(() => {
         // 👇️ scroll to top on page load
@@ -156,13 +159,11 @@ const Categorypage = () => {
                             )
                         })
                     ) :
-                        <Box style={{ width: '100%', height: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Typography variant='h1' style={{ fontSize: '20px', fontWeight: '600', color: 'red' }}>No Products.</Typography>
-                        </Box>
+                        skeletonloading.map((items) => {return(<Skeleton variant="rounded" animation="wave" width={232} height={270} />)})
                     }
                 </CategoryItems>
             </Categorycont>
-        </CategoryBox >
+        </CategoryBox>
 
     )
 }
