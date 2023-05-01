@@ -207,7 +207,7 @@ const ProductDetails = (product) => {
           style={{ backgroundColor: "green" }}
         >
           {" "}
-          50ml <ArrowDropDownIcon />
+          {cartItem.itemSize}ml <ArrowDropDownIcon />
         </SizeButtom>
       </ButtomBox>
 

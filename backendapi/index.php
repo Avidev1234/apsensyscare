@@ -34,5 +34,8 @@ else if($uri==='/fatch_category'){
 else if($uri==='/size'){
     include('./sitepackages/inbuilt/pages/Size.php');
     die;
+}else if($uri==='/magnifying'){
+    include('./sitepackages/inbuilt/pages/MagnifyingImages.php');
+    die;
 }
 ?>

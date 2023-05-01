@@ -17,15 +17,17 @@ const BoxCont = styled(Box)`
 }
 `
 var data = [
-  './Image/products/yellow-bodywash-with-lime.png',
-  './Image/products/front-dish-wash.jpg'
-  , './Image/products/backt-dish-wash.jpg'
-  , './Image/products/white-dish-wash (2).jpg'
-  , './Image/products/front-and-back-side-dishwash.jpg',
-  './Image/products/white-dish-wash (2).jpg', 
-  './Image/products/front-and-back-side-dishwash.jpg'
+  './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-1.png',
+  './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-2.png'
+  , './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-3.png'
 ]
-const ProductCarousel = (props) => {
+var data1=[
+  './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-4.png',
+  './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-5.png'
+  , './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-6.png'
+]
+const ProductCarousel = ({imagemagnify}) => {
+  //console.log(imagemagnify)
   const [nav1, Setnav1] = useState();
   const [nav2, Setnav2] = useState();
   const PreviousBtn = (props) => {
@@ -45,6 +47,12 @@ const ProductCarousel = (props) => {
       </div>
     );
   };
+
+
+  // let ProductImage = `./Image/all_products/${image.image}`;
+
+  // console.log(ProductImage)
+
   return (
     <BoxCont>
       <Box style={{boxShadow:'0 3px 10px rgb(0 0 0 / 0.2)',marginBottom: '15px'}}>
@@ -54,14 +62,15 @@ const ProductCarousel = (props) => {
           arrows={false}
         >
           {data.map((item) => (
-            <Box style={{ width: 'auto', height: '450px', border: '2px solid red' }}>
+            <Box style={{ width: 'auto', height: '450px', border: '2px solid red' }} onMouseEnter={() => imagemagnify(true)}
+            onMouseLeave={() => imagemagnify(false)}>
               <ReactImageMagnify {...{
                 smallImage: {
                   alt: 'Wristwatch by Ted Baker London',
                   isFluidWidth: false,
                   src: item,
                   height: 460,
-                  width: 150,
+                  width: 250,
                   sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
                 },
                 largeImage: {
@@ -71,29 +80,30 @@ const ProductCarousel = (props) => {
                 },
                 enlargedImagePortalId: 'portal',
                 enlargedImageContainerDimensions: {
-                  width: '450%',
+                  width: '250%',
                   height: '105%',                },
                 shouldUsePositiveSpaceLens: true
               }}
               />
             </Box>
           ))}
+          
         </Slider>
       </Box>
 
       <Slider
         asNavFor={nav1}
         ref={slider => (Setnav2(slider))}
-        slidesToShow={4}
+        slidesToShow={3}
         swipeToSlide={true}
         focusOnSelect={true}
         prevArrow={<PreviousBtn />}
         nextArrow={<NextBtn />}
         dotsClass="slick-dots custom-indicator"
       >
-        {data.map((item) => (
+        {data1.map((item) => (
           <div style={{ width: "100%", height: "10%", margin: "10px" }}>
-            <img src={item} alt="" style={{ width: "100%", height: "10vh", objectFit: "contain", cursor: 'pointer' }} />
+            <img src={item} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer' }} />
           </div>
         ))}
       </Slider>

@@ -17,17 +17,22 @@ const BoxCont = styled(Box)`
 }
 `
 var data = [
-  './Image/products/dishwash-gel-250ml-1.png',
-  './Image/products/dishwash-gel-250ml-2.png'
+  './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-1.png',
+  './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-2.png'
+  , './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-3.png'
 ]
-var data1 = [
-  './Image/products/dishwash-gel-250ml-3.png',
-  './Image/products/dishwash-gel-250ml-4.png'
-  
+var data1=[
+  './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-4.png',
+  './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-5.png'
+  , './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-6.png'
 ]
-const ProductCarousel = (image) => {
-
-
+var data2=[
+  './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-1.png',
+  './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-2.png'
+  , './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-3.png'
+]
+const ProductCarousel = ({imagemagnify}) => {
+  //console.log(imagemagnify)
   const [nav1, Setnav1] = useState();
   const [nav2, Setnav2] = useState();
   const PreviousBtn = (props) => {
@@ -49,20 +54,21 @@ const ProductCarousel = (image) => {
   };
 
 
-  let ProductImage = `./Image/all_products/${image.image}`;
+  // let ProductImage = `./Image/all_products/${image.image}`;
 
-  console.log(ProductImage)
+  // console.log(ProductImage) boxShadow:'0 3px 10px rgb(0 0 0 / 0.2)',
 
   return (
     <BoxCont>
-      <Box style={{boxShadow:'0 3px 10px rgb(0 0 0 / 0.2)',marginBottom: '15px'}}>
+      <Box style={{marginBottom: '15px',backgroundColor:'#d9d9d9',borderRadius:'20px'}}>
         <Slider
           asNavFor={nav2}
           ref={slider => (Setnav1(slider))}
           arrows={false}
         >
-          {/* {data.map((item) => (
-            <Box style={{ width: 'auto', height: '450px', border: '2px solid red' }}>
+          {data.map((item,idx) => (
+            <Box style={{ width: 'auto', height: '450px'}} onMouseEnter={() => imagemagnify(true)}
+            onMouseLeave={() => imagemagnify(false)}>
               <ReactImageMagnify {...{
                 smallImage: {
                   alt: 'Wristwatch by Ted Baker London',
@@ -73,49 +79,28 @@ const ProductCarousel = (image) => {
                   sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
                 },
                 largeImage: {
-                  src: item,
-                  width: 2100,
+                  src: data2[idx],
+                  width: 1000,
                   height: 1800
                 },
                 enlargedImagePortalId: 'portal',
                 enlargedImageContainerDimensions: {
                   width: '250%',
-                  height: '105%',                },
+                  height: '105%',
+                },
                 shouldUsePositiveSpaceLens: true
               }}
               />
             </Box>
-          ))} */}
-          <Box style={{ width: 'auto', height: '450px', border: '2px solid red' }}>
-              <ReactImageMagnify {...{
-                smallImage: {
-                  alt: 'Wristwatch by Ted Baker London',
-                  isFluidWidth: false,
-                  src: ProductImage,
-                  height: 460,
-                  width: 250,
-                  sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
-                },
-                largeImage: {
-                  src: ProductImage,
-                  width: 2100,
-                  height: 1800
-                },
-                enlargedImagePortalId: 'portal',
-                enlargedImageContainerDimensions: {
-                  width: '250%',
-                  height: '105%',                },
-                shouldUsePositiveSpaceLens: true
-              }}
-              />
-            </Box>
+          ))}
+          
         </Slider>
       </Box>
 
       <Slider
         asNavFor={nav1}
         ref={slider => (Setnav2(slider))}
-        slidesToShow={4}
+        slidesToShow={3}
         swipeToSlide={true}
         focusOnSelect={true}
         prevArrow={<PreviousBtn />}
@@ -124,7 +109,7 @@ const ProductCarousel = (image) => {
       >
         {data1.map((item) => (
           <div style={{ width: "100%", height: "10%", margin: "10px" }}>
-            <img src={item} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer' }} />
+            <img src={item} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer',margin:'auto' }} />
           </div>
         ))}
       </Slider>
