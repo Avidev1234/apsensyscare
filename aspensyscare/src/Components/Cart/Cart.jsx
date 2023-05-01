@@ -32,6 +32,7 @@ import {
   getTotals,
   removeFromCart,
 } from "../../Store/Slices/cartSlice";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const stylemodal = {
   position: "absolute",
@@ -409,7 +410,7 @@ const Cart = () => {
                             style={{ backgroundColor: "green" }}
                           >
                             {" "}
-                            {cartItem.itemSize}ml{" "}
+                            {cartItem.itemSize}ml{" "} <ArrowDropDownIcon />
                           </SizeButtom>
                         </div>
                         <Modal
