@@ -36,6 +36,8 @@ const ButtomBox = styled(Box)`
     gap:10px;
     align-items:center;
     margin-top:5px;
+    position:relative;
+    height:40px
 `
 const AddCart = styled(Button)(() => ({
     backgroundColor: 'green',
@@ -88,22 +90,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     },
 }));
 const ProductDetails = (product) => {
-    // console.log(product.products.name)
-    const [buttomone, setbuttomone] = useState(true);
-    const [buttomtwo, setbuttomtwo] = useState(false);
-
-    const buttomonestyle = {
-        backgroundColor: buttomone ? "green" : 'gray',
-        textTransform: 'none',
-    }
-    const buttomtwostyle = {
-        backgroundColor: buttomtwo ? "green" : 'gray',
-        textTransform: 'none',
-    }
-    const inputstyle = ({ focus }) => ({
-        borderColor: focus ? '#d9d9d9' : '',
-        textTransform: 'none',
-    })
+    console.log(product)
     const [val, setVal] = useState(1);
     const handelvalue = (str) => {
         // console.log(str)
@@ -114,10 +101,12 @@ const ProductDetails = (product) => {
     }
     const portal={
         position: 'absolute',
-        zIndex:9,
-        marginRight:'10px',
+        marginRight:'15px',
         height:'500px',
-        width:'500px'
+        width:'500px',
+        zIndex:9,
+        display:product.magnified?'block':'none',
+        backgroundColor:'white'
     }
     return (
         <Detailscont>
@@ -148,8 +137,7 @@ const ProductDetails = (product) => {
                 </Typography>
             </div>
             <ButtomBox>
-                <Button variant='contained' style={buttomonestyle}>50ml</Button>
-                <Button variant='contained' style={buttomtwostyle}>100ml</Button>
+                <Button variant='contained' style={{backgroundColor:'green',textTransform: 'none'}}>50ml</Button>
             </ButtomBox>
             <ButtomBox>
                 <RemoveCircleRoundedIcon style={{ fontSize: '18px', }} />

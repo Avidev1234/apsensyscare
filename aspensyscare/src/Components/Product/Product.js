@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
-import { Divider, Typography } from '@mui/material'
 import { Box, Stack } from '@mui/system'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import RecentViews from '../LandingPage/Carousel/RecentViews'
 import CT from './CT'
 import ProductCarousel from './ProductCarousel'
@@ -9,6 +8,8 @@ import ProductDetails from './ProductDetails'
 import Rating from './Rating'
 import TopQuestion from './TopQuestion'
 import { useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { magnifying } from '../../Store/Slices/imagemagnifySlice'
 
 
 const ProductCont = styled(Stack)`
@@ -51,20 +52,32 @@ const Partationcont_sec = styled(Box)`
 `
 
 const Product = () => {
+  const [magnified, setMagnified] = useState(false)
+  const value = useLocation();
+  // console.log(value.state.id)
+  const imagemagnify = (text) => {
+    setMagnified(text);
+  }
+  const dispatch = useDispatch();
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, []);
-  const value = useLocation();
-  // console.log(value.state)
+    try {
+      dispatch(magnifying(value.state.id));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [value]);
+  
+
   return (
     <ProductCont>
       <ProductDetailsBox>
         <Partationcont>
-          <ProductCarousel image={value.state.image} />
+          <ProductCarousel imagemagnify={imagemagnify} />
         </Partationcont>
         <Partationcont>
-          <ProductDetails products={value.state} />
+          <ProductDetails products={value.state} magnified={magnified} />
         </Partationcont>
       </ProductDetailsBox>
       <ProductDetailsBox>
