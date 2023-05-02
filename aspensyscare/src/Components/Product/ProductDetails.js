@@ -22,14 +22,13 @@ const stylemodal = {
 
 const SizeButtom = styled(Button)`
   line-height: 1.5;
-  letter-spacing: 0.02857em;
+  letter-spacing: 0.02857em; .
   text-transform: uppercase;
   background-color: green;
   padding: 6px 6px;
   min-width: 50px;
   font-size: 12px;
 `
-
 const Detailscont = styled(Box)`
     width:100%;
     height:auto;
