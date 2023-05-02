@@ -1,10 +1,34 @@
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Button, InputBase,  Typography } from '@mui/material'
+import { Box, Button, InputBase,  Typography, Modal } from '@mui/material'
 import React, { useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
+import { useSelector } from "react-redux";
+
+
+const stylemodal = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+const SizeButtom = styled(Button)`
+  line-height: 1.5;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  background-color: green;
+  padding: 6px 6px;
+  min-width: 50px;
+  font-size: 12px;
+`
 
 const Detailscont = styled(Box)`
     width:100%;
@@ -36,6 +60,8 @@ const ButtomBox = styled(Box)`
     gap:10px;
     align-items:center;
     margin-top:5px;
+    position:relative;
+    height:40px
 `
 const AddCart = styled(Button)(() => ({
     backgroundColor: 'green',
@@ -88,22 +114,15 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     },
 }));
 const ProductDetails = (product) => {
-    // console.log(product.products.name)
-    const [buttomone, setbuttomone] = useState(true);
-    const [buttomtwo, setbuttomtwo] = useState(false);
+    console.log(product)
 
-    const buttomonestyle = {
-        backgroundColor: buttomone ? "green" : 'gray',
-        textTransform: 'none',
-    }
-    const buttomtwostyle = {
-        backgroundColor: buttomtwo ? "green" : 'gray',
-        textTransform: 'none',
-    }
-    const inputstyle = ({ focus }) => ({
-        borderColor: focus ? '#d9d9d9' : '',
-        textTransform: 'none',
-    })
+    const [openmod, setOpen] = React.useState(false);
+    const handleOpendilog = () => setOpen(true);
+    const handleClosedilog = () => setOpen(false);
+  
+    const sizes = useSelector((state) => state.size);
+    const size = sizes.sizes.size;
+
     const [val, setVal] = useState(1);
     const handelvalue = (str) => {
         // console.log(str)
@@ -117,7 +136,10 @@ const ProductDetails = (product) => {
         zIndex:0,
         marginRight:'10px',
         height:'500px',
-        width:'500px'
+        width:'500px',
+        zIndex:9,
+        display:product.magnified?'block':'none',
+        backgroundColor:'white'
     }
     return (
         <Detailscont>
@@ -148,9 +170,42 @@ const ProductDetails = (product) => {
                 </Typography>
             </div>
             <ButtomBox>
-                <Button variant='contained' style={buttomonestyle}>50ml</Button>
-                <Button variant='contained' style={buttomtwostyle}>100ml</Button>
+                <Button  onClick={handleOpendilog} variant='contained' style={{backgroundColor:'green',textTransform: 'none'}}>50ml</Button>
             </ButtomBox>
+            <Modal
+              open={openmod}
+              onClose={handleClosedilog}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={stylemodal}>
+                <Typography
+                  id="modal-modal-title"
+                  variant="h6"
+                  component="h2"
+                >
+                  Select a Size
+                </Typography>
+                <Typography
+                  id="modal-modal-description"
+                  sx={{ mt: 2 }}
+                >
+                  {size?.map((items) => {
+                    return (
+                      <SizeButtom
+                        variant="contained"
+                        style={{
+                          backgroundColor: "green",
+                          margin: "1rem",
+                        }}
+                      >
+                        {items.size_value}ml
+                      </SizeButtom>
+                    );
+                  })}
+                </Typography>
+              </Box>
+            </Modal>
             <ButtomBox>
                 <RemoveCircleRoundedIcon style={{ fontSize: '18px', }} />
                 <input

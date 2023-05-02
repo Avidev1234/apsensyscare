@@ -11,6 +11,7 @@
 }
 .slick-slide > div> div{
 border-radius: 16px;
+background-color: #d9d9d9;
 }
 
 .carousel .slick-prev {
@@ -49,5 +50,15 @@ border-radius: 16px;
 .css-0{
   width: auto !important;
   margin: auto;
+}
+.portal2{
+  display:block !important;
+}
+.detailsImgHover:hover .portal2{
+  display:block !important;
+}
+
+.slick-current{
+  
 }
 

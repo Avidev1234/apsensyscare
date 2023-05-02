@@ -50,4 +50,11 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/magnifying',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
 };
