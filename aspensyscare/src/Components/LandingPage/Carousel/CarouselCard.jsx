@@ -49,11 +49,11 @@ const CarouselCard = ({ val }) => {
     try {
         const iconcolor = val.color ? val.color : '';
         return (
-            <Card style={{minWidth:'200px'}}>
+            <Card style={{minWidth:'250px'}}>
                 <FevIcon aria-label="add to favorites">
                     <FavoriteIcon style={{ color: iconcolor }} />
                 </FevIcon>
-                <CardActionArea onClick={() => navigate('/product', { state: { id: val.id, name: val.name, price: val.price, description: val.description, image: val.product_image } })}>
+                <CardActionArea onClick={() => navigate('/product', { state: { id: val.id, name: val.name, price: val.price, description: val.description, product_image: val.product_image } })}>
                     <CardImage
                         component="img"
                         height="140px"

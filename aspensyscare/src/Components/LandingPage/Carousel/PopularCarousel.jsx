@@ -18,46 +18,9 @@ const Homecont = styled(Stack)`
   align-items:center;
   padding:10px;
 `
-const products1 = [
-  {
-    name: '1',
-  },
-  {
-    name: '2',
-  },
-  {
-    name: '3',
-  },
-  {
-    name: '4',
-  },
-  {
-    name: '5',
-  },
-  {
-    name: '6',
-  },
-  {
-    name: '7',
-  },
-  {
-    name: '8',
-  },
-  {
-    name: '9',
-  },
-  {
-    name: '10',
-  },
-  {
-    name: '11',
-  },
-  {
-    name: '12',
-  }
-];
 
-const skeletonloading = [1,2,3,4,5,6,7,8];
+
+const skeletonloading = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const PreviousBtn = (props) => {
   // console.log(props);
@@ -96,8 +59,33 @@ const PopularCarousel = () => {
           slidesPerRow={2}
           prevArrow={<PreviousBtn />}
           nextArrow={<NextBtn />}
+          responsive={
+            [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 2,
+                  centerPadding:"0px"
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                  centerPadding:"0px"
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 0,
+                  centerPadding:"0px"
+                }
+              }
+            ]
+          }
         >
-          {Products.loading && skeletonloading.map((items) => {return(<Skeleton variant="rounded" animation="wave" width={232} height={270} />)})}
+          {Products.loading && skeletonloading.map((items) => { return (<Skeleton variant="rounded" animation="wave" width={232} height={270} />) })}
           {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
           {!Products.loading && Products.products.product !== undefined ? (
             product.map((val, i) => {

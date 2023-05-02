@@ -1,10 +1,14 @@
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Button, InputBase,  Typography } from '@mui/material'
+import { Box, Button, InputBase, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, decreaseCart } from '../../Store/Slices/cartSlice';
+import axios from 'axios';
 
 const Detailscont = styled(Box)`
     width:100%;
@@ -90,7 +94,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     },
 }));
 const ProductDetails = (product) => {
-    console.log(product)
+    //console.log(product)
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [val, setVal] = useState(1);
     const handelvalue = (str) => {
         // console.log(str)
@@ -99,15 +105,66 @@ const ProductDetails = (product) => {
             setVal(replaced[0]);
         }
     }
-    const portal={
+    const portal = {
         position: 'absolute',
-        marginRight:'15px',
-        height:'500px',
-        width:'500px',
-        zIndex:9,
-        display:product.magnified?'block':'none',
-        backgroundColor:'white'
+        marginRight: '15px',
+        height: '500px',
+        width: '500px',
+        zIndex: 9,
+        display: product.magnified ? 'block' : 'none',
+        backgroundColor: 'white'
     }
+
+
+    const products = useSelector((state) => state.productdetails);
+    const sizedetails = useSelector((state) => state.size);
+
+    // destructure all data
+    const { details } = products.productdetails;
+    const { size } = sizedetails.sizes;
+
+    const itemIndex = details !== undefined ? details.findIndex((item) => item.product_id === product.products.id) : 'null';
+    let itemsize = '';
+
+    if (itemIndex !== -1 && details !== undefined) {
+        const sizeid = details[itemIndex]['size_id'];
+        const sizeindex = size !== undefined ? size.findIndex((item) => item.id === sizeid) : 'null';
+        itemsize = size !== undefined ? size[sizeindex]['size_value'] : null;
+    }
+
+    const handleCart = (product) => {
+        //console.log(product)
+        product.cartQuantity = val;
+        //console.log(itemsize)
+        dispatch(addToCart([product, itemsize]));
+        navigate('/cart')
+    }
+    const handleAddToCart = () => {
+        setVal(preval => preval + 1);
+    };
+    const handleDecreaseCart = () => {
+        setVal(val >= 2 ? preval => preval - 1 : preval => preval);
+    };
+    //   -----------------------------get postal data-------------------
+    const [postal, setPostal] = useState('')
+    const getPstalValue = (str) => {
+        //console.log(str)
+        const replaced = str.replace(/[^0-9]/g, "");
+       // console.log(replaced)
+        if (replaced.length <= 6) {
+            setPostal(replaced);
+            setPincode('')
+        }
+    }
+    const [pincode, setPincode] = useState('')
+    const getCustomersData = (pin) => {
+        axios
+            .get(`https://api.postalpincode.in/pincode/${pin}`)
+            .then(data => {
+                setPincode(data.data[0].Status)
+            })
+            .catch(error => console.log(error));
+    };
     return (
         <Detailscont>
             <div
@@ -137,27 +194,35 @@ const ProductDetails = (product) => {
                 </Typography>
             </div>
             <ButtomBox>
-                <Button variant='contained' style={{backgroundColor:'green',textTransform: 'none'}}>50ml</Button>
+                <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }}>{itemsize}ml</Button>
             </ButtomBox>
             <ButtomBox>
-                <RemoveCircleRoundedIcon style={{ fontSize: '18px', }} />
+                <RemoveCircleRoundedIcon style={{ fontSize: '18px', cursor: val >= 2 ? 'pointer' : 'not-allowed', color: val >= 2 ? 'black' : '#d9d9d9' }} onClick={() => handleDecreaseCart()} />
                 <input
                     type="text"
                     value={val}
                     onChange={(e) => handelvalue(e.target.value)}
                     style={{ width: '60px', height: '25px', border: '2px solid black', display: 'flex', textAlign: 'center', borderRadius: '3px' }} />
-                <AddCircleRoundedIcon style={{ fontSize: '18px', }} />
+                <AddCircleRoundedIcon style={{ fontSize: '18px', cursor: 'pointer' }} onClick={() => handleAddToCart()} />
             </ButtomBox>
             <ButtomBox>
                 <BootstrapInput size="small"
                     placeholder="Please pincode"
-                    onChange={(e) => { console.log(e.target.value) }}
+                    value={postal}
+                    onChange={(e) => getPstalValue(e.target.value)}
                     style={{ width: '135px' }}
                 />
-                <Button variant='contained' style={{ backgroundColor: 'green' }}>Check</Button>
+                <Button variant='contained' style={{ backgroundColor: 'green' }} onClick={() => getCustomersData(postal)}>Check</Button>
             </ButtomBox>
+            {
+                postal!== ''&&postal.length===6&&pincode !== ''?
+                <div>
+                    <p style={{ color: 'red', fontWeight: 600 }}>{pincode !== '' && pincode === "Success" ? 'Sorry not able to delivery' : null}</p>
+                </div>:null
+            }
+
             <ButtomBox>
-                <AddCart variant='contained' >Add Cart</AddCart>
+                <AddCart variant='contained' onClick={() => handleCart(product.products)}>Add Cart</AddCart>
                 <QuickBuy variant='contained' >Quick Buy</QuickBuy>
             </ButtomBox>
         </Detailscont>

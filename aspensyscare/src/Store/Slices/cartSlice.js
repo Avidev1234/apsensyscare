@@ -14,7 +14,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-        console.log(action.payload[0])
+      console.log(action.payload[0])
       const existingIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload[0].id
       );
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
           position: "bottom-left",
         });
       } else {
-        let tempProductItem = { ...action.payload[0], cartQuantity: 1,itemSize:action.payload[1] };
+        let tempProductItem = { ...action.payload[0], cartQuantity: action.payload[0].cartQuantity===undefined?1:action.payload[0].cartQuantity,itemSize:action.payload[1] };
         state.cartItems.push(tempProductItem);
         toast.success("Product added to cart", {
           position: "bottom-left",

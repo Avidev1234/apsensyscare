@@ -54,7 +54,7 @@ const Partationcont_sec = styled(Box)`
 const Product = () => {
   const [magnified, setMagnified] = useState(false)
   const value = useLocation();
-  // console.log(value.state.id)
+   console.log(value.state)
   const imagemagnify = (text) => {
     setMagnified(text);
   }
@@ -74,7 +74,7 @@ const Product = () => {
     <ProductCont>
       <ProductDetailsBox>
         <Partationcont>
-          <ProductCarousel imagemagnify={imagemagnify} />
+          <ProductCarousel id={value.state.id} imagemagnify={imagemagnify} />
         </Partationcont>
         <Partationcont>
           <ProductDetails products={value.state} magnified={magnified} />

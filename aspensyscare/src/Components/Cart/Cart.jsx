@@ -103,10 +103,7 @@ const SizeButtom = styled(Button)`
 
 const Cart = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    // 👇️ scroll to top on page load
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, []);
+ 
   const [expandedItem, setExpandedItem] = useState("panel1");
   const [expandedAddress, setExpandedAddress] = useState();
   const [expandedPay, setExpandedPay] = useState();
@@ -173,17 +170,7 @@ const Cart = () => {
     setValue(event.target.value);
     setError(false);
   };
-  // const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     if (value === 'best') {
-  //         setError(false);
-  //     } else if (value === 'worst') {
-  //         setError(true);
-  //     } else {
-  //         setError(true);
-  //     }
-  // };
-
+ 
   const takeValue = (e) => {
     console.log(e.target.value);
   };
@@ -197,6 +184,7 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(getTotals());
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [cart, dispatch]);
 
   const handleAddToCart = (product) => {
