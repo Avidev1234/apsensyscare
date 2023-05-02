@@ -17,7 +17,7 @@ const BoxCont = styled(Box)`
 }
 `
 var data = [
-  './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-1.png',
+  './Image/all_products/carousel-230-460/floor-cleaner-floral-500ml-2.png',
   './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-2.png'
   , './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-3.png'
 ]
@@ -31,8 +31,8 @@ var data2=[
   './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-2.png'
   , './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-3.png'
 ]
-const ProductCarousel = ({imagemagnify}) => {
-  //console.log(imagemagnify)
+const ProductCarousel = ({imagemagnify,id}) => {
+  console.log(id)
   const [nav1, Setnav1] = useState();
   const [nav2, Setnav2] = useState();
   const PreviousBtn = (props) => {
