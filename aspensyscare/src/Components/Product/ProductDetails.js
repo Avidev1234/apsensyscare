@@ -114,7 +114,7 @@ const ProductDetails = (product) => {
     }
     const portal={
         position: 'absolute',
-        zIndex:9,
+        zIndex:0,
         marginRight:'10px',
         height:'500px',
         width:'500px'
