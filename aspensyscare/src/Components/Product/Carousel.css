@@ -1,6 +1,6 @@
 .carousel .slick-arrow.slick-prev,
 .carousel .slick-arrow.slick-next {
-  background: #fcfcfc;
+  background: #D4EBF5;
   width: 47px;
   height: 104px;
   display: flex;
@@ -11,7 +11,7 @@
 }
 .slick-slide > div> div{
 border-radius: 16px;
-background-color: #d9d9d9;
+background-color: #D4EBF5;
 }
 
 .carousel .slick-prev {
@@ -58,7 +58,5 @@ background-color: #d9d9d9;
   display:block !important;
 }
 
-.slick-current{
-  
-}
+
 

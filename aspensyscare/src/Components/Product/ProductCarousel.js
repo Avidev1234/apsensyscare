@@ -7,6 +7,7 @@ import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactImageMagnify from 'react-image-magnify';
+import { useSelector } from 'react-redux'
 
 const BoxCont = styled(Box)`
   width:100%;
@@ -16,23 +17,23 @@ const BoxCont = styled(Box)`
     margin-bottom:0px;
 }
 `
-var data = [
-  './Image/all_products/carousel-230-460/floor-cleaner-floral-500ml-2.png',
-  './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-2.png'
-  , './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-3.png'
-]
-var data1=[
-  './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-4.png',
-  './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-5.png'
-  , './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-6.png'
-]
-var data2=[
-  './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-1.png',
-  './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-2.png'
-  , './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-3.png'
-]
+// var data = [
+//   './Image/all_products/carousel-230-460/floor-cleaner-floral-500ml-2.png',
+//   './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-2.png'
+//   , './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-3.png'
+// ]
+// var data1=[
+//   './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-4.png',
+//   './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-5.png'
+//   , './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-6.png'
+// ]
+// var data2=[
+//   './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-1.png',
+//   './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-2.png'
+//   , './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-3.png'
+// ]
 const ProductCarousel = ({imagemagnify,id}) => {
-  console.log(id)
+  //console.log(id)
   const [nav1, Setnav1] = useState();
   const [nav2, Setnav2] = useState();
   const PreviousBtn = (props) => {
@@ -58,9 +59,15 @@ const ProductCarousel = ({imagemagnify,id}) => {
 
   // console.log(ProductImage) boxShadow:'0 3px 10px rgb(0 0 0 / 0.2)',
 
+  const allimage = useSelector((state) => state.imagemagnify);
+  const {images}=allimage.images;
+  let data=images!==undefined ? images[0].image_230.split('@@@'):[];
+  let data1=images!==undefined ? images[0].image_100.split('@@@'):[];
+  let data2=images!==undefined ? images[0].image_1200.split('@@@'):[];
+  //console.log(images)
   return (
     <BoxCont>
-      <Box style={{marginBottom: '15px',backgroundColor:'#d9d9d9',borderRadius:'20px'}}>
+      <Box style={{marginBottom: '15px',backgroundColor:'#D4EBF5',borderRadius:'20px'}}>
         <Slider
           asNavFor={nav2}
           ref={slider => (Setnav1(slider))}
@@ -73,13 +80,13 @@ const ProductCarousel = ({imagemagnify,id}) => {
                 smallImage: {
                   alt: 'Wristwatch by Ted Baker London',
                   isFluidWidth: false,
-                  src: item,
+                  src: `Image/all_products/carousel-230-460/${item}`,
                   height: 460,
                   width: 250,
                   sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
                 },
                 largeImage: {
-                  src: data2[idx],
+                  src: `Image/all_products/carousel-230-460/${data2[idx]}`,
                   width: 1000,
                   height: 1800
                 },
@@ -109,7 +116,7 @@ const ProductCarousel = ({imagemagnify,id}) => {
       >
         {data1.map((item) => (
           <div style={{ width: "100%", height: "10%", margin: "10px" }}>
-            <img src={item} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer',margin:'auto' }} />
+            <img src={`Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer',margin:'auto',padding:'10px' }} />
           </div>
         ))}
       </Slider>

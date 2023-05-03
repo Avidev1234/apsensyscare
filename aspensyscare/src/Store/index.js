@@ -16,7 +16,7 @@ const store = configureStore({
         productdetails:detailsSlice,
         size:sizeSlice,
         cart:cartSlice,
-        imagemagnifySlice:imagemagnifySlice,
+        imagemagnify:imagemagnifySlice,
     },
 });
 

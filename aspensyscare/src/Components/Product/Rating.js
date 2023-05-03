@@ -100,7 +100,7 @@ const Rating = () => {
         {/* ratting */}
         <RatingBox>
           <Typography variant='h2' style={{ fontSize: '50px' }}>4<StarIcon style={{ fontSize: '30px' }} /></Typography>
-          <Typography variant='subtitle2'>760 Rating & 162 Reviews</Typography>
+          <Typography variant='subtitle2'>0 Rating & 0 Reviews</Typography>
         </RatingBox>
         {/* stars */}
         <RatingBox>
@@ -128,7 +128,7 @@ const Rating = () => {
         <RatingBox>
           <div>
             <RatingButton >Write a Review</RatingButton>
-            <RatingButton>Ask a question</RatingButton>
+            {/* <RatingButton>Ask a question</RatingButton> */}
           </div>
         </RatingBox>
       </Rattingcont>
@@ -139,7 +139,8 @@ const Rating = () => {
           <Typography variant='h2' style={{ width: '100%', fontSize: '16px', fontWeight: '600', padding: '10px' }}>
             Top Reviews
           </Typography>
-          <TopReviewsinside>
+          You will be first
+          {/* <TopReviewsinside>
             <div style={{ width: '50%' }}>
               <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
                 Tarun
@@ -154,42 +155,9 @@ const Rating = () => {
               </Typography>
             </div>
           </TopReviewsinside>
-          <hr class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root" />
-          <TopReviewsinside>
-            <div style={{ width: '50%' }}>
-              <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
-                Tarun
-              </Typography>
-              <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '-20px', color: 'grey' }}>
-                3 years ago
-              </Typography>
-            </div>
-            <div style={{ width: '50%' }}>
-              <Typography variant='h2' style={{ width: '100%', height: '30px', overflow: 'hidden', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
-                Nice Product
-              </Typography>
-            </div>
-          </TopReviewsinside>
-          <hr class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root" />
-          <TopReviewsinside>
-            <div style={{ width: '50%' }}>
-              <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
-                Tarun
-              </Typography>
-              <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '-20px', color: 'grey' }}>
-                3 years ago
-              </Typography>
-            </div>
-            <div style={{ width: '50%' }}>
-              <Typography variant='h2' style={{ width: '100%', height: '30px', overflow: 'hidden', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
-                Nice Productfgdhg ghd kdfghd kgh dfghkdfgk kdfghdfdf
-                Nice Productfgdhg ghd kdfghd kgh dfghkdfgk kdfghdfdf
-                Nice Productfgdhg ghd kdfghd kgh dfghkdfgk kdfghdfdf
-                Nice Productfgdhg ghd kdfghd kgh dfghkdfgk kdfghdfdf
-              </Typography>
-            </div>
-          </TopReviewsinside>
-          <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '600', padding: '10px',color:'grey' }}>
+          <hr class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root" /> */}
+          
+          {/* <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '600', padding: '10px',color:'grey' }}>
             see all reviews<ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -217,23 +185,9 @@ const Rating = () => {
                   </Typography>
                 </div>
               </TopReviewsinside>
-              <TopReviewsinside>
-                <div style={{ width: '50%' }}>
-                  <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '10px' }}>
-                    Tarun
-                  </Typography>
-                  <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', padding: '-20px', color: 'grey' }}>
-                    3 years ago
-                  </Typography>
-                </div>
-                <div style={{ width: '50%' }}>
-                  <Typography variant='h2' style={{ width: '100%', height: '30px', overflow: 'hidden', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
-                    Nice Product
-                  </Typography>
-                </div>
-              </TopReviewsinside>
+              
             </CardContent>
-          </Collapse>
+          </Collapse> */}
         </TopReviewscont>
       </TopReviews>
       <Divider />

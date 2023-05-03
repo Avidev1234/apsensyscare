@@ -121,16 +121,25 @@ const ProductDetails = (product) => {
 
     // destructure all data
     const { details } = products.productdetails;
+    
     const { size } = sizedetails.sizes;
-
-    const itemIndex = details !== undefined ? details.findIndex((item) => item.product_id === product.products.id) : 'null';
+    console.log(size);
+    const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.products.id) : [];
     let itemsize = '';
-
-    if (itemIndex !== -1 && details !== undefined) {
-        const sizeid = details[itemIndex]['size_id'];
-        const sizeindex = size !== undefined ? size.findIndex((item) => item.id === sizeid) : 'null';
-        itemsize = size !== undefined ? size[sizeindex]['size_value'] : null;
+    console.log(itemIndex);
+    const Productvariants=[];
+    if (itemIndex.length !== 1 && details !== undefined&&size!==undefined) {
+        itemIndex.map((item,idx)=>{
+            const index=size.filter((items) => items.id === item.size_id)
+            const values={
+                "price":item.price,
+                "size":index[0]['size_value']
+            }
+            Productvariants.push(values)
+        })
     }
+    console.log(Productvariants.length)
+    
 
     const handleCart = (product) => {
         //console.log(product)
@@ -187,14 +196,14 @@ const ProductDetails = (product) => {
             </div>
             <div>
                 <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '700', marginTop: '8px' }}>
-                    <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{product.products.price}.00
+                    <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{Productvariants.length!==0 ?Productvariants[0].price:null}.00
                     <Typography variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
                         Inclusive of all Taxes
                     </Typography>
                 </Typography>
             </div>
             <ButtomBox>
-                <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }}>{itemsize}ml</Button>
+                <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }}>{Productvariants.length !==0 ?Productvariants[0].size:null}ml</Button>
             </ButtomBox>
             <ButtomBox>
                 <RemoveCircleRoundedIcon style={{ fontSize: '18px', cursor: val >= 2 ? 'pointer' : 'not-allowed', color: val >= 2 ? 'black' : '#d9d9d9' }} onClick={() => handleDecreaseCart()} />

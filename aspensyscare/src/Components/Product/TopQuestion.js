@@ -99,23 +99,27 @@ const TopQuestion = () => {
                         Top Questions
                     </Typography>
                     <TopReviewsinside>
-                        <div >
+                        <div style={{width:'100%',display:'flex',justifyContent:'center'}}>
+                            No Questions
+                        </div>
+
+                        {/* <div >
                             <Typography variant='h2' style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
                                 Q: how are you
                             </Typography>
-                            <Typography variant='h2' 
-                            style={{ width: '100%', fontSize: '14px', fontWeight: '600',padding: '10px', paddingTop: '-30px' }}>
+                            <Typography variant='h2'
+                                style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px', paddingTop: '-30px' }}>
                                 A: Nice Product
                             </Typography>
                         </div>
                         <div style={{ width: '50%' }}>
-                            <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400',marginTop:'12px', color: 'grey' }}>
+                            <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', marginTop: '12px', color: 'grey' }}>
                                 3 years ago
                             </Typography>
-                        </div>
+                        </div> */}
                     </TopReviewsinside>
-                    
-                    <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '600', padding: '10px',color:'grey' }}>
+
+                    {/* <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '600', padding: '10px', color: 'grey' }}>
                         see all questions<ExpandMore
                             expand={expanded}
                             onClick={handleExpandClick}
@@ -128,40 +132,40 @@ const TopQuestion = () => {
                     <Collapse in={expanded} timeout="auto" unmountOnExit
                         style={{ width: '100%' }}>
                         <CardContent style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 0 }}>
-                        <TopReviewsinside>
-                        <div >
-                            <Typography variant='h2' style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
-                                Q: how are you
-                            </Typography>
-                            <Typography variant='h2' 
-                            style={{ width: '100%', fontSize: '14px', fontWeight: '600',padding: '10px', paddingTop: '-30px' }}>
-                                A: Nice Product
-                            </Typography>
-                        </div>
-                        <div style={{ width: '50%' }}>
-                            <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400',marginTop:'12px', color: 'grey' }}>
-                                3 years ago
-                            </Typography>
-                        </div>
-                    </TopReviewsinside>
-                    <TopReviewsinside>
-                        <div >
-                            <Typography variant='h2' style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
-                                Q: how are you
-                            </Typography>
-                            <Typography variant='h2' 
-                            style={{ width: '100%', fontSize: '14px', fontWeight: '600',padding: '10px', paddingTop: '-30px' }}>
-                                A: Nice Product
-                            </Typography>
-                        </div>
-                        <div style={{ width: '50%' }}>
-                            <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400',marginTop:'12px', color: 'grey' }}>
-                                3 years ago
-                            </Typography>
-                        </div>
-                    </TopReviewsinside>
+                            <TopReviewsinside>
+                                <div >
+                                    <Typography variant='h2' style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
+                                        Q: how are you
+                                    </Typography>
+                                    <Typography variant='h2'
+                                        style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px', paddingTop: '-30px' }}>
+                                        A: Nice Product
+                                    </Typography>
+                                </div>
+                                <div style={{ width: '50%' }}>
+                                    <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', marginTop: '12px', color: 'grey' }}>
+                                        3 years ago
+                                    </Typography>
+                                </div>
+                            </TopReviewsinside>
+                            <TopReviewsinside>
+                                <div >
+                                    <Typography variant='h2' style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px' }}>
+                                        Q: how are you
+                                    </Typography>
+                                    <Typography variant='h2'
+                                        style={{ width: '100%', fontSize: '14px', fontWeight: '600', padding: '10px', paddingTop: '-30px' }}>
+                                        A: Nice Product
+                                    </Typography>
+                                </div>
+                                <div style={{ width: '50%' }}>
+                                    <Typography variant='h2' style={{ width: '100%', fontSize: '12px', fontWeight: '400', marginTop: '12px', color: 'grey' }}>
+                                        3 years ago
+                                    </Typography>
+                                </div>
+                            </TopReviewsinside>
                         </CardContent>
-                    </Collapse>
+                    </Collapse> */}
                 </TopReviewscont>
             </TopReviews>
             {/* ---------------------------------------------Question--------------------------------------- */}

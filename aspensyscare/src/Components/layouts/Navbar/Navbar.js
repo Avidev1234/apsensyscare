@@ -41,6 +41,7 @@ const AvtarIcon = styled(Box)`
 `
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
+  height:'100%',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.black, 0.15),
   '&:hover': {
@@ -63,18 +64,33 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor:'#174686',
+  borderRadius: '5px 0 0 5px',
 }));
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  color: '#000',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(6)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '60ch',
+    height:'31px',
+    [theme.breakpoints.up('sm')]: {
+      width: '20ch',
     },
-    borderRaious: '16px',
+    [theme.breakpoints.up('md')]: {
+      width: '40ch',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '80ch',
+    },
+    borderRadius: '16px',
+    '&::placeholder': {
+      color: "#000"
+    },
+  },
+  '&::placeholder': {
+    color: "red"
   },
 }));
 
@@ -187,10 +203,10 @@ function Navbar(props) {
             <AvtarIcon style={{margin:'auto'}}>
               <Search >
                 <SearchIconWrapper>
-                  <SearchIcon />
+                  <SearchIcon style={{color:'white'}}/>
                 </SearchIconWrapper>
                 <StyledInputBase
-                  placeholder="Search…"
+                  placeholder="Search your items…"
                   inputProps={{ 'aria-label': 'search' }}
                 />
               </Search>
