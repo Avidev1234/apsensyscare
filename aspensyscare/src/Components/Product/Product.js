@@ -5,7 +5,7 @@ import RecentViews from '../LandingPage/Carousel/RecentViews'
 import CT from './CT'
 import ProductCarousel from './ProductCarousel'
 import ProductDetails from './ProductDetails'
-import Rating from './Rating'
+import Ratingpage from './Ratingpage'
 import TopQuestion from './TopQuestion'
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -81,8 +81,8 @@ const Product = () => {
         </Partationcont>
       </ProductDetailsBox>
       <ProductDetailsBox>
-        <Rating />
-        <TopQuestion />
+        <Ratingpage />
+        {/* <TopQuestion /> */}
       </ProductDetailsBox>
       <Partationcont_sec>
         <RecentViews />

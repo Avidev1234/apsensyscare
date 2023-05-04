@@ -1,12 +1,28 @@
 import styled from '@emotion/styled';
-import { Box, Button, CardContent, Collapse, Divider, Typography } from '@mui/material';
+import { Box, Button, CardContent, Collapse, Divider, Typography, Modal } from '@mui/material';
+import Rating from '@mui/material/Rating';
 import React, { useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import IconButton from '@mui/material/IconButton';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { style } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+import CloseIcon from '@mui/icons-material/Close';
+import { useFormik } from 'formik'
 
+const stylemod = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 1200,
+  height: 350,
+  bgcolor: 'background.paper',
+  // borderRadius: '1rem',
+  boxShadow: 24,
+  p: 4,
+};
 
 const Rattingcont = styled(Box)`
     color:#916fda;
@@ -47,6 +63,7 @@ const RatingButton = styled(Button)(() => (
     color: 'white',
     fontWeight: '600',
     marginRight: '10px',
+    padding: '0.5rem 2.5rem',
     '&:hover': {
       backgroundColor: '#916fda',
     }
@@ -84,11 +101,37 @@ const ExpandMore = styled((props) => {
   marginLeft: 'auto',
 
 }));
-const Rating = () => {
+
+const Ratingpage = () => {
+  const [openmodRev, setOpenRev] = React.useState(false);
+  const handleOpenmodRev = () => setOpenRev(true);
+  const handleClosemodRev = () => {setOpenRev(false)};
+
   const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const formik = useFormik({
+  initialValues: {
+    userReview: ''
+  },
+  onSubmit: values => {
+    console.log(values);
+    console.log(ratingvalue);
+    handleClosemodRev();
+  },
+  validate: values => {
+    let errors = {}
+    if(!values.userReview) {
+      errors.userReview = 'Review cannot be empty!'
+    }
+    return errors;
+  },
+})
+
+const [ratingvalue, ratingsetValue] = React.useState(0);
+
   return (
     <ContBox>
       <Box style={{ width: '100%', marginTop: '55px', borderBottom: '2px solid #f4dee1' }}>
@@ -105,30 +148,66 @@ const Rating = () => {
         {/* stars */}
         <RatingBox>
           <div>
-            <IconButton aria-label="add to favorites">
-              <StarBorderIcon />
-            </IconButton>
-            <IconButton aria-label="add to favorites">
-              <StarBorderIcon />
-            </IconButton>
-            <IconButton aria-label="add to favorites">
-              <StarBorderIcon />
-            </IconButton>
-            <IconButton aria-label="add to favorites">
-              <StarBorderIcon />
-            </IconButton>
-            <IconButton aria-label="add to favorites">
-              <StarBorderIcon />
-            </IconButton>
+            <Rating name="read-only" value={ratingvalue} readOnly />
           </div>
-          <Typography variant='subtitle2'>Rate This Products</Typography>
+          <Typography variant='subtitle2'>Your ratings</Typography>
 
         </RatingBox>
         {/* rating button */}
         <RatingBox>
           <div>
-            <RatingButton >Write a Review</RatingButton>
-            <RatingButton>Ask a question</RatingButton>
+            <RatingButton onClick={handleOpenmodRev}>Write a Review</RatingButton>
+            {/* <RatingButton>Ask a question</RatingButton> */}
+
+            <Modal
+              open={openmodRev}
+              onClose={handleClosemodRev}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={stylemod}>
+                <div style={{display: 'flex' , justifyContent: 'space-between' , alignItems: 'center'}}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2" style={{ fontWeight: 'bold' , fontSize: '1.7rem' }}>
+                    Rate and Review this Product
+                  </Typography>
+                  <CloseIcon fontSize="medium" onClick={handleClosemodRev} style={{ cursor: 'pointer' }}/>
+                </div>
+                <form onSubmit={formik.handleSubmit}>
+                  <Typography id="modal-modal-description" sx={{ mt: 2 }} style={{ display:'flex' , alignItems: 'center' , justifyContent: 'space-around' }}>
+                    <div style={{ display: 'flex' , flexDirection: 'column' , alignItems: 'center' }}>
+                      <Typography style={{ display: 'flex' , alignItems: 'center'}}>
+                        <p style={{fontSize: '3.5rem', fontWeight: 'semibold' , lineHeight: 0, color: 'rgb(41,41,41)' }}>{ratingvalue}</p>
+                        <StarIcon style={{ fontSize: '60px' , color:'rgb(145,111,218)' }} />
+                      </Typography>
+                      <Box
+                          sx={{
+                            '& > legend': { mt: 2 },
+                          }}
+                        >
+                      <Rating
+                          name="simple-controlled"
+                          value={ratingvalue}
+                          onChange={(event, newValue) => {
+                            ratingsetValue(newValue);
+                          }}
+                        />
+                        </Box>
+                      <p style={{ opacity: 0.6 , color:'grey' , marginTop: '7px' }}>Rate the product here</p>
+                  </div>
+                  <TextareaAutosize
+                    name='userReview'
+                    onChange={formik.handleChange}
+                    value={formik.values.userReview}
+                    aria-label="empty textarea"
+                    placeholder="Your valuble Review here"
+                    style={{ width: 700 ,  height: 185 , resize: 'none' , maxlength: 300 , fontSize: '1rem' , padding: '1rem' , border: '1px solid #916FDA' , outline: 'none'}}
+                  />
+                  </Typography>
+                  {formik.errors.userReview ? <div style={{ color: 'red' , position: 'absolute' , fontStyle: 'italic' }}>{formik.errors.userReview}</div> : null}
+                  <RatingButton type='submit' style={{ right: '-59.8rem' , padding: '0.5rem 4rem' , fontSize: '0.8rem'}}>Submit</RatingButton>
+                </form>
+              </Box>
+            </Modal>
           </div>
         </RatingBox>
       </Rattingcont>
@@ -242,4 +321,4 @@ const Rating = () => {
   )
 }
 
-export default Rating;
+export default Ratingpage;

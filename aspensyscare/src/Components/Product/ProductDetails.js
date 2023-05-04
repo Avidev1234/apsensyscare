@@ -5,7 +5,10 @@ import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
-import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, decreaseCart } from '../../Store/Slices/cartSlice';
+import axios from 'axios';
 
 
 const stylemodal = {
@@ -29,10 +32,7 @@ const SizeButtom = styled(Button)`
   min-width: 50px;
   font-size: 12px;
 `
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, decreaseCart } from '../../Store/Slices/cartSlice';
-import axios from 'axios';
+
 
 const Detailscont = styled(Box)`
     width:100%;
