@@ -86,7 +86,7 @@ const ProductCarousel = ({imagemagnify,id}) => {
                   sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
                 },
                 largeImage: {
-                  src: `Image/all_products/carousel-230-460/${data2[idx]}`,
+                  src: `Image/all_products/carousel-1200-1800/${data2[idx]}`,
                   width: 1000,
                   height: 1800
                 },
