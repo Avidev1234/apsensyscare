@@ -31,7 +31,7 @@ const Category = () => {
                 {!categories.loading && categories.category.category!==undefined ? (
                         category.map((val, key) => {
                             return (
-                                <Card style={{ width: '200px', height: '200px', backgroundColor: '#62b660', cursor: 'pointer' }}
+                                <Card style={{ width: '200px', height: '200px', backgroundColor: '#174686', cursor: 'pointer' }}
                                     key={key.toString()}
                                 >
                                     <CardActionArea onClick={() => navigate('/category', { state: { id: val.id } })}>
