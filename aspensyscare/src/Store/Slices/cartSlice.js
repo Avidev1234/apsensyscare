@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {  createSlice } from "@reduxjs/toolkit";
+// import axios from "axios";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -8,13 +9,11 @@ const initialState = {
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addToCart(state, action) {
-      console.log(action.payload[0])
       const existingIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload[0].id
       );

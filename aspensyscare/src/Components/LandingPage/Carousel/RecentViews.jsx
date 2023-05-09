@@ -93,7 +93,7 @@ const RecentViews = () => {
           nextArrow={<NextBtn />}
         {...settings}
                 >
-        {Products.loading && skeletonloading.map((items) => {return(<Skeleton variant="rectangular" animation="wave" width={232} height={270} />)})}
+        {Products.loading && skeletonloading.map((items,idx) => {return(<Skeleton key={idx.toString()} variant="rectangular" animation="wave" width={232} height={270} />)})}
         {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
         {!Products.loading && Products.products.product !== undefined ? (
           product.slice(0, 5).map((val, i) => {

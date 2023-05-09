@@ -8,6 +8,10 @@ import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { useSelector } from 'react-redux'
+import Login from "../Login/Login";
+import { useContext } from "react";
+import axios from "axios";
 
 
 const style = {
@@ -30,9 +34,18 @@ const formAlign = {
     marginTop: "20px"
 }
 
-export default function BasicModal() {
+const AddAddressModal=({handelLogin})=>{
+    console.log(handelLogin)
+    const user = useSelector((state) => state.users);
+    const {details}=user.users;
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () =>{ 
+        if(details===undefined){
+            handelLogin(true)
+        }else{
+            setOpen(true)
+        }
+    };
     const handleClose = () => setOpen(false);
     const SignupSchema = Yup.object().shape({
         pincode: Yup.string()
@@ -61,10 +74,22 @@ export default function BasicModal() {
             .max(50, 'Too Long!')
             .required('Required'),
         phone: Yup.string().matches(/^[6-9]\d{9}$/, { message: "Please enter valid number.", excludeEmptyString: false }).required('Required'),
-        email: Yup.string().email('Invalid email').required('Required')
+        email: Yup.string().email('Invalid email')
     });
 
-
+    //console.log(details)
+    const saveAddress= async(values)=>{
+        console.log(values)
+        setOpen(false)
+        await axios
+        .post("/addAddress", values)
+        .then((req, res) => {
+            console.log("done");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
     return (
         <>
             <Button
@@ -104,7 +129,8 @@ export default function BasicModal() {
                         validationSchema={SignupSchema}
                         onSubmit={values => {
                             // same shape as initial values
-                            console.log(values);
+                            //console.log(values);
+                            saveAddress(values)
                         }}
                     >
                         {({ errors, touched }) => (
@@ -358,3 +384,4 @@ export default function BasicModal() {
         </>
     );
 }
+export default AddAddressModal;

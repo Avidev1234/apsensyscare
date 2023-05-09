@@ -76,13 +76,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     width: '100%',
     height:'31px',
     [theme.breakpoints.up('sm')]: {
-      width: '20ch',
+      width: '15ch',
     },
     [theme.breakpoints.up('md')]: {
-      width: '40ch',
+      width: '35ch',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '80ch',
+      width: '85ch',
     },
     borderRadius: '16px',
     '&::placeholder': {
@@ -103,7 +103,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 function Navbar(props) {
-  const { window } = props;
+  const { window ,handelLogin,openLogin} = props;
+  console.log(props)
+  var item_value = sessionStorage.getItem("LoginSuccess");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -153,14 +155,7 @@ function Navbar(props) {
     setleLang(null);
   };
 
-  const [openLogin, setOpenLogin] = React.useState(false)
-  const [login, setLogin] = React.useState(false);
-
-  const handelLogin = (text, id) => {
-    setOpenLogin(text);
-    setLogin(true);
-
-  }
+  
 
 
   const navigate = useNavigate();
@@ -192,7 +187,7 @@ function Navbar(props) {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             onClick={() => navigate('/')}
           >
-            <img src="./aspensyscare.png" height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
+            <img src="./temp.png" height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-between' }} className='sidewidth'>
             {/* {navItems.map((item) => (
@@ -216,7 +211,7 @@ function Navbar(props) {
                 style={{ display: 'flex', flexDirection: 'row', gap: '2rem' }}
               >
 
-                <AvtarIcon>
+                {/* <AvtarIcon>
                   <IconButton size="small">
                     <LanguageIcon
                       aria-label="account of current user"
@@ -227,8 +222,8 @@ function Navbar(props) {
                     />
                   </IconButton>
                   English
-                </AvtarIcon>
-                <Menu
+                </AvtarIcon> */}
+                {/* <Menu
                   id="menu-appbar"
                   anchorEl={leLang}
                   anchorOrigin={{
@@ -245,45 +240,45 @@ function Navbar(props) {
                 >
                   <MenuItem onClick={handleCloseLang}>English</MenuItem>
                   <MenuItem onClick={handleCloseLang}>Hindi</MenuItem>
-                </Menu>
+                </Menu> */}
                 <AvtarIcon
                   onClick={() => navigate('/wishlist')}
-
+                  style={{color:'#174686'}}
                 >
                   <IconButton
                     size="small"
                     aria-label="account of current user"
                     color="black"
                   >
-                    <FavoriteBorderIcon />
+                    <FavoriteBorderIcon  style={{color:'#174686'}}/>
                   </IconButton>
                   Wishlist
                 </AvtarIcon>
-                <AvtarIcon onClick={() => navigate('/cart')}>
+                <AvtarIcon onClick={() => navigate('/cart')} style={{color:'#174686'}}>
                   <IconButton
                     size="small"
                     aria-label="account of current user"
                     color="black"
                   >
                     <StyledBadge badgeContent={cart.cartTotalQuantity} color="secondary">
-                      <ShoppingCartCheckoutIcon />
+                      <ShoppingCartCheckoutIcon style={{color:'#174686'}}/>
                     </StyledBadge>
                   </IconButton>
                   Cart
                 </AvtarIcon>
                 {
-                  login ?
+                  item_value!==null ?
                     <div className="MuiBox-root css-dxza1q">
-                      <AvtarIcon>
+                      <AvtarIcon style={{color:'#174686'}}>
                         <IconButton
                           size="small"
                           aria-label="account of current user"
                           aria-controls="menu-appbar"
                           aria-haspopup="true"
                           onClick={handleMenu}
-                          color="#000"
+                          
                         >
-                          <AccountCircle color='black' />
+                          <AccountCircle style={{color:'#174686'}} />
                         </IconButton>
                         Account
                       </AvtarIcon>
@@ -308,8 +303,7 @@ function Navbar(props) {
                     </div>
                     :
                     <div className="MuiBox-root css-dxza1q">
-                      <Button variant='contained' color="success" onClick={() => handelLogin(true, 0)}>Login</Button>
-                      
+                      <Button variant='contained' style={{backgroundColor:"#FFC700"}} onClick={() =>handelLogin(true, 0)}>Login</Button>
                     </div>
                 }
               </div>
@@ -337,7 +331,7 @@ function Navbar(props) {
       <Box component="main" sx={{ p: 0 }}>
         <Toolbar />
       </Box>
-      {openLogin ? <Login handelLogin={handelLogin} /> : ''}
+      {openLogin? <Login handelLogin={handelLogin}/> : ''}
     </Box>
   );
 }

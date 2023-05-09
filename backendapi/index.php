@@ -37,5 +37,14 @@ else if($uri==='/size'){
 }else if($uri==='/magnifying'){
     include('./sitepackages/inbuilt/pages/MagnifyingImages.php');
     die;
+}else if($uri==='/usercart'){
+    include('./sitepackages/inbuilt/pages/Cart.php');
+    die;
+}else if($uri==='/getAddress'){
+    include('./sitepackages/inbuilt/pages/GetAddress.php');
+    die;
+}else if($uri==='/addAddress'){
+    include('./sitepackages/inbuilt/pages/AddAddress.php');
+    die;
 }
 ?>

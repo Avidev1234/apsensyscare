@@ -57,4 +57,25 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/usercart',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    '/addAddress',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    '/getAddress',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
 };

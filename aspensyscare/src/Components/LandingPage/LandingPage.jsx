@@ -34,7 +34,6 @@ const LandingPage = () => {
   }, [])
   return (
     <LandingBox>
-      <Navbar />
       <Outlet />
       <Footer />
     </LandingBox>

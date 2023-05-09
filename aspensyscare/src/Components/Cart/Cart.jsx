@@ -19,19 +19,17 @@ import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import RemoveCircleRoundedIcon from "@mui/icons-material/RemoveCircleRounded";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import RecentViews from "../LandingPage/Carousel/RecentViews";
-import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import AddAddressModal from "./AddAddressModal";
-import { Background } from "@cloudinary/url-gen/qualifiers";
 import {
   addToCart,
-  clearCart,
   decreaseCart,
   getTotals,
   removeFromCart,
 } from "../../Store/Slices/cartSlice";
+// import { useLocation } from "react-router-dom";
 
 const stylemodal = {
   position: "absolute",
@@ -101,9 +99,11 @@ const SizeButtom = styled(Button)`
   font-size: 12px;
 `;
 
-const Cart = () => {
+const Cart = (props) => {
+  const { handelLogin} = props;
+  // const productId = useLocation();
+  //console.log(productId.state.productId)
   const dispatch = useDispatch();
- 
   const [expandedItem, setExpandedItem] = useState("panel1");
   const [expandedAddress, setExpandedAddress] = useState();
   const [expandedPay, setExpandedPay] = useState();
@@ -151,16 +151,6 @@ const Cart = () => {
       setExpandedAddress(panel);
     }
   };
-
-  const [val, setVal] = useState(1);
-  const handelvalue = (str) => {
-    console.log(str);
-    const replaced = str.match(/\d+/);
-    if (replaced !== "") {
-      setVal(replaced[0]);
-    }
-  };
-
   // address work start
 
   const [value, setValue] = useState("");
@@ -186,8 +176,9 @@ const Cart = () => {
     dispatch(getTotals());
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [cart, dispatch]);
-
+// console.log(cart)
   const handleAddToCart = (product) => {
+    // console.log(product)
     const temp = "";
     dispatch(addToCart([product, temp]));
   };
@@ -396,8 +387,8 @@ const Cart = () => {
                             variant="contained"
                             style={{ backgroundColor: "green" }}
                           >
-                            {" "}
-                            {cartItem.itemSize}ml{" "}
+                            
+                            {cartItem.itemSize}ml
                           </SizeButtom>
                         </div>
                         <Modal
@@ -418,7 +409,7 @@ const Cart = () => {
                               id="modal-modal-description"
                               sx={{ mt: 2 }}
                             >
-                              {size?.map((items) => {
+                              {size !== undefined ?size.map((items) => {
                                 return (
                                   <SizeButtom
                                     variant="contained"
@@ -430,7 +421,7 @@ const Cart = () => {
                                     {items.size_value}ml
                                   </SizeButtom>
                                 );
-                              })}
+                              }):null}
                             </Typography>
                           </Box>
                         </Modal>
@@ -600,7 +591,7 @@ const Cart = () => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <AddAddressModal />
+                    <AddAddressModal handelLogin={handelLogin}/>
                     <Button
                       variant="contained"
                       onClick={handleOpen("panel3")}

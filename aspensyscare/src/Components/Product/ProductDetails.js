@@ -1,6 +1,6 @@
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Button, InputBase, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, Button, InputBase, Modal, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
@@ -12,15 +12,15 @@ import axios from 'axios';
 
 
 const stylemodal = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
 };
 
 const SizeButtom = styled(Button)`
@@ -121,6 +121,9 @@ const ProductDetails = (product) => {
     //console.log(product)
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [openmod, setOpen] = React.useState(false);
+    const handleOpendilog = () => setOpen(true);
+    const handleClosedilog = () => setOpen(false);
     const [val, setVal] = useState(1);
     const handelvalue = (str) => {
         // console.log(str)
@@ -139,31 +142,32 @@ const ProductDetails = (product) => {
         backgroundColor: 'white'
     }
 
-
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
 
     // destructure all data
     const { details } = products.productdetails;
-    
     const { size } = sizedetails.sizes;
-    console.log(size);
+    // get the all details belongs to product Id from product entry tables
     const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.products.id) : [];
     let itemsize = '';
-    console.log(itemIndex);
-    const Productvariants=[];
-    if (itemIndex.length !== 1 && details !== undefined&&size!==undefined) {
-        itemIndex.map((item,idx)=>{
-            const index=size.filter((items) => items.id === item.size_id)
-            const values={
-                "price":item.price,
-                "size":index[0]['size_value']
+    const Productvariants = [];
+    //console.log(itemIndex);
+    if (itemIndex.length !== 0 && details !== undefined && size !== undefined) {
+
+        itemIndex.map((item) => {
+            const index = size.filter((items) => items.id === item.size_id)
+            const values = {
+                "price": item.price,
+                "size": index[0]['size_value']
             }
             Productvariants.push(values)
         })
     }
+
+
     console.log(Productvariants.length)
-    
+
 
     const handleCart = (product) => {
         //console.log(product)
@@ -172,6 +176,7 @@ const ProductDetails = (product) => {
         dispatch(addToCart([product, itemsize]));
         navigate('/cart')
     }
+    // add cart items number
     const handleAddToCart = () => {
         setVal(preval => preval + 1);
     };
@@ -183,7 +188,7 @@ const ProductDetails = (product) => {
     const getPstalValue = (str) => {
         //console.log(str)
         const replaced = str.replace(/[^0-9]/g, "");
-       // console.log(replaced)
+        // console.log(replaced)
         if (replaced.length <= 6) {
             setPostal(replaced);
             setPincode('')
@@ -220,15 +225,49 @@ const ProductDetails = (product) => {
             </div>
             <div>
                 <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '700', marginTop: '8px' }}>
-                    <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{Productvariants.length!==0 ?Productvariants[0].price:null}.00
+                    <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{Productvariants.length !== 0 ? Productvariants[0].price : null}.00
                     <Typography variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
                         Inclusive of all Taxes
                     </Typography>
                 </Typography>
             </div>
             <ButtomBox>
-                <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }}>{Productvariants.length !==0 ?Productvariants[0].size:null}ml</Button>
+                <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }} onClick={handleOpendilog}>{Productvariants.length !== 0 ? Productvariants[0].size : null}ml</Button>
             </ButtomBox>
+            <Modal
+                open={openmod}
+                onClose={handleClosedilog}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={stylemodal}>
+                    <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                    >
+                        Select a Size
+                    </Typography>
+                    <Typography
+                        id="modal-modal-description"
+                        sx={{ mt: 2 }}
+                    >
+                        {Productvariants.length !== 0 ? Productvariants.map((items) => {
+                            return (
+                                <SizeButtom
+                                    variant="contained"
+                                    style={{
+                                        backgroundColor: "green",
+                                        margin: "1rem",
+                                    }}
+                                >
+                                    {items.size}ml
+                                </SizeButtom>
+                            );
+                        }) : null}
+                    </Typography>
+                </Box>
+            </Modal>
             <ButtomBox>
                 <RemoveCircleRoundedIcon style={{ fontSize: '18px', cursor: val >= 2 ? 'pointer' : 'not-allowed', color: val >= 2 ? 'black' : '#d9d9d9' }} onClick={() => handleDecreaseCart()} />
                 <input
@@ -248,10 +287,10 @@ const ProductDetails = (product) => {
                 <Button variant='contained' style={{ backgroundColor: 'green' }} onClick={() => getCustomersData(postal)}>Check</Button>
             </ButtomBox>
             {
-                postal!== ''&&postal.length===6&&pincode !== ''?
-                <div>
-                    <p style={{ color: 'red', fontWeight: 600 }}>{pincode !== '' && pincode === "Success" ? 'Sorry not able to delivery' : null}</p>
-                </div>:null
+                postal !== '' && postal.length === 6 && pincode !== '' ?
+                    <div>
+                        <p style={{ color: 'red', fontWeight: 600 }}>{pincode !== '' && pincode === "Success" ? 'Sorry not able to delivery' : null}</p>
+                    </div> : null
             }
 
             <ButtomBox>

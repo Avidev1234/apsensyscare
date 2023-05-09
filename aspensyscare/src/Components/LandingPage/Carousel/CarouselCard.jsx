@@ -50,7 +50,7 @@ const CarouselCard = ({ val }) => {
 
     const handleCart = (product) => {
         dispatch(addToCart([product, itemsize]));
-        navigate('/cart')
+        navigate('/cart',{state:{productId:product.id}})
     }
     try {
         const iconcolor = val.color ? val.color : '';
