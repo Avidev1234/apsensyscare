@@ -162,7 +162,7 @@ const Cart = (props) => {
   };
  
   const takeValue = (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
   };
   // payment start
 

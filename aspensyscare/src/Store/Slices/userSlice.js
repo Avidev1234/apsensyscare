@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { useSelector } from "react-redux";
 // import { addCart } from "./cartSlice";
 var md5 = require('md5');
 const initialState = {
@@ -13,7 +14,7 @@ export const fetchUsers = createAsyncThunk('user/fetchUsers', async (login) => {
         .post("/login_user", login)
         .then((response) => response.data)
 });
-const pushUserCart = async (productdetails,userId) => {
+export const PushUserCart = async (productdetails,userId) => {
     
     let productId = productdetails.map((item) => item.id);
     let names = productdetails.map((item) => item.name);
@@ -41,14 +42,14 @@ const userSlice = createSlice({
             state.users = action.payload
             if (!sessionStorage.getItem("LoginSuccess")) {
                 sessionStorage.setItem("LoginSuccess", true);
-                sessionStorage.setItem("userId", md5(action.payload.details[0].id));
+                sessionStorage.setItem("___user", action.payload.details[0].id);
             }
-            console.log(localStorage.getItem("cartItems"))
+            //console.log(localStorage.getItem("cartItems"))
             if (localStorage.getItem("cartItems") !== null) {
                 const productdetails = JSON.parse(localStorage.getItem("cartItems"))
-                console.log(typeof((productdetails)))
+                //console.log(typeof((productdetails)))
                 const userId=action.payload.details[0].id;
-                pushUserCart(productdetails,userId)
+                PushUserCart(productdetails,userId)
             }
         })
         builder.addCase(fetchUsers.rejected, (state, action) => {

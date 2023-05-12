@@ -35,11 +35,12 @@ const formAlign = {
 }
 
 const AddAddressModal=({handelLogin})=>{
-    console.log(handelLogin)
+    //console.log(handelLogin)
     const user = useSelector((state) => state.users);
     const {details}=user.users;
     const [open, setOpen] = React.useState(false);
     const handleOpen = () =>{ 
+        console.log(details)
         if(details===undefined){
             handelLogin(true)
         }else{
@@ -79,7 +80,7 @@ const AddAddressModal=({handelLogin})=>{
 
     //console.log(details)
     const saveAddress= async(values)=>{
-        console.log(values)
+        //console.log(values)
         setOpen(false)
         await axios
         .post("/addAddress", values)
@@ -124,7 +125,8 @@ const AddAddressModal=({handelLogin})=>{
                             area: '',
                             name: '',
                             phone: '',
-                            email: ''
+                            email: '',
+                            addressType:''
                         }}
                         validationSchema={SignupSchema}
                         onSubmit={values => {
@@ -250,6 +252,34 @@ const AddAddressModal=({handelLogin})=>{
                                         {
                                             errors.house && touched.house ? (
                                                 <FormHelperText sx={{ color: "red", m: 1 }}>{errors.house}</FormHelperText>
+                                            ) : null
+                                        }
+                                    </div>
+                                    <div style={{ width: "100%", margin: "10px" }}>
+                                        {errors.area && touched.area ? <Field
+                                            as={TextField}
+                                            label="Road Name/Area/Colony"
+                                            id="standard-multiline-flexible"
+                                            multiline
+                                            maxRows={4}
+                                            variant="standard"
+                                            sx={{ m: 1, width: '100%' }}
+                                            name="area"
+                                            error
+                                        /> : <Field
+                                            as={TextField}
+                                            label="Road Name/Area/Colony"
+                                            id="standard-multiline-flexible"
+                                            multiline
+                                            maxRows={4}
+                                            variant="standard"
+                                            sx={{ m: 1, width: '100%' }}
+                                            name="area"
+                                            color="success"
+                                        />}
+                                        {
+                                            errors.area && touched.area ? (
+                                                <FormHelperText sx={{ color: "red", m: 1 }}>{errors.area}</FormHelperText>
                                             ) : null
                                         }
                                     </div>

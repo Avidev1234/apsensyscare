@@ -104,7 +104,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 function Navbar(props) {
   const { window ,handelLogin,openLogin} = props;
-  console.log(props)
+  //console.log(props)
   var item_value = sessionStorage.getItem("LoginSuccess");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
