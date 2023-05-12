@@ -290,8 +290,8 @@ const Cart = (props) => {
                 </div>
 
                 {cart.cartItems &&
-                  cart.cartItems.map((cartItem) => (
-                    <div
+                  cart.cartItems.map((cartItem ,idx) => (
+                    <div key={idx.toString()}
                       style={{
                         width: "95%",
                         display: "flex",
@@ -409,7 +409,7 @@ const Cart = (props) => {
                               id="modal-modal-description"
                               sx={{ mt: 2 }}
                             >
-                              {size !== undefined ?size.map((items) => {
+                              {size !== undefined ?size.map((items,idx) => {
                                 return (
                                   <SizeButtom
                                     variant="contained"
@@ -417,6 +417,7 @@ const Cart = (props) => {
                                       backgroundColor: "green",
                                       margin: "1rem",
                                     }}
+                                    key={idx.toString()}
                                   >
                                     {items.size_value}ml
                                   </SizeButtom>

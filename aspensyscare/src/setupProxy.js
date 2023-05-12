@@ -78,4 +78,11 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/fetchUsersdata',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
 };

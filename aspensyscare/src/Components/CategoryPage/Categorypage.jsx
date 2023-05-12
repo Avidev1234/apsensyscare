@@ -153,7 +153,7 @@ const Categorypage = () => {
                     {!Products.loading && Products.products.product !== undefined && categoryProducts.length !== 0 ? (
                         categoryProducts.map((val, i) => {
                             return (
-                                <div style={{ width: '232px' }}>
+                                <div style={{ width: '232px' }} key={i.toString()}>
                                     <CarouselCard val={val} />
                                 </div>
                             )

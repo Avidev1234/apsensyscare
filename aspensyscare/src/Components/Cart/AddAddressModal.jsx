@@ -41,7 +41,7 @@ const AddAddressModal=({handelLogin})=>{
     const [open, setOpen] = React.useState(false);
     const handleOpen = () =>{ 
         console.log(details)
-        if(details===undefined){
+        if(sessionStorage.getItem("___user")===null){
             handelLogin(true)
         }else{
             setOpen(true)

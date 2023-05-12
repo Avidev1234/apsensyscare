@@ -45,10 +45,10 @@ const userSlice = createSlice({
                 sessionStorage.setItem("___user", action.payload.details[0].id);
             }
             //console.log(localStorage.getItem("cartItems"))
-            if (localStorage.getItem("cartItems") !== null) {
+            if (localStorage.getItem("cartItems") !== null ) {
                 const productdetails = JSON.parse(localStorage.getItem("cartItems"))
                 //console.log(typeof((productdetails)))
-                const userId=action.payload.details[0].id;
+                const userId=sessionStorage.getItem("___user");
                 PushUserCart(productdetails,userId)
             }
         })

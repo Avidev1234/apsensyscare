@@ -46,5 +46,8 @@ else if($uri==='/size'){
 }else if($uri==='/addAddress'){
     include('./sitepackages/inbuilt/pages/AddAddress.php');
     die;
+}else if($uri==='/fetchUsersdata'){
+    include('./sitepackages/inbuilt/pages/UserDetails.php');
+    die;
 }
 ?>
