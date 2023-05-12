@@ -7,9 +7,9 @@ const initialState = {
     error: '',
 }
 
-export const getAddress= createAsyncThunk('user/address', async() => {
+export const getAddress= createAsyncThunk('user/address', async(id) => {
     return await axios
-        .post("/getAddress")
+        .post("/getAddress",id)
         .then((response) => response.data)
 });
 
@@ -23,11 +23,11 @@ const getAddressSlice = createSlice({
         builder.addCase(getAddress.fulfilled, (state, action) => {
             state.error = ''
             state.loading = false
-            state.banner = action.payload
+            state.address = action.payload
         })
         builder.addCase(getAddress.rejected, (state, action) => {
             state.loading = false
-            state.banner = []
+            state.address = []
             state.error = action.error.message
         })
     },

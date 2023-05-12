@@ -100,7 +100,7 @@ const SizeButtom = styled(Button)`
 `;
 
 const Cart = (props) => {
-  const { handelLogin} = props;
+  const { handelLogin } = props;
   // const productId = useLocation();
   //console.log(productId.state.productId)
   const dispatch = useDispatch();
@@ -114,6 +114,9 @@ const Cart = (props) => {
 
   const sizes = useSelector((state) => state.size);
   const size = sizes.sizes.size;
+  const addressess = useSelector((state) => state.address);
+  const address = addressess.address.address;
+  console.log(address)
 
   const handleOpen = (panel) => (event, isExpanded) => {
     // console.log(panel)
@@ -160,9 +163,9 @@ const Cart = (props) => {
     setValue(event.target.value);
     setError(false);
   };
- 
+
   const takeValue = (e) => {
-    //console.log(e.target.value);
+    console.log(e.target.value);
   };
   // payment start
 
@@ -176,7 +179,7 @@ const Cart = (props) => {
     dispatch(getTotals());
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [cart, dispatch]);
-// console.log(cart)
+  // console.log(cart)
   const handleAddToCart = (product) => {
     // console.log(product)
     const temp = "";
@@ -223,7 +226,7 @@ const Cart = (props) => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
-                // style={{ backgroundColor: '#d9d9d9' }}
+              // style={{ backgroundColor: '#d9d9d9' }}
               >
                 <Typography sx={{ width: "90%", flexShrink: 0 }}>
                   Your Cart
@@ -290,7 +293,7 @@ const Cart = (props) => {
                 </div>
 
                 {cart.cartItems &&
-                  cart.cartItems.map((cartItem ,idx) => (
+                  cart.cartItems.map((cartItem, idx) => (
                     <div key={idx.toString()}
                       style={{
                         width: "95%",
@@ -387,7 +390,7 @@ const Cart = (props) => {
                             variant="contained"
                             style={{ backgroundColor: "green" }}
                           >
-                            
+
                             {cartItem.itemSize}ml
                           </SizeButtom>
                         </div>
@@ -409,7 +412,7 @@ const Cart = (props) => {
                               id="modal-modal-description"
                               sx={{ mt: 2 }}
                             >
-                              {size !== undefined ?size.map((items,idx) => {
+                              {size !== undefined ? size.map((items, idx) => {
                                 return (
                                   <SizeButtom
                                     variant="contained"
@@ -422,7 +425,7 @@ const Cart = (props) => {
                                     {items.size_value}ml
                                   </SizeButtom>
                                 );
-                              }):null}
+                              }) : null}
                             </Typography>
                           </Box>
                         </Modal>
@@ -517,73 +520,88 @@ const Cart = (props) => {
                     error={error}
                     variant="standard"
                     onChange={(e) => takeValue(e)}
-                  >
-                    <div
-                      style={{
-                        width: "70%",
-                        height: "65px",
-                        overFlow: "hidden",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "flex-start",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                      }}
-                    >
-                      <input
-                        type="radio"
-                        id="html"
-                        name="address"
-                        value="HTML"
-                        defaultChecked
-                      />
-                      <label
-                        style={{ display: "flex", flexDirection: "column" }}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            gap: "1rem",
-                          }}
-                        >
-                          <Typography
-                            variant="h2"
-                            style={{ fontSize: "14px", fontWeight: 600 }}
-                          >
-                            name
-                          </Typography>
-                          <Typography
-                            variant="body"
-                            style={{
-                              height: "fit-content",
-                              fontSize: "12px",
-                              backgroundColor: "#d9d9d9",
-                              padding: "0 4px",
-                              borderRadius: "5px",
-                            }}
-                          >
-                            Home
-                          </Typography>
-                          <Typography variant="body" style={{}}>
-                            9898988989
-                          </Typography>
-                        </div>
-                        <div style={{ display: "flex", flexDirection: "row" }}>
-                          <Typography
-                            variant="h2"
-                            style={{
-                              fontSize: "12px",
-                              fontWeight: 600,
-                              color: "gray",
-                            }}
-                          >
-                            name jkhjkhdf dfjdsfhsd afhjdfh djafdlaf, gghgfdhdfh
-                            fghdf hdfghfgdhfg hdg fg h dgh fghdghghfg hfgdhdf
-                          </Typography>
-                        </div>
-                      </label>
-                    </div>
+                  >{
+                      address !== undefined ?
+                        address.map((items,idx) => {
+                          return (
+                            <div key={idx.toString()}
+                              style={{
+                                width: "70%",
+                                height: "65px",
+                                overFlow: "hidden",
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "flex-start",
+                                alignItems: "flex-start",
+                                gap: "1rem",
+                              }}
+                            >
+                              {items.id===0  ?
+                              <input
+                                type="radio"
+                                id={`${items.id}`}
+                                name="address"
+                                value={`${items.id}`}
+                                defaultChecked
+                              />:
+                              <input
+                                type="radio"
+                                id={`${items.id}`}
+                                name="address"
+                                value={`${items.id}`}
+                              />
+                              }
+                              <label for={`${items.id}`}
+                                style={{ display: "flex", flexDirection: "column" }}
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    gap: "1rem",
+                                  }}
+                                >
+                                  <Typography
+                                    variant="h2"
+                                    style={{ fontSize: "14px", fontWeight: 600 }}
+                                  >
+                                    {items.name}
+                                  </Typography>
+                                  <Typography
+                                    variant="body"
+                                    style={{
+                                      height: "fit-content",
+                                      fontSize: "12px",
+                                      backgroundColor: "#d9d9d9",
+                                      padding: "0 4px",
+                                      borderRadius: "5px",
+                                    }}
+                                  >
+                                    Home
+                                  </Typography>
+                                  <Typography variant="body" style={{}}>
+                                    {items.contact}
+                                  </Typography>
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                  <Typography
+                                    variant="h2"
+                                    style={{
+                                      fontSize: "12px",
+                                      fontWeight: 600,
+                                      color: "gray",
+                                    }}
+                                  >
+                                   {items.house_flat_office}{items.area_landmark}{items.city}{items.state}{items.pincode}
+                                  </Typography>
+                                </div>
+                              </label>
+                            </div>
+                          )
+                        })
+
+                        : null
+                    }
                   </FormControl>
                   <div
                     style={{
@@ -592,7 +610,7 @@ const Cart = (props) => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <AddAddressModal handelLogin={handelLogin}/>
+                    <AddAddressModal handelLogin={handelLogin} />
                     <Button
                       variant="contained"
                       onClick={handleOpen("panel3")}

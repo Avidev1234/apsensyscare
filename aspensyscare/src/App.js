@@ -16,6 +16,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchCategory } from './Store/Slices/categorySclice';
 import Navbar from './Components/layouts/Navbar/Navbar';
+import { getAddress } from './Store/Slices/getAddressSlice';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -42,6 +43,9 @@ function App() {
   const handelLogin = (text) => {
     setOpenLogin(text);
     setLogin(true);
+  }
+  if(sessionStorage.getItem('___user')){
+    dispatch(getAddress(sessionStorage.getItem('___user')))
   }
   return (
     <>

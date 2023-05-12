@@ -40,7 +40,6 @@ const AddAddressModal=({handelLogin})=>{
     const {details}=user.users;
     const [open, setOpen] = React.useState(false);
     const handleOpen = () =>{ 
-        console.log(details)
         if(sessionStorage.getItem("___user")===null){
             handelLogin(true)
         }else{
@@ -80,7 +79,7 @@ const AddAddressModal=({handelLogin})=>{
 
     //console.log(details)
     const saveAddress= async(values)=>{
-        //console.log(values)
+        console.log(values)
         setOpen(false)
         await axios
         .post("/addAddress", values)
