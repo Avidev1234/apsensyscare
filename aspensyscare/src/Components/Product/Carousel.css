@@ -1,3 +1,11 @@
+#root{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
 .carousel .slick-arrow.slick-prev,
 .carousel .slick-arrow.slick-next {
   background: #D4EBF5;

@@ -80,13 +80,13 @@ const ProductCarousel = ({imagemagnify,id}) => {
                 smallImage: {
                   alt: 'Wristwatch by Ted Baker London',
                   isFluidWidth: false,
-                  src: `Image/all_products/carousel-230-460/${item}`,
+                  src: `${process.env.REACT_APP_URL}/Image/all_products/carousel-230-460/${item}`,
                   height: 460,
                   width: 250,
                   sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
                 },
                 largeImage: {
-                  src: `Image/all_products/carousel-1200-1800/${data2[idx]}`,
+                  src: `${process.env.REACT_APP_URL}/Image/all_products/carousel-1200-1800/${data2[idx]}`,
                   width: 1000,
                   height: 1800
                 },
@@ -116,7 +116,7 @@ const ProductCarousel = ({imagemagnify,id}) => {
       >
         {data1.map((item,idx) => (
           <div style={{ width: "100%", height: "10%", margin: "10px" }} key={idx.toString()}>
-            <img src={`Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer',margin:'auto',padding:'10px' }} />
+            <img src={`${process.env.REACT_APP_URL}/Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer',margin:'auto',padding:'10px' }} />
           </div>
         ))}
       </Slider>

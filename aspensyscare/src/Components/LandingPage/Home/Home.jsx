@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Button, Stack, Typography } from '@mui/material'
+import { Stack } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect } from 'react'
 import HomeBanner from '../Banner/HomeBanner'

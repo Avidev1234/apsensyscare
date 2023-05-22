@@ -17,6 +17,7 @@ const products = [
     {
         name: 'Home care',
         image: './Image/floor-cleaner.png',
+        URL:'home-care'
     },
     {
         name: 'Kitchen care',
@@ -49,7 +50,7 @@ const Category = () => {
                             <Card style={{ width: '200px', height: '200px', backgroundColor: '#62b660', cursor: 'pointer' }}
                                 key={key}
                             >
-                                <CardActionArea onClick={()=>navigate('/category',{state:{name:val.name}})}>
+                                <CardActionArea onClick={()=>navigate('/category/${}',{state:{name:val.name}})}>
                                     <CardContent>
                                         <Typography sx={{ fontSize: 14, display: 'flex', justifyContent: 'center' }} color="white" gutterBottom>
                                             {val.name}

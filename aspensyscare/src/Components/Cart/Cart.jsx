@@ -116,7 +116,7 @@ const Cart = (props) => {
   const size = sizes.sizes.size;
   const addressess = useSelector((state) => state.address);
   const address = addressess.address.address;
-  console.log(address)
+  // console.log(address)
 
   const handleOpen = (panel) => (event, isExpanded) => {
     // console.log(panel)
@@ -134,9 +134,11 @@ const Cart = (props) => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
     if (panel === "panel3") {
-      setExpandedItem(false);
-      setExpandedAddress(false);
-      setExpandedPay(panel);
+      if(address !== undefined){
+        setExpandedItem(false);
+        setExpandedAddress(false);
+        setExpandedPay(panel);
+      }
     }
   };
   const handleChange = (panel) => (event, isExpanded) => {
@@ -226,7 +228,6 @@ const Cart = (props) => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
-              // style={{ backgroundColor: '#d9d9d9' }}
               >
                 <Typography sx={{ width: "90%", flexShrink: 0 }}>
                   Your Cart
@@ -536,7 +537,7 @@ const Cart = (props) => {
                                 gap: "1rem",
                               }}
                             >
-                              {items.id===0  ?
+                              {idx===0  ?
                               <input
                                 type="radio"
                                 id={`${items.id}`}

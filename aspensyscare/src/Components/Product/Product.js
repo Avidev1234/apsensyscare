@@ -54,7 +54,7 @@ const Partationcont_sec = styled(Box)`
 const Product = () => {
   const [magnified, setMagnified] = useState(false)
   const value = useLocation();
-   console.log(value.state)
+  console.log("inside product details",value.state)
   const imagemagnify = (text) => {
     setMagnified(text);
   }

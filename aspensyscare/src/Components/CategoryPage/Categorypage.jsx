@@ -7,6 +7,7 @@ import CarouselCard from '../LandingPage/Carousel/CarouselCard';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
 import Skeleton from '@mui/material/Skeleton';
+import {Helmet} from "react-helmet";
 
 const CategoryBox = styled(Box)`
 width:100%;
@@ -85,7 +86,7 @@ const PrettoSlider = styled(Slider)({
     },
 });
 
-const skeletonloading = [1,2,3,4,5,6,7,8];
+const skeletonloading = [1, 2, 3, 4, 5, 6, 7, 8];
 const Categorypage = () => {
     useEffect(() => {
         // 👇️ scroll to top on page load
@@ -104,15 +105,19 @@ const Categorypage = () => {
     const { product } = Products.products;
     console.log(product)
     let categoryProducts = [];
-    product!==undefined && product.map((val, i) => {
+    product !== undefined && product.map((val, i) => {
         if (val.category_id === value.state.id) {
             categoryProducts.push(val);
         }
         return true;
     })
-    console.log(categoryProducts)
+    // console.log(categoryProducts)
     return (
         <CategoryBox>
+            <Helmet>
+                <title>My Title</title>
+                <meta name="description" content="Helmet application" />
+            </Helmet>
             <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '600', color: 'black', marginLeft: '43px' }}>
                 {value.state.name}
             </Typography>
@@ -122,11 +127,11 @@ const Categorypage = () => {
                 <CategoryType>
                     <div style={{ width: '70%' }}>
                         <div style={{ width: '100%', borderBottom: '2px solid grey' }}>
-                            <Typography style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center',cursor:'pointer' }} onClick={handleExpandClick}>
+                            <Typography style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={handleExpandClick}>
                                 Price
                                 <ExpandMore
                                     expand={expanded}
-                                    
+
                                     aria-expanded={expanded}
                                     aria-label="show more"
                                 >

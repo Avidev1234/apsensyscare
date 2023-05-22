@@ -16,6 +16,11 @@ export const getAddress= createAsyncThunk('user/address', async(id) => {
 const getAddressSlice = createSlice({
     name: 'address',
     initialState,
+    reducers:{
+        clearAddress(state, action) {
+            state.address = [];
+          },
+    },
     extraReducers: (builder) => {
         builder.addCase(getAddress.pending, (state) => {
             state.loading = true
@@ -32,4 +37,5 @@ const getAddressSlice = createSlice({
         })
     },
 })
+export const { clearAddress } = getAddressSlice.actions;
 export default getAddressSlice.reducer

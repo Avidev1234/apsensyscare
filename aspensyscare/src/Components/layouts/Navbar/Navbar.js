@@ -24,8 +24,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import Login from '../../Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTotals } from '../../../Store/Slices/cartSlice';
+import { clearCart, getTotals } from '../../../Store/Slices/cartSlice';
 import "./navbar.css";
+import { clearAddress } from '../../../Store/Slices/getAddressSlice';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -105,6 +106,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function Navbar(props) {
   const { window ,handelLogin,openLogin} = props;
   //console.log(props)
+  const navigate = useNavigate();
   var item_value = sessionStorage.getItem("LoginSuccess");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
@@ -155,10 +157,15 @@ function Navbar(props) {
     setleLang(null);
   };
 
-  
+  const handelLogout= () =>{
+    sessionStorage.clear()
+    setAnchorEl(null);
+    dispatch(clearAddress())
+    dispatch(clearCart())
+    navigate('/')
+  }
 
-
-  const navigate = useNavigate();
+ 
 
 
   // getting data for cart
@@ -187,7 +194,7 @@ function Navbar(props) {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             onClick={() => navigate('/')}
           >
-            <img src="./temp.png" height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
+            <img src={`${process.env.REACT_APP_URL}/temp.png`} height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-between' }} className='sidewidth'>
             {/* {navItems.map((item) => (
@@ -297,8 +304,9 @@ function Navbar(props) {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                       >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
+                        {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem onClick={handleClose}>My account</MenuItem> */}
+                        <MenuItem onClick={handelLogout}>Logout</MenuItem>
                       </Menu>
                     </div>
                     :

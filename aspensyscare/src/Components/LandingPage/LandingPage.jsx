@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react'
-import Navbar from '../layouts/Navbar/Navbar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../layouts/Footer/Footer';
 import { Box } from '@mui/material';
 import styled from '@emotion/styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchBanner } from '../../Store/Slices/bannerSlice';
-import { fetchCategory } from '../../Store/Slices/categorySclice';
-import { AllProducts } from '../../Store/Slices/productSlice';
+import { Helmet } from "react-helmet";
 
 const LandingBox = styled(Box)`
 width:97.77vw;
@@ -17,8 +15,6 @@ height:auto;
   background-color:#fff;
 }
 `
-
-
 const LandingPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,10 +26,13 @@ const LandingPage = () => {
       }
     }
     fetchData();
-
-  }, [])
+  }, [dispatch])
   return (
     <LandingBox>
+      <Helmet>
+        <title>Buy Best Home, Kitchen, Skin & Body care products in India at best price || apsensyscare</title>
+        <meta name="description" content="Buy Best Home, Kitchen, Skin & Body care products in India at best price || apsensyscare" />
+      </Helmet>
       <Outlet />
       <Footer />
     </LandingBox>

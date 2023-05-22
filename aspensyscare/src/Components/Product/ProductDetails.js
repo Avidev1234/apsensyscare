@@ -32,8 +32,6 @@ const SizeButtom = styled(Button)`
   min-width: 50px;
   font-size: 12px;
 `
-
-
 const Detailscont = styled(Box)`
     width:100%;
     height:auto;
@@ -117,8 +115,14 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+let initialized = true;
+
 const ProductDetails = (product) => {
-    //console.log(product)
+    let currentItem = {
+        size: `${product.products.default_size}`,
+        price: `${product.products.default_price}`
+    }
+    console.log("hello i am currentItem", currentItem)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [openmod, setOpen] = React.useState(false);
@@ -142,6 +146,9 @@ const ProductDetails = (product) => {
         backgroundColor: 'white'
     }
 
+    const [currentSize, setCurrentSize] = useState(currentItem);
+
+
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
 
@@ -154,28 +161,44 @@ const ProductDetails = (product) => {
     const Productvariants = [];
     //console.log(itemIndex);
     if (itemIndex.length !== 0 && details !== undefined && size !== undefined) {
-
-        itemIndex.map((item) => {
+        itemIndex.map((item, idx) => {
             const index = size.filter((items) => items.id === item.size_id)
             const values = {
                 "price": item.price,
                 "size": index[0]['size_value']
             }
+            itemsize = index[0]['size_value']
             Productvariants.push(values)
         })
     }
 
 
-    console.log(Productvariants.length)
-
-
+    // console.log(Productvariants)
+     console.log(currentSize)
+    useEffect(() => {
+        //setCurrentSize(currentItem)
+        console.log("inside useefect")
+        if (Productvariants.length !== 0) {
+            if (sessionStorage.getItem("initialized") === true) {
+                console.log("inside if")
+                Productvariants.length !== 0 ? setCurrentSize({ size: Productvariants[0].size, price: Productvariants[0].price }) : 
+                initialized = false;
+                sessionStorage.setItem("initialized", false);
+            }else{
+                console.log(Productvariants)
+            }
+        } else {
+            
+        }
+    }, [Productvariants])
+    //console.log("hello i am ", Productvariants)
     const handleCart = (product) => {
         //console.log(product)
         product.cartQuantity = val;
-        //console.log(itemsize)
         dispatch(addToCart([product, itemsize]));
         navigate('/cart')
     }
+
     // add cart items number
     const handleAddToCart = () => {
         setVal(preval => preval + 1);
@@ -225,14 +248,14 @@ const ProductDetails = (product) => {
             </div>
             <div>
                 <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '700', marginTop: '8px' }}>
-                    <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{Productvariants.length !== 0 ? Productvariants[0].price : null}.00
+                    <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{currentSize.price}.00
                     <Typography variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
                         Inclusive of all Taxes
                     </Typography>
                 </Typography>
             </div>
             <ButtomBox>
-                <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }} onClick={handleOpendilog}>{Productvariants.length !== 0 ? Productvariants[0].size : null}ml</Button>
+                <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }} onClick={handleOpendilog}>{currentSize.size} ml</Button>
             </ButtomBox>
             <Modal
                 open={openmod}
@@ -260,6 +283,7 @@ const ProductDetails = (product) => {
                                         backgroundColor: "green",
                                         margin: "1rem",
                                     }}
+                                    onClick={() => { setCurrentSize({ ['size']: items.size, ['price']: items.price }); setOpen(false) }}
                                 >
                                     {items.size}ml
                                 </SizeButtom>

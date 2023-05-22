@@ -1,5 +1,5 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
-
+// from signup.js
 module.exports = function(app) {
   app.use(
     '/site_user',
@@ -8,6 +8,8 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from userSclice.js
+
   app.use(
     '/login_user',
     createProxyMiddleware({
@@ -15,6 +17,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+// from bannerSclice.js
   app.use(
     '/fatch_baner',
     createProxyMiddleware({
@@ -22,6 +25,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from categorySclice.js
   app.use(
     '/fatch_category',
     createProxyMiddleware({
@@ -29,6 +33,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from productSclice.js
   app.use(
     '/products',
     createProxyMiddleware({
@@ -36,6 +41,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from productEnterySclice.js
   app.use(
     '/productdetails',
     createProxyMiddleware({
@@ -43,6 +49,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from sizeSclice.js
   app.use(
     '/size',
     createProxyMiddleware({
@@ -50,6 +57,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from imageMagnifyingSclice.js
   app.use(
     '/magnifying',
     createProxyMiddleware({
@@ -57,6 +65,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from usersliceSclice.js
   app.use(
     '/usercart',
     createProxyMiddleware({
@@ -64,6 +73,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from addAddressmodel.js
   app.use(
     '/addAddress',
     createProxyMiddleware({
@@ -71,6 +81,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from getaddressSclice.js
   app.use(
     '/getAddress',
     createProxyMiddleware({
@@ -78,6 +89,7 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from userSclice.js
   app.use(
     '/fetchUsersdata',
     createProxyMiddleware({

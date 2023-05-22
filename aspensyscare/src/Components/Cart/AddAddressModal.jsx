@@ -8,10 +8,11 @@ import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Login from "../Login/Login";
 import { useContext } from "react";
 import axios from "axios";
+import { getAddress } from "../../Store/Slices/getAddressSlice";
 
 
 const style = {
@@ -36,6 +37,7 @@ const formAlign = {
 
 const AddAddressModal=({handelLogin})=>{
     //console.log(handelLogin)
+    const dispatch = useDispatch();
     const user = useSelector((state) => state.users);
     const {details}=user.users;
     const [open, setOpen] = React.useState(false);
@@ -82,13 +84,17 @@ const AddAddressModal=({handelLogin})=>{
         console.log(values)
         setOpen(false)
         await axios
-        .post("/addAddress", values)
+        .post("/backend_api/addAddress", values)
         .then((req, res) => {
             console.log("done");
+            if(sessionStorage.getItem('___user')){
+                dispatch(getAddress(sessionStorage.getItem('___user')))
+              }
         })
         .catch((err) => {
             console.log(err);
         });
+
     }
     return (
         <>

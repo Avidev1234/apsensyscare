@@ -28,7 +28,7 @@ const CarouselCard = ({ val }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // console.log(val.id)
+    //console.log(val)
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
 
@@ -61,12 +61,12 @@ const CarouselCard = ({ val }) => {
                 </FevIcon>
                 <Box style={{width:'100%',height:'100%',display:'flex',flexDirection:'column',justifyContent:'space-between',alignItems:'center'}}>
                 <CardActionArea  style={{backgroundColor:'#D4EBF5'}}
-                    onClick={() => navigate('/product', { state: { id: val.id, name: val.name, price: val.price, description: val.description, product_image: val.product_image } })}>
+                    onClick={() => navigate(`/product/${val.category_id}/${val.product_url}/${val.id}`, { state: { id: val.id, name: val.name, price: val.price, description: val.description,default_price:val.default_price,default_size:val.default_size} })}>
                     <CardImage
                     style={{padding:'10px',height: '150px'}}
                         component="img"
                         height="140px"
-                        image={`./Image/all_products/${val.product_image}`}
+                        image={`${process.env.REACT_APP_URL}/Image/all_products/${val.product_image}`}
                         alt="green iguana"
                     />
                     <CardContent padding={0} style={{ height: '100px' }}>
@@ -95,7 +95,6 @@ const CarouselCard = ({ val }) => {
                     style={{
                         width: '95%',
                         borderRadius: '5px',
-                        textTransform: 'none',
                         textTransform: 'none',
                         marginTop:'7px',
                         border: 'none',
