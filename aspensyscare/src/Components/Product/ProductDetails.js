@@ -118,11 +118,11 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 let initialized = true;
 
 const ProductDetails = (product) => {
-    let currentItem = {
+    const currentItem = {
         size: `${product.products.default_size}`,
         price: `${product.products.default_price}`
     }
-    console.log("hello i am currentItem", currentItem)
+    console.log("hello i am currentItem", product)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [openmod, setOpen] = React.useState(false);
@@ -147,7 +147,12 @@ const ProductDetails = (product) => {
     }
 
     const [currentSize, setCurrentSize] = useState(currentItem);
-
+    
+    
+    if (sessionStorage.getItem("initialized") === 'true') {
+        setCurrentSize(currentItem);
+        sessionStorage.setItem("initialized", false);
+    }
 
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
@@ -167,7 +172,6 @@ const ProductDetails = (product) => {
                 "price": item.price,
                 "size": index[0]['size_value']
             }
-            itemsize = index[0]['size_value']
             Productvariants.push(values)
         })
     }
@@ -175,26 +179,28 @@ const ProductDetails = (product) => {
 
     // console.log(Productvariants)
      console.log(currentSize)
-    useEffect(() => {
-        //setCurrentSize(currentItem)
-        console.log("inside useefect")
-        if (Productvariants.length !== 0) {
-            if (sessionStorage.getItem("initialized") === true) {
-                console.log("inside if")
-                Productvariants.length !== 0 ? setCurrentSize({ size: Productvariants[0].size, price: Productvariants[0].price }) : 
-                initialized = false;
-                sessionStorage.setItem("initialized", false);
-            }else{
-                console.log(Productvariants)
-            }
-        } else {
+    // useEffect(() => {
+    //     //setCurrentSize(currentItem)
+    //     console.log("inside useefect")
+    //     if (Productvariants.length !== 0) {
+    //         if (sessionStorage.getItem("initialized") === true) {
+    //             console.log("inside if")
+    //             Productvariants.length !== 0 ? setCurrentSize({ size: Productvariants[0].size, price: Productvariants[0].price }) : 
+    //             initialized = false;
+    //             sessionStorage.setItem("initialized", false);
+    //         }else{
+    //             console.log(Productvariants)
+    //         }
+    //     } else {
             
-        }
-    }, [Productvariants])
+    //     }
+    // }, [Productvariants])
     //console.log("hello i am ", Productvariants)
     const handleCart = (product) => {
-        //console.log(product)
+        console.log(product)
         product.cartQuantity = val;
+        itemsize=currentSize.size;
+        product.price=currentSize.price;
         dispatch(addToCart([product, itemsize]));
         navigate('/cart')
     }
@@ -242,8 +248,7 @@ const ProductDetails = (product) => {
             </Rattingcont>
             <div>
                 <Typography variant='subtitle2' style={{ fontSize: '13px', fontWeight: '500', color: 'black' }}>
-                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                    {product.products.long_description}
                 </Typography>
             </div>
             <div>

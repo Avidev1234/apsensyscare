@@ -49,9 +49,11 @@ const CarouselCard = ({ val }) => {
     // handling cart
 
     const handleCart = (product) => {
-        dispatch(addToCart([product, itemsize]));
-        navigate('/cart',{state:{productId:product.id}})
+        const productDetails = Object.assign({price:product.default_price}, product);
+        dispatch(addToCart([productDetails, product.default_size]));
+        navigate('/cart')
     }
+    
     try {
         const iconcolor = val.color ? val.color : '';
         return (
@@ -61,12 +63,12 @@ const CarouselCard = ({ val }) => {
                 </FevIcon>
                 <Box style={{width:'100%',height:'100%',display:'flex',flexDirection:'column',justifyContent:'space-between',alignItems:'center'}}>
                 <CardActionArea  style={{backgroundColor:'#D4EBF5'}}
-                    onClick={() => navigate(`/product/${val.category_id}/${val.product_url}/${val.id}`, { state: { id: val.id, name: val.name, price: val.price, description: val.description,default_price:val.default_price,default_size:val.default_size} })}>
+                    onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`, { state: { product:val} })}>
                     <CardImage
                     style={{padding:'10px',height: '150px'}}
                         component="img"
                         height="140px"
-                        image={`${process.env.REACT_APP_URL}/Image/all_products/${val.product_image}`}
+                        image={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`}
                         alt="green iguana"
                     />
                     <CardContent padding={0} style={{ height: '100px' }}>
@@ -79,7 +81,7 @@ const CarouselCard = ({ val }) => {
                             </button> */}
                         </Box>
                         <Typography variant="body2" color="text.secondary">
-                            product description
+                            {val.description}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             <StarIcon fontSize='9px' />
@@ -106,7 +108,6 @@ const CarouselCard = ({ val }) => {
                     Add to cart
                 </AddtoCart>
                 </Box>
-               
             </Card>
         )
     } catch (err) { }

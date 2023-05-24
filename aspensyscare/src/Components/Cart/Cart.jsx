@@ -102,7 +102,7 @@ const SizeButtom = styled(Button)`
 const Cart = (props) => {
   const { handelLogin } = props;
   // const productId = useLocation();
-  //console.log(productId.state.productId)
+  console.log(props)
   const dispatch = useDispatch();
   const [expandedItem, setExpandedItem] = useState("panel1");
   const [expandedAddress, setExpandedAddress] = useState();
@@ -331,7 +331,7 @@ const Cart = (props) => {
                             style={{ backgroundColor: "#d9d9d9" }}
                             height={100}
                             alt={cartItem.name}
-                            src={`./Image/all_products/${cartItem.product_image}`}
+                            src={`${process.env.REACT_APP_URL}/Image/all_products/${cartItem.product_image}`}
                           />
                           <div
                             style={{

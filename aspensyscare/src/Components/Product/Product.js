@@ -63,21 +63,24 @@ const Product = () => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     try {
-      dispatch(magnifying(value.state.id));
+      dispatch(magnifying(value.state.product.id));
     } catch (error) {
       console.log(error);
     }
   }, [value]);
-  
 
+  sessionStorage.setItem("initialized", true);
+
+
+  
   return (
     <ProductCont>
       <ProductDetailsBox>
         <Partationcont>
-          <ProductCarousel id={value.state.id} imagemagnify={imagemagnify} />
+          <ProductCarousel id={value.state.product.id} imagemagnify={imagemagnify} />
         </Partationcont>
         <Partationcont>
-          <ProductDetails products={value.state} magnified={magnified} />
+          <ProductDetails products={value.state.product} magnified={magnified} />
         </Partationcont>
       </ProductDetailsBox>
       <ProductDetailsBox>

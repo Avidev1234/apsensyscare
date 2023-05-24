@@ -52,7 +52,6 @@ function App() {
   if(sessionStorage.getItem('___user')){
     dispatch(getAddress(sessionStorage.getItem('___user')))
   }
-  sessionStorage.setItem("initialized", true);
   return (
     <>
 
@@ -74,7 +73,7 @@ function App() {
               <Route path='/payment-return-cancellation' element={<PaymentReturn />} />  
               <Route path='/terms-condition' element={<TermsCondition />} />  
               <Route path='/shipping' element={<Shipping />} /> 
-              <Route path='/product/:category/:productname/:product_id' element={<Product />} /> 
+              <Route path='/product/:category/:product_id/:productname' element={<Product />} /> 
             </Route>
           </Routes>
         </Log.Provider>
