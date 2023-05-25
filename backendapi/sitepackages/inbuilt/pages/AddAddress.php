@@ -14,11 +14,12 @@ switch ($method) {
         $phone = $user->phone;
         $pincode = $user->pincode;
         $state = $user->state;
+        $address_type = $user->address_type;
         $Date = date("Y-m-d h:i:sa");
         $tempDate=$Date;
-        $user_id=20;
+        $user_id=$user->user;
         $isDefault='yes';
-        if ($objQuery->insertData("`address`", "`name`='" . $name . "',`contact`='" . $phone . "',`pincode`='" . $pincode . "',`city`='" . $city . "',`state`='" . $state . "',`house_flat_office`='" . $house . "',`area_landmark`='" . $area . "',`email`='" . $email . "',`created_at`='$tempDate'")) {
+        if ($objQuery->insertData("`address`", "`name`='" . $name . "',`contact`='" . $phone . "',`address_type`='" . $address_type . "',`pincode`='" . $pincode . "',`city`='" . $city . "',`state`='" . $state . "',`house_flat_office`='" . $house . "',`area_landmark`='" . $area . "',`email`='" . $email . "',`created_at`='$tempDate'")) {
             if ($totalRow = $objQuery->fetchResult("`address`", "`contact`='" . $phone . "' AND `created_at`='$tempDate' AND `pincode`='". $pincode."'")) {
                 while ($fetchRow = mysqli_fetch_assoc($totalRow)) {
                     if ($objQuery->insertData("`user_address`", "`user_id`='" . $user_id . "',`address_id`='" . $fetchRow['id'] . "',`is_default`='" . $isDefault . "',`created_at`='$Date'")) {

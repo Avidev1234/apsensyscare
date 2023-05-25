@@ -1,27 +1,26 @@
+import { Field } from "formik";
 import React from "react";
 
 function Radio() {
   return (
     <div>
-      <fieldset class="flex flex-wrap gap-3">
-        <legend class="sr-only">Color</legend>
-
+      <fieldset className="flex flex-wrap gap-3">
         <div>
-          <input
+          <Field 
             type="radio"
-            name="ColorOption"
-            value="ColorBlack"
-            id="ColorBlack"
-            class="peer hidden [&:checked_+_label_svg]:block"
+            name="address_type"
+            value="Home"
+            id="Home"
+            className="peer hidden [&:checked_+_label_svg]:block"
             checked
           />
 
           <label
-            for="ColorBlack"
-            class="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 bg-[#d9d9d9] px-3 py-2 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+            for="Home"
+            className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 bg-[#d9d9d9] px-3 py-2 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
           >
             <svg
-              class="hidden h-5 w-5"
+              className="hidden h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -33,24 +32,24 @@ function Radio() {
               />
             </svg>
 
-            <p class="text-sm font-medium">Home</p>
+            <p className="text-sm font-medium">Home</p>
           </label>
         </div>
         <div>
-          <input
+          <Field 
             type="radio"
-            name="ColorOption"
-            value="ColorRed"
-            id="ColorRed"
-            class="peer hidden [&:checked_+_label_svg]:block"
+            name="address_type"
+            value="Work"
+            id="Work"
+            className="peer hidden [&:checked_+_label_svg]:block"
           />
 
           <label
-            for="ColorRed"
-            class="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 bg-[#d9d9d9] px-3 py-2 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+            for="Work"
+            className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-100 bg-[#d9d9d9] px-3 py-2 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
           >
             <svg
-              class="hidden h-5 w-5"
+              className="hidden h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -61,8 +60,7 @@ function Radio() {
                 clip-rule="evenodd"
               />
             </svg>
-
-            <p class="text-sm font-medium">Work</p>
+            <p className="text-sm font-medium">Work</p>
           </label>
         </div>
         

@@ -14,6 +14,7 @@ import { useContext } from "react";
 import axios from "axios";
 import { getAddress } from "../../Store/Slices/getAddressSlice";
 import Radio from "./Radio";
+import { toast } from "react-toastify";
 
 const style = {
   position: "absolute",
@@ -25,7 +26,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
 
 const AddAddressModal = ({ handelLogin }) => {
   //console.log(handelLogin)
@@ -73,20 +73,27 @@ const AddAddressModal = ({ handelLogin }) => {
         excludeEmptyString: false,
       })
       .required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
+    email: Yup.string().email("Invalid email"),
   });
 
   //console.log(details)
   const saveAddress = async (values) => {
     console.log(values);
+    const address = Object.assign(
+      { user: sessionStorage.getItem("___user") },
+      values
+    );
     setOpen(false);
     await axios
-      .post("/backend_api/addAddress", values)
+      .post("/addAddress", address)
       .then((req, res) => {
         console.log("done");
         if (sessionStorage.getItem("___user")) {
           dispatch(getAddress(sessionStorage.getItem("___user")));
         }
+        toast.success("Address added successfully", {
+          position: "bottom-left",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -117,6 +124,9 @@ const AddAddressModal = ({ handelLogin }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <Typography variant="h5" m={2} style={{ fontWeight: "bold" }}>
+            Address
+          </Typography>
           <Formik
             initialValues={{
               pincode: "",
@@ -127,7 +137,7 @@ const AddAddressModal = ({ handelLogin }) => {
               name: "",
               phone: "",
               email: "",
-              addressType: "",
+              address_type: "",
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
@@ -138,17 +148,14 @@ const AddAddressModal = ({ handelLogin }) => {
           >
             {({ errors, touched }) => (
               <Form>
-                <Typography variant="h5" m={2} style={{ fontWeight: "bold" }}>
-                  Address
-                </Typography>
                 <div className="p-4 flex justify-between">
                   <div className="flex">
-                  <Radio />
+                    <Radio />
                   </div>
                   <div>
-                  <Button variant="contained" color="secondary" size="small">
+                    {/* <Button variant="contained" color="secondary" size="small">
                       is Default
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
                 <div className="formAlign">
@@ -163,6 +170,7 @@ const AddAddressModal = ({ handelLogin }) => {
                         variant="standard"
                         sx={{ m: 1, width: "100%" }}
                         name="pincode"
+                        inputProps={{ maxLength: 6 }}
                         error
                       />
                     ) : (
@@ -175,6 +183,7 @@ const AddAddressModal = ({ handelLogin }) => {
                         variant="standard"
                         sx={{ m: 1, width: "100%" }}
                         name="pincode"
+                        inputProps={{ maxLength: 6 }}
                         color="success"
                       />
                     )}
