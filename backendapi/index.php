@@ -50,4 +50,8 @@ else if($uri==='/size'){
     include('./sitepackages/inbuilt/pages/UserDetails.php');
     die;
 }
+else if($uri==='/createOrder'){
+    include('./sitepackages/inbuilt/razorpay/pay.php');
+    die;
+}
 ?>
