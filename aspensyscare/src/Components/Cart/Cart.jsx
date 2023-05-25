@@ -175,11 +175,11 @@ const Cart = (props) => {
   // payment start
 
   const handelorder = () => {
-    console.log("hello ia m payment");
+    // console.log("hello ia m payment",orderType);
     if(orderType==='case'){
-
+      console.log(orderType)
     }else if(orderType==='online'){
-
+      console.log(orderType)
     }
   };
 
