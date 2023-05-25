@@ -16,7 +16,7 @@ switch ($method) {
         $state = $user->state;
         $Date = date("Y-m-d h:i:sa");
         $tempDate=$Date;
-        $user_id=20;
+        $user_id=$user->user;
         $isDefault='yes';
         if ($objQuery->insertData("`address`", "`name`='" . $name . "',`contact`='" . $phone . "',`pincode`='" . $pincode . "',`city`='" . $city . "',`state`='" . $state . "',`house_flat_office`='" . $house . "',`area_landmark`='" . $area . "',`email`='" . $email . "',`created_at`='$tempDate'")) {
             if ($totalRow = $objQuery->fetchResult("`address`", "`contact`='" . $phone . "' AND `created_at`='$tempDate' AND `pincode`='". $pincode."'")) {

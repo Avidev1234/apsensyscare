@@ -82,9 +82,10 @@ const AddAddressModal=({handelLogin})=>{
     //console.log(details)
     const saveAddress= async(values)=>{
         console.log(values)
+        const address=Object.assign({user:sessionStorage.getItem('___user')},values)
         setOpen(false)
         await axios
-        .post("/backend_api/addAddress", values)
+        .post("/addAddress", address)
         .then((req, res) => {
             console.log("done");
             if(sessionStorage.getItem('___user')){

@@ -29,6 +29,7 @@ import {
   getTotals,
   removeFromCart,
 } from "../../Store/Slices/cartSlice";
+import { toast } from "react-toastify";
 // import { useLocation } from "react-router-dom";
 
 const stylemodal = {
@@ -138,6 +139,8 @@ const Cart = (props) => {
         setExpandedItem(false);
         setExpandedAddress(false);
         setExpandedPay(panel);
+      }else{
+        toast.error("please add Address", { position: "top-center" });
       }
     }
   };
@@ -158,21 +161,26 @@ const Cart = (props) => {
   };
   // address work start
 
-  const [value, setValue] = useState("");
+  const [orderType, setOrderType] = useState("case");
   const [error, setError] = useState(false);
 
   const handleRadioChange = (event) => {
-    setValue(event.target.value);
+    setOrderType(event.target.value);
     setError(false);
   };
-
+  console.log("i am radio :- ",orderType)
   const takeValue = (e) => {
     console.log(e.target.value);
   };
   // payment start
 
-  const handleSubmitpayment = () => {
+  const handelorder = () => {
     console.log("hello ia m payment");
+    if(orderType==='case'){
+
+    }else if(orderType==='online'){
+
+    }
   };
 
   const cart = useSelector((state) => state.cart);
@@ -663,8 +671,7 @@ const Cart = (props) => {
                   alignItems: "flex-end",
                 }}
               >
-                <form
-                  onSubmit={handleSubmitpayment}
+                <div
                   style={{
                     width: "95%",
                     display: "flex",
@@ -682,34 +689,15 @@ const Cart = (props) => {
                     <RadioGroup
                       aria-labelledby="demo-error-radios"
                       name="quiz"
-                      value={value}
+                      value={orderType}
                       onChange={handleRadioChange}
                       style={{ width: "100%" }}
                     >
+                      
                       <FormControlLabel
-                        value="upi"
+                        value="online"
                         control={<Radio />}
-                        label="UPI"
-                      />
-                      <FormControlLabel
-                        value="wallets"
-                        control={<Radio />}
-                        label="Wallets"
-                      />
-                      <FormControlLabel
-                        value="Credit/debit/AtmCard"
-                        control={<Radio />}
-                        label="Credit/debit/AtmCard"
-                      />
-                      <FormControlLabel
-                        value="Net Banking"
-                        control={<Radio />}
-                        label="Net Banking"
-                      />
-                      <FormControlLabel
-                        value="emi"
-                        control={<Radio />}
-                        label="EMI (Easy Installments"
+                        label="Pay Online"
                       />
                       <FormControlLabel
                         value="case"
@@ -720,13 +708,14 @@ const Cart = (props) => {
                   </FormControl>
                   <Button
                     sx={{ mt: 1, mr: 1 }}
-                    type="submit"
+                    type="buttom"
                     variant="contained"
-                    style={{ backgroundColor: "green", marginTop: "10px" }}
+                    style={{ width:'200px', backgroundColor: "green", marginTop: "10px" }}
+                    onClick={()=>{handelorder()}}
                   >
-                    Place Order
+                    {orderType==='case' ?"Place Order":'Pay'}
                   </Button>
-                </form>
+                </div>
               </AccordionDetails>
             </Accordion>
           </Detailescont>
