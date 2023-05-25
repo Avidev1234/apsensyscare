@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@media only screen and (max-width: 600px) {
+    .css-zu82rx {
+        width: 90% !important;
+        max-height: 90% !important;
+        overflow-y: auto;
+    }
+    .formAlign {
+        flex-direction: column !important;
+    }
+    .css-zu82rx{
+        padding: 20px !important;
+    }
+}
+
+.formAlign {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-bottom: 20px;
+}
