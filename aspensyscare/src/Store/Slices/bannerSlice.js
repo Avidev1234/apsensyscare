@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchBanner = createAsyncThunk('banner/fetchbanner', async() => {
     return await axios
-        .post("/fatch_baner")
+        .post("/backend_api/fatch_baner")
         .then((response) => response.data)
 });
 

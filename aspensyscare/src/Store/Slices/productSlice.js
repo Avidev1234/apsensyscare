@@ -9,7 +9,7 @@ const initialState = {
 
 export const AllProducts = createAsyncThunk('products/fetchProducts', async() => {
     return await axios
-        .post("/products")
+        .post("/backend_api/products")
         .then((response) => response.data)
 });
 

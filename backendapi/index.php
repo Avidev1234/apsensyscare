@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 include('./sitepackages/includes/include.php');
 
 $REQUEST_URI=$_SERVER['REQUEST_URI'];
-$uri=str_replace('/apsensyscare/backendapi','',$REQUEST_URI);
+$uri=str_replace('/updatedApsensyscare/apsensyscare/backendapi','',$REQUEST_URI);
 // echo $REQUEST_URI;
 //  echo '<br/>';
 //  echo $uri;
@@ -52,6 +52,9 @@ else if($uri==='/size'){
 }
 else if($uri==='/createOrder'){
     include('./sitepackages/inbuilt/razorpay/pay.php');
+    die;
+}else if($uri==='/createSigneture'){
+    include('./sitepackages/inbuilt/razorpay/signeture.php');
     die;
 }
 ?>

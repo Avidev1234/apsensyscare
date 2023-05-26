@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchCategory = createAsyncThunk('category/fetchCategory', async() => {
     return await axios
-        .post("/fatch_category")
+        .post("/backend_api/fatch_category")
         .then((response) => response.data)
 });
 

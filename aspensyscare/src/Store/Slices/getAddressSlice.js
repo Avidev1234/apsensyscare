@@ -9,7 +9,7 @@ const initialState = {
 
 export const getAddress= createAsyncThunk('user/address', async(id) => {
     return await axios
-        .post("/getAddress",id)
+        .post("/backend_api/getAddress",id)
         .then((response) => response.data)
 });
 

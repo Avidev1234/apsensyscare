@@ -1,17 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { fatchSizes } from "../../Api/Api";
 
 const initialState = {
     loading: false,
     sizes: [],
     error: '',
 }
-
-export const fatchSizes = createAsyncThunk('size/sizedetails', async() => {
-    return await axios
-        .post("/size")
-        .then((response) => response.data)
-});
 
 const sizeSlice = createSlice({
     name: 'productdetails',

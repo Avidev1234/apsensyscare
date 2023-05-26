@@ -11,7 +11,7 @@ const initialState = {
 
 export const fetchUsers = createAsyncThunk('user/fetchUsers', async (login) => {
     return await axios
-        .post("/login_user", login)
+        .post("/backend_api/login_user", login)
         .then((response) => response.data)
 });
 export const PushUserCart = async (productdetails,userId) => {
@@ -21,7 +21,7 @@ export const PushUserCart = async (productdetails,userId) => {
     let cartQuantity = productdetails.map((item) => item.cartQuantity);
     let itemSize = productdetails.map((item) => item.itemSize);
     await axios
-        .post("/usercart", [productId,names,cartQuantity,itemSize,userId])
+        .post("/backend_api/usercart", [productId,names,cartQuantity,itemSize,userId])
         .then((req, res) => {
             console.log("done");
         })

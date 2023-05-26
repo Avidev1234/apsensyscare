@@ -10,7 +10,7 @@ const initialState = {
 
 export const magnifying = createAsyncThunk('images/magnifying', async(id) => {
     return await axios
-        .post("/magnifying",id)
+        .post("/backend_api/magnifying",id)
         .then((response) => response.data)
 });
 

@@ -9,7 +9,7 @@ const initialState = {
 
 export const productData = createAsyncThunk('product/productdetails', async(id) => {
     return await axios
-        .post("/productdetails",id)
+        .post("/backend_api/productdetails",id)
         .then((response) => response.data)
 });
 

@@ -10,7 +10,6 @@ import { useDispatch } from 'react-redux';
 import { createContext, useEffect, useState } from 'react';
 import { AllProducts } from './Store/Slices/productSlice';
 import { productData } from './Store/Slices/productEntrySlice';
-import { fatchSizes } from './Store/Slices/sizeSlice';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchCategory } from './Store/Slices/categorySclice';
@@ -22,6 +21,7 @@ import AboutUs from './Components/AboutUS/AboutUs';
 import PaymentReturn from './Components/Policy/PaymentReturn';
 import TermsCondition from './Components/Policy/TermsCondition';
 import Shipping from './Components/Policy/Shipping';
+import { fatchSizes } from './Api/Api';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

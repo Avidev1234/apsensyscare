@@ -9,8 +9,6 @@ import FormHelperText from "@mui/material/FormHelperText";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "../Login/Login";
-import { useContext } from "react";
 import axios from "axios";
 import { getAddress } from "../../Store/Slices/getAddressSlice";
 import Radio from "./Radio";
@@ -78,14 +76,13 @@ const AddAddressModal = ({ handelLogin }) => {
 
   //console.log(details)
   const saveAddress = async (values) => {
-    console.log(values);
     const address = Object.assign(
       { user: sessionStorage.getItem("___user") },
       values
     );
     setOpen(false);
     await axios
-      .post("/addAddress", address)
+      .post("/backend_api/addAddress", address)
       .then((req, res) => {
         console.log("done");
         if (sessionStorage.getItem("___user")) {
