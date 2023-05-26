@@ -22,6 +22,9 @@ import AboutUs from './Components/AboutUS/AboutUs';
 import PaymentReturn from './Components/Policy/PaymentReturn';
 import TermsCondition from './Components/Policy/TermsCondition';
 import Shipping from './Components/Policy/Shipping';
+import ThankYou from './Others/ThankYou';
+import OrderFailed from './Others/OrderFailed';
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -74,6 +77,8 @@ function App() {
               <Route path='/terms-condition' element={<TermsCondition />} />  
               <Route path='/shipping' element={<Shipping />} /> 
               <Route path='/product/:category/:product_id/:productname' element={<Product />} /> 
+              <Route path='/thankyou' element={<ThankYou />} /> 
+              <Route path='/order-failed' element={<OrderFailed />} /> 
             </Route>
           </Routes>
         </Log.Provider>
