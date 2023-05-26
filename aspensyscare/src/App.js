@@ -21,7 +21,13 @@ import AboutUs from './Components/AboutUS/AboutUs';
 import PaymentReturn from './Components/Policy/PaymentReturn';
 import TermsCondition from './Components/Policy/TermsCondition';
 import Shipping from './Components/Policy/Shipping';
+<<<<<<< HEAD
 import { fatchSizes } from './Api/Api';
+=======
+import ThankYou from './Others/ThankYou';
+import OrderFailed from './Others/OrderFailed';
+
+>>>>>>> aff5b730061b88410dae1a9df6b5709d4320e177
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -74,6 +80,8 @@ function App() {
               <Route path='/terms-condition' element={<TermsCondition />} />  
               <Route path='/shipping' element={<Shipping />} /> 
               <Route path='/product/:category/:product_id/:productname' element={<Product />} /> 
+              <Route path='/thankyou' element={<ThankYou />} /> 
+              <Route path='/order-failed' element={<OrderFailed />} /> 
             </Route>
           </Routes>
         </Log.Provider>
