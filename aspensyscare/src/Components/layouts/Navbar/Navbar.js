@@ -194,7 +194,7 @@ function Navbar(props) {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             onClick={() => navigate('/')}
           >
-            <img src={`${process.env.REACT_APP_URL}/temp.png`} height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
+            <img src={`${process.env.REACT_APP_URL}temp.png`} height={'40px'} width={'200px'} alt='aspensyscare' style={{ cursor: 'pointer' }} />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-between' }} className='sidewidth'>
             {/* {navItems.map((item) => (

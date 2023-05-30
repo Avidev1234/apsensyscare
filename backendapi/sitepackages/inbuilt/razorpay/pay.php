@@ -17,5 +17,6 @@ $razorpayOrderId = $razorpayOrder['id'];
 $json_data = array();
 
 $json_data[] = $razorpayOrder;
-echo json_encode(['order'=>$json_data]);
+// echo json_encode(['order'=>$json_data]);
+echo $razorpayOrderId;
 ?>

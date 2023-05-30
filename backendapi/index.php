@@ -56,5 +56,8 @@ else if($uri==='/createOrder'){
 }else if($uri==='/createSigneture'){
     include('./sitepackages/inbuilt/razorpay/signeture.php');
     die;
+}else if($uri==='/login_push_user'){
+    include('./sitepackages/inbuilt/pages/pushUser.php');
+    die;
 }
 ?>

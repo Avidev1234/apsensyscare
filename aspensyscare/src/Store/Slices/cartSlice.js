@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 // import axios from "axios";
 import { toast } from "react-toastify";
-import { PushUserCart } from "./userSlice";
+import { PushUserCart } from "../../Api/Api";
 
 const initialState = {
   cartItems: localStorage.getItem("cartItems")

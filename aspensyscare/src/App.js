@@ -8,26 +8,19 @@ import Wishlist from './Components/WishList/Wishlist';
 import Login from './Components/Login/Login';
 import { useDispatch } from 'react-redux';
 import { createContext, useEffect, useState } from 'react';
-import { AllProducts } from './Store/Slices/productSlice';
-import { productData } from './Store/Slices/productEntrySlice';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { fetchCategory } from './Store/Slices/categorySclice';
 import Navbar from './Components/layouts/Navbar/Navbar';
-import { getAddress } from './Store/Slices/getAddressSlice';
 import Privecy from './Components/Policy/Privecy';
 import ContactUS from './Components/ContactUS/ContactUS';
 import AboutUs from './Components/AboutUS/AboutUs';
 import PaymentReturn from './Components/Policy/PaymentReturn';
 import TermsCondition from './Components/Policy/TermsCondition';
 import Shipping from './Components/Policy/Shipping';
-<<<<<<< HEAD
-import { fatchSizes } from './Api/Api';
-=======
 import ThankYou from './Others/ThankYou';
 import OrderFailed from './Others/OrderFailed';
+import { AllProducts, fatchSizes, fetchCategory, getAddress, productData, pushUsers } from './Api/Api';
 
->>>>>>> aff5b730061b88410dae1a9df6b5709d4320e177
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -57,6 +50,7 @@ function App() {
   }
   if(sessionStorage.getItem('___user')){
     dispatch(getAddress(sessionStorage.getItem('___user')))
+    dispatch(pushUsers(sessionStorage.getItem('___user')))
   }
   return (
     <>

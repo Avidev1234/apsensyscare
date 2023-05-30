@@ -4,8 +4,8 @@ import Footer from '../layouts/Footer/Footer';
 import { Box } from '@mui/material';
 import styled from '@emotion/styled';
 import { useDispatch } from 'react-redux';
-import { fetchBanner } from '../../Store/Slices/bannerSlice';
 import { Helmet } from "react-helmet";
+import { fetchBanner } from '../../Api/Api';
 
 const LandingBox = styled(Box)`
 width:97.77vw;

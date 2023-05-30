@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { getAddress } from "../../Api/Api";
 
 const initialState = {
     loading: false,
@@ -7,11 +8,7 @@ const initialState = {
     error: '',
 }
 
-export const getAddress= createAsyncThunk('user/address', async(id) => {
-    return await axios
-        .post("/backend_api/getAddress",id)
-        .then((response) => response.data)
-});
+
 
 const getAddressSlice = createSlice({
     name: 'address',

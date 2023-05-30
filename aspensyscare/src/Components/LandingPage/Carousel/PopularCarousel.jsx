@@ -19,7 +19,6 @@ const Homecont = styled(Stack)`
   padding:10px;
 `
 
-
 const skeletonloading = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const PreviousBtn = (props) => {
@@ -43,6 +42,47 @@ const NextBtn = (props) => {
 const PopularCarousel = () => {
   const Products = useSelector((state) => state.product);
   const { product } = Products.products;
+ var settings = {
+    className: "slider variable-width",
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    centerPadding:"5px",
+    slidesToShow:2,
+    rows:2,
+    slidesPerRow:2,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 1,
+          rows:2,
+          slidesToScroll: 1,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          rows:2,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  }; 
+
   return (
     <Homecont width={'100%'}>
       <Box padding={'20px'} width={'93%'}>
@@ -50,40 +90,9 @@ const PopularCarousel = () => {
       </Box>
       <CarouselCont>
         <Slider className="center"
-          centerMode={true}
-          infinite={true}
-          centerPadding="5px"
-          slidesToShow={2}
-          speed={500}
-          rows={2}
-          slidesPerRow={2}
           prevArrow={<PreviousBtn />}
           nextArrow={<NextBtn />}
-          responsive={
-            [
-              {
-                breakpoint: 1024,
-                settings: {
-                  slidesToShow: 2,
-                  centerPadding:"0px"
-                }
-              },
-              {
-                breakpoint: 600,
-                settings: {
-                  slidesToShow: 1,
-                  centerPadding:"0px"
-                }
-              },
-              {
-                breakpoint: 480,
-                settings: {
-                  slidesToShow: 0,
-                  centerPadding:"0px"
-                }
-              }
-            ]
-          }
+          {...settings}
         >
           {Products.loading && skeletonloading.map((items) => { return (<Skeleton variant="rounded" animation="wave" width={232} height={270} />) })}
           {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}

@@ -1,6 +1,7 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { magnifying } from "../../Api/Api";
 
 const initialState = {
     loading: false,
@@ -8,11 +9,6 @@ const initialState = {
     error: '',
 }
 
-export const magnifying = createAsyncThunk('images/magnifying', async(id) => {
-    return await axios
-        .post("/backend_api/magnifying",id)
-        .then((response) => response.data)
-});
 
 const magnifyingImages = createSlice({
     name: 'images',

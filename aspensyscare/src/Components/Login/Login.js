@@ -4,13 +4,11 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import "./Login.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import axios from "axios";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../Store/Slices/userSlice";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import Signup from "./Signup";
+import { fetchUsers } from "../../Api/Api";
 
 const LoginCont = styled(Box)`
   width: 100%;

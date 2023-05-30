@@ -10,7 +10,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getAddress } from "../../Store/Slices/getAddressSlice";
+import { getAddress } from "../../Api/Api";
 import Radio from "./Radio";
 import { toast } from "react-toastify";
 
@@ -82,7 +82,7 @@ const AddAddressModal = ({ handelLogin }) => {
     );
     setOpen(false);
     await axios
-      .post("/backend_api/addAddress", address)
+      .post("/addAddress", address)
       .then((req, res) => {
         console.log("done");
         if (sessionStorage.getItem("___user")) {

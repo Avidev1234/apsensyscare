@@ -1,34 +1,12 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
-import { useSelector } from "react-redux";
-// import { addCart } from "./cartSlice";
-var md5 = require('md5');
+import { PushUserCart, fetchUsers, pushUsers } from "../../Api/Api";
 const initialState = {
     loading: false,
     users: [],
     error: '',
 }
 
-export const fetchUsers = createAsyncThunk('user/fetchUsers', async (login) => {
-    return await axios
-        .post("/backend_api/login_user", login)
-        .then((response) => response.data)
-});
-export const PushUserCart = async (productdetails,userId) => {
-    
-    let productId = productdetails.map((item) => item.id);
-    let names = productdetails.map((item) => item.name);
-    let cartQuantity = productdetails.map((item) => item.cartQuantity);
-    let itemSize = productdetails.map((item) => item.itemSize);
-    await axios
-        .post("/backend_api/usercart", [productId,names,cartQuantity,itemSize,userId])
-        .then((req, res) => {
-            console.log("done");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-};
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -56,6 +34,9 @@ const userSlice = createSlice({
             state.loading = false
             state.users = []
             state.error = action.error.message
+        })
+        builder.addCase(pushUsers.fulfilled, (state, action) => {
+            state.users.push(action.payload)
         })
     },
 })

@@ -57,7 +57,7 @@ const CarouselCard = ({ val }) => {
     try {
         const iconcolor = val.color ? val.color : '';
         return (
-            <Card style={{ minWidth: '250px', minHeight: '300px' }}>
+            <Card style={{ minWidth: '200px', minHeight: '300px' }}>
                 <FevIcon aria-label="add to favorites">
                     <FavoriteIcon style={{ color: iconcolor }} />
                 </FevIcon>
@@ -74,7 +74,7 @@ const CarouselCard = ({ val }) => {
                     <CardContent padding={0} style={{ height: '100px' }}>
                         <Box style={{ width: '100%', display: 'flex', justifyContent: 'space-between', gap: '2px' }}>
                             <Typography gutterBottom variant='h3' style={{ fontSize: '14px', fontWeight: '600', color: 'black' }} component="div">
-                                {val.name}
+                                {val.name.substring(0,)}
                             </Typography>
                             {/* <button style={{ width: '70px', height: 'min-content', border: 'none', backgroundColor: '#62b660', padding: '3px 8px', borderRadius: '20px', float: 'right' }}>
                                 {`${itemsize} ml`}

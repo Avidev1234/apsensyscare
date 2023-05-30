@@ -12,12 +12,13 @@ switch($method){
         if($totalRow=$objQuery->fetchResult("`site_user`","`phone_number`='".$phone."' AND `password`='".$password."'")){
             while($fetchRow= mysqli_fetch_assoc($totalRow))
             {
-                unset($_SESSION['LoginSuccess']);
-                $_SESSION['LoginSuccess']='backendtrue';
-                $token=$objQuery->getRandomHashCode();
-                setcookie('APSENSYSCARE', $token, time() + (86400 * 30), "/");
+                
                 $json_data[] = $fetchRow;
             }
+            unset($_SESSION['LoginSuccess']);
+            $_SESSION['LoginSuccess']='backendtrue';
+            $token=$objQuery->getRandomHashCode();
+            setcookie('APSENSYSCARE', $token, time() + (86400 * 30), "/");
         }else{
             unset($_SESSION['LoginSuccess']);
             $_SESSION['LoginSuccess']=false;
@@ -26,5 +27,3 @@ switch($method){
         }
         echo json_encode(['details'=>$json_data]);
 }
-?>
-

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { AllProducts } from "../../Api/Api";
 
 const initialState = {
     loading: false,
@@ -7,11 +8,7 @@ const initialState = {
     error: '',
 }
 
-export const AllProducts = createAsyncThunk('products/fetchProducts', async() => {
-    return await axios
-        .post("/backend_api/products")
-        .then((response) => response.data)
-});
+
 
 const productSlice = createSlice({
     name: 'products',
