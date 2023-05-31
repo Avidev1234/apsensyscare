@@ -9,7 +9,7 @@ import Ratingpage from './Ratingpage'
 import TopQuestion from './TopQuestion'
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { magnifying } from '../../Store/Slices/imagemagnifySlice'
+import { magnifying } from '../../Api/Api'
 
 
 const ProductCont = styled(Stack)`

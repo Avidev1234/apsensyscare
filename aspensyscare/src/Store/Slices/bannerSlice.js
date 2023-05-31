@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { fetchBanner } from "../../Api/Api";
 
 const initialState = {
     loading: false,
@@ -7,11 +8,7 @@ const initialState = {
     error: '',
 }
 
-export const fetchBanner = createAsyncThunk('banner/fetchbanner', async() => {
-    return await axios
-        .post("/fatch_baner")
-        .then((response) => response.data)
-});
+
 
 const bannerSlice = createSlice({
     name: 'banner',

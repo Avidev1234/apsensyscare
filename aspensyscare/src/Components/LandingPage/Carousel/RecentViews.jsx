@@ -20,15 +20,12 @@ const Homecont = styled(Stack)`
   align-items:center;
   padding:10px;
 `
-const val = {
-  name: '1'
-}
 
 const skeletonloading = [1,2,3,4];
 
 const PreviousBtn = (props) => {
   // console.log(props);
-  const { className, onClick } = props;
+  const {  onClick } = props;
   return (
     <div className="slick-prev" onClick={onClick}>
       <ArrowBackIos style={{ color: "blue", fontSize: "30px" }} />
@@ -36,7 +33,7 @@ const PreviousBtn = (props) => {
   );
 };
 const NextBtn = (props) => {
-  const { className, onClick } = props;
+  const {  onClick } = props;
   return (
     <div className="slick-next" onClick={onClick}>
       <ArrowForwardIos style={{ color: "blue", fontSize: "30px" }} />
@@ -58,8 +55,8 @@ const RecentViews = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           infinite: true,
           dots: false
         }
@@ -69,7 +66,6 @@ const RecentViews = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
         }
       },
       {

@@ -1,17 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
+import { createSlice } from "@reduxjs/toolkit";
+import { productData } from "../../Api/Api";
 
 const initialState = {
     loading: false,
     productdetails: [],
     error: '',
 }
-
-export const productData = createAsyncThunk('product/productdetails', async(id) => {
-    return await axios
-        .post("/productdetails",id)
-        .then((response) => response.data)
-});
 
 const detailsSlice = createSlice({
     name: 'productdetails',

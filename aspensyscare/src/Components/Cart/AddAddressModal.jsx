@@ -9,10 +9,8 @@ import FormHelperText from "@mui/material/FormHelperText";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "../Login/Login";
-import { useContext } from "react";
 import axios from "axios";
-import { getAddress } from "../../Store/Slices/getAddressSlice";
+import { getAddress } from "../../Api/Api";
 import Radio from "./Radio";
 import { toast } from "react-toastify";
 
@@ -78,7 +76,6 @@ const AddAddressModal = ({ handelLogin }) => {
 
   //console.log(details)
   const saveAddress = async (values) => {
-    console.log(values);
     const address = Object.assign(
       { user: sessionStorage.getItem("___user") },
       values

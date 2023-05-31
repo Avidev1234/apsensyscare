@@ -8,14 +8,9 @@ import Wishlist from './Components/WishList/Wishlist';
 import Login from './Components/Login/Login';
 import { useDispatch } from 'react-redux';
 import { createContext, useEffect, useState } from 'react';
-import { AllProducts } from './Store/Slices/productSlice';
-import { productData } from './Store/Slices/productEntrySlice';
-import { fatchSizes } from './Store/Slices/sizeSlice';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { fetchCategory } from './Store/Slices/categorySclice';
 import Navbar from './Components/layouts/Navbar/Navbar';
-import { getAddress } from './Store/Slices/getAddressSlice';
 import Privecy from './Components/Policy/Privecy';
 import ContactUS from './Components/ContactUS/ContactUS';
 import AboutUs from './Components/AboutUS/AboutUs';
@@ -24,6 +19,7 @@ import TermsCondition from './Components/Policy/TermsCondition';
 import Shipping from './Components/Policy/Shipping';
 import ThankYou from './Others/ThankYou';
 import OrderFailed from './Others/OrderFailed';
+import { AllProducts, fatchSizes, fetchCategory, getAddress, productData, pushUsers } from './Api/Api';
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +50,7 @@ function App() {
   }
   if(sessionStorage.getItem('___user')){
     dispatch(getAddress(sessionStorage.getItem('___user')))
+    dispatch(pushUsers(sessionStorage.getItem('___user')))
   }
   return (
     <>

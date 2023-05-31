@@ -25,7 +25,7 @@ const Signup = ({openSignup}) => {
       // --------------------------work for signup user-----------------------------------
   const handelSignUp = async (values) => {
     await axios
-      .post("/site_user", values)
+      .post("/backend_api/site_user", values)
       .then((req, res) => {
         console.log("done");
       })

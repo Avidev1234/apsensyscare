@@ -30,6 +30,8 @@ import {
   removeFromCart,
 } from "../../Store/Slices/cartSlice";
 import { toast } from "react-toastify";
+import { CreateOrder, CreateSigneture } from "../../Api/Api";
+import axios from "axios";
 // import { useLocation } from "react-router-dom";
 
 const stylemodal = {
@@ -103,7 +105,6 @@ const SizeButtom = styled(Button)`
 const Cart = (props) => {
   const { handelLogin } = props;
   // const productId = useLocation();
-  console.log(props)
   const dispatch = useDispatch();
   const [expandedItem, setExpandedItem] = useState("panel1");
   const [expandedAddress, setExpandedAddress] = useState();
@@ -135,11 +136,11 @@ const Cart = (props) => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
     if (panel === "panel3") {
-      if(address !== undefined){
+      if (address !== undefined) {
         setExpandedItem(false);
         setExpandedAddress(false);
         setExpandedPay(panel);
-      }else{
+      } else {
         toast.error("please add Address", { position: "top-center" });
       }
     }
@@ -168,18 +169,61 @@ const Cart = (props) => {
     setOrderType(event.target.value);
     setError(false);
   };
-  console.log("i am radio :- ",orderType)
+  console.log("i am radio :- ", orderType)
   const takeValue = (e) => {
     console.log(e.target.value);
   };
   // payment start
 
-  const handelorder = () => {
+  const handelOrder = async () => {
     // console.log("hello ia m payment",orderType);
-    if(orderType==='case'){
+    if (orderType === 'case') {
       console.log(orderType)
-    }else if(orderType==='online'){
-      console.log(orderType)
+    } else if (orderType === 'online') {
+      CreateOrder().then((res) => {
+        console.log(res)
+        const res_order_id = res.trim();
+        var options = {
+          "key": "rzp_test_dt0Vsxsmad0Ry3", // Enter the Key ID generated from the Dashboard
+          "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "currency": "INR",
+          "name": "Apsensys Care", //your business name
+          "description": "Test Transaction",
+          "image": "https://apsensyscare.com/favicon.ico",
+          "order_id": `${res_order_id}`, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+          "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+            "name": "Gaurav Kumar", //your customer's name
+            "email": "gaurav.kumar@example.com",
+            "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+          },
+          "handler": function (response) {
+            alert(response.razorpay_payment_id);
+            alert(response.razorpay_order_id);
+            alert(response.razorpay_signature)
+            // var hash = CryptoJS.HmacSHA256("message", "secret");
+            // var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
+            const signeture={
+              'res_order_id':res_order_id,
+              'razorpay_payment_id':response.razorpay_payment_id,
+              'razorpay_signature':response.razorpay_signature
+            }
+            CreateSigneture(signeture).then((resp)=>{
+              console.log(resp)
+            }) 
+              
+          },
+          "notes": {
+            "address": "Razorpay Corporate Office"
+          },
+          "theme": {
+            "color": "#3399cc"
+          }
+        };
+        var rzp1 = new window.Razorpay(options);
+        rzp1.open();
+      })
+
     }
   };
 
@@ -531,7 +575,7 @@ const Cart = (props) => {
                     onChange={(e) => takeValue(e)}
                   >{
                       address !== undefined ?
-                        address.map((items,idx) => {
+                        address.map((items, idx) => {
                           return (
                             <div key={idx.toString()}
                               style={{
@@ -545,20 +589,20 @@ const Cart = (props) => {
                                 gap: "1rem",
                               }}
                             >
-                              {idx===0  ?
-                              <input
-                                type="radio"
-                                id={`${items.id}`}
-                                name="address"
-                                value={`${items.id}`}
-                                defaultChecked
-                              />:
-                              <input
-                                type="radio"
-                                id={`${items.id}`}
-                                name="address"
-                                value={`${items.id}`}
-                              />
+                              {idx === 0 ?
+                                <input
+                                  type="radio"
+                                  id={`${items.id}`}
+                                  name="address"
+                                  value={`${items.id}`}
+                                  defaultChecked
+                                /> :
+                                <input
+                                  type="radio"
+                                  id={`${items.id}`}
+                                  name="address"
+                                  value={`${items.id}`}
+                                />
                               }
                               <label for={`${items.id}`}
                                 style={{ display: "flex", flexDirection: "column" }}
@@ -601,7 +645,7 @@ const Cart = (props) => {
                                       color: "gray",
                                     }}
                                   >
-                                   {items.house_flat_office}{items.area_landmark}{items.city}{items.state}{items.pincode}
+                                    {items.house_flat_office}{items.area_landmark}{items.city}{items.state}{items.pincode}
                                   </Typography>
                                 </div>
                               </label>
@@ -693,7 +737,7 @@ const Cart = (props) => {
                       onChange={handleRadioChange}
                       style={{ width: "100%" }}
                     >
-                      
+
                       <FormControlLabel
                         value="online"
                         control={<Radio />}
@@ -710,10 +754,10 @@ const Cart = (props) => {
                     sx={{ mt: 1, mr: 1 }}
                     type="buttom"
                     variant="contained"
-                    style={{ width:'200px', backgroundColor: "green", marginTop: "10px" }}
-                    onClick={()=>{handelorder()}}
+                    style={{ width: '200px', backgroundColor: "green", marginTop: "10px" }}
+                    onClick={() => { handelOrder() }}
                   >
-                    {orderType==='case' ?"Place Order":'Pay'}
+                    {orderType === 'case' ? "Place Order" : 'Pay'}
                   </Button>
                 </div>
               </AccordionDetails>

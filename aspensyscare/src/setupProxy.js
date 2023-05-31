@@ -97,11 +97,25 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
-  // from userSclice.js
+  // from api.js
   app.use(
-    '/fetchUsersdata',
+    '/createOrder',
     createProxyMiddleware({
       target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    '/createSigneture',
+    createProxyMiddleware({
+      target: 'http://localhost:80/updatedApsensyscare/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    '/login_push_user',
+    createProxyMiddleware({
+      target: 'http://localhost:80/updatedApsensyscare/apsensyscare/backendapi',
       changeOrigin: true,
     })
   );

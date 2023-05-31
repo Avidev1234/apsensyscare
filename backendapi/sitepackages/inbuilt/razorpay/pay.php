@@ -1,5 +1,5 @@
 <?php
-include("razorpay-php/Razorpay.php");
+include('razorpay-php/Razorpay.php');
 include("gateway-config.php");
 use Razorpay\Api\Api;
 $orderData = [
@@ -12,5 +12,11 @@ $api = new Api($keyId, $keySecret);
 
 $razorpayOrder = $api->order->create($orderData);
 $razorpayOrderId = $razorpayOrder['id'];
+
+//echo trim($razorpayOrderId," ");
+$json_data = array();
+
+$json_data[] = $razorpayOrder;
+// echo json_encode(['order'=>$json_data]);
 echo $razorpayOrderId;
 ?>

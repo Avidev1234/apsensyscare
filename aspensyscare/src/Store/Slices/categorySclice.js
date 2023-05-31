@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { fetchCategory } from "../../Api/Api";
 
 const initialState = {
     loading: false,
@@ -7,11 +8,7 @@ const initialState = {
     error: '',
 }
 
-export const fetchCategory = createAsyncThunk('category/fetchCategory', async() => {
-    return await axios
-        .post("/fatch_category")
-        .then((response) => response.data)
-});
+
 
 const categorySlice = createSlice({
     name: 'category',
