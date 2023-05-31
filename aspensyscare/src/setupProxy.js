@@ -81,6 +81,14 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  // from contactus.js
+  app.use(
+    '/addContact',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
   // from getaddressSclice.js
   app.use(
     '/getAddress',

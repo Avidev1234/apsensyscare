@@ -1,5 +1,4 @@
 import React from 'react'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const ThankYou = () => {
   return (
