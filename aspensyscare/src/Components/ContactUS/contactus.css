@@ -58,15 +58,15 @@
 
 .form-div {
     width: 30%;
-    max-width: 350px;
-    height: 450px;
+    max-width: 380px;
+    height: 480px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     box-shadow:
         0 2.8px 2.2px rgba(0, 0, 0, 0.034),
         0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -77,48 +77,14 @@
 }
 
 .form-div form {
-    width: 90%;
+    width: 95%;
     height: 100%;
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
-.form-div form input,
-textarea {
-    width: 100%;
-    outline: none;
-    border: none;
-    line-height: 1.4rem;
-    margin-bottom: 10px;
-    padding: 5px;
-    font-size: 16px;
-}
-
-.border-bottom {
-    border-bottom: 2px solid rgb(202, 201, 201) !important;
-}
-
-.form-div form input::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(200, 200, 200);
-    opacity: 1;
-    /* Firefox */
-}
-
-.form-div form textarea::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(200, 200, 200);
-    opacity: 1;
-    /* Firefox */
-}
-
-.form-div form textarea {
-    height: 100px;
-    font-family: inherit;
-}
 
 .form-button {
     padding: 10px 25px;
@@ -126,7 +92,7 @@ textarea {
     font-size: 14px;
     line-height: 1.4rem;
     font-weight: 600;
-    background-color: #A0EFE6;
+    background-color: #A2EFDF;
     border: none;
     border-radius: 35px;
     cursor: pointer;
@@ -136,12 +102,14 @@ textarea {
 
 .address-ion {
     width: 100%;
-    padding-left: 60px;
     display: flex;
     justify-content: flex-start;
     gap: 25px;
 }
 
+.contactdiv .icon {
+    font-size: 35px;
+}
 
 
 
