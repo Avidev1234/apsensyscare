@@ -8,6 +8,8 @@ import Category from '../Category/Category'
 import Poster from '../Poster/Poster'
 import SinglePoster from '../Poster/SinglePoster'
 import RecentViews from '../Carousel/RecentViews'
+import CategoryControler from '../CategoryControler/CategoryControler'
+import ProductCategory from '../Category/ProductCategory'
 
 const Homecont = styled(Stack)`
   display:flex;
@@ -28,17 +30,21 @@ display:flex;
 const Home = () => {
   useEffect(() => {
     // 👇️ scroll to top on page load
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
   return (
     <Homecont>
       <Homebox>
-        <HomeBanner />
-        <Category />
+        <ProductCategory/>
+        <CategoryControler category={"Home"} />
+        <CategoryControler category={"Body"} />
+        <CategoryControler category={"Skin"} />
+        <CategoryControler category={"Kitchen"} />
+        {/* <Category />
         <Poster />
         <PopularCarousel />
         <SinglePoster />
-        <RecentViews />
+        <RecentViews /> */}
       </Homebox>
     </Homecont>
   )

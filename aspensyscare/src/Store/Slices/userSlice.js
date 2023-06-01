@@ -36,7 +36,8 @@ const userSlice = createSlice({
             state.error = action.error.message
         })
         builder.addCase(pushUsers.fulfilled, (state, action) => {
-            state.users.push(action.payload)
+            state.users.length = 0;
+            state.users=action.payload
         })
     },
 })

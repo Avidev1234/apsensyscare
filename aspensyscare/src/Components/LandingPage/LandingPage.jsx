@@ -33,8 +33,8 @@ const LandingPage = () => {
         <title>Buy Best Home, Kitchen, Skin & Body care products in India at best price || apsensyscare</title>
         <meta name="description" content="Buy Best Home, Kitchen, Skin & Body care products in India at best price || apsensyscare" />
       </Helmet>
+      
       <Outlet />
-      <Footer />
     </LandingBox>
   )
 }

@@ -113,7 +113,7 @@ const Login = ({ handelLogin }) => {
       await dispatch(fetchUsers(values));
       handelLogin(false);
     } catch (error) {
-      console.log("hello");
+      console.log(error.message);
     }
   };
 

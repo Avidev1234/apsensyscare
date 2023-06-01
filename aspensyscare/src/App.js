@@ -20,6 +20,8 @@ import Shipping from './Components/Policy/Shipping';
 import ThankYou from './Others/ThankYou';
 import OrderFailed from './Others/OrderFailed';
 import { AllProducts, fatchSizes, fetchCategory, getAddress, productData, pushUsers } from './Api/Api';
+import CategoryLayout from './Components/layouts/CategoryLayout/CategoryLayout';
+import Footer from './Components/layouts/Footer/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +61,7 @@ function App() {
         <ToastContainer />
         <Log.Provider handelLogin={handelLogin}>
           <Navbar handelLogin={handelLogin} openLogin={openLogin}/>
+          
           <Routes>
             <Route path='/' element={<LandingPage />}>
               <Route index element={<Home />} />
@@ -78,6 +81,7 @@ function App() {
               <Route path='/order-failed' element={<OrderFailed />} /> 
             </Route>
           </Routes>
+          <Footer />
         </Log.Provider>
       </BrowserRouter>
     </>

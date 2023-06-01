@@ -118,8 +118,13 @@ const Cart = (props) => {
   const size = sizes.sizes.size;
   const addressess = useSelector((state) => state.address);
   const address = addressess.address.address;
-  // console.log(address)
-
+  const userdetails = useSelector((state) => state.users);
+  const user = userdetails.users.details;
+  console.log(user)
+  const userName=user !== undefined ? user[0].f_name +" "+ user[0].l_name : ""
+  const userPhone=user !== undefined ? user[0].phone_number : ""
+  const userEmail=user !== undefined ? user[0].email_address : ""
+  console.log();
   const handleOpen = (panel) => (event, isExpanded) => {
     // console.log(panel)
     // console.log(isExpanded)
@@ -175,17 +180,17 @@ const Cart = (props) => {
   };
   // payment start
 
-  const handelOrder = async () => {
-    // console.log("hello ia m payment",orderType);
+  const handelOrder = async (amount) => {
+     console.log("hello ia m payment",amount);
     if (orderType === 'case') {
       console.log(orderType)
     } else if (orderType === 'online') {
-      CreateOrder().then((res) => {
+      CreateOrder(amount).then((res) => {
         console.log(res)
-        const res_order_id = res.trim();
+        const res_order_id = "";
         var options = {
           "key": "rzp_test_dt0Vsxsmad0Ry3", // Enter the Key ID generated from the Dashboard
-          "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "amount": `${amount*100}`, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
           "currency": "INR",
           "name": "Apsensys Care", //your business name
           "description": "Test Transaction",
@@ -193,9 +198,9 @@ const Cart = (props) => {
           "order_id": `${res_order_id}`, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
           "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
           "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
-            "name": "Gaurav Kumar", //your customer's name
-            "email": "gaurav.kumar@example.com",
-            "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+            "name": `${userName}`, //your customer's name
+            "email":`${userEmail}`,
+            "contact": `${userPhone}` //Provide the customer's phone number for better conversion rates 
           },
           "handler": function (response) {
             alert(response.razorpay_payment_id);
@@ -755,7 +760,7 @@ const Cart = (props) => {
                     type="buttom"
                     variant="contained"
                     style={{ width: '200px', backgroundColor: "green", marginTop: "10px" }}
-                    onClick={() => { handelOrder() }}
+                    onClick={() => { handelOrder(cart.cartTotalAmount) }}
                   >
                     {orderType === 'case' ? "Place Order" : 'Pay'}
                   </Button>

@@ -42,7 +42,7 @@ const NextBtn = (props) => {
 const PopularCarousel = () => {
   const Products = useSelector((state) => state.product);
   const { product } = Products.products;
- var settings = {
+  var settings = {
     className: "slider variable-width",
     dots: false,
     infinite: true,
@@ -81,7 +81,7 @@ const PopularCarousel = () => {
         }
       }
     ]
-  }; 
+  };
 
   return (
     <Homecont width={'100%'}>

@@ -7,7 +7,7 @@ include('./sitepackages/includes/include.php');
 
 $REQUEST_URI=$_SERVER['REQUEST_URI'];
 $uri=str_replace('/updatedApsensyscare/apsensyscare/backendapi','',$REQUEST_URI);
-// echo $REQUEST_URI;
+//echo $REQUEST_URI;
 //  echo '<br/>';
 //  echo $uri;
 if($uri==='/site_user')

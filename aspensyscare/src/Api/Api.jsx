@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
-export const CreateOrder= async()=>{
-    return await axios.post('/createOrder')
+
+export const CreateOrder= async(amount)=>{
+    return await axios.post('/createOrder',amount)
     .then((res)=>res.data)
 }
 export const CreateSigneture= async(signeture)=>{

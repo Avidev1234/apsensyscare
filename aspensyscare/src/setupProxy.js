@@ -93,7 +93,7 @@ module.exports = function(app) {
   app.use(
     '/createOrder',
     createProxyMiddleware({
-      target: 'http://localhost:80/apsensyscare/backendapi',
+      target: 'http://localhost:80/updatedApsensyscare/apsensyscare/backendapi',
       changeOrigin: true,
     })
   );

@@ -25,8 +25,9 @@ const Signup = ({openSignup}) => {
       // --------------------------work for signup user-----------------------------------
   const handelSignUp = async (values) => {
     await axios
-      .post("/backend_api/site_user", values)
+      .post("/site_user", values)
       .then((req, res) => {
+        openSignup(true)
         console.log("done");
       })
       .catch((err) => {
@@ -72,7 +73,7 @@ const Signup = ({openSignup}) => {
                             validationSchema={SignupSchema}
                             onSubmit={(values) => {
                                 // same shape as initial values
-                                console.log(values);
+                                //console.log(values);
                                 handelSignUp(values);
                             }}
                         >
