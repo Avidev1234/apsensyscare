@@ -25,7 +25,7 @@ const CategoryControler = ({category}) => {
                 <p className='text-[24px] font-bold my-4'>Top sellers from {category} Care</p>
             </div>
             <div className='w-full flex flex-col lg:flex-row'>
-                <div className='w-full lg:w-[65%] flex flex-row flex-wrap gap-x-8 gap-y-0  justify-start items-center content-start pl-6 '>
+                <div className='w-full lg:w-[63%] xl:w-[70%] flex flex-row flex-wrap gap-x-8 gap-y-0  justify-start items-center content-start  '>
                     {!Products.loading && Products.products.product !== undefined ? (
                         product.map((val, i) => {
                             if (val.category_id === cat && temp <= 6) {
@@ -38,7 +38,7 @@ const CategoryControler = ({category}) => {
                         })
                     ) : null}
                 </div>
-                <div className='w-full md:w-[35%] flex flex-col  gap-x-8 gap-y-0  justify-start items-center px-6 mt-1'>
+                <div className='w-full md:w-[30%] flex flex-col  gap-x-8 gap-y-0  justify-start items-center px-6 mt-1'>
                     <ProductBanner category={category}/>
                 </div>
             </div>

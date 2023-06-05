@@ -1,16 +1,11 @@
-import styled from "@emotion/styled";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React, { useState } from "react";
-import "./Login.css";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
+import styled from '@emotion/styled';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from '../../Api/Api';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import Signup from "./Signup";
-import { fetchUsers } from "../../Api/Api";
 
-const LoginCont = styled(Box)`
+const LoginCont = styled('div')`
   width: 100%;
   height: 100%;
   position: fixed;
@@ -19,286 +14,95 @@ const LoginCont = styled(Box)`
   justify-content: center;
   align-items: center;
   z-index: 10003;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
 `;
-const BlurImg = styled(Box)`
+const BlurImg = styled('div')`
   width: 100%;
   height: 100%;
   position: absolute;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 `;
-const LoginBox = styled(Box)`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const LoginBoxCont = styled(Box)`
-  width: 50%;
-  height: 70%;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10005;
-  position: relative;
-`;
-const LoginLeft = styled(Box)`
-  width: 48%;
-  height: 100%;
-  background-color: white;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const LoginRight = styled(Box)`
-  width: 48%;
-  height: 100%;
-  background-color: #916fda;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-`;
 const signupInitialvalue = {
-  phone: "",
-  email: "",
-  password: "",
+    phone: "",
+    email: "",
+    password: "",
 };
 const loginInitialvalue = {
-  phone: "",
-  password: "",
+    phone: "",
+    password: "",
 };
-
 const Login = ({ handelLogin }) => {
-  // --------------------------work for password input visiable or hidden and open login /sign up-----------------------------------
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [showSignup, setShowSignup] = React.useState(true);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+    // --------------------------work for password input visiable or hidden and open login /sign up-----------------------------------
+    const [showPassword, setShowPassword] = React.useState(false);
+    const [showSignup, setShowSignup] = React.useState(true);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-  const openSignup = (txt) => {
-    setShowSignup(txt);
-    handleClickShowPassword();
-  };
-  // --------------------------getting all user inputs for signup_user -----------------------------------
-  const [signup, setSignUp] = useState(signupInitialvalue);
-  const handleInputs = (values) => {
-    setSignUp({ ...signup, [values.target.name]: values.target.value });
-  };
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+    const openSignup = (txt) => {
+        setShowSignup(txt);
+        handleClickShowPassword();
+    };
+    // --------------------------getting all user inputs for signup_user -----------------------------------
+    const [signup, setSignUp] = useState(signupInitialvalue);
+    const handleInputs = (values) => {
+        setSignUp({ ...signup, [values.target.name]: values.target.value });
+    };
 
-  
-  // --------------------------getting all user inputs for login_user -----------------------------------
-  const [login, setLogin] = useState(loginInitialvalue);
-  const handleloginInputs = (e) => {
-    setLogin({ ...login, [e.target.name]: e.target.value });
-  };
-  // ---------------------------work for login user------------------------------------
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
- 
-  const handelLoginuser = async (values) => {
-    try {
-      await dispatch(fetchUsers(values));
-      handelLogin(false);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
-  
+    // --------------------------getting all user inputs for login_user -----------------------------------
+    const [login, setLogin] = useState(loginInitialvalue);
+    const handleloginInputs = (e) => {
+        setLogin({ ...login, [e.target.name]: e.target.value });
+    };
+    // ---------------------------work for login user------------------------------------
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
 
-  const LoginSchema = Yup.object().shape({
-    phone: Yup.string()
-      .min(1, "Not a Phone Number!")
-      .max(10, "Too Long!")
-      .required("Required"),
-    password: Yup.string()
-      .required("No password provided.")
-      .min(8, "Password is too short - should be 8 chars minimum.")
-      .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
-      .required("Required")
-  });
+    const handelLoginuser = async (values) => {
+        try {
+            await dispatch(fetchUsers(values));
+            handelLogin(false);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
-  return (
-    <LoginCont>
-      <BlurImg></BlurImg>
-      <LoginBox>
-        <LoginBoxCont>
-          <LoginLeft>
-            <img
-              alt=""
-              height="70px"
-              width="290px"
-              src="/apsensys-technologies.png"
-            />
-          </LoginLeft>
-          <LoginRight>
-            <Box
-              style={{
-                width: "auto",
-                top: "13px",
-                right: "13px",
-                display: "flex",
-                position: "absolute",
-                justifyContent: "flex-end",
-              }}
-            >
-              <div className="close" onClick={() => handelLogin(false)}>
-                <h1>&times;</h1>
-              </div>
-            </Box>
-            {showSignup ? (
-              // ----------------------------------login start----------------------------------------------
-              <Box
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  variant="h2"
-                  style={{
-                    fontSize: "30px",
-                    fontWeight: "700",
-                    color: "white",
-                  }}
-                >
-                  Login
-                </Typography>
-                <div className="form">
-                  <div className="card">
-                    <div className="face">
-                      <Formik
-                        initialValues={{
-                          phone: "",
-                          password: "",
-                        }}
-                        validationSchema={LoginSchema}
-                        onSubmit={(values) => {
-                          // same shape as initial values
-                          //console.log(values);
-                          handelLoginuser(values)
-                        }}
-                      >
-                        {({ errors, touched }) => (
-                          <Form style={{ width: "90%" }}>
-                            <div className="wrap">
-                              <Field
-                                name="phone"
-                                type="text"
-                                placeholder="Phone"
-                              />
-                              {errors.phone && touched.phone ? (
-                                <div>{errors.phone}</div>
-                              ) : null}
-                              <div className="passwordCont">
-                                <Field
-                                  name="password"
-                                  type={showPassword ? "text" : "password"}
-                                  placeholder="Password"
-                                />
-                                <div
-                                  onClick={handleClickShowPassword}
-                                  onMouseDown={handleMouseDownPassword}
-                                >
-                                  {showPassword ? (
-                                    <VisibilityOff />
-                                  ) : (
-                                    <Visibility />
-                                  )}
-                                </div>
-                              </div>
-                              {errors.password && touched.password ? (
-                                <div>{errors.password}</div>
-                              ) : null}
-                              <button type="submit">Submit</button>
-                            </div>
-                          </Form>
-                        )}
-                      </Formik>
-                    </div>
-                    <div className="passwordCont GoogleSignup">
-                      <p style={{ marginRight: "5px", color: "white" }}>
-                        {" "}
-                        Sign up with google
-                      </p>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="white"
-                        className="bi bi-google"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-                      </svg>
-                    </div>
-                  </div>
+
+
+    const LoginSchema = Yup.object().shape({
+        phone: Yup.string()
+            .min(1, "Not a Phone Number!")
+            .max(10, "Too Long!")
+            .required("Required"),
+        password: Yup.string()
+            .required("No password provided.")
+            .min(8, "Password is too short - should be 8 chars minimum.")
+            .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
+            .required("Required")
+    });
+
+    return (
+        <LoginCont>
+            <div class="max-w-7xl bg-[#F5F5F5] mx-auto relative p-8">
+                <div class="absolute right-4 top-2 bg-red-500 w-8 h-8 rounded-full text-center text-xl text-white font-bold cursor-pointer" onClick={() => handelLogin(false)}>X</div>
+                <img src="https://apsensyscare.com/aspensyscare.png" class="w-[80%] md:w-[40%] mb-10 mx-auto" alt="" />
+                <div class="max-w-[90%] md:max-w-4xl mx-auto flex  justify-center flex-col">
+                    <h2 class="font-semibold text-3xl mb-5">Sign in</h2>
+                    <label for="email" class="text-xl mb-1">Enter Email or Mobile Number</label>
+                    <input class="p-5 text-xl" type="text" />
+                    <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care <a class="text-blue-800" href="">Terms of Use</a> and <a class="text-blue-800" href="">Privacy Policy</a></p>
+                    <button class="border-2 border-[#0112FE] px-[50px] py-5 bg-[#0112FE] text-white mx-auto font-bold text-xl hover:bg-white hover:text-[#0112FE]">Continue</button>
+                    <hr class="border-b my-10" />
+                    <p class="text-xl">New to Apsensys Care?</p>
+                    <a href="" class="my-10 border-[1px] p-5 text-center text-xl">Create your Apsensys Care account</a>
                 </div>
-                <Typography
-                  variant="subtitle2"
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    fontSize: "14px",
-                    justifyContent: "center",
-                    fontWeight: "600",
-                    color: "white",
-                  }}
-                >
-                  Don't have an account ?
-                  <Typography
-                    variant="subtitle2"
-                    onClick={() => openSignup(false)}
-                    style={{
-                      color: "blue",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                      textDecoration: "underline",
-                    }}
-                  >
-                    Sign Up
-                  </Typography>
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    fontSize: "13px",
-                    justifyContent: "center",
-                    fontWeight: "500",
-                    color: "white",
-                  }}
-                >
-                  Forgot Password
-                </Typography>
-              </Box>
-            ) : (
-              // ------------------------------------signup start-------------------------------
-              <Signup openSignup={openSignup}/>
-            )}
-          </LoginRight>
-        </LoginBoxCont>
-      </LoginBox>
-    </LoginCont>
-    // </Dialog>
-  );
-};
+            </div>
+        </LoginCont>
+    )
+}
 
-export default Login;
+export default Login

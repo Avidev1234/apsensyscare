@@ -6,9 +6,9 @@ import "./contactus.css";
 import { TextField } from "@mui/material";
 import { Form, Field, Formik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
 import FormHelperText from "@mui/material/FormHelperText";
+import { Adcontact } from "../../Api/Api";
 
 const ContactUS = () => {
   //console.log(handelLogin)
@@ -31,17 +31,23 @@ const ContactUS = () => {
       values
     );
     console.log(contact);
-    await axios
-      .post("/addContact", contact)
-      .then((req, res) => {
-        console.log("done");
+    Adcontact(contact).then((res) => {
+      console.log(typeof(res));
+      if(res===true){
         toast.success("Message send successfully", {
           position: "bottom-left",
         });
-      })
+      }else{
+        toast.error("Somethings went wrong", {
+          position: "bottom-left",
+        });
+      }
+      
+    })
       .catch((err) => {
         console.log(err);
       });
+
   };
   return (
     <div className="contactdiv">

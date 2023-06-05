@@ -67,7 +67,7 @@ const ProductCard = ({val}) => {
                             </div>
                             <p className="font-semibold text-gray-400 text-xs ml-1 md:ml-3">(45556)</p>
                         </div>
-                        <button className="px-3 py-2 bg-[#F38181] w-full text-white text-[12px] font-semibold hover:bg-[#E34343] mt-4"
+                        <button className="px-3 py-2 bg-[#FF983B] w-full text-white text-[12px] font-semibold hover:bg-[#E34343] mt-4"
                         onClick={() => handleCart(val)}
                         >Add to Card</button>
                     </div>

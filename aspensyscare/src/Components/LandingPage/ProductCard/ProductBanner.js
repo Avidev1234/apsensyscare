@@ -14,8 +14,8 @@ const ProductBanner = ({ category }) => {
     return (
         <div className='flex flex-col gap-2'>
             <div>
-                <img class="w-full h-[330px] md:h-[355px]" src={`${process.env}/Image/Poster/${Img}`} alt="" />
-                <div class="bg-[#F38181] p-3 text-center text-white font-semibold text-2xl ">Best Seller</div>
+                <img class="w-full h-[330px] md:h-[355px]" src={`${process.env.REACT_APP_URL}Image/Poster/${Img}`} alt="" />
+                <div class="bg-[#0112FE] p-3 text-center text-white font-semibold text-2xl ">Best Seller</div>
             </div>
             <div>
                 <div class="py-6 max-w-100 relative mt-3 lg:min-w-[400px] lg:min-h-[217px]">
@@ -49,7 +49,7 @@ const ProductBanner = ({ category }) => {
                                 </div>
                                 <p class="font-semibold text-gray-400 text-xs ml-1 md:ml-3">(45556)</p>
                             </div>
-                            <button class="px-3 py-2 bg-[#F38181] w-full text-white text-[12px] font-semibold hover:bg-[#E34343] mt-4">Add to Card</button>
+                            <button class="px-3 py-2 bg-[#FF983B] w-full text-white text-[12px] font-semibold hover:bg-[#E34343] mt-4">Add to Card</button>
                         </div>
                     </div>
                 </div>

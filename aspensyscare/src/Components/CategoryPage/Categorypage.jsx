@@ -112,6 +112,7 @@ const Categorypage = () => {
         return true;
     })
     // console.log(categoryProducts)
+    
     return (
         <CategoryBox>
             <Helmet>

@@ -6,40 +6,38 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { SignupUser } from "../../Api/Api";
 
-const Signup = ({openSignup}) => {
+const Signup = ({ openSignup }) => {
     console.log(openSignup)
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
-          .matches(/^[6-9]\d{9}$/, {
-            message: "Please enter valid number.",
-            excludeEmptyString: false,
-          })
-          .required("Required"),
+            .matches(/^[6-9]\d{9}$/, {
+                message: "Please enter valid number.",
+                excludeEmptyString: false,
+            })
+            .required("Required"),
         password: Yup.string()
-          .required("No password provided.")
-          .min(8, "Password is too short - should be 8 chars minimum.")
-          .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+            .required("No password provided.")
+            .min(8, "Password is too short - should be 8 chars minimum.")
+            .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
         email: Yup.string().email("Invalid email").required("Required")
-      });
-      // --------------------------work for signup user-----------------------------------
-  const handelSignUp = async (values) => {
-    await axios
-      .post("/site_user", values)
-      .then((req, res) => {
-        openSignup(true)
-        console.log("done");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+    });
+    // --------------------------work for signup user-----------------------------------
+    const handelSignUp = async (values) => {
+        SignupUser(values).then(( res) => {
+            openSignup(true)
+            console.log("done");
+        }).catch((err) => {
+                console.log(err);
+            });
+    };
+    const [showPassword, setShowPassword] = React.useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
     return (
 
         <Box

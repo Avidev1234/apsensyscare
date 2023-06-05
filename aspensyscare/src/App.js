@@ -20,8 +20,8 @@ import Shipping from './Components/Policy/Shipping';
 import ThankYou from './Others/ThankYou';
 import OrderFailed from './Others/OrderFailed';
 import { AllProducts, fatchSizes, fetchCategory, getAddress, productData, pushUsers } from './Api/Api';
-import CategoryLayout from './Components/layouts/CategoryLayout/CategoryLayout';
 import Footer from './Components/layouts/Footer/Footer';
+import ProductByCategory from './Components/CategoryPage/ProductByCategory';
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +66,7 @@ function App() {
             <Route path='/' element={<LandingPage />}>
               <Route index element={<Home />} />
               <Route path='/category' element={<Category />} />
+              <Route path='/category/:url' element={<ProductByCategory />} />
               <Route path='/cart' element={<Cart  handelLogin={handelLogin} openLogin={openLogin}/>} />
               <Route path='/cart/:id' element={<Cart  handelLogin={handelLogin} openLogin={openLogin}/>} />
               <Route path='/wishlist' element={<Wishlist />} />

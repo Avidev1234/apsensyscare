@@ -20,9 +20,9 @@ const ProductCategory = () => {
                     {!Category.loading && Category.category.category !== undefined ? (
                         category.map((val, i) => {
                             return (
-                                <div className="h-[180px] md:h-[300px] imageContainer flex flex-col flex-nowrap gap-2 lg:gap-3">
+                                <div className="h-[180px] md:h-[300px] imageContainer flex flex-col flex-nowrap gap-2 lg:gap-3 cursor-pointer" onClick={() => navigate(`/category/${val.category_url}`, { state: { id: val.id,val:val } })}>
                                     <img className="w-[130px] md:w-[250px] h-[130px] md:h-[250px] object-cover"
-                                        src={`./Image/category/${val.category_img}`} alt="" />
+                                        src={`${process.env.REACT_APP_URL}Image/category/${val.category_img}`} alt="" />
                                     <h3 className="mt-0 lg:mt-3 w-full text-center font-bold text-[16px] absolute bottom-0 mx-auto">{val.category_name}</h3>
                                 </div>
                             )

@@ -10,7 +10,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getAddress } from "../../Api/Api";
+import { AddAddress, getAddress } from "../../Api/Api";
 import Radio from "./Radio";
 import { toast } from "react-toastify";
 
@@ -81,17 +81,15 @@ const AddAddressModal = ({ handelLogin }) => {
       values
     );
     setOpen(false);
-    await axios
-      .post("/addAddress", address)
-      .then((req, res) => {
-        console.log("done");
-        if (sessionStorage.getItem("___user")) {
-          dispatch(getAddress(sessionStorage.getItem("___user")));
-        }
-        toast.success("Address added successfully", {
-          position: "bottom-left",
-        });
-      })
+    AddAddress(address).then((res) => {
+      console.log("done");
+      if (sessionStorage.getItem("___user")) {
+        dispatch(getAddress(sessionStorage.getItem("___user")));
+      }
+      toast.success("Address added successfully", {
+        position: "bottom-left",
+      });
+    })
       .catch((err) => {
         console.log(err);
       });
@@ -134,7 +132,7 @@ const AddAddressModal = ({ handelLogin }) => {
               name: "",
               phone: "",
               email: "",
-              address_type: "",
+              address_type: "home",
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {

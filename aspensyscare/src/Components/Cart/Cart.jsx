@@ -31,7 +31,6 @@ import {
 } from "../../Store/Slices/cartSlice";
 import { toast } from "react-toastify";
 import { CreateOrder, CreateSigneture } from "../../Api/Api";
-import axios from "axios";
 // import { useLocation } from "react-router-dom";
 
 const stylemodal = {
