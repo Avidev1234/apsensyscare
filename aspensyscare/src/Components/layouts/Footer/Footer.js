@@ -137,7 +137,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className='w-full text-center mt-4'>
-                <p className='font-[400] leading-[25px] text-[14px] text-[#fff] py-1'>© 2023 Apsensys care. All Rights Reserved</p>
+                <p className='font-[400] leading-[25px] text-[14px] text-[#fff] py-1'>© 2023-2024 <a href='https://apsensyscare.com/' className='text-white underline'>Apsensys care</a>. All Rights Reserved</p>
             </div>
         </div>
     )

@@ -6,8 +6,8 @@ error_reporting(E_ALL);
 include('./sitepackages/includes/include.php');
 
 $REQUEST_URI=$_SERVER['REQUEST_URI'];
-$uri=str_replace('/updatedApsensyscare/apsensyscare/backendapi','',$REQUEST_URI);
-//echo $REQUEST_URI;
+$uri=str_replace('/apsensyscare/backendapi','',$REQUEST_URI);
+// echo $REQUEST_URI;
 //  echo '<br/>';
 //  echo $uri;
 if($uri==='/site_user')
@@ -48,6 +48,9 @@ else if($uri==='/size'){
     die;
 }else if($uri==='/fetchUsersdata'){
     include('./sitepackages/inbuilt/pages/UserDetails.php');
+    die;
+}else if($uri==='/addContact'){
+    include('./sitepackages/inbuilt/pages/AddContact.php');
     die;
 }
 else if($uri==='/createOrder'){

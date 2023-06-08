@@ -24,3 +24,6 @@
     margin-bottom: 20px;
     margin-bottom: 20px;
 }
+.slick-slide > div{
+    margin: 0 !important;
+}

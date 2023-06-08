@@ -28,6 +28,7 @@ import { clearCart, getTotals } from '../../../Store/Slices/cartSlice';
 import "./navbar.css";
 import { clearAddress } from '../../../Store/Slices/getAddressSlice';
 import CategoryLayout from '../CategoryLayout/CategoryLayout';
+import * as Scroll from 'react-scroll';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -131,6 +132,7 @@ function Navbar(props) {
     </Box>
   );
 
+
   const container = window !== undefined ? () => window().document.body : undefined;
 
 
@@ -173,20 +175,76 @@ function Navbar(props) {
   const cart = useSelector((state) => state.cart);
   React.useEffect(() => {
     dispatch(getTotals());
-    
+
   }, [cart, dispatch]);
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
     threshold: 100,
   });
-  
-  
-  console.log(window);
+  const Products = useSelector((state) => state.product);
+  const { product } = Products.products;
+  // function for getting the search result **dont use this function when product is more then 100
+
+  const [opensearch, Setopensearch] = React.useState(false)
+  const [searchcount, Setsearchcount] = React.useState(false)
+  const searchresult = [];
+  const ProductSearch = (e) => {
+    e.preventDefault();
+    Setsearchcount(searchcount + 1)
+    Setopensearch(true)
+
+    product.map((val, i) => {
+      //console.log(val.brand_name)
+      const name = val.search_keywords;
+      if (name.includes(e.target.value) === true) {
+        searchresult.push(val)
+        localStorage.setItem('array', JSON.stringify(searchresult));
+      }
+    })
+  }
+  const SearchModel = () => {
+    const searchedItems = JSON.parse(localStorage.getItem('array'))
+    console.log("hello i am results", (searchedItems))
+    searchedItems.map((val, i) => {
+      console.log(val.name)
+    })
+    return (
+      <div className="scroolbar absolute top-[20] w-full h-[300px] max-h-[300px] bg-white w-full rounded-xl shadow-xl overflow-auto p-1">
+        {
+          searchedItems.map((val, i) => {
+            return (
+              <div className="w-full flex p-3 pl-4 items-center hover:bg-gray-300 rounded-lg cursor-pointer mb-4"
+
+                onClick={() => {
+                  console.log("clicked")
+                  navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`, { state: { product: val } })
+                  localStorage.setItem('array', JSON.stringify([]));
+                  Setopensearch(false)
+                }
+                }
+              >
+                <div className="mr-4">
+                  <div className="h-10 w-10 rounded-sm flex items-center justify-center text-3xl">
+                    <img src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} alt={`${val.name}`} />
+                  </div>
+                </div>
+                <div>
+                  <div className="font-bold text-lg uppercase text-black">{val.brand_name}</div>
+                  <div className="text-xs text-gray-500">
+                    <span className="mr-2">{val.name}</span>
+                  </div>
+                </div>
+              </div>)
+          })
+        }
+      </div>
+    )
+  }
   return (
-    <Box sx={{ display: 'flex', height:trigger?"100px":"170px" }} >
+    <Box sx={{ display: 'flex', height: trigger ? "100px" : "100px" }} >
       <CssBaseline />
-      <AppBar component="nav" sx={{ background: '#fff', height:trigger?"100px":"170px",transition:'200ms ease-in' }} >
+      <AppBar component="nav" sx={{ background: '#fff', height: trigger ? "100px" : "100px", transition: '200ms ease-in' }} >
         <Toolbar style={{ height: '100%' }}>
           <IconButton
             color="inherit"
@@ -211,21 +269,30 @@ function Navbar(props) {
                 {item}
               </Button>
             ))} */}
-            <AvtarIcon style={{ margin: 'auto' }} >
+            <div style={{ margin: 'auto' }} className='relative'>
               <Search >
 
                 <StyledInputBase
                   className="border-2 rounded-lg"
                   placeholder="Search your items…"
                   inputProps={{ 'aria-label': 'search' }}
+                  onChange={(e) => ProductSearch(e)}
+                  onFocus={() => Setopensearch(true)}
+                  onBlur={() => {
+                    setTimeout(() => {
+                      Setopensearch(false)
+                    }, 200)
+                  }}
                 />
+
                 <SearchIconWrapper className="border-r-2 rounded-r-lg top-0 right-0	">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-search" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" className="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                   </svg>
                 </SearchIconWrapper>
               </Search>
-            </AvtarIcon>
+              {opensearch ? <SearchModel /> : null}
+            </div>
             {auth && (
               <div
                 style={{ display: 'flex', flexDirection: 'row', gap: '2rem' }}
@@ -270,7 +337,7 @@ function Navbar(props) {
                     aria-label="account of current user"
                     color="black"
                   >
-                    <FavoriteBorderIcon style={{ color: '#0112fe',fontSize:'35px' }}  />
+                    <FavoriteBorderIcon style={{ color: '#0112fe', fontSize: '35px' }} />
                   </IconButton>
                   {/* Wishlist */}
                 </AvtarIcon>
@@ -281,7 +348,7 @@ function Navbar(props) {
                     color="black"
                   >
                     <StyledBadge badgeContent={cart.cartTotalQuantity} color="secondary">
-                      <ShoppingCartCheckoutIcon style={{ color: '#0112fe',fontSize:'35px' }} />
+                      <ShoppingCartCheckoutIcon style={{ color: '#0112fe', fontSize: '35px' }} />
                     </StyledBadge>
                   </IconButton>
                   {/* Cart */}
@@ -323,11 +390,11 @@ function Navbar(props) {
                       </Menu>
                     </div>
                     :
-                    
-                    <div className="MuiBox-root css-dxza1q" style={{ flexDirection: 'row',cursor:'pointer' }}  onClick={() => handelLogin(true, 0)}>
+
+                    <div className="MuiBox-root css-dxza1q" style={{ flexDirection: 'row', cursor: 'pointer' }} onClick={() => handelLogin(true, 0)}>
                       {/* <img src='./account.png' alt=''/> */}
                       Login
-                      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#0112fe" class="bi bi-person" viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#0112fe" className="bi bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                       </svg>
                       {/* <Button variant='contained' style={{ backgroundColor: "#FFC700" }} onClick={() => handelLogin(true, 0)}>Login</Button> */}

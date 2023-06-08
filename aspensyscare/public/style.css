@@ -1,7 +1,9 @@
-#root{
+#root {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
+    font-family: 'Lato', sans-serif,'Raleway';
+    
 }

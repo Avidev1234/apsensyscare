@@ -52,9 +52,9 @@ const ProductCard = ({val}) => {
                         </div>
                     </div>
                     <div className="w-full md:w-2/3 p-2 md:p-3">
-                        <h1 className="text-gray-900 font-bold text-base uppercase">{val.brand_name.substring(0,)}</h1>
-                        <p className="text-gray-600 text-sm md:text-base">{val.name.substring(0,)}</p>
-                        <h1 className="text-gray-700 font-bold text-base my-2">₹ 220</h1>
+                        <h2 className="text-gray-900 font-bold text-base uppercase">{val.brand_name}</h2>
+                        <p className="text-gray-600 text-sm md:text-base">{val.name}</p>
+                        <h2 className="text-gray-700 font-bold text-base my-2">₹ {val.default_price}<span className='ml-[5px] text-[12px] text-gray-600'>({val.default_size})ml</span></h2>
                         <div className="flex items-center">
                             <div className="flex items-center text-xs bg-green-600 text-white font-semibold px-2.5 py-0.5 rounded w-auto md:w-[20%]">
                                 <span>4.0</span>

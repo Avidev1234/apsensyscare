@@ -42,7 +42,6 @@ const CategoryControler = ({category}) => {
                     <ProductBanner category={category}/>
                 </div>
             </div>
-
         </div>
     )
 }

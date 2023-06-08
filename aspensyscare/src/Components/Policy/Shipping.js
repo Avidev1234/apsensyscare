@@ -68,7 +68,7 @@ const Shipping = () => {
               What would the out of stock item process be like?
               <ul>
                 <li>
-                  Ans: If a purchased item shows ‘out of stock’, refund will be initiated immediately and credited within 7 days.
+                  Ans: If a purchased item shows ‘out of stock’, refund will be initiated immediately and credited within 7 working days.
                 </li>
               </ul>
             </li>
@@ -84,12 +84,10 @@ const Shipping = () => {
         </p>
         <h2 className="text-3xl font-bold py-4">Contact Us:</h2>
         <p>
-          If you want to report a violation of the terms of use or this policy or if you have any questions or require assistance, please contact:
+          If you want to report a violation of the terms of use or this policy or if you have any questions or require assistance, <br/>
+          Please contact: +91 7022478825
         </p>
         <p>
-          Toll Free Number: ……….. (9:00am-7:00pm)<p>
-
-          </p>
           Email: Support@apsensyscare.com
         </p>
       </div>

@@ -29,22 +29,28 @@ const ProductByCategory = () => {
         return true;
     })
     return (
-        <div className='w-full flex flex-wrap min-h-[100vh] content-start	justify-between p-5'>
+        <div className='w-full flex flex-col flex-wrap min-h-[100vh] content-start	justify-start p-5'>
             <Helmet>
                 <title>{value.state.val.category_title}</title>
                 <meta name="description" content={`${value.state.val.category_title}`} />
             </Helmet>
-            {!Products.loading && Products.products.product !== undefined && categoryProducts.length !== 0 ? (
-                categoryProducts.map((val, i) => {
-                    return (
+            <div className='w-full border-2 rounded p-3 font-bold'>
+                <h1 className='text-bold text-xl'>{value.state.val.category_name}</h1>
+            </div>
+
+            <div className='w-full flex flex-row flex-wrap content-start	justify-start p-5 gap-4'>
+                {!Products.loading && Products.products.product !== undefined && categoryProducts.length !== 0 ? (
+                    categoryProducts.map((val, i) => {
+                        return (
                             <ProductCard val={val} />
-                    )
-                })
-            ) :
-                <div style={{ width: '100%', height: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <p variant='h1' style={{ fontSize: '20px', fontWeight: '600', color: 'red' }}>No Products.</p>
-                </div>
-            }
+                        )
+                    })
+                ) :
+                    <div style={{ width: '100%', height: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <p variant='h1' style={{ fontSize: '20px', fontWeight: '600', color: 'red' }}>No Products.</p>
+                    </div>
+                }
+            </div>
         </div>
     )
 }

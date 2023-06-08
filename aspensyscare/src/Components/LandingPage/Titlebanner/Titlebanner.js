@@ -1,20 +1,44 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
+import Slider from "react-slick";
 
-const Titlebanner = ({category}) => {
-    let Img,content;
-    if(category==="Home"){
-        Img="ACS-Banner3-floor-cleaner.jpg";
-        content="Want us to help you maintain a hygienic, cheerful, and healthy home?"
-    }else if(category==="Body"){
-        Img="body-wash-banner.jpg";
-        content="Beautiful inside out. Gift your body best care products it deserves."
-    }else if(category==="Skin"){
-        Img="hand-wash-banner.jpg";
-        content="Pamper your skin. Say no to skin problems and yes to healthy and glowing skin."
-    }else if(category==="Kitchen"){
-        Img="Stainpro-Dishwash-Gel-banner.jpg";
-        content="For a spotless kitchen. All kitchen care products under one roof."
+const Titlebanner = ({ category }) => {
+    let Img1, Img2, Img3, content;
+    if (category === "Home") {
+        Img1 = "ACS-Banner3-floor-cleaner.jpg";
+        Img2 = "ACS-Banner3-floor-cleaner.jpg";
+        Img3 = "ACS-Banner3-floor-cleaner.jpg";
+        content = "Want us to help you maintain a hygienic, cheerful, and healthy home?"
+    } else if (category === "Body") {
+        Img1 = "body-wash-banner.jpg";
+        Img2 = "body-wash-banner.jpg";
+        Img3 = "body-wash-banner.jpg";
+        content = "Beautiful inside out. Gift your body best care products it deserves."
+    } else if (category === "Skin") {
+        Img1 = "hand-wash-banner.jpg";
+        Img2 = "hand-wash-banner.jpg";
+        Img3 = "hand-wash-banner.jpg";
+        content = "Pamper your skin. Say no to skin problems and yes to healthy and glowing skin."
+    } else if (category === "Kitchen") {
+        Img1 = "Stainpro-Dishwash-Gel-banner.jpg";
+        Img2 = "Stainpro-Dishwash-Gel-banner.jpg";
+        Img3 = "Stainpro-Dishwash-Gel-banner.jpg";
+        content = "For a spotless kitchen. All kitchen care products under one roof."
     }
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+    const banners = useSelector((state) => state.banner);
+    const { banner } = banners.banner;
+
+    const itemIndex = banner !== undefined ? banner.findIndex((item) => item.category === category) : null;
+    const bannerImages = banner !== undefined && itemIndex !== null ? banner[itemIndex].banner_image : null
+    console.log(bannerImages);
+    const bannerImage = bannerImages!==null&&bannerImages.split("@@@")
     return (
         <div>
             <div className="flex flex-row items-center w-full h-[180px] md:h-[400px] xl:h-[470px]">
@@ -23,7 +47,15 @@ const Titlebanner = ({category}) => {
                     <p className="text-[10px] md:text-[20px] text-center">{content}</p>
                 </div>
                 <div className="w-[60%] md:w-3/5 xl:w-2/3 h-full">
-                    <img className="w-full h-[100%] mx-auto" src={`./Image/Poster/${Img}`} alt="" />
+                    <Slider {...settings}>
+                        {
+                            bannerImages!==null&&bannerImage.map((items) => {
+                                return (
+                                    <img className="w-full h-[180px] md:h-[400px] xl:h-[470px] mx-auto" src={`./Image/Poster/${items}`} alt="" />
+                                )
+                            })
+                        }
+                    </Slider>
                 </div>
             </div>
         </div>

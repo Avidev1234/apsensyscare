@@ -61,7 +61,6 @@ function App() {
         <ToastContainer />
         <Log.Provider handelLogin={handelLogin}>
           <Navbar handelLogin={handelLogin} openLogin={openLogin}/>
-          
           <Routes>
             <Route path='/' element={<LandingPage />}>
               <Route index element={<Home />} />

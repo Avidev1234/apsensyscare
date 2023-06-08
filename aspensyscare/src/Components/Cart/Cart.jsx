@@ -195,7 +195,7 @@ const Cart = (props) => {
           "description": "Test Transaction",
           "image": "https://apsensyscare.com/favicon.ico",
           "order_id": `${res_order_id}`, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-          "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+          "callback_url": "https://apsensyscare.com/thankyou",
           "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
             "name": `${userName}`, //your customer's name
             "email":`${userEmail}`,
@@ -227,7 +227,6 @@ const Cart = (props) => {
         var rzp1 = new window.Razorpay(options);
         rzp1.open();
       })
-
     }
   };
 

@@ -10,6 +10,7 @@ import SinglePoster from '../Poster/SinglePoster'
 import RecentViews from '../Carousel/RecentViews'
 import CategoryControler from '../CategoryControler/CategoryControler'
 import ProductCategory from '../Category/ProductCategory'
+import VideoComponent from '../VideoComponent/VideoComponent'
 
 const Homecont = styled(Stack)`
   display:flex;
@@ -35,6 +36,7 @@ const Home = () => {
   return (
     <Homecont>
       <Homebox>
+        <VideoComponent/>
         <ProductCategory/>
         <CategoryControler category={"Home"} />
         <CategoryControler category={"Body"} />
