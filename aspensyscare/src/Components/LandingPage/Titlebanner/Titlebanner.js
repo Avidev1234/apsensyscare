@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import Slider from "react-slick";
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 
 const Titlebanner = ({ category }) => {
     let Img1, Img2, Img3, content;
@@ -25,12 +26,33 @@ const Titlebanner = ({ category }) => {
         Img3 = "Stainpro-Dishwash-Gel-banner.jpg";
         content = "For a spotless kitchen. All kitchen care products under one roof."
     }
+    const PreviousBtn = (props) => {
+        // console.log(props);
+        const { onClick } = props;
+        return (
+            <div className="slick-prev w-auto p-2 py-8 bg-white hover:bg-white hover:p-5	" onClick={onClick}>
+                <ArrowBackIos style={{ color: "#d9d9d9", fontSize: "30px" }} />
+            </div>
+        );
+    };
+    const NextBtn = (props) => {
+        const { onClick } = props;
+        return (
+            <div className="slick-next w-auto p-2 py-8 bg-white hover:bg-white hover:p-5	" onClick={onClick}>
+                <ArrowForwardIos style={{ color: "#d9d9d9", fontSize: "30px" }} />
+            </div>
+        );
+    };
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        swipeToSlide: true,
+        arrows: true
     };
     const banners = useSelector((state) => state.banner);
     const { banner } = banners.banner;
@@ -38,7 +60,7 @@ const Titlebanner = ({ category }) => {
     const itemIndex = banner !== undefined ? banner.findIndex((item) => item.category === category) : null;
     const bannerImages = banner !== undefined && itemIndex !== null ? banner[itemIndex].banner_image : null
     console.log(bannerImages);
-    const bannerImage = bannerImages!==null&&bannerImages.split("@@@")
+    const bannerImage = bannerImages !== null && bannerImages.split("@@@")
     return (
         <div>
             <div className="flex flex-row items-center w-full h-[180px] md:h-[400px] xl:h-[470px]">
@@ -47,9 +69,12 @@ const Titlebanner = ({ category }) => {
                     <p className="text-[10px] md:text-[20px] text-center">{content}</p>
                 </div>
                 <div className="w-[60%] md:w-3/5 xl:w-2/3 h-full">
-                    <Slider {...settings}>
+                    <Slider className="center"
+                        prevArrow={<PreviousBtn />}
+                        nextArrow={<NextBtn />}
+                        {...settings}>
                         {
-                            bannerImages!==null&&bannerImage.map((items) => {
+                            bannerImages !== null && bannerImage.map((items) => {
                                 return (
                                     <img className="w-full h-[180px] md:h-[400px] xl:h-[470px] mx-auto" src={`./Image/Poster/${items}`} alt="" />
                                 )

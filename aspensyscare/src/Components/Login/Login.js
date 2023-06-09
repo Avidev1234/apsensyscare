@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../../Api/Api';
+import { SignupUser, fetchUsers } from '../../Api/Api';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
@@ -16,6 +16,7 @@ const LoginCont = styled('div')`
   z-index: 10003;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
+  
 `;
 const BlurImg = styled('div')`
   width: 100%;
@@ -33,6 +34,95 @@ const loginInitialvalue = {
     phone: "",
     password: "",
 };
+const Signup = ({ openSignup }) => {
+    const SignupSchema = Yup.object().shape({
+        phone: Yup.string()
+            .matches(/^[6-9]\d{9}$/, {
+                message: "Please enter valid number.",
+                excludeEmptyString: false,
+            })
+            .required("Required"),
+        password: Yup.string()
+            .required("No password provided.")
+            .min(8, "Password is too short - should be 8 chars minimum.")
+            .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+        email: Yup.string().email("Invalid email").required("Required")
+    });
+    // --------------------------work for signup user-----------------------------------
+    const handelSignUp = async (values) => {
+        SignupUser(values).then((res) => {
+            openSignup(true)
+            console.log("done");
+        }).catch((err) => {
+            console.log(err);
+        });
+    };
+    const [showPassword, setShowPassword] = React.useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+    return (
+        <Formik
+            initialValues={{
+                phone: "",
+                email: "",
+                password: "",
+            }}
+            validationSchema={SignupSchema}
+            onSubmit={(values) => {
+                // same shape as initial values
+                //console.log(values);
+                handelSignUp(values);
+            }}
+        >
+
+            {({ errors, touched }) => (
+                <Form class="scroolbar max-w-[97%] md:max-w-[90%] md:max-w-4xl mx-auto flex  h-[500px] md:[700px]  overflow-y-scroll  flex-col p-2">
+                    <div class=" mx-auto flex  justify-center flex-col ">
+                        <h2 class="font-semibold text-3xl mb-5">Create account</h2>
+                        <label for="email" class="text-xl mb-1">Your Email</label>
+                        <Field
+                            class="p-5 text-xl mb-8 rounded"
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                        />
+                        {errors.email && touched.email ? (
+                            <div>{errors.email}</div>
+                        ) : null}
+                        <label for="email" class="text-xl mb-1">Enter Mobile Number</label>
+                        <Field
+                            class="p-5 text-xl mb-8 rounded"
+                            name="phone"
+                            type="number"
+                            placeholder="Phone"
+                        />
+                        {errors.phone && touched.phone ? (
+                            <div>{errors.phone}</div>
+                        ) : null}
+                        <label for="email" class="text-xl mb-1">Password</label>
+                        <Field
+                            class="rounded p-5 text-xl mb-8"
+                            name="password"
+                            type={"text"}
+                            placeholder="Password"
+                        />
+                        <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care
+                            <a class="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
+                            <a class="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
+                        <button type='submit' class="border-2 border-[#0112FE] px-[50px] py-5 bg-[#0112FE] text-white mx-auto font-bold text-xl hover:bg-white hover:text-[#0112FE]">Sign Up</button>
+                        <hr class="border-b my-10" />
+                        <p class="text-xl">Apsensys Care User?</p>
+                        <div class="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(true)}>Login your Apsensys Care account</div>
+                    </div>
+                </Form>
+            )}
+
+        </Formik>
+    )
+}
 const Login = ({ handelLogin }) => {
     // --------------------------work for password input visiable or hidden and open login /sign up-----------------------------------
     const [showPassword, setShowPassword] = React.useState(false);
@@ -87,21 +177,64 @@ const Login = ({ handelLogin }) => {
 
     return (
         <LoginCont>
-            <div class="max-w-7xl bg-[#F5F5F5] mx-auto relative p-8">
+            <div class="max-w-7xl bg-[#F5F5F5] mx-auto relative p-8 max-h-[100%] overflow-hidden">
                 <div class="absolute right-4 top-2 bg-red-500 w-8 h-8 rounded-full text-center text-xl text-white font-bold cursor-pointer" onClick={() => handelLogin(false)}>X</div>
                 <img src="https://apsensyscare.com/aspensyscare.png" class="w-[80%] md:w-[40%] mb-10 mx-auto" alt="" />
-                <div class="max-w-[90%] md:max-w-4xl mx-auto flex  justify-center flex-col">
-                    <h2 class="font-semibold text-3xl mb-5">Sign in</h2>
-                    <label for="email" class="text-xl mb-1">Enter Email or Mobile Number</label>
-                    <input class="p-5 text-xl" type="text" />
-                    <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care <a class="text-blue-800" href="">Terms of Use</a> and <a class="text-blue-800" href="">Privacy Policy</a></p>
-                    <button class="border-2 border-[#0112FE] px-[50px] py-5 bg-[#0112FE] text-white mx-auto font-bold text-xl hover:bg-white hover:text-[#0112FE]">Continue</button>
-                    <hr class="border-b my-10" />
-                    <p class="text-xl">New to Apsensys Care?</p>
-                    <a href="" class="my-10 border-[1px] p-5 text-center text-xl">Create your Apsensys Care account</a>
-                </div>
+                {
+                    showSignup ?
+                        (
+                            <Formik
+                                initialValues={{
+                                    phone: "",
+                                    password: "",
+                                }}
+                                validationSchema={LoginSchema}
+                                onSubmit={(values) => {
+                                    // same shape as initial values
+                                    //console.log(values);
+                                    handelLoginuser(values)
+                                }}
+                            >{({ errors, touched }) => (
+                                <Form className='scroolbar max-w-[97%] md:max-w-[90%] md:max-w-4xl mx-auto flex h-[500px] md:[700px] overflow-y-scroll  flex-col p-2'>
+                                    <div class=" mx-auto flex  justify-center flex-col  ">
+                                        <h2 class="font-semibold text-3xl mb-5">Sign in</h2>
+
+                                        <label for="email" class="text-xl mb-1">Enter Email or Mobile Number</label>
+                                        <Field class="p-5 text-xl rounded"
+                                            name="phone"
+                                            type="text"
+                                            placeholder="Phone"
+                                        />
+                                        {errors.phone && touched.phone ? (
+                                            <p className="text-blue">{errors.phone}</p>
+                                        ) : null}
+                                        <label for="email" class="text-xl mb-1">Enter Password</label>
+                                        <Field class="p-5 text-xl rounded"
+                                            name="password"
+                                            type={"password"}
+                                            placeholder="Password"
+                                        />{errors.password && touched.password ? (
+                                            <div>{errors.password}</div>
+                                        ) : null}
+                                        <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care
+                                            <a class="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
+                                            <a class="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
+                                        <button type='submit' class="border-2 border-[#0112FE] px-[50px] py-5 bg-[#0112FE] text-white mx-auto font-bold text-xl hover:bg-white hover:text-[#0112FE]">Sign In</button>
+
+                                        <hr class="border-b my-10" />
+                                        <p class="text-xl">New to Apsensys Care?</p>
+                                        <div class="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(false)}>Create your Apsensys Care account</div>
+                                    </div>
+                                </Form>
+                            )}
+                            </Formik>
+                        )
+                        : (
+                            <Signup openSignup={openSignup} />
+                        )
+                }
             </div>
-        </LoginCont>
+        </LoginCont >
     )
 }
 

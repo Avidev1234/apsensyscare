@@ -23,6 +23,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import Loginold from '../../Login/Loginold';
+import Login from '../../Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getTotals } from '../../../Store/Slices/cartSlice';
 import "./navbar.css";
@@ -167,9 +168,6 @@ function Navbar(props) {
     navigate('/')
   }
 
-
-
-
   // getting data for cart
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -204,11 +202,9 @@ function Navbar(props) {
     })
   }
   const SearchModel = () => {
-    const searchedItems = JSON.parse(localStorage.getItem('array'))
-    console.log("hello i am results", (searchedItems))
-    searchedItems.map((val, i) => {
-      console.log(val.name)
-    })
+    const searchedItems = JSON.parse(localStorage.getItem('array'))===null?[]:JSON.parse(localStorage.getItem('array'))
+    //console.log("hello i am results", (searchedItems))
+    
     return (
       <div className="scroolbar absolute top-[20] w-full h-[300px] max-h-[300px] bg-white w-full rounded-xl shadow-xl overflow-auto p-1">
         {
@@ -225,12 +221,12 @@ function Navbar(props) {
                 }
               >
                 <div className="mr-4">
-                  <div className="h-10 w-10 rounded-sm flex items-center justify-center text-3xl">
+                  <div className="h-8 w-8 rounded-sm flex items-center justify-center text-xl">
                     <img src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} alt={`${val.name}`} />
                   </div>
                 </div>
                 <div>
-                  <div className="font-bold text-lg uppercase text-black">{val.brand_name}</div>
+                  <div className="font-bold text-[14px] uppercase text-black">{val.brand_name}</div>
                   <div className="text-xs text-gray-500">
                     <span className="mr-2">{val.name}</span>
                   </div>
@@ -427,7 +423,7 @@ function Navbar(props) {
         <Toolbar />
       </Box>
 
-      {openLogin ? <Loginold handelLogin={handelLogin} /> : ''}
+      {openLogin ? <Login handelLogin={handelLogin} /> : ''}
     </Box>
   );
 }

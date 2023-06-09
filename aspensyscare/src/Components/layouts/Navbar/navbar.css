@@ -19,11 +19,11 @@
 
 /* Handle */
 .scroolbar::-webkit-scrollbar-thumb {
-    background: #d9d9d9;
+    background: #3b32df;
     border-radius: 5px;
 }
 
 /* Handle on hover */
 .scroolbar::-webkit-scrollbar-thumb:hover {
-    background: #e7e4e4;
+    background: #6627c5;
 }

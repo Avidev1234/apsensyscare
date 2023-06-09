@@ -28,7 +28,7 @@ const LandingPage = () => {
     fetchData();
   }, [dispatch])
   return (
-    <div className='w-[97.77vw] xl:w-[1440px] bg-[#fff]'>
+    <div className='w-[97.77vw] 2xl:w-[1440px] bg-[#fff]'>
       <Helmet>
         <title>Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys care</title>
         <meta name="description" content="Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys Care" />
