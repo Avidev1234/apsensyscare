@@ -5,11 +5,12 @@ include("gateway-config.php");
 use Razorpay\Api\Api;
 use Razorpay\Api\Errors\SignatureVerificationError;
 $user = json_decode(file_get_contents('php://input'));
+print_r($user);
+die;
 $razorpay_order_id = $user->res_order_id;
 $razorpay_payment_id = $user->razorpay_payment_id;
 $razorpay_signature = $user->razorpay_signature;
 $api = new Api($keyId, $keySecret);
-
 $success=true;
 try {
     // Please note that the razorpay order ID must

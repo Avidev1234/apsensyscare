@@ -13,7 +13,7 @@ const ProductCategory = () => {
     return (
         <>
             <div className='w-full flex flex-col mt-3'>
-                <div className='w-full flex h-[70px] text-center text-white text-bold bg-[#0112FE]'>
+                <div className='w-full flex h-[70px] text-center text-black text-bold bg-color'>
                     <h1 className='m-auto'>Taking Care of your self doesn’t have to feel like a Routine</h1>
                 </div>
                 <div className="flex flex-wrap justify-around content-center items-center py-20 gap-y-8 lg:gap-3">

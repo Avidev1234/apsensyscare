@@ -177,8 +177,8 @@ const Login = ({ handelLogin }) => {
 
     return (
         <LoginCont>
-            <div class="max-w-7xl bg-[#F5F5F5] mx-auto relative p-8 max-h-[100%] overflow-hidden">
-                <div class="absolute right-4 top-2 bg-red-500 w-8 h-8 rounded-full text-center text-xl text-white font-bold cursor-pointer" onClick={() => handelLogin(false)}>X</div>
+            <div class="max-w-7xl bg-[#F5F5F5] mx-auto relative p-8 max-h-[100%] overflow-hidden rounded-md">
+                <div class="absolute right-0 top-0 bg-red-500 w-8 h-8  text-center text-xl text-white font-bold cursor-pointer font-['system-ui']" onClick={() => handelLogin(false)}>X</div>
                 <img src="https://apsensyscare.com/aspensyscare.png" class="w-[80%] md:w-[40%] mb-10 mx-auto" alt="" />
                 {
                     showSignup ?

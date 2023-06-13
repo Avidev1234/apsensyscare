@@ -239,25 +239,25 @@ const ProductDetails = (product) => {
                 style={portal}
             />
             <div>
-                <Typography variant='h3' style={{ fontSize: '18px', fontWeight: '700', marginTop: '8px' }}>{product.products.name.replace(/-/g, ' ').toUpperCase()}</Typography>
-                <Typography variant='subtitle2' style={{ fontSize: '12px', fontWeight: '500', color: 'gray' }}>
-                    Product category:Skin care</Typography>
+                <h3 style={{ fontSize: '18px', fontWeight: '700', marginTop: '8px' }}>{product.products.name.replace(/-/g, ' ').toUpperCase()}</h3>
+                <p variant='subtitle2' style={{ fontSize: '12px', fontWeight: '500', color: 'gray' }}>
+                    Product category:Skin care</p>
             </div>
             <Rattingcont>
                 4<StarIcon style={{ fontSize: '12px' }} />
             </Rattingcont>
             <div>
-                <Typography variant='subtitle2' style={{ fontSize: '13px', fontWeight: '500', color: 'black' }}>
+                <p variant='subtitle2' style={{ fontSize: '13px', fontWeight: '500', color: 'black' }}>
                     {product.products.long_description}
-                </Typography>
+                </p>
             </div>
             <div>
-                <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '700', marginTop: '8px' }}>
+                <p variant='h3' style={{ fontSize: '20px', fontWeight: '700', marginTop: '8px' }}>
                     <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{currentSize.price}.00
-                    <Typography variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
+                    <p variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
                         Inclusive of all Taxes
-                    </Typography>
-                </Typography>
+                    </p>
+                </p>
             </div>
             <ButtomBox>
                 <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }} onClick={handleOpendilog}>{currentSize.size} ml</Button>
@@ -269,14 +269,14 @@ const ProductDetails = (product) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={stylemodal}>
-                    <Typography
+                    <p
                         id="modal-modal-title"
                         variant="h6"
                         component="h2"
                     >
                         Select a Size
-                    </Typography>
-                    <Typography
+                    </p>
+                    <p
                         id="modal-modal-description"
                         sx={{ mt: 2 }}
                     >
@@ -294,7 +294,7 @@ const ProductDetails = (product) => {
                                 </SizeButtom>
                             );
                         }) : null}
-                    </Typography>
+                    </p>
                 </Box>
             </Modal>
             <ButtomBox>

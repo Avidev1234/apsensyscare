@@ -51,3 +51,6 @@
     border-radius: 10px 0 0 10px !important;
 
 }
+.Gap .slick-list > .slick-track{
+    gap: 10px;
+}

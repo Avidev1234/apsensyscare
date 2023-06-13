@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <Homecont>
       <Homebox>
-        <VideoComponent/>
+        {/* <VideoComponent/> */}
         <ProductCategory/>
         <CategoryControler category={"Home"} />
         <CategoryControler category={"Body"} />

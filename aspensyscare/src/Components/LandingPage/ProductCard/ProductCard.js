@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../../../Store/Slices/cartSlice';
 
-const ProductCard = ({ val }) => {
+const ProductCard = ({ val, page }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -32,23 +32,25 @@ const ProductCard = ({ val }) => {
         dispatch(addToCart([productDetails, product.default_size]));
         navigate('/cart')
     }
-
     return (
-        <div className="py-1 max-w-full relative lg:min-w-[420px] lg:min-h-[217px]">
-            <div className="absolute top-3 right-3 group cursor-pointer z-10">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 group-hover:opacity-70 " fill="none"
-                    viewBox="0 0 24 24" stroke="#FF983B">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-            </div>
-            <div className="min-w-[81vw] max-w-[81vw] lg:min-w-[400px] lg:min-h-[217px] flex flex-row bg-white drop-shadow-md rounded-lg overflow-hidden  items-center cursor-pointer"
+        <div className="py-1 max-w-full relative lg:min-w-[420px] h-[210px] md:h-auto lg:min-h-[217px]">
+            {
+                page!=="Home"?
+                <div className="absolute top-3 right-3 group cursor-pointer z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 group-hover:opacity-70 " fill="none"
+                        viewBox="0 0 24 24" stroke="#FF983B">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>:null
+            }
+            <div className="min-w-[81vw] max-w-[81vw] lg:min-w-[400px] h-[210px] md:h-auto lg:min-h-[217px] flex flex-row bg-white drop-shadow-md rounded-lg overflow-hidden  items-center cursor-pointer"
                 onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`, { state: { product: val } })}
             >
                 <div className="w-full md:w-1/3 flex justify-center mt-8 md:m-0">
                     <div className="bg-blue-200 w-28 md:w-[7rem] h-28 md:h-[7rem] rounded-full relative border-b-[4px] ">
                         <img src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`}
-                            className="h-28 md:h-[7rem] w-[7rem] object-contain absolute bottom-[20px]" alt="" />
+                            className="h-28 md:h-[8rem] w-[8rem] object-contain absolute bottom-[10px]" alt="" />
                     </div>
                 </div>
                 <div className="w-full md:w-2/3 p-2 md:p-3">
@@ -71,7 +73,7 @@ const ProductCard = ({ val }) => {
                 </div>
 
             </div>
-            <button className=" rounded w-[155] md:w-[255px] absolute bottom-3 right-3 px-3 py-2 bg-[#FF983B] w-full text-white text-[12px] font-semibold hover:bg-green-600 mt-4"
+            <button className=" rounded w-[155px] md:w-[255px] absolute bottom-0 md:bottom-3 right-3 px-3 py-2 bg-[#FF983B] w-full text-white text-[12px] font-semibold hover:bg-green-600 mt-4"
                 onClick={() => handleCart(val)}
             >Add to Card</button>
         </div>

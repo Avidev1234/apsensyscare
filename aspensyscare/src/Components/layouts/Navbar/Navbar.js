@@ -85,7 +85,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: '35ch',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '85ch',
+      width: '70ch',
     },
     borderRadius: '16px',
     '&::placeholder': {
@@ -354,14 +354,13 @@ function Navbar(props) {
                     <div className="MuiBox-root css-dxza1q">
                       <AvtarIcon style={{ color: '#0112fe' }}>
                         <IconButton
-                          style={{ fontSize: '60px !important' }}
+                          style={{ fontSize: '70px !important' }}
                           aria-label="account of current user"
                           aria-controls="menu-appbar"
                           aria-haspopup="true"
                           onClick={handleMenu}
-
                         >
-                          <AccountCircle style={{ color: '#0112fe' }} />
+                          <AccountCircle style={{fontSize:'37px', color: '#0112fe' }} />
                         </IconButton>
                         {/* Account */}
                       </AvtarIcon>
@@ -369,12 +368,12 @@ function Navbar(props) {
                         id="menu-appbar"
                         anchorEl={anchorEl}
                         anchorOrigin={{
-                          vertical: 'top',
+                          vertical: 'bottom',
                           horizontal: 'right',
                         }}
                         keepMounted
                         transformOrigin={{
-                          vertical: 'top',
+                          vertical: 'bottom',
                           horizontal: 'right',
                         }}
                         open={Boolean(anchorEl)}

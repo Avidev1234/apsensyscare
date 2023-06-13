@@ -24,14 +24,14 @@ const CategoryControler = ({category}) => {
             <div className='w-full text-center'>
                 <p className='text-[24px] font-bold my-4'>Top sellers from {category} Care</p>
             </div>
-            <div className='w-full flex flex-col lg:flex-row'>
-                <div className='w-full lg:w-[63%] xl:w-[70%] flex flex-row flex-wrap gap-x-8 gap-y-0  justify-start items-center content-start  '>
+            <div className='w-full flex flex-col lg:flex-row gap-y-[25px] md:gap-y-0'>
+                <div className='w-full lg:w-[63%] xl:w-[70%] flex flex-row flex-wrap gap-x-8 gap-y-[25px] lg:gap-y-0 justify-center md:justify-start items-center content-start  '>
                     {!Products.loading && Products.products.product !== undefined ? (
                         product.map((val, i) => {
                             if (val.category_id === cat && temp <= 6) {
                                 temp++;
                                 return (
-                                    <ProductCard val={val}/>
+                                    <ProductCard val={val} page={"Home"}/>
                                 )
                             }
                             return null;
@@ -39,7 +39,7 @@ const CategoryControler = ({category}) => {
                     ) : null}
                 </div>
                 <div className='w-full md:w-[30%] flex flex-col  gap-x-8 gap-y-0  justify-start items-center px-6 mt-1'>
-                    <ProductBanner category={category}/>
+                    <ProductBanner cat={category}/>
                 </div>
             </div>
         </div>

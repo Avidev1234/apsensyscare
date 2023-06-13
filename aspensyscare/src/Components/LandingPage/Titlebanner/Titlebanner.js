@@ -59,16 +59,15 @@ const Titlebanner = ({ category }) => {
 
     const itemIndex = banner !== undefined ? banner.findIndex((item) => item.category === category) : null;
     const bannerImages = banner !== undefined && itemIndex !== null ? banner[itemIndex].banner_image : null
-    console.log(bannerImages);
     const bannerImage = bannerImages !== null && bannerImages.split("@@@")
     return (
         <div>
-            <div className="flex flex-row items-center w-full h-[180px] md:h-[400px] xl:h-[470px]">
-                <div className="flex flex-col justify-center items-center w-[40%] md:w-2/5 xl:w-1/3 bg-[#BEE7FF] h-full px-0 md:px-10">
+            <div className="flex flex-row items-center w-full h-[180px] md:h-[400px] xl:h-[470px] text-white">
+                <div className="flex flex-col justify-center items-center w-[40%] md:w-2/5 xl:w-1/3 bg-[#5EABE3] h-full px-0 md:px-10">
                     <h1 className="text-[14px] md:text-[30px] font-bold">{category} Care</h1>
                     <p className="text-[10px] md:text-[20px] text-center">{content}</p>
                 </div>
-                <div className="w-[60%] md:w-3/5 xl:w-2/3 h-full">
+                <div className="w-[60%] md:w-3/5 xl:w-2/3 h-auto">
                     <Slider className="center"
                         prevArrow={<PreviousBtn />}
                         nextArrow={<NextBtn />}

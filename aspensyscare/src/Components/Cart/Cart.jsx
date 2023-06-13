@@ -186,7 +186,7 @@ const Cart = (props) => {
     } else if (orderType === 'online') {
       CreateOrder(amount).then((res) => {
         console.log(res)
-        const res_order_id = "";
+        const res_order_id = res.replace(/^\s+|\s+$/gm,'');
         var options = {
           "key": "rzp_test_dt0Vsxsmad0Ry3", // Enter the Key ID generated from the Dashboard
           "amount": `${amount*100}`, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -214,8 +214,8 @@ const Cart = (props) => {
             }
             CreateSigneture(signeture).then((resp)=>{
               console.log(resp)
+              localStorage.setItem("cartItems", []);
             }) 
-              
           },
           "notes": {
             "address": "Razorpay Corporate Office"
@@ -446,7 +446,6 @@ const Cart = (props) => {
                             variant="contained"
                             style={{ backgroundColor: "green" }}
                           >
-
                             {cartItem.itemSize}ml
                           </SizeButtom>
                         </div>

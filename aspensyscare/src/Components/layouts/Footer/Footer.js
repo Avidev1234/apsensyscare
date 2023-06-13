@@ -25,8 +25,8 @@ const Footer = () => {
         }
     }
     return (
-        <div className='w-full flex flex-wrap justify-center flex-col p-5 bg-[#0112FE]'>
-            <div className='w-full flex flex-wrap justify-center flex-col lg:flex-row p-5 bg-[#0112FE]'>
+        <div className='w-full flex flex-wrap justify-center flex-col p-5 bg-[#5EABE3]'>
+            <div className='w-full flex flex-wrap justify-center flex-col lg:flex-row p-5 bg-[#5EABE3]'>
                 <div className='w-full lg:w-[30%] flex flex-nowrap flex-col'>
                     <div className=' w-[50%]'>
                         <img className='cursor-pointer' src={`${process.env.REACT_APP_URL}apsensyscare-white.png`} alt='apsensyscare logo' onClick={() => Redirect('home')} />
@@ -38,21 +38,21 @@ const Footer = () => {
                             have to feel like a Routin
                         </p>
                     </div>
-                    <div className='w-full flex flex-row flex-nowrap justify-start gap-5 items-center px-5'>
+                    <div className='w-full flex flex-row flex-nowrap justify-start gap-[10px] items-center px-5'>
                         <a href='https://www.facebook.com/apsensyscare/' target='_blank' rel="noreferrer">
-                            <img className='w-[50px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/facebook-white.png`} alt="" />
+                            <img className='w-[40px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/facebook-white.png`} alt="" />
                         </a>
                         <a href='https://www.youtube.com/@apsensyscare' target='_blank' rel="noreferrer">
-                            <img className='w-[50px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/youtube-white.png`} alt="" />
+                            <img className='w-[40px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/youtube-white.png`} alt="" />
                         </a>
                         <a href='https://www.instagram.com/apsensyscaresolution/' target='_blank' rel="noreferrer">
-                            <img className='w-[50px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/insta-white.png`} alt="" />
+                            <img className='w-[40px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/insta-white.png`} alt="" />
                         </a>
                         <a href='https://www.linkedin.com/company/apsensyscare/' target='_blank' rel="noreferrer">
-                            <img className='w-[50px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/linkedin-white.png`} alt="" />
+                            <img className='w-[40px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/linkedin-white.png`} alt="" />
                         </a>
                         <a href='https://twitter.com/ApsensysCare' target='_blank' rel="noreferrer">
-                            <img className='w-[50px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/twitter-white.png`} alt="" />
+                            <img className='w-[40px] cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/twitter-white.png`} alt="" />
                         </a>
                     </div>
                 </div>
@@ -137,7 +137,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className='w-full text-center mt-4'>
-                <p className='font-[400] leading-[25px] text-[14px] text-[#fff] py-1'>© 2023-2024 <a href='https://apsensyscare.com/' className='text-white underline'>Apsensys care</a>. All Rights Reserved</p>
+                <p className='font-[400] leading-[25px] text-[14px] text-[#fff] py-1'>© 2023-2024 <a href='https://apsensyscare.com/' className='text-white hover:text-[#E34343]'>Apsensys Care Solution</a>. All Rights Reserved</p>
             </div>
         </div>
     )
