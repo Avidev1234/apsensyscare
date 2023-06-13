@@ -15,6 +15,26 @@
     .css-zu82rx{
         padding: 20px !important;
     }
+    .css-ljhgqg {
+        flex-direction: column-reverse !important;
+    }
+    .css-ljhgqg, .css-1w9qkf9, .css-1g1b0dg, .css-j74sn1, .css-j74sn1 {
+        width: 100% !important;
+    }
+
+    .css-1sra7t5-MuiTypography-root{
+        font-size: 12px !important;
+    }
+    .css-f5coid {
+        width: auto !important;
+    }
+    .css-f5coid h2 {
+        font-size: 1.5rem !important;
+    }
+    .css-13k812k {
+        padding: 0 !important;
+    }
+
 }
 
 .formAlign {
@@ -24,9 +44,7 @@
     margin-bottom: 20px;
     margin-bottom: 20px;
 }
-.slick-slide > div{
-    margin: 0 !important;
-}
+
 .slick-prev{
     left: 0px !important;
     z-index: 1 !important;
@@ -51,3 +69,4 @@
     border-radius: 10px 0 0 10px !important;
 
 }
+

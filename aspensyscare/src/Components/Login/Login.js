@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SignupUser, fetchUsers } from '../../Api/Api';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import TextField from "@mui/material/TextField";
+import FormHelperText from "@mui/material/FormHelperText";
 
 const LoginCont = styled('div')`
   width: 100%;
@@ -63,6 +65,13 @@ const Signup = ({ openSignup }) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+
+    const scrollToTop = () =>{
+        window.scrollTo({
+          top: 0, 
+          behavior: 'smooth'
+        });
+      };
     return (
         <Formik
             initialValues={{
@@ -79,40 +88,113 @@ const Signup = ({ openSignup }) => {
         >
 
             {({ errors, touched }) => (
-                <Form class="scroolbar max-w-[97%] md:max-w-[90%] md:max-w-4xl mx-auto flex  h-[500px] md:[700px]  overflow-y-scroll  flex-col p-2">
+                <Form class="scroolbar max-w-[97% md:max-w-4xl mx-auto flex  h-[500px] md:[700px]  overflow-y-scroll  flex-col p-2">
                     <div class=" mx-auto flex  justify-center flex-col ">
                         <h2 class="font-semibold text-3xl mb-5">Create account</h2>
-                        <label for="email" class="text-xl mb-1">Your Email</label>
-                        <Field
-                            class="p-5 text-xl mb-8 rounded"
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                        />
-                        {errors.email && touched.email ? (
-                            <div>{errors.email}</div>
-                        ) : null}
-                        <label for="email" class="text-xl mb-1">Enter Mobile Number</label>
-                        <Field
-                            class="p-5 text-xl mb-8 rounded"
-                            name="phone"
-                            type="number"
-                            placeholder="Phone"
-                        />
-                        {errors.phone && touched.phone ? (
-                            <div>{errors.phone}</div>
-                        ) : null}
-                        <label for="email" class="text-xl mb-1">Password</label>
-                        <Field
-                            class="rounded p-5 text-xl mb-8"
-                            name="password"
-                            type={"text"}
-                            placeholder="Password"
-                        />
-                        <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care
-                            <a class="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
+
+                        <div className='mb-5'>
+                            {errors.email && touched.email ? (
+                                <Field
+                                    as={TextField}
+                                    label="Email"
+                                    id="outlined-basic"
+                                    multiline
+                                    maxRows={1}
+                                    variant="outlined"
+                                    fullWidth 
+                                    name="email"
+                                    error
+                                />
+                            ) : (
+                                <Field
+                                    as={TextField}
+                                    label="Email"
+                                    id="outlined-basic"
+                                    multiline
+                                    maxRows={1}
+                                    variant="outlined"
+                                    fullWidth 
+                                    name="email"
+                                    color="success"
+                                />
+                            )}
+                            {errors.email && touched.email ? (
+                                <FormHelperText sx={{ color: "red", m: 1 }}>
+                                    {errors.email}
+                                </FormHelperText>
+                            ) : null}
+                        </div>
+
+                        
+                        <div className='mb-5'>
+                            {errors.phone && touched.phone ? (
+                                <Field
+                                    as={TextField}
+                                    label="Phone"
+                                    id="outlined-basic"
+                                    multiline
+                                    maxRows={1}
+                                    variant="outlined"
+                                    fullWidth 
+                                    name="phone"
+                                    error
+                                />
+                            ) : (
+                                <Field
+                                    as={TextField}
+                                    label="Phone"
+                                    id="outlined-basic"
+                                    multiline
+                                    maxRows={1}
+                                    variant="outlined"
+                                    fullWidth 
+                                    name="phone"
+                                    color="success"
+                                />
+                            )}
+                            {errors.phone && touched.phone ? (
+                                <FormHelperText sx={{ color: "red", m: 1 }}>
+                                    {errors.phone}
+                                </FormHelperText>
+                            ) : null}
+                        </div>
+
+                        <div className='mb-5'>
+                            {errors.password && touched.password ? (
+                                <Field
+                                    as={TextField}
+                                    label="Password"
+                                    id="outlined-basic"
+                                    multiline
+                                    maxRows={1}
+                                    variant="outlined"
+                                    fullWidth 
+                                    name="password"
+                                    error
+                                />
+                            ) : (
+                                <Field
+                                    as={TextField}
+                                    label="Password"
+                                    id="outlined-basic"
+                                    multiline
+                                    maxRows={1}
+                                    variant="outlined"
+                                    fullWidth 
+                                    name="password"
+                                    color="success"
+                                />
+                            )}
+                            {errors.password && touched.password ? (
+                                <FormHelperText sx={{ color: "red", m: 1 }}>
+                                    {errors.password}
+                                </FormHelperText>
+                            ) : null}
+                        </div>
+                        <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care&nbsp;
+                            <a class="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and &nbsp;
                             <a class="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
-                        <button type='submit' class="border-2 border-[#0112FE] px-[50px] py-5 bg-[#0112FE] text-white mx-auto font-bold text-xl hover:bg-white hover:text-[#0112FE]">Sign Up</button>
+                        <button type='submit' onClick={scrollToTop} class="border-2 border-[#0112FE] px-[50px] py-5 bg-[#0112FE] text-white mx-auto font-bold text-xl hover:bg-white hover:text-[#0112FE]">Sign Up</button>
                         <hr class="border-b my-10" />
                         <p class="text-xl">Apsensys Care User?</p>
                         <div class="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(true)}>Login your Apsensys Care account</div>
@@ -195,27 +277,75 @@ const Login = ({ handelLogin }) => {
                                     handelLoginuser(values)
                                 }}
                             >{({ errors, touched }) => (
-                                <Form className='scroolbar max-w-[97%] md:max-w-[90%] md:max-w-4xl mx-auto flex h-[500px] md:[700px] overflow-y-scroll  flex-col p-2'>
+                                <Form className='scroolbar max-w-[97%] md:max-w-[90%] mx-auto flex h-[500px] md:[700px] overflow-y-scroll  flex-col p-2'>
                                     <div class=" mx-auto flex  justify-center flex-col  ">
                                         <h2 class="font-semibold text-3xl mb-5">Sign in</h2>
+                                        <div className='mb-5'>
+                                            {errors.phone && touched.phone ? (
+                                                <Field
+                                                    as={TextField}
+                                                    label="Phone Number"
+                                                    id="outlined-basic"
+                                                    multiline
+                                                    maxRows={1}
+                                                    variant="outlined"
+                                                    fullWidth 
+                                                    name="phone"
+                                                    error
+                                                />
+                                            ) : (
+                                                <Field
+                                                    as={TextField}
+                                                    label="Phone Number"
+                                                    id="outlined-basic"
+                                                    multiline
+                                                    maxRows={1}
+                                                    variant="outlined"
+                                                    fullWidth 
+                                                    name="phone"
+                                                    color="success"
+                                                />
+                                            )}
+                                            {errors.phone && touched.phone ? (
+                                                <FormHelperText sx={{ color: "red", m: 1 }}>
+                                                    {errors.phone}
+                                                </FormHelperText>
+                                            ) : null}
+                                        </div>
 
-                                        <label for="email" class="text-xl mb-1">Enter Email or Mobile Number</label>
-                                        <Field class="p-5 text-xl rounded"
-                                            name="phone"
-                                            type="text"
-                                            placeholder="Phone"
-                                        />
-                                        {errors.phone && touched.phone ? (
-                                            <p className="text-blue">{errors.phone}</p>
-                                        ) : null}
-                                        <label for="email" class="text-xl mb-1">Enter Password</label>
-                                        <Field class="p-5 text-xl rounded"
-                                            name="password"
-                                            type={"password"}
-                                            placeholder="Password"
-                                        />{errors.password && touched.password ? (
-                                            <div>{errors.password}</div>
-                                        ) : null}
+                                        <div>
+                                            {errors.password && touched.password ? (
+                                                <Field
+                                                    as={TextField}
+                                                    label="Password"
+                                                    id="outlined-basic"
+                                                    multiline
+                                                    maxRows={1}
+                                                    variant="outlined"
+                                                    fullWidth 
+                                                    name="password"
+                                                    error
+                                                />
+                                            ) : (
+                                                <Field
+                                                    as={TextField}
+                                                    label="Password"
+                                                    id="outlined-basic"
+                                                    multiline
+                                                    maxRows={1}
+                                                    variant="outlined"
+                                                    fullWidth 
+                                                    name="password"
+                                                    color="success"
+                                                />
+                                            )}
+                                            {errors.password && touched.password ? (
+                                                <FormHelperText sx={{ color: "red", m: 1 }}>
+                                                    {errors.password}
+                                                </FormHelperText>
+                                            ) : null}
+                                        </div>
+
                                         <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care
                                             <a class="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
                                             <a class="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
