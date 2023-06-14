@@ -25,12 +25,14 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import AddAddressModal from "./AddAddressModal";
 import {
   addToCart,
+  clearCart,
   decreaseCart,
   getTotals,
   removeFromCart,
 } from "../../Store/Slices/cartSlice";
 import { toast } from "react-toastify";
 import { CreateOrder, CreateSigneture } from "../../Api/Api";
+import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 const stylemodal = {
@@ -119,11 +121,9 @@ const Cart = (props) => {
   const address = addressess.address.address;
   const userdetails = useSelector((state) => state.users);
   const user = userdetails.users.details;
-  console.log(user)
   const userName=user !== undefined ? user[0].f_name +" "+ user[0].l_name : ""
   const userPhone=user !== undefined ? user[0].phone_number : ""
   const userEmail=user !== undefined ? user[0].email_address : ""
-  console.log();
   const handleOpen = (panel) => (event, isExpanded) => {
     // console.log(panel)
     // console.log(isExpanded)
@@ -178,7 +178,7 @@ const Cart = (props) => {
     console.log(e.target.value);
   };
   // payment start
-
+  const navigate = useNavigate();
   const handelOrder = async (amount) => {
      console.log("hello ia m payment",amount);
     if (orderType === 'case') {
@@ -214,7 +214,8 @@ const Cart = (props) => {
             }
             CreateSigneture(signeture).then((resp)=>{
               console.log(resp)
-              localStorage.setItem("cartItems", []);
+              navigate('/thankyou', { state: { id:true} })
+              dispatch(clearCart())
             }) 
           },
           "notes": {

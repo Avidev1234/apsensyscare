@@ -31,10 +31,10 @@ const ProductDetailsBox = styled(Box)`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items:  flex-start;
     gap:60px;
-    @media (max-width: 768px) {
+    @media (max-width: 450px) {
     flex-direction:column;
     gap:0px;
 };
@@ -46,6 +46,10 @@ height:100%;
   width:100%;
   padding:10px;
 }
+@media (max-width:450px){
+  width:44%;
+  padding:10px;
+}
 `
 const Partationcont_sec = styled(Box)`
  width:100%;
@@ -54,7 +58,7 @@ const Partationcont_sec = styled(Box)`
 const Product = () => {
   const [magnified, setMagnified] = useState(false)
   const value = useLocation();
-  console.log("inside product details",value.state)
+  console.log("inside product details", value.state)
   const imagemagnify = (text) => {
     setMagnified(text);
   }
@@ -72,16 +76,16 @@ const Product = () => {
   sessionStorage.setItem("initialized", true);
 
 
-  
+
   return (
     <ProductCont>
       <ProductDetailsBox>
-        <Partationcont>
+        <div className='w-full md:w-[44%] '>
           <ProductCarousel id={value.state.product.id} imagemagnify={imagemagnify} />
-        </Partationcont>
-        <Partationcont>
+        </div>
+        <div className='w-full md:w-[44%] '>
           <ProductDetails products={value.state.product} magnified={magnified} />
-        </Partationcont>
+        </div>
       </ProductDetailsBox>
       <ProductDetailsBox>
         <Ratingpage />

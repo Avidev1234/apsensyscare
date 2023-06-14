@@ -33,7 +33,7 @@ const ProductCard = ({ val, page }) => {
         navigate('/cart')
     }
     return (
-        <div className="py-1 max-w-full relative lg:min-w-[420px] h-[210px] md:h-auto lg:min-h-[217px]">
+        <div className="py-1 max-w-full min-w-full  relative lg:min-w-[420px] h-[210px] md:h-auto lg:min-h-[217px] bg-white">
             {
                 page!=="Home"?
                 <div className="absolute top-3 right-3 group cursor-pointer z-10">
@@ -44,16 +44,16 @@ const ProductCard = ({ val, page }) => {
                     </svg>
                 </div>:null
             }
-            <div className="min-w-[81vw] max-w-[81vw] lg:min-w-[400px] h-[210px] md:h-auto lg:min-h-[217px] flex flex-row bg-white drop-shadow-md rounded-lg overflow-hidden  items-center cursor-pointer"
+            <div className="min-w-[81vw] md:min-w-[44vw] max-w-[92vw] lg:min-w-[400px] h-[210px] lg:h-auto lg:min-h-[217px] flex flex-row bg-white drop-shadow-md rounded-lg overflow-hidden  items-center cursor-pointer"
                 onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`, { state: { product: val } })}
             >
-                <div className="w-full md:w-1/3 flex justify-center mt-8 md:m-0">
-                    <div className="bg-blue-200 w-28 md:w-[7rem] h-28 md:h-[7rem] rounded-full relative border-b-[4px] ">
+                <div className="w-[35%] md:w-1/3 flex justify-center mt-8 md:m-0">
+                    <div className="bg-blue-200 w-24 md:w-[7rem] h-24 md:h-[7rem] rounded-full relative border-b-[4px] ">
                         <img src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`}
                             className="h-28 md:h-[8rem] w-[8rem] object-contain absolute bottom-[10px]" alt="" />
                     </div>
                 </div>
-                <div className="w-full md:w-2/3 p-2 md:p-3">
+                <div className="w-[63%] md:w-2/3 p-2 md:p-3">
                     <h2 className="text-gray-900 font-bold text-base uppercase">{val.brand_name}</h2>
                     <p className="text-gray-600 text-sm md:text-base">{val.name}</p>
                     <h2 className="text-gray-700 font-bold text-base my-2">₹ {val.default_price}<span className='ml-[5px] text-[12px] text-gray-600'>({val.default_size})ml</span></h2>
@@ -73,7 +73,7 @@ const ProductCard = ({ val, page }) => {
                 </div>
 
             </div>
-            <button className=" rounded w-[155px] md:w-[255px] absolute bottom-0 md:bottom-3 right-3 px-3 py-2 bg-[#FF983B] w-full text-white text-[12px] font-semibold hover:bg-green-600 mt-4"
+            <button className=" rounded w-[155px] md:w-[202px] lg:w-[255px] absolute bottom-0 md:bottom-3 right-3 px-3 py-2 bg-[#FF983B] text-white text-[12px] font-semibold hover:bg-green-600 mt-4"
                 onClick={() => handleCart(val)}
             >Add to Card</button>
         </div>

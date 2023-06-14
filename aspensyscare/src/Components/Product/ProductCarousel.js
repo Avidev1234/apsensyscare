@@ -3,7 +3,7 @@ import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import Slider from 'react-slick'
- import "./Carousel.css";
+import "./Carousel.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactImageMagnify from 'react-image-magnify';
@@ -17,22 +17,8 @@ const BoxCont = styled(Box)`
     margin-bottom:0px;
 }
 `
-// var data = [
-//   './Image/all_products/carousel-230-460/floor-cleaner-floral-500ml-2.png',
-//   './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-2.png'
-//   , './Image/all_products/carousel-230-460/bodywash-aloevera-with-neem-3.png'
-// ]
-// var data1=[
-//   './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-4.png',
-//   './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-5.png'
-//   , './Image/all_products/carousel-100-100/bodywash-aloevera-with-neem-6.png'
-// ]
-// var data2=[
-//   './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-1.png',
-//   './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-2.png'
-//   , './Image/all_products/carousel-1200-1800/bodywash-firangi-pani-glycerine-3.png'
-// ]
-const ProductCarousel = ({imagemagnify,id}) => {
+
+const ProductCarousel = ({ imagemagnify, id }) => {
   //console.log(id)
   const [nav1, Setnav1] = useState();
   const [nav2, Setnav2] = useState();
@@ -60,22 +46,29 @@ const ProductCarousel = ({imagemagnify,id}) => {
   // console.log(ProductImage) boxShadow:'0 3px 10px rgb(0 0 0 / 0.2)',
 
   const allimage = useSelector((state) => state.imagemagnify);
-  const {images}=allimage.images;
-  let data=images!==undefined ? images[0].image_230.split('@@@'):[];
-  let data1=images!==undefined ? images[0].image_100.split('@@@'):[];
-  let data2=images!==undefined ? images[0].image_1200.split('@@@'):[];
+  const { images } = allimage.images;
+  let data = images !== undefined ? images[0].image_230.split('@@@') : [];
+  let data1 = images !== undefined ? images[0].image_100.split('@@@') : [];
+  let data2 = images !== undefined ? images[0].image_1200.split('@@@') : [];
   //console.log(images)
   return (
     <BoxCont>
-      <Box style={{marginBottom: '15px',backgroundColor:'#D4EBF5',borderRadius:'20px'}}>
+      <Box style={{ marginBottom: '15px', backgroundColor: '#D4EBF5', borderRadius: '20px' }} className="relative">
+        <div className="absolute top-3 right-3 group cursor-pointer z-10">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 group-hover:opacity-70 " fill="none"
+            viewBox="0 0 24 24" stroke="#fff">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
         <Slider
           asNavFor={nav2}
           ref={slider => (Setnav1(slider))}
           arrows={false}
         >
-          {data.map((item,idx) => (
-            <Box style={{ width: 'auto', height: '450px'}} onMouseEnter={() => imagemagnify(true)}
-            onMouseLeave={() => imagemagnify(false)} key={idx.toString()}>
+          {data.map((item, idx) => (
+            <Box style={{ width: 'auto', height: '450px' }} onMouseEnter={() => imagemagnify(true)}
+              onMouseLeave={() => imagemagnify(false)} key={idx.toString()}>
               <ReactImageMagnify {...{
                 smallImage: {
                   alt: 'Wristwatch by Ted Baker London',
@@ -100,7 +93,7 @@ const ProductCarousel = ({imagemagnify,id}) => {
               />
             </Box>
           ))}
-          
+
         </Slider>
       </Box>
 
@@ -115,9 +108,9 @@ const ProductCarousel = ({imagemagnify,id}) => {
         dotsClass="slick-dots custom-indicator"
         className="Gap"
       >
-        {data1.map((item,idx) => (
+        {data1.map((item, idx) => (
           <div style={{ width: "100%", height: "10%", margin: "20px" }} key={idx.toString()}>
-            <img src={`${process.env.REACT_APP_URL}/Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer',margin:'auto',padding:'10px' }} />
+            <img src={`${process.env.REACT_APP_URL}/Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer', margin: 'auto', padding: '10px', minHeight: '65px' }} />
           </div>
         ))}
       </Slider>
