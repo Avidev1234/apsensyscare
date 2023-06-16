@@ -2,8 +2,9 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../../../Store/Slices/cartSlice';
+import { removeFromWishlist } from '../../../Store/Slices/getwishlist';
 
-const ProductCard = ({ val, page }) => {
+const ProductCard = ({ val, page ,checked}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -24,25 +25,44 @@ const ProductCard = ({ val, page }) => {
     //     itemsize = size !== undefined ? size[sizeindex]['size_value'] : null;
     // }
 
-
     // handling cart
 
     const handleCart = (product) => {
-        const productDetails = Object.assign({ price: product.default_price }, product);
-        dispatch(addToCart([productDetails, product.default_size]));
-        navigate('/cart')
+        // destructure all data
+        
+        // get the all details belongs to product Id from product entry tables
+        const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.id) : [];
+        let itemsize = '';
+        const Productvariants = [];
+        //console.log(itemIndex);
+        if (itemIndex.length !== 0 && details !== undefined && size !== undefined) {
+            itemIndex.map((item, idx) => {
+                const index = size.filter((items) => items.id === item.size_id)
+                const values = {
+                    "price": item.price,
+                    "size": index[0]['size_value']
+                }
+                Productvariants.push(values)
+            })
+            const productDetails = Object.assign({ price: product.default_price }, product);
+            dispatch(addToCart([productDetails, product.default_size,Productvariants]));
+            navigate('/cart')
+        }
+    }
+    const removeWishlist=(id)=>{
+        dispatch(removeFromWishlist(id))
     }
     return (
         <div className="py-1 max-w-full min-w-full  relative lg:min-w-[420px] h-[210px] md:h-auto lg:min-h-[217px] bg-white">
             {
-                page!=="Home"?
-                <div className="absolute top-3 right-3 group cursor-pointer z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 group-hover:opacity-70 " fill="none"
-                        viewBox="0 0 24 24" stroke="#FF983B">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                </div>:null
+                page !== "Home" ?
+                    <div className="absolute top-3 right-3 group cursor-pointer z-10" onClick={()=>{removeWishlist(val.id)}}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 group-hover:opacity-70 " fill={checked===true?'#FF983B':"none"}
+                            viewBox="0 0 24 24" stroke="#FF983B">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div> : null
             }
             <div className="min-w-[81vw] md:min-w-[44vw] max-w-[92vw] lg:min-w-[400px] h-[210px] lg:h-auto lg:min-h-[217px] flex flex-row bg-white drop-shadow-md rounded-lg overflow-hidden  items-center cursor-pointer"
                 onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`, { state: { product: val } })}
@@ -67,7 +87,7 @@ const ProductCard = ({ val, page }) => {
                                 </path>
                             </svg>
                         </div>
-                        <p className="font-semibold text-gray-400 text-xs ml-1 md:ml-3">(45556)</p>
+                        <p className="font-semibold text-gray-400 text-xs ml-1 md:ml-3">(0)</p>
                     </div>
 
                 </div>

@@ -1,76 +1,62 @@
-import styled from '@emotion/styled'
-import { Typography } from '@mui/material'
-import { Box, style } from '@mui/system'
-import React, { useEffect } from 'react'
-import CarouselCard from '../LandingPage/Carousel/CarouselCard'
+import React, { useEffect, useState } from 'react'
+import ProductCard from '../LandingPage/ProductCard/ProductCard'
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
-const WishlistConst=styled(Box)`
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin-top:10px;
-`
-const CategoryItems = styled(Box)`
-width:70%;
-display:flex;
-flex-direction:row;
-flex-wrap:wrap;
-padding:10px;
-gap:20px;
-margin:10px;
-`
-const val = {
-    name: '1',
-    color:'#e293dbde'
-}
-const Wishlist = () => {
+const ProductByCategory = () => {
     useEffect(() => {
-    // 👇️ scroll to top on page load
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }, []);
-  return (
-    <WishlistConst>
-    <Typography variant='h2' style={{fontSize:'22px',fontWeight:600}}>Your wishlist</Typography>
-        <CategoryItems>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                    <Box style={{ width: '200px' }}>
-                        <CarouselCard val={val} />
-                    </Box>
-                </CategoryItems>
-    </WishlistConst>
-  )
+        // 👇️ scroll to top on page load
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, []);
+
+    // fatching wishlist product id from wishlist sclice
+    const Wishlist = useSelector((state) => state.wishlist);
+    const { wishlist } = Wishlist;
+    // fatching products regarding category id
+    const Products = useSelector((state) => state.product);
+    const { product } = Products.products;
+    console.log((wishlist));
+    const length = wishlist !== undefined ? wishlist.length : 0
+    let temp = 0;
+    console.log(length)
+
+    const wishListArray = []
+
+    wishlist !== undefined && Products.products.product !== undefined &&
+        wishlist.map((items) => {
+            product.map((val) => {
+                if (items.productId === val.id)
+                    wishListArray.push(val)
+            })
+        })
+    console.log(wishListArray)
+
+    return (
+        <div className='w-full flex flex-col flex-wrap min-h-[100vh] content-start	justify-start p-5'>
+            <Helmet>
+                <title>{ }</title>
+                <meta name="description" content={""} />
+            </Helmet>
+            <div className='w-full border-2 rounded p-3 font-bold'>
+                <h1 className='text-bold text-xl'>Wishlist</h1>
+            </div>
+
+            <div className='w-full flex flex-row flex-wrap content-start justify-start p-5 gap-4'>
+                {!wishListArray.length !== length ? (
+                    wishListArray.map((val, i) => {
+                        return (
+                            <ProductCard val={val} checked={true} />
+                        )
+                    })
+                ) :
+                    <div style={{ width: '100%', height: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <p variant='h1' style={{ fontSize: '20px', fontWeight: '600', color: 'red' }}>No Products.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    )
 }
 
-export default Wishlist
+export default ProductByCategory

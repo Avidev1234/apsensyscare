@@ -62,5 +62,11 @@ else if($uri==='/createOrder'){
 }else if($uri==='/login_push_user'){
     include('./sitepackages/inbuilt/pages/pushUser.php');
     die;
+}else if($uri==='/addwishlist'){
+    include('./sitepackages/inbuilt/pages/AddwishList.php');
+    die;
+}else if($uri==='/getuserwishlist'){
+    include('./sitepackages/inbuilt/pages/Getuserwishlist.php');
+    die;
 }
 ?>

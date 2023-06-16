@@ -29,10 +29,12 @@ import {
   decreaseCart,
   getTotals,
   removeFromCart,
+  updateCart,
 } from "../../Store/Slices/cartSlice";
 import { toast } from "react-toastify";
-import { CreateOrder, CreateSigneture } from "../../Api/Api";
+import { AddWishlist, CreateOrder, CreateSigneture } from "../../Api/Api";
 import { useNavigate } from "react-router-dom";
+import { addToWishlist } from "../../Store/Slices/getwishlist";
 // import { useLocation } from "react-router-dom";
 
 const stylemodal = {
@@ -111,9 +113,6 @@ const Cart = (props) => {
   const [expandedAddress, setExpandedAddress] = useState();
   const [expandedPay, setExpandedPay] = useState();
 
-  const [openmod, setOpen] = React.useState(false);
-  const handleOpendilog = () => setOpen(true);
-  const handleClosedilog = () => setOpen(false);
 
   const sizes = useSelector((state) => state.size);
   const size = sizes.sizes.size;
@@ -121,9 +120,9 @@ const Cart = (props) => {
   const address = addressess.address.address;
   const userdetails = useSelector((state) => state.users);
   const user = userdetails.users.details;
-  const userName=user !== undefined ? user[0].f_name +" "+ user[0].l_name : ""
-  const userPhone=user !== undefined ? user[0].phone_number : ""
-  const userEmail=user !== undefined ? user[0].email_address : ""
+  const userName = user !== undefined ? user[0].f_name + " " + user[0].l_name : ""
+  const userPhone = user !== undefined ? user[0].phone_number : ""
+  const userEmail = user !== undefined ? user[0].email_address : ""
   const handleOpen = (panel) => (event, isExpanded) => {
     // console.log(panel)
     // console.log(isExpanded)
@@ -173,6 +172,7 @@ const Cart = (props) => {
     setOrderType(event.target.value);
     setError(false);
   };
+
   console.log("i am radio :- ", orderType)
   const takeValue = (e) => {
     console.log(e.target.value);
@@ -180,16 +180,16 @@ const Cart = (props) => {
   // payment start
   const navigate = useNavigate();
   const handelOrder = async (amount) => {
-     console.log("hello ia m payment",amount);
+    console.log("hello ia m payment", amount);
     if (orderType === 'case') {
       console.log(orderType)
     } else if (orderType === 'online') {
       CreateOrder(amount).then((res) => {
         console.log(res)
-        const res_order_id = res.replace(/^\s+|\s+$/gm,'');
+        const res_order_id = res.replace(/^\s+|\s+$/gm, '');
         var options = {
           "key": "rzp_test_dt0Vsxsmad0Ry3", // Enter the Key ID generated from the Dashboard
-          "amount": `${amount*100}`, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "amount": `${amount * 100}`, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
           "currency": "INR",
           "name": "Apsensys Care", //your business name
           "description": "Test Transaction",
@@ -198,7 +198,7 @@ const Cart = (props) => {
           "callback_url": "https://apsensyscare.com/thankyou",
           "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
             "name": `${userName}`, //your customer's name
-            "email":`${userEmail}`,
+            "email": `${userEmail}`,
             "contact": `${userPhone}` //Provide the customer's phone number for better conversion rates 
           },
           "handler": function (response) {
@@ -207,16 +207,16 @@ const Cart = (props) => {
             alert(response.razorpay_signature)
             // var hash = CryptoJS.HmacSHA256("message", "secret");
             // var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
-            const signeture={
-              'res_order_id':res_order_id,
-              'razorpay_payment_id':response.razorpay_payment_id,
-              'razorpay_signature':response.razorpay_signature
+            const signeture = {
+              'res_order_id': res_order_id,
+              'razorpay_payment_id': response.razorpay_payment_id,
+              'razorpay_signature': response.razorpay_signature
             }
-            CreateSigneture(signeture).then((resp)=>{
+            CreateSigneture(signeture).then((resp) => {
               console.log(resp)
-              navigate('/thankyou', { state: { id:true} })
+              navigate('/thankyou', { state: { id: true } })
               dispatch(clearCart())
-            }) 
+            })
           },
           "notes": {
             "address": "Razorpay Corporate Office"
@@ -249,6 +249,79 @@ const Cart = (props) => {
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
   };
+
+  // work for model oppening and desplay sizes for products
+  const [openmod, setOpen] = React.useState(false);
+  const [productSizes, setproductSizes] = useState({index:'',Size:[]})
+  const handleOpendilog = (cartItems,index) => {
+    setproductSizes({index:index,Size:cartItems.sizes})
+    setOpen(true)
+  };
+  const handleClosedilog = () => setOpen(false);
+  const changePriceAndSize=(id,currentsize_price)=>{
+    const product_id_size_price={
+      id:id,
+      size_price:currentsize_price
+    }
+    dispatch(updateCart(product_id_size_price))
+    handleClosedilog()
+  }
+  const ModelView = () => {
+    return (
+      <Modal
+        open={openmod}
+        onClose={handleClosedilog}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={stylemodal}>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
+            Select a Size
+          </Typography>
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 2 }}
+          >
+            {productSizes.Size.map((items, idx) => {
+              const currentsize_price=items;
+              console.log(currentsize_price)
+              return (
+                <SizeButtom
+                  variant="contained"
+                  onClick={()=>changePriceAndSize(productSizes.index,currentsize_price)}
+                  style={{
+                    backgroundColor: "green",
+                    margin: "1rem",
+                  }}
+                  key={idx.toString()}
+                >
+                  {items.size}ml
+                </SizeButtom>
+              );
+            }) }
+          </Typography>
+        </Box>
+      </Modal>
+    )
+  }
+  // moving to wishlist 
+  const moveToWishList=(product)=>{
+    console.log(product)
+    const wishListData={
+      productid:product.id,
+      userId:sessionStorage.getItem('___user')
+    }
+    dispatch(addToWishlist(wishListData))
+    dispatch(removeFromCart(product));
+    // AddWishlist(wishListData).then((res)=>{
+    //   console.log("res")
+    //   dispatch(removeFromCart(product));
+    // })
+  }
   return (
     <Container>
       <Headdingcont>
@@ -384,7 +457,7 @@ const Cart = (props) => {
                         >
                           <img
                             width="auto"
-                            style={{ backgroundColor: "#d9d9d9" }}
+                            style={{ backgroundColor: "#bfdbfe",borderRadius:'8px' }}
                             height={100}
                             alt={cartItem.name}
                             src={`${process.env.REACT_APP_URL}/Image/all_products/${cartItem.product_image}`}
@@ -397,7 +470,7 @@ const Cart = (props) => {
                               justifyContent: "space-between",
                             }}
                           >
-                            <Typography
+                            <p
                               variant="subtitle2"
                               style={{
                                 fontSize: "12px",
@@ -407,8 +480,9 @@ const Cart = (props) => {
                               onClick={() => handleRemoveFromCart(cartItem)}
                             >
                               remove
-                            </Typography>
-                            <Typography
+                            </p>
+                            <p
+                            onClick={()=>{moveToWishList(cartItem)}}
                               variant="subtitle2"
                               style={{
                                 fontSize: "12px",
@@ -417,10 +491,10 @@ const Cart = (props) => {
                               }}
                             >
                               move to wishlist
-                            </Typography>
+                            </p>
                           </div>
                         </div>
-                        <Typography
+                        <p
                           variant="h2"
                           style={{
                             padding: "5px",
@@ -429,7 +503,7 @@ const Cart = (props) => {
                           }}
                         >
                           {cartItem.name}({cartItem.itemSize}ml)
-                        </Typography>
+                        </p>
                       </div>
                       {/* ----------------------item box end------------------ */}
                       {/* ----------------------size box start------------------ */}
@@ -443,48 +517,14 @@ const Cart = (props) => {
                       >
                         <div>
                           <SizeButtom
-                            onClick={handleOpendilog}
+                            onClick={() => handleOpendilog(cartItem,idx)}
                             variant="contained"
                             style={{ backgroundColor: "green" }}
                           >
                             {cartItem.itemSize}ml
                           </SizeButtom>
                         </div>
-                        <Modal
-                          open={openmod}
-                          onClose={handleClosedilog}
-                          aria-labelledby="modal-modal-title"
-                          aria-describedby="modal-modal-description"
-                        >
-                          <Box sx={stylemodal}>
-                            <Typography
-                              id="modal-modal-title"
-                              variant="h6"
-                              component="h2"
-                            >
-                              Select a Size
-                            </Typography>
-                            <Typography
-                              id="modal-modal-description"
-                              sx={{ mt: 2 }}
-                            >
-                              {size !== undefined ? size.map((items, idx) => {
-                                return (
-                                  <SizeButtom
-                                    variant="contained"
-                                    style={{
-                                      backgroundColor: "green",
-                                      margin: "1rem",
-                                    }}
-                                    key={idx.toString()}
-                                  >
-                                    {items.size_value}ml
-                                  </SizeButtom>
-                                );
-                              }) : null}
-                            </Typography>
-                          </Box>
-                        </Modal>
+                        <ModelView cartItem={cartItem} />
                         {/* <div><SizeButtom variant='contained' style={{ backgroundColor: 'gray' }}>100ml</SizeButtom></div> */}
                       </div>
                       {/* ----------------------size box end------------------ */}

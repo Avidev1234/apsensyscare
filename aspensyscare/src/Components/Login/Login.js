@@ -345,12 +345,10 @@ const Login = ({ handelLogin }) => {
                                                 </FormHelperText>
                                             ) : null}
                                         </div>
-
                                         <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care
                                             <a class="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
                                             <a class="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
                                         <button type='submit' class="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign In</button>
-
                                         <hr class="border-b my-10" />
                                         <p class="text-xl">New to Apsensys Care?</p>
                                         <div class="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(false)}>Create your Apsensys Care account</div>

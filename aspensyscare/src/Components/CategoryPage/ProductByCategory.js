@@ -31,8 +31,9 @@ const ProductByCategory = () => {
     return (
         <div className='w-full flex flex-col flex-wrap min-h-[100vh] content-start	justify-start p-5'>
             <Helmet>
-                <title>{value.state.val.category_title}</title>
                 <meta name="description" content={`${value.state.val.category_title}`} />
+                <title>{value.state.val.category_title}</title>
+
             </Helmet>
             <div className='w-full border-2 rounded p-3 font-bold'>
                 <h1 className='text-bold text-xl'>{value.state.val.category_name}</h1>

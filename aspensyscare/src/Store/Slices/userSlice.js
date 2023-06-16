@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
-import { PushUserCart, fetchUsers, pushUsers } from "../../Api/Api";
+import { GetuserWishlist, PushUserCart, fetchUsers, pushUsers } from "../../Api/Api";
 const initialState = {
     loading: false,
     users: [],

@@ -119,4 +119,25 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/addwishlist',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    '/removewishlist',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    '/getuserwishlist',
+    createProxyMiddleware({
+      target: 'http://localhost:80/apsensyscare/backendapi',
+      changeOrigin: true,
+    })
+  );
 };
