@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { createContext, useEffect } from 'react'
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
 import styled from '@emotion/styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from "react-helmet";
 import { fetchBanner } from '../../Api/Api';
 
@@ -27,16 +27,16 @@ const LandingPage = () => {
     }
     fetchData();
   }, [dispatch])
+  
   return (
-    <div className='w-[97.77vw] 2xl:w-[1440px] bg-[#fff]'>
+    <div className='w-[97.77vw] 2xl:w-[1440px] bg-[#fff] mt-[15px]'>
       <Helmet>
         <title>Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys care</title>
         <meta name="description" content="Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys Care" />
       </Helmet>
-      
       <Outlet />
     </div>
   )
 }
 
-export default LandingPage
+export default LandingPage;

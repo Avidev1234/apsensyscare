@@ -49,7 +49,7 @@ const Search = styled('div')(({ theme }) => ({
   borderRadius: '10px',
   backgroundColor: '#fff',
   '&:hover': {
-    backgroundColor: "#fff6",
+    backgroundColor: "#f3fbff",
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -68,7 +68,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: '#0112fe',
+  backgroundColor: '#fff',
 }));
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: '#000',
@@ -171,9 +171,11 @@ function Navbar(props) {
   // getting data for cart
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const Wishlist = useSelector((state) => state.wishlist);
+  console.log(Wishlist.wishlist.length)
+  const wishlistCount=Wishlist!==undefined?Wishlist.wishlist.length:0
   React.useEffect(() => {
     dispatch(getTotals());
-
   }, [cart, dispatch]);
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
@@ -202,9 +204,9 @@ function Navbar(props) {
     })
   }
   const SearchModel = () => {
-    const searchedItems = JSON.parse(localStorage.getItem('array'))===null?[]:JSON.parse(localStorage.getItem('array'))
+    const searchedItems = JSON.parse(localStorage.getItem('array')) === null ? [] : JSON.parse(localStorage.getItem('array'))
     //console.log("hello i am results", (searchedItems))
-    
+
     return (
       <div className="scroolbar absolute top-[20] w-full h-[300px] max-h-[300px] bg-white w-full rounded-xl shadow-xl overflow-auto p-1">
         {
@@ -237,11 +239,12 @@ function Navbar(props) {
       </div>
     )
   }
+  
   return (
     <Box sx={{ display: 'flex', height: trigger ? "100px" : "100px" }} >
       <CssBaseline />
-      <AppBar component="nav" sx={{ background: '#fff', height: trigger ? "100px" : "100px", transition: '200ms ease-in' }} >
-        <Toolbar style={{ height: '100%' }}>
+      <AppBar component="nav" sx={{ background: '#0112FE', height: trigger ? "100px" : "100px", transition: '200ms ease-in' }} >
+        <Toolbar style={{ minHeight: '80px' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -257,7 +260,7 @@ function Navbar(props) {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             onClick={() => navigate('/')}
           >
-            <img src={`${process.env.REACT_APP_URL}aspensyscare.png`} alt='aspensyscare' style={{ cursor: 'pointer', width: '215px' }} />
+            <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='aspensyscare' style={{ cursor: 'pointer', width: '140px',height:'65px' }} />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-between' }} className='sidewidth'>
             {/* {navItems.map((item) => (
@@ -267,7 +270,6 @@ function Navbar(props) {
             ))} */}
             <div style={{ margin: 'auto' }} className='relative'>
               <Search >
-
                 <StyledInputBase
                   className="border-2 rounded-lg"
                   placeholder="Search your items…"
@@ -282,7 +284,7 @@ function Navbar(props) {
                 />
 
                 <SearchIconWrapper className="border-r-2 rounded-r-lg top-0 right-0	">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" className="bi bi-search" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" className="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                   </svg>
                 </SearchIconWrapper>
@@ -326,25 +328,27 @@ function Navbar(props) {
                 </Menu> */}
                 <AvtarIcon
                   onClick={() => navigate('/wishlist')}
-                  style={{ color: '#0112fe' }}
+                  style={{ color: '#fff' }}
                 >
                   <IconButton
                     style={{ fontSize: '60px !important' }}
                     aria-label="account of current user"
                     color="black"
                   >
-                    <FavoriteBorderIcon style={{ color: '#0112fe', fontSize: '35px' }} />
+                    <StyledBadge badgeContent={wishlistCount} color="secondary">
+                      <FavoriteBorderIcon style={{ color: '#fff', fontSize: '35px' }} />
+                    </StyledBadge>
                   </IconButton>
                   {/* Wishlist */}
                 </AvtarIcon>
-                <AvtarIcon onClick={() => navigate('/cart')} style={{ color: '#0112fe' }}>
+                <AvtarIcon onClick={() => navigate('/cart')} style={{ color: '#fff' }}>
                   <IconButton
                     style={{ fontSize: '60px !important' }}
                     aria-label="account of current user"
                     color="black"
                   >
                     <StyledBadge badgeContent={cart.cartTotalQuantity} color="secondary">
-                      <ShoppingCartCheckoutIcon style={{ color: '#0112fe', fontSize: '35px' }} />
+                      <ShoppingCartCheckoutIcon style={{ color: '#fff', fontSize: '35px' }} />
                     </StyledBadge>
                   </IconButton>
                   {/* Cart */}
@@ -352,7 +356,7 @@ function Navbar(props) {
                 {
                   item_value !== null ?
                     <div className="MuiBox-root css-dxza1q">
-                      <AvtarIcon style={{ color: '#0112fe' }}>
+                      <AvtarIcon style={{ color: '#fff' }}>
                         <IconButton
                           style={{ fontSize: '70px !important' }}
                           aria-label="account of current user"
@@ -360,7 +364,7 @@ function Navbar(props) {
                           aria-haspopup="true"
                           onClick={handleMenu}
                         >
-                          <AccountCircle style={{fontSize:'37px', color: '#0112fe' }} />
+                          <AccountCircle style={{ fontSize: '37px', color: '#fff' }} />
                         </IconButton>
                         {/* Account */}
                       </AvtarIcon>
@@ -386,10 +390,10 @@ function Navbar(props) {
                     </div>
                     :
 
-                    <div className="MuiBox-root css-dxza1q" style={{ flexDirection: 'row', cursor: 'pointer' }} onClick={() => handelLogin(true, 0)}>
+                    <div className="MuiBox-root css-dxza1q" style={{ flexDirection: 'row', cursor: 'pointer',color:"#fff" }} onClick={() => handelLogin(true, 0)}>
                       {/* <img src='./account.png' alt=''/> */}
                       Login
-                      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#0112fe" className="bi bi-person" viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#fff" className="bi bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                       </svg>
                       {/* <Button variant='contained' style={{ backgroundColor: "#FFC700" }} onClick={() => handelLogin(true, 0)}>Login</Button> */}

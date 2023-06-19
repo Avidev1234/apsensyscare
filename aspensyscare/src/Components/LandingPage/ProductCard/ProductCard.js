@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../../../Store/Slices/cartSlice';
-import { removeFromWishlist } from '../../../Store/Slices/getwishlist';
+import { addToWishlist, removeFromWishlist } from '../../../Store/Slices/getwishlistSlice';
+import { Log } from '../../../App';
 
 const ProductCard = ({ val, page ,checked}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const WishlistproductId = useContext(Log);
+    console.log(WishlistproductId)
+    let exsit
+    if(WishlistproductId.includes(val.id)){
+        exsit=true;
+    }
 
     //console.log(val)
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
-
+   
     // destructure all data
     const { details } = products.productdetails;
     const { size } = sizedetails.sizes;
@@ -49,15 +56,24 @@ const ProductCard = ({ val, page ,checked}) => {
             navigate('/cart')
         }
     }
-    const removeWishlist=(id)=>{
-        dispatch(removeFromWishlist(id))
+    const Wishlist=(val,exsit)=>{
+        if(exsit === true){
+            dispatch(removeFromWishlist(val.id))
+        }else{
+            const wishListData={
+                productid:val.id,
+                userId:sessionStorage.getItem('___user')
+              }
+            dispatch(addToWishlist(wishListData))
+        }
+        
     }
     return (
         <div className="py-1 max-w-full min-w-full  relative lg:min-w-[420px] h-[210px] md:h-auto lg:min-h-[217px] bg-white">
             {
                 page !== "Home" ?
-                    <div className="absolute top-3 right-3 group cursor-pointer z-10" onClick={()=>{removeWishlist(val.id)}}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 group-hover:opacity-70 " fill={checked===true?'#FF983B':"none"}
+                    <div className="absolute top-3 right-3 group cursor-pointer z-10" onClick={()=>{Wishlist(val,exsit)}}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 group-hover:opacity-70 " fill={exsit===true?'#FF983B':"none"}
                             viewBox="0 0 24 24" stroke="#FF983B">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />

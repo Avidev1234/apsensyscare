@@ -6,7 +6,7 @@ import Category from './Components/CategoryPage/Categorypage';
 import Cart from './Components/Cart/Cart';
 import Wishlist from './Components/WishList/Wishlist';
 import Login from './Components/Login/Login';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createContext, useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,8 +23,9 @@ import { AllProducts, GetuserWishlist, fatchSizes, fetchCategory, getAddress, pr
 import Footer from './Components/layouts/Footer/Footer';
 import ProductByCategory from './Components/CategoryPage/ProductByCategory';
 import AllPopularProducts from './Components/Product/AllPopularProducts';
-
+const Log= createContext(null);
 function App() {
+  
   const dispatch = useDispatch();
   useEffect(() => {
     async function fetchData() {
@@ -43,7 +44,7 @@ function App() {
   }, [dispatch])
   // console.log(`session value is${item_value}`)
 
-  const Log= createContext();
+  
   const [openLogin, setOpenLogin] = useState(false)
   const [login, setLogin] = useState(false);
 
@@ -56,12 +57,19 @@ function App() {
     dispatch(pushUsers(sessionStorage.getItem('___user')))
     dispatch(GetuserWishlist(sessionStorage.getItem('___user')));
   }
+
+  const WishlistData = useSelector((state) => state.wishlist);
+  const wishlist = WishlistData.wishlist
+  const WishlistProducts = []
+  wishlist.length !== 0 && wishlist.map((items) => {
+    WishlistProducts.push(items.productId)
+  })
   return (
     <>
 
       <BrowserRouter>
         <ToastContainer />
-        <Log.Provider handelLogin={handelLogin}>
+        <Log.Provider value={WishlistProducts}>
           <Navbar handelLogin={handelLogin} openLogin={openLogin}/>
           <Routes>
             <Route path='/' element={<LandingPage />}>
@@ -92,3 +100,4 @@ function App() {
 }
 
 export default App;
+export {Log} ;

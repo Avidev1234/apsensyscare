@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Stack } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useEffect } from 'react'
+import React, { createContext, useEffect } from 'react'
 import HomeBanner from '../Banner/HomeBanner'
 import PopularCarousel from '../Carousel/PopularCarousel'
 import Category from '../Category/Category'
@@ -11,6 +11,7 @@ import RecentViews from '../Carousel/RecentViews'
 import CategoryControler from '../CategoryControler/CategoryControler'
 import ProductCategory from '../Category/ProductCategory'
 import VideoComponent from '../VideoComponent/VideoComponent'
+import { useSelector } from 'react-redux'
 
 const Homecont = styled(Stack)`
   display:flex;
@@ -26,28 +27,30 @@ display:flex;
   justify-content:center;
   align-items:center;
   padding:5px;
-  background-color:#fff
+  background-color:#fff;
 `
 const Home = () => {
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
+  
   return (
     <Homecont>
-      <Homebox>
-        {/* <VideoComponent/> */}
-        <ProductCategory/>
-        <CategoryControler category={"Home"} />
-        <CategoryControler category={"Body"} />
-        <CategoryControler category={"Skin"} />
-        <CategoryControler category={"Kitchen"} />
-        {/* <Category />
+      
+        <Homebox>
+          {/* <VideoComponent/> */}
+          <ProductCategory />
+          <CategoryControler category={"Home"} />
+          <CategoryControler category={"Body"} />
+          <CategoryControler category={"Skin"} />
+          <CategoryControler category={"Kitchen"} />
+          {/* <Category />
         <Poster />
         <PopularCarousel />
         <SinglePoster />
         <RecentViews /> */}
-      </Homebox>
+        </Homebox>
     </Homecont>
   )
 }

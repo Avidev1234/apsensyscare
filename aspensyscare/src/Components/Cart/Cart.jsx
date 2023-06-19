@@ -34,7 +34,7 @@ import {
 import { toast } from "react-toastify";
 import { AddWishlist, CreateOrder, CreateSigneture } from "../../Api/Api";
 import { useNavigate } from "react-router-dom";
-import { addToWishlist } from "../../Store/Slices/getwishlist";
+import { addToWishlist } from "../../Store/Slices/getwishlistSlice";
 // import { useLocation } from "react-router-dom";
 
 const stylemodal = {
