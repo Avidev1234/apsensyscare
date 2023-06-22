@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ProductCard from '../LandingPage/ProductCard/ProductCard'
+import ProductCard from '../LandingPage/ProductCard/ProductCardold'
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';

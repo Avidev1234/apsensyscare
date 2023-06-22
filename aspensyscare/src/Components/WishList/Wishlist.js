@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ProductCard from '../LandingPage/ProductCard/ProductCard'
+import ProductCard from '../LandingPage/ProductCard/ProductCardold'
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -43,7 +43,7 @@ const ProductByCategory = () => {
             </div>
 
             <div className='w-full flex flex-row flex-wrap content-start justify-start p-5 gap-4'>
-                {!wishListArray.length !== length ? (
+                {!wishListArray.length !== 0 ? (
                     wishListArray.map((val, i) => {
                         return (
                             <ProductCard val={val} checked={true} />

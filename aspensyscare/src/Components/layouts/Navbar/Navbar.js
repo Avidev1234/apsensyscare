@@ -30,6 +30,7 @@ import "./navbar.css";
 import { clearAddress } from '../../../Store/Slices/getAddressSlice';
 import CategoryLayout from '../CategoryLayout/CategoryLayout';
 import * as Scroll from 'react-scroll';
+import { clearWishlist } from '../../../Store/Slices/getwishlistSlice';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -165,6 +166,7 @@ function Navbar(props) {
     setAnchorEl(null);
     dispatch(clearAddress())
     dispatch(clearCart())
+    dispatch(clearWishlist())
     navigate('/')
   }
 

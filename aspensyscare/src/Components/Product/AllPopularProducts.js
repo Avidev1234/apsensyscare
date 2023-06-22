@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import ProductCard from '../LandingPage/ProductCard/ProductCard';
+import ProductCard from '../LandingPage/ProductCard/ProductCardold';
 
 const AllPopularProducts = () => {
     const Products = useSelector((state) => state.product);

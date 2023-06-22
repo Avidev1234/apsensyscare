@@ -9,7 +9,8 @@ switch($method){
         $phone= $user->phone;
         $Date=date("Y-m-d h:i:sa");
         $json_data = array();
-        if($totalRow=$objQuery->fetchResult("`site_user`","`phone_number`='".$phone."' AND `password`='".$password."'")){
+        if($objQuery->fetchNumRow("`site_user`", "`password`='".$password."' AND `phone_number`='" . $phone . "'")==1){
+            $totalRow=$objQuery->fetchResult("`site_user`","`phone_number`='".$phone."' AND `password`='".$password."'");
             while($fetchRow= mysqli_fetch_assoc($totalRow))
             {
                 
@@ -19,11 +20,16 @@ switch($method){
             $_SESSION['LoginSuccess']='backendtrue';
             $token=$objQuery->getRandomHashCode();
             setcookie('APSENSYSCARE', $token, time() + (86400 * 30), "/");
+            http_response_code(200);
+            echo json_encode(['details'=>$json_data]);
         }else{
+            http_response_code(400);
             unset($_SESSION['LoginSuccess']);
             $_SESSION['LoginSuccess']=false;
-            echo "false";
-            die;
+            echo json_encode(array(
+                'status' => 400, 
+                'message' => "User not found! please try Again"
+            ));
         }
-        echo json_encode(['details'=>$json_data]);
+        
 }

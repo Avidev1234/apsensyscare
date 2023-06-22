@@ -51,12 +51,14 @@ const Signup = ({ openSignup }) => {
         email: Yup.string().email("Invalid email").required("Required")
     });
     // --------------------------work for signup user-----------------------------------
+    const [error, SetError] = useState(null)
     const handelSignUp = async (values) => {
         SignupUser(values).then((res) => {
             openSignup(true)
-            console.log("done");
+            console.log(res.data.message);
         }).catch((err) => {
-            console.log(err);
+            console.log(err.response.data.message);
+            SetError(err.response.data.message)
         });
     };
     const [showPassword, setShowPassword] = React.useState(false);
@@ -66,12 +68,12 @@ const Signup = ({ openSignup }) => {
         event.preventDefault();
     };
 
-    const scrollToTop = () =>{
+    const scrollToTop = () => {
         window.scrollTo({
-          top: 0, 
-          behavior: 'smooth'
+            top: 0,
+            behavior: 'smooth'
         });
-      };
+    };
     return (
         <Formik
             initialValues={{
@@ -88,9 +90,12 @@ const Signup = ({ openSignup }) => {
         >
 
             {({ errors, touched }) => (
-                <Form class="scroolbar max-w-[97% md:max-w-4xl mx-auto flex  h-[500px] md:[700px]  overflow-y-scroll  flex-col p-2">
-                    <div class=" mx-auto flex  justify-center flex-col ">
-                        <h2 class="font-semibold text-3xl mb-5">Create account</h2>
+                <Form className="scroolbar max-w-[97% md:max-w-4xl mx-auto flex  h-[500px] md:[700px]  overflow-y-scroll  flex-col p-2">
+                    <div className=" mx-auto flex  justify-center flex-col ">
+                        <div className="flex flex-row flex-wrap justify-between">
+                            <h2 className="font-semibold text-3xl mb-5">Create account</h2>
+                            {error !== null ? <h6 className="font-semibold text-xl mb-5 text-[red]">{error}</h6> : null}
+                        </div>
 
                         <div className='mb-5'>
                             {errors.email && touched.email ? (
@@ -101,7 +106,7 @@ const Signup = ({ openSignup }) => {
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
-                                    fullWidth 
+                                    fullWidth
                                     name="email"
                                     error
                                 />
@@ -113,7 +118,7 @@ const Signup = ({ openSignup }) => {
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
-                                    fullWidth 
+                                    fullWidth
                                     name="email"
                                     color="success"
                                 />
@@ -125,7 +130,7 @@ const Signup = ({ openSignup }) => {
                             ) : null}
                         </div>
 
-                        
+
                         <div className='mb-5'>
                             {errors.phone && touched.phone ? (
                                 <Field
@@ -135,7 +140,7 @@ const Signup = ({ openSignup }) => {
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
-                                    fullWidth 
+                                    fullWidth
                                     name="phone"
                                     error
                                 />
@@ -147,7 +152,7 @@ const Signup = ({ openSignup }) => {
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
-                                    fullWidth 
+                                    fullWidth
                                     name="phone"
                                     color="success"
                                 />
@@ -168,7 +173,7 @@ const Signup = ({ openSignup }) => {
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
-                                    fullWidth 
+                                    fullWidth
                                     name="password"
                                     error
                                 />
@@ -180,7 +185,7 @@ const Signup = ({ openSignup }) => {
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
-                                    fullWidth 
+                                    fullWidth
                                     name="password"
                                     color="success"
                                 />
@@ -191,13 +196,13 @@ const Signup = ({ openSignup }) => {
                                 </FormHelperText>
                             ) : null}
                         </div>
-                        <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care&nbsp;
-                            <a class="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and &nbsp;
-                            <a class="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
-                        <button type='submit' onClick={scrollToTop} class="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign Up</button>
-                        <hr class="border-b my-10" />
-                        <p class="text-xl">Apsensys Care User?</p>
-                        <div class="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(true)}>Login your Apsensys Care account</div>
+                        <p className="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care&nbsp;
+                            <a className="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and &nbsp;
+                            <a className="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
+                        <button type='submit' onClick={scrollToTop} className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign Up</button>
+                        <hr className="border-b my-10" />
+                        <p className="text-xl">Apsensys Care User?</p>
+                        <div className="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(true)}>Login your Apsensys Care account</div>
                     </div>
                 </Form>
             )}
@@ -233,11 +238,20 @@ const Login = ({ handelLogin }) => {
     // ---------------------------work for login user------------------------------------
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
-
+    const [loginerror, setLoginError] = useState(null)
     const handelLoginuser = async (values) => {
         try {
-            await dispatch(fetchUsers(values));
-            handelLogin(false);
+            dispatch(fetchUsers(values)).then((res) => {
+                console.log(res.meta.requestStatus)
+                if(res.payload!==undefined){
+                    handelLogin(false);
+                }else if(res.payload===undefined && res.meta.requestStatus==="rejected"){
+                    setLoginError("user not found")
+                }
+            }).catch((error) => {
+                console.log(error)
+            })
+
         } catch (error) {
             console.log(error.message);
         }
@@ -259,9 +273,9 @@ const Login = ({ handelLogin }) => {
 
     return (
         <LoginCont>
-            <div class="max-w-7xl bg-[#F5F5F5] mx-auto relative p-8 max-h-[100%] overflow-hidden rounded-md">
-                <div class="absolute right-0 top-0 bg-red-500 w-8 h-8  text-center text-xl text-white font-bold cursor-pointer font-['system-ui']" onClick={() => handelLogin(false)}>X</div>
-                <img src="https://apsensyscare.com/aspensyscare.png" class="w-[80%] md:w-[40%] mb-10 mx-auto" alt="" />
+            <div className="max-w-7xl bg-[#F5F5F5] mx-auto relative p-8 max-h-[100%] overflow-hidden rounded-md">
+                <div className="absolute right-0 top-0 bg-red-500 w-8 h-8  text-center text-xl text-white font-bold cursor-pointer font-['system-ui']" onClick={() => handelLogin(false)}>X</div>
+                <img src="https://apsensyscare.com/aspensyscare.png" className="w-[80%] md:w-[40%] mb-10 mx-auto" alt="" />
                 {
                     showSignup ?
                         (
@@ -276,10 +290,16 @@ const Login = ({ handelLogin }) => {
                                     //console.log(values);
                                     handelLoginuser(values)
                                 }}
+                                
                             >{({ errors, touched }) => (
-                                <Form className='scroolbar max-w-[97%] md:max-w-[90%] mx-auto flex h-[500px] md:[700px] overflow-y-scroll  flex-col p-2'>
-                                    <div class=" mx-auto flex  justify-center flex-col  ">
-                                        <h2 class="font-semibold text-3xl mb-5">Sign in</h2>
+                                <Form 
+                                onChange={()=>setLoginError(null)}
+                                className='scroolbar max-w-[97%] md:max-w-[90%] mx-auto flex h-[500px] md:[700px] overflow-y-scroll  flex-col p-2'>
+                                    <div className=" mx-auto flex  justify-center flex-col  ">
+                                        <div className="flex flex-row flex-wrap justify-between">
+                                            <h2 className="font-semibold text-3xl mb-5">Create account</h2>
+                                            {loginerror !== null ? <h6 className="font-semibold text-xl mb-5 text-[red]">{loginerror}</h6> : null}
+                                        </div>
                                         <div className='mb-5'>
                                             {errors.phone && touched.phone ? (
                                                 <Field
@@ -289,7 +309,7 @@ const Login = ({ handelLogin }) => {
                                                     multiline
                                                     maxRows={1}
                                                     variant="outlined"
-                                                    fullWidth 
+                                                    fullWidth
                                                     name="phone"
                                                     error
                                                 />
@@ -301,7 +321,7 @@ const Login = ({ handelLogin }) => {
                                                     multiline
                                                     maxRows={1}
                                                     variant="outlined"
-                                                    fullWidth 
+                                                    fullWidth
                                                     name="phone"
                                                     color="success"
                                                 />
@@ -322,7 +342,7 @@ const Login = ({ handelLogin }) => {
                                                     multiline
                                                     maxRows={1}
                                                     variant="outlined"
-                                                    fullWidth 
+                                                    fullWidth
                                                     name="password"
                                                     error
                                                 />
@@ -334,7 +354,7 @@ const Login = ({ handelLogin }) => {
                                                     multiline
                                                     maxRows={1}
                                                     variant="outlined"
-                                                    fullWidth 
+                                                    fullWidth
                                                     name="password"
                                                     color="success"
                                                 />
@@ -345,13 +365,13 @@ const Login = ({ handelLogin }) => {
                                                 </FormHelperText>
                                             ) : null}
                                         </div>
-                                        <p class="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care
-                                            <a class="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
-                                            <a class="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
-                                        <button type='submit' class="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign In</button>
-                                        <hr class="border-b my-10" />
-                                        <p class="text-xl">New to Apsensys Care?</p>
-                                        <div class="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(false)}>Create your Apsensys Care account</div>
+                                        <p className="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care
+                                            <a className="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
+                                            <a className="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
+                                        <button type='submit' className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign In</button>
+                                        <hr className="border-b my-10" />
+                                        <p className="text-xl">New to Apsensys Care?</p>
+                                        <div className="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(false)}>Create your Apsensys Care account</div>
                                     </div>
                                 </Form>
                             )}

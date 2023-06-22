@@ -19,7 +19,7 @@ import TermsCondition from './Components/Policy/TermsCondition';
 import Shipping from './Components/Policy/Shipping';
 import ThankYou from './Others/ThankYou';
 import OrderFailed from './Others/OrderFailed';
-import { AllProducts, GetuserWishlist, fatchSizes, fetchCategory, getAddress, productData, pushUsers } from './Api/Api';
+import { AllProducts, GetuserWishlist, fatchSizes, fetchBanner, fetchCategory, getAddress, productData, pushUsers } from './Api/Api';
 import Footer from './Components/layouts/Footer/Footer';
 import ProductByCategory from './Components/CategoryPage/ProductByCategory';
 import AllPopularProducts from './Components/Product/AllPopularProducts';
@@ -34,6 +34,7 @@ function App() {
         dispatch(AllProducts());
         dispatch(productData());
         dispatch(fatchSizes());
+        dispatch(fetchBanner());
       } catch (error) {
         console.log(error);
         

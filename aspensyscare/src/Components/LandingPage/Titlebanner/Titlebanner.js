@@ -47,7 +47,7 @@ const Titlebanner = ({ category }) => {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
+        slidesToShow: 1.06,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
@@ -56,7 +56,6 @@ const Titlebanner = ({ category }) => {
     };
     const banners = useSelector((state) => state.banner);
     const { banner } = banners.banner;
-
     const itemIndex = banner !== undefined ? banner.findIndex((item) => item.category === category) : null;
     const bannerImages = banner !== undefined && itemIndex !== null ? banner[itemIndex].banner_image : null
     const bannerImage = bannerImages !== null && bannerImages.split("@@@")

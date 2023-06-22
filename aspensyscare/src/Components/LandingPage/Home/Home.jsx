@@ -1,17 +1,17 @@
 import styled from '@emotion/styled'
 import { Stack } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { createContext, useEffect } from 'react'
-import HomeBanner from '../Banner/HomeBanner'
-import PopularCarousel from '../Carousel/PopularCarousel'
-import Category from '../Category/Category'
-import Poster from '../Poster/Poster'
-import SinglePoster from '../Poster/SinglePoster'
-import RecentViews from '../Carousel/RecentViews'
+import React, { useEffect } from 'react'
 import CategoryControler from '../CategoryControler/CategoryControler'
 import ProductCategory from '../Category/ProductCategory'
-import VideoComponent from '../VideoComponent/VideoComponent'
-import { useSelector } from 'react-redux'
+import CategorySeller from '../Controler/CategorySeller'
+import Banner from '../Banner/Banner'
+import BestSeller from '../Controler/BestSeller'
+import TopBrands from '../Controler/TopBrands'
+import Advertise from '../Controler/Advertise'
+import BrandOfDay from '../Controler/BrandOfDay'
+import CategoryInFocus from '../Controler/CategoryInFocus'
+import BestCategory from '../Controler/BestCategory'
 
 const Homecont = styled(Stack)`
   display:flex;
@@ -40,11 +40,23 @@ const Home = () => {
       
         <Homebox>
           {/* <VideoComponent/> */}
-          <ProductCategory />
+          <CategorySeller/>
+          <Banner position='1'/>
+          <BestSeller title={"Best Sellers"} count={15}/>
+          <TopBrands/>
+          <Advertise/>
+          <BrandOfDay />
+          <BestCategory/>
+          <Banner position='2'/>
+          <BestSeller title={"More Categories For You"} count={9}/>
+          <CategoryInFocus/>
+          <Advertise/>
+          {/* <ProductCategory />
           <CategoryControler category={"Home"} />
           <CategoryControler category={"Body"} />
           <CategoryControler category={"Skin"} />
-          <CategoryControler category={"Kitchen"} />
+          <CategoryControler category={"Kitchen"} /> */}
+
           {/* <Category />
         <Poster />
         <PopularCarousel />

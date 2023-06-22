@@ -50,8 +50,8 @@ const getwishlistSlice = createSlice({
         },
 
         clearWishlist(state, action) {
-            state.cartItems = [];
-            localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+            state.wishlist = [];
+            localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
             //toast.error("Cart cleared", { position: "bottom-left" });
         },
         updateWishlist(state, action) {

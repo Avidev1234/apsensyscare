@@ -7,7 +7,7 @@ import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import "./style.css"
 import { useSelector } from 'react-redux';
 import Skeleton from '@mui/material/Skeleton';
-import ProductCard from '../ProductCard/ProductCard';
+import ProductCard from '../ProductCard/ProductCardold';
 
 const CarouselCont = styled(Box)`
     width:85%;

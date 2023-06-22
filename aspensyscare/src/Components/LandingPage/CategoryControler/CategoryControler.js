@@ -1,6 +1,6 @@
 import React from 'react'
 import Titlebanner from '../Titlebanner/Titlebanner'
-import ProductCard from '../ProductCard/ProductCard'
+import ProductCard from '../ProductCard/ProductCardold'
 import ProductBanner from '../ProductCard/ProductBanner'
 import { useSelector } from 'react-redux'
 

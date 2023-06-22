@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCard from './ProductCard';
+import ProductCard from './ProductCardold';
 import { useDispatch, useSelector } from 'react-redux';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import Slider from 'react-slick';
