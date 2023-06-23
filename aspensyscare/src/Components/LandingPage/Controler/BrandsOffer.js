@@ -4,10 +4,10 @@ const BrandsOffer = ({ brand, title }) => {
 
     return (
         <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
-            <div className='w-full  font-bold pl-[6px]'>
-                <h1 className='text-bold text-[24px] leading-[40px]'>{title}</h1>
+            <div className='w-full  font-bold pl-[6px] my-[30px]'>
+                <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>{title}</h1>
             </div>
-            <div className="max-w-[100%]  py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10" >
+            <div className="max-w-[100%]  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10" >
                 {
                     brand !== undefined ? (
                         brand.map((item, idx) => {

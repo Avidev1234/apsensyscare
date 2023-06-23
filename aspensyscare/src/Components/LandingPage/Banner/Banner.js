@@ -14,7 +14,7 @@ const Banner = ({ position,Header=true }) => {
         autoplaySpeed: 5000,
         swipeToSlide: true,
         arrows: false,
-        className: "center manageHeight",
+        className: "center gapgiven",
         centerMode: false,
         responsive: [
             {
@@ -56,8 +56,8 @@ const Banner = ({ position,Header=true }) => {
 
     return (
         <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4 max-h-[500px]">
-            {Header===true?<div className='w-full  font-bold pl-[6px]'>
-                <h1 className='text-bold text-[24px] leading-[40px]'>Welcome to the Apsensyscare Family</h1>
+            {Header===true?<div className='w-full  my-[30px] font-bold pl-[6px]'>
+                <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Welcome to the Apsensyscare Family</h1>
             </div>:null}
             <Slider
                 {...settings}

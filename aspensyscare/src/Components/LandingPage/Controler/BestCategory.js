@@ -49,8 +49,8 @@ const BestCategory = () => {
     const { category } = Category.category;
     return (
         <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
-            <div className='w-full  font-bold pl-[6px]'>
-                <h1 className='text-bold text-[24px] leading-[40px]'>Top Sellers by Category</h1>
+            <div className='w-full  font-bold pl-[6px] my-[30px]'>
+                <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Top Sellers by Category</h1>
             </div>
             <Slider
                 {...settings}

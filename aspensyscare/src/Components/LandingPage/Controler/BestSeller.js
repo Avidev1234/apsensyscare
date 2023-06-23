@@ -49,8 +49,8 @@ const BestSeller = ({title,count}) => {
   return (
     <>
             <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
-                {title!==undefined?<div className='w-full  font-bold pl-[6px]'>
-                    <h1 className='text-bold text-[24px] leading-[40px]'>{title}</h1>
+                {title!==undefined?<div className='w-full  font-bold pl-[6px] my-[30px]'>
+                    <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>{title}</h1>
                 </div>:null}
                 <Slider
                     {...settings}
