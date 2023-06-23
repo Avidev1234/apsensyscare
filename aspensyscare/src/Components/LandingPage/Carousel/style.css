@@ -38,9 +38,6 @@
     justify-content: center !important;
     flex-wrap: nowrap !important;
 }
-.slick-slide > div{
-    gap:10px;
-}
 .gapgiven > .slick-list >.slick-track{
     gap:30px !important;
 }

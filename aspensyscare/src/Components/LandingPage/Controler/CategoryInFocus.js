@@ -15,12 +15,38 @@ const CategoryInFocus = () => {
         arrows: true,
         className: "center gapgiven",
         centerMode: false,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+              }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 2,
+                }
+              },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 3,
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 2,
+              }
+            }
+          ]
 
     };
     const Products = useSelector((state) => state.product);
     const { product } = Products.products;
     return (
-        <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
+        <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4 mb-[50px]">
             <div className='w-full  font-bold pl-[6px]'>
                 <h1 className='text-bold text-[24px] leading-[40px]'>Category In Focus</h1>
             </div>

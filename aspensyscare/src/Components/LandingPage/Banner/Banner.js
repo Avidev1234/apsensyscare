@@ -16,6 +16,32 @@ const Banner = ({ position,Header=true }) => {
         arrows: false,
         className: "center manageHeight",
         centerMode: false,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+              }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 2,
+                }
+              },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+              }
+            }
+          ]
 
     };
     const navigate = useNavigate();
@@ -40,8 +66,8 @@ const Banner = ({ position,Header=true }) => {
                     banner !== undefined ? (
                         bannerImage.map((item, idx) => {
                             return (
-                                <div className='mr-[10px] rounded-[10px]' key={idx}>
-                                    <img className='w-full h-full rounded-[10px] ' src={`${process.env.REACT_APP_URL}Image/Poster/${item}`} alt='' />
+                                <div className='pr-[10px] rounded-[10px]' key={idx}>
+                                    <img className='w-full h-full rounded-[10px] object-contain' src={`${process.env.REACT_APP_URL}Image/Poster/${item}`} alt='' />
                                 </div>
                             )
 
