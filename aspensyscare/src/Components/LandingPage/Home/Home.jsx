@@ -46,7 +46,7 @@ const Home = () => {
           {/* <VideoComponent/> */}
           <CategorySeller/>
           <Banner position='1'/>
-          <BestSeller title={"Best Sellers"} count={15}/>
+          <BestSeller title={"Best Sellers"} count={true}/>
           <BrandsOffer brand={brands} title={"Top Brands"}/>
           {/* <TopBrands/> */}
           <Advertise/>
@@ -55,7 +55,7 @@ const Home = () => {
           <Banner position='2'/>
           {/* <FeaturedBrand/> */}
           <BrandsOffer brand={brands} title={"Featured Brands"}/>
-          <BestSeller title={"More Categories For You"} count={9}/>
+          <BestSeller title={"More Categories For You"} count={false}/>
           <CategoryInFocus/>
           <Advertise/>
           {/* <ProductCategory />

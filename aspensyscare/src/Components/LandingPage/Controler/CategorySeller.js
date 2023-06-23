@@ -49,9 +49,9 @@ const CategorySeller = () => {
     const { category } = Category.category;
     return (
         <>
-            <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
+            <div className="w-full mt-[1.6rem] flex flex-nowrap flex-col gap-4">
                 <div className='w-full  font-bold pl-[6px]'>
-                    <h1 className='text-bold text-[24px] leading-[40px]'></h1>
+                    <h1 className='text-bold text-[24px] leading-[40px]'>Top Sellers</h1>
                 </div>
                 <Slider
                     {...settings}

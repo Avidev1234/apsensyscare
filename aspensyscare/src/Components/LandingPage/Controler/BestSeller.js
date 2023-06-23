@@ -46,6 +46,14 @@ const BestSeller = ({title,count}) => {
     };
     const Products = useSelector((state) => state.product);
     const { product } = Products.products;
+    let Descending;
+    if(count===false){
+      Descending = product!==undefined?[...product].sort((a, b) => b.id - a.id):[];
+    }else{
+      Descending = product!==undefined?product:[];
+    }
+    
+
   return (
     <>
             <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
@@ -57,7 +65,7 @@ const BestSeller = ({title,count}) => {
                 >
                     {
                         product !== undefined ? (
-                            product.slice(0,count).map((item,idx) => {
+                          Descending.map((item,idx) => {
                                 return (
                                     <ProductCard val={item} />
                                 )

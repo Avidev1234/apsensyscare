@@ -58,17 +58,17 @@ const CategoryLayout = () => {
 
   return (
     <div className='w-full flex flex-col flex-nowrap justify-center items-center h-[auto] ' onMouseLeave={() => setIsShown({ categoryid: '', show: false })}>
-      <div className='w-full flex flex-col flex-nowrap justify-around  items-center bg-[#5EABE3] h-[50px]'>
-        <div className='w-full lg:w-[1024px] xl:w-[1440px] flex flex-row flex-nowrap justify-around  items-center bg-[#5EABE3] h-[50px] '
+      <div className='w-full flex flex-col flex-nowrap justify-around  items-center bg-[#CEEDFF] h-[50px]'>
+        <div className='w-full lg:w-[1024px] xl:w-[1440px] flex flex-row flex-nowrap justify-around  items-center bg-[#CEEDFF] h-[50px] '
         onMouseEnter={() => setIsShown({ categoryid: '', show: false })}
         >
-          <h2 className='text-[8px] md:text-[16px] text-white  font-bold cursor-pointer hover:text-[#E34343]' onClick={() => navigate('/')} onMouseEnter={() => setIsShown({ categoryid: '', show: false })}>Home</h2>
+          <h2 className='text-[8px] md:text-[16px] text-black  font-bold cursor-pointer hover:text-[#E34343]' onClick={() => navigate('/')} onMouseEnter={() => setIsShown({ categoryid: '', show: false })}>Home</h2>
           {!Category.loading && Category.category.category !== undefined ? (
             category.map((val, i) => {
               return (
                 <div
                 >
-                  <h2 className='text-[8px] md:text-[16px] text-white  font-bold cursor-pointer hover:text-[#E34343]'
+                  <h2 className='text-[8px] md:text-[16px] text-black  font-bold cursor-pointer hover:text-[#E34343]'
                     onMouseEnter={() => setIsShown({ categoryid: val.id, show: true })}
                     onClick={() => navigate(`/category/${val.category_url}`, { state: { id: val.id, val: val } })}>{val.category_name}</h2>
                 </div>

@@ -59,12 +59,12 @@ const CategoryInFocus = () => {
                             return (
                                 <div class="text-center text-gray-600">
                                     <div class="w-full flex justify-center mt-[7rem] md:mt-[15rem]">
-                                        <div class="bg-blue-200 w-32 md:w-44 h-12 md:h-12 rounded-[100%] relative shadow-lg">
+                                        <div class="bg-[#CEEDFF] w-32 md:w-44 h-12 md:h-12 rounded-[100%] relative shadow-lg">
                                             <img src={`${process.env.REACT_APP_URL}Image/all_products/${item.product_image}`}
                                                 class="h-32 md:h-[8rem] lg:h-48 w-44 object-contain absolute bottom-[20px]" alt="" />
                                         </div>
                                     </div>
-                                    <div class="text-xl md:text-2xl font-semibold mt-5">Body Wash</div>
+                                    <div class="text-xl md:text-2xl font-semibold mt-5">{item.short_name}</div>
                                 </div>
                             )
                         })

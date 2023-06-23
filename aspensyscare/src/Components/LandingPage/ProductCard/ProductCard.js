@@ -81,8 +81,8 @@ const ProductCard = ({ val }) => {
                     </svg><span class="text-green-600">4.5/5</span>(3475)</div>
                 </div>
                 <div class="text-gray-700">
-                    <p class="mt-1 font-bold h-[40px]">{val.brand_name} - <span className='text-[#A1A6AD]'>{val.name.substr(0,15)}...</span></p>
-                    <p class="text-gray-600 my-2">500ml</p>
+                    <p class="mt-1 font-bold ">{val.brand_name} - <span className='text-[#A1A6AD]'>{val.name.substr(0,15)}...</span></p>
+                    <p class="text-gray-600 my-2">{val.default_size}</p>
                     <p class="text-lg font-semibold"><span class="font-bold">₹{val.default_price}</span>
                     {/* <span class="text-gray-600 mx-2">₹{val.default_price}</span> <span class="text-green-600">20%</span> */}
                     </p>
