@@ -9,6 +9,7 @@ import cartSlice from "./Slices/cartSlice";
 import imagemagnifySlice from "./Slices/imagemagnifySlice";
 import getAddressSlice from "./Slices/getAddressSlice";
 import getwishlistSlice from "./Slices/getwishlistSlice";
+import BrandsSlice from "./Slices/BrandsSlice";
 const store = configureStore({
     reducer: {
         users: userSlice,
@@ -21,6 +22,7 @@ const store = configureStore({
         imagemagnify:imagemagnifySlice,
         address:getAddressSlice,
         wishlist:getwishlistSlice,
+        Brand:BrandsSlice,
     },
 });
 

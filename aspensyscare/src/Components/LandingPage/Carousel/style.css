@@ -39,7 +39,6 @@
     flex-wrap: nowrap !important;
 }
 .slick-slide > div{
-    display: flex;
     gap:10px;
 }
 .gapgiven > .slick-list >.slick-track{

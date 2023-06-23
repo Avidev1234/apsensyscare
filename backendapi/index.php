@@ -68,5 +68,8 @@ else if($uri==='/createOrder'){
 }else if($uri==='/getuserwishlist'){
     include('./sitepackages/inbuilt/pages/Getuserwishlist.php');
     die;
+}else if($uri==='/featuredbrand'){
+    include('./sitepackages/inbuilt/pages/Getdbrand.php');
+    die;
 }
 ?>

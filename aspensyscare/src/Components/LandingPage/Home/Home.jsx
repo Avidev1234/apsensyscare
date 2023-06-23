@@ -7,11 +7,12 @@ import ProductCategory from '../Category/ProductCategory'
 import CategorySeller from '../Controler/CategorySeller'
 import Banner from '../Banner/Banner'
 import BestSeller from '../Controler/BestSeller'
-import TopBrands from '../Controler/TopBrands'
 import Advertise from '../Controler/Advertise'
 import BrandOfDay from '../Controler/BrandOfDay'
 import CategoryInFocus from '../Controler/CategoryInFocus'
 import BestCategory from '../Controler/BestCategory'
+import { useSelector } from 'react-redux'
+import BrandsOffer from '../Controler/BrandsOffer'
 
 const Homecont = styled(Stack)`
   display:flex;
@@ -34,20 +35,26 @@ const Home = () => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
-  
+  const Category = useSelector((state) => state.category);
+    const { category } = Category.category;
+    const Brand = useSelector((state) => state.Brand);
+    const { brands } = Brand.brands;
+    
   return (
     <Homecont>
-      
         <Homebox>
           {/* <VideoComponent/> */}
           <CategorySeller/>
           <Banner position='1'/>
           <BestSeller title={"Best Sellers"} count={15}/>
-          <TopBrands/>
+          <BrandsOffer brand={brands} title={"Top Brands"}/>
+          {/* <TopBrands/> */}
           <Advertise/>
           <BrandOfDay />
           <BestCategory/>
           <Banner position='2'/>
+          {/* <FeaturedBrand/> */}
+          <BrandsOffer brand={brands} title={"Featured Brands"}/>
           <BestSeller title={"More Categories For You"} count={9}/>
           <CategoryInFocus/>
           <Advertise/>

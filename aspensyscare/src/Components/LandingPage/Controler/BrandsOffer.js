@@ -1,21 +1,22 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
 
-const BrandOfDay = () => {
-    const Category = useSelector((state) => state.category);
-    const { category } = Category.category;
+const BrandsOffer = ({ brand, title }) => {
+
     return (
         <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
             <div className='w-full  font-bold pl-[6px]'>
-                <h1 className='text-bold text-[24px] leading-[40px]'>Category Of The Day</h1>
+                <h1 className='text-bold text-[24px] leading-[40px]'>{title}</h1>
             </div>
-            <div className="max-w-[100%]  py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10" >
+            <div className="max-w-[100%]  py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10" >
                 {
-                    category !== undefined ? (
-                        category.map((item, idx) => {
+                    brand !== undefined ? (
+                        brand.map((item, idx) => {
                             return (
                                 <div class="w-full border rounded-lg">
-                                    <img class="w-full" src={`${process.env.REACT_APP_URL}Image/category/${item.category_img}`} alt="" />
+                                    {title === "Top Brands" ? (<img class="w-full" src={`${process.env.REACT_APP_URL}Image/Poster/${item.top_brand}`} alt="" />) : <img class="w-full" src={`${process.env.REACT_APP_URL}Image/Poster/${item.featured_brand}`} alt="" />
+
+                                    }
+
                                     <div class="p-3 md:p-5 text-lg md:text-2xl text-center text-gray-600 font-semibold">Upto <span class="text-green-600">30% Off</span> on Entire Range</div>
                                 </div>
                             )
@@ -27,4 +28,4 @@ const BrandOfDay = () => {
     )
 }
 
-export default BrandOfDay
+export default BrandsOffer

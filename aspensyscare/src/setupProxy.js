@@ -113,7 +113,7 @@ module.exports = function(app) {
     })
   );
   app.use(
-    '/login_push_user',
+    '/featuredbrand',
     createProxyMiddleware({
       target: 'http://localhost:80/apsensyscare/backendapi',
       changeOrigin: true,

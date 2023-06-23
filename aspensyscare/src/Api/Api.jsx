@@ -22,6 +22,7 @@ export const SignupUser = async (values) => {
     return await axios.post("/site_user", values)
         .then((res) => res.data)
 }
+
 // export const AddWishlist = async (wishListData) => {
 //     return await axios.post("/addwishlist", wishListData)
 //         .then((res) => res.data)
@@ -33,9 +34,14 @@ export const SignupUser = async (values) => {
 
 
 // Api for redux store sclices start 
+export const offeredBrands = createAsyncThunk('brand/offerbrands', async () => {
+    return await axios
+        .post("/featuredbrand")
+        .then((response) => response.data)
+});
 export const PushUserWishlist = async (productdetails) => {
     return await axios
-        .post("/addwishlist",productdetails)
+        .post("/addwishlist", productdetails)
         .then((response) => response.data)
 };
 export const GetuserWishlist = createAsyncThunk('wishlist/wishlistdetails', async () => {

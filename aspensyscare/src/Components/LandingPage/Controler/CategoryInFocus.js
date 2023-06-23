@@ -5,14 +5,14 @@ import Slider from 'react-slick';
 const CategoryInFocus = () => {
     const settings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 6.1,
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 5000,
         swipeToSlide: true,
-        arrows: false,
+        arrows: true,
         className: "center gapgiven",
         centerMode: false,
 

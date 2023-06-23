@@ -10,7 +10,7 @@ const BestCategory = () => {
         speed: 500,
         slidesToShow: 3.2,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 5000,
         swipeToSlide: true,
         arrows: false,

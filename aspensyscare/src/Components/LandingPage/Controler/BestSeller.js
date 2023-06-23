@@ -10,7 +10,7 @@ const BestSeller = ({title,count}) => {
         speed: 500,
         slidesToShow: 6.1,
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 5000,
         swipeToSlide: true,
         arrows: false,
