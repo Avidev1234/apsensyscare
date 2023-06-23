@@ -72,7 +72,7 @@ const ProductCard = ({ val }) => {
         <div>
             <div class="w-full md:max-w-[200px] shrink ">
                 <div class="border rounded-lg relative">
-                    <button class="absolute right-0 bg-orange-400 text-white px-1 text-sm rounded-tr-lg">Best sellers</button>
+                    <button class="absolute right-0 bg-orange-400 text-white px-2 py-1 text-sm rounded-tr-lg">Best sellers</button>
                     <img width="150" height="200" class="mx-auto pt-[30px]" src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`}alt="" />
                     <div class="flex items-center p-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" viewBox="0 0 20 20"
                         fill="currentColor">

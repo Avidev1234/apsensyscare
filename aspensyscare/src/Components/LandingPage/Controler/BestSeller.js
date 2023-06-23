@@ -16,6 +16,32 @@ const BestSeller = ({title,count}) => {
         arrows: false,
         className: "center gapgiven",
         centerMode: false,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 4,
+              }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 3,
+                }
+              },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 3,
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 2,
+              }
+            }
+          ]
 
     };
     const Products = useSelector((state) => state.product);

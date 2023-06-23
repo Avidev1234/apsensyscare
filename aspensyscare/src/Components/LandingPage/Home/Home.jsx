@@ -7,7 +7,6 @@ import ProductCategory from '../Category/ProductCategory'
 import CategorySeller from '../Controler/CategorySeller'
 import Banner from '../Banner/Banner'
 import BestSeller from '../Controler/BestSeller'
-import TopBrands from '../Controler/TopBrands'
 import Advertise from '../Controler/Advertise'
 import BrandOfDay from '../Controler/BrandOfDay'
 import CategoryInFocus from '../Controler/CategoryInFocus'
@@ -43,7 +42,6 @@ const Home = () => {
           <CategorySeller/>
           <Banner position='1'/>
           <BestSeller title={"Best Sellers"} count={15}/>
-          <TopBrands/>
           <Advertise/>
           <BrandOfDay />
           <BestCategory/>
