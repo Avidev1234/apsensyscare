@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 
 const CategoryInFocus = () => {
@@ -45,8 +46,9 @@ const CategoryInFocus = () => {
     };
     const Products = useSelector((state) => state.product);
     const { product } = Products.products;
+    const navigate = useNavigate();
     return (
-        <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4 mb-[50px]">
+        <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4 mb-[50px]">
             <div className='w-full my-[30px]  font-bold '>
                 <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Category In Focus</h1>
             </div>
@@ -57,7 +59,9 @@ const CategoryInFocus = () => {
                     product !== undefined ? (
                         product.map((item, idx) => {
                             return (
-                                <div class="text-center text-gray-600">
+                                <div class="text-center text-gray-600 cursor-pointer"
+                                onClick={() => navigate(`/product/${item.category_id}/${item.id}/${item.product_url}`, { state: { product: item } })}
+                                >
                                     <div class="w-full flex justify-center mt-[7rem] md:mt-[15rem]">
                                         <div class="bg-[#CEEDFF] w-32 md:w-44 h-12 md:h-12 rounded-[100%] relative shadow-lg">
                                             <img src={`${process.env.REACT_APP_URL}Image/all_products/${item.product_image}`}

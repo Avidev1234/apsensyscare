@@ -50,3 +50,6 @@
 .addmargin > .slick-list >.slick-track> div{
     margin-right:30px !important;
  }
+ .Makecenter >.slick-list >.slick-track> .slick-slide >div{
+    display: flex;
+ }

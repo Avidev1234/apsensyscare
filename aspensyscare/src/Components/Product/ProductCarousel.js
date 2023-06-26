@@ -65,6 +65,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
           asNavFor={nav2}
           ref={slider => (Setnav1(slider))}
           arrows={false}
+          className='Makecenter'
         >
           {data.map((item, idx) => (
             <Box style={{ width: 'auto', height: '450px' }} onMouseEnter={() => imagemagnify(true)}

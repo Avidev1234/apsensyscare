@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 
-const Banner = ({ position,Header=true }) => {
+const Banner = ({ position,Header }) => {
     const settings = {
         dots: false,
         infinite: true,
@@ -14,7 +14,7 @@ const Banner = ({ position,Header=true }) => {
         autoplaySpeed: 5000,
         swipeToSlide: true,
         arrows: false,
-        className: "center gapgiventoBanner",
+        className: Header===true?"gapgiventoBanner":"addmargin",
         centerMode: false,
         responsive: [
             {

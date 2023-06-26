@@ -14,7 +14,7 @@ const CategorySeller = () => {
         autoplaySpeed: 5000,
         swipeToSlide: true,
         arrows: false,
-        className: "center addmargin",
+        className: "addmargin",
         centerMode: false,
         responsive: [
             {
@@ -62,13 +62,15 @@ const CategorySeller = () => {
                         category !== undefined ? (
                             category.map((item,idx) => {
                                 return (
-                                    <div className="relative w-[480px] rounded-[10px]" key={idx}>
+                                    <div className="relative w-[480px] rounded-[10px]" key={idx} >
                                         <img className="w-full h-full rounded-[10px]" src={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} alt="" />
                                         <div className="absolute bottom-0 flex justify-between w-full bg-gradient-to-b from-[#0000] to-[#000] rounded-[10px] items-end py-4 px-2">
                                             <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> Hand Sanitizer
                                                 in Green Apple,
                                                 Sandal Wood, Lemon Grass...</p>
-                                            <button className="py-2 px-2 md:px-4 bg-[#FF983B] text-white text-[14px] rounded-[3px] text-sm md:text-base whitespace-nowrap hover:text-[#FF983B] hover:bg-white border-[#FF983B]">Shop Now</button>
+                                            <button className="py-2 px-2 md:px-4 bg-[#FF983B] text-white text-[14px] rounded-[3px] text-sm md:text-base whitespace-nowrap hover:text-[#FF983B] hover:bg-white border-[#FF983B]"
+                                            onClick={() => navigate(`/category/${item.category_url}`, { state: { id: item.id, val: item } })}
+                                            >Shop Now</button>
                                         </div>
                                     </div>
                                 )

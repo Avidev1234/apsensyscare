@@ -45,14 +45,14 @@ const Home = () => {
         <Homebox>
           {/* <VideoComponent/> */}
           <CategorySeller/>
-          <Banner position='1'/>
+          <Banner position='1' Header={true}/>
           <BestSeller title={"Best Sellers"} count={true}/>
           <BrandsOffer brand={brands} title={"Top Brands"}/>
           {/* <TopBrands/> */}
           <Advertise/>
           <BrandOfDay />
           <BestCategory/>
-          <Banner position='2'/>
+          <Banner position='2' Header={false}/>
           {/* <FeaturedBrand/> */}
           <BrandsOffer brand={brands} title={"Featured Brands"}/>
           <BestSeller title={"More Categories For You"} count={false}/>
