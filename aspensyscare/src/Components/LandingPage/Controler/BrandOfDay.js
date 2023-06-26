@@ -6,10 +6,10 @@ const BrandOfDay = () => {
     const { category } = Category.category;
     return (
         <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
-            <div className='w-full  font-bold pl-[6px]'>
-                <h1 className='text-bold text-[24px] leading-[40px]'>Category Of The Day</h1>
+            <div className='w-full  font-bold  my-[30px]'>
+                <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Category Of The Day</h1>
             </div>
-            <div className="max-w-[100%]  py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10" >
+            <div className="max-w-[100%]  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10" >
                 {
                     category !== undefined ? (
                         category.map((item, idx) => {

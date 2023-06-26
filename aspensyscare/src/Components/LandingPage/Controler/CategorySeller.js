@@ -6,16 +6,16 @@ import Slider from "react-slick";
 const CategorySeller = () => {
     const settings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
-        slidesToShow: 2.154,
+        slidesToShow: 2.4,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 5000,
         swipeToSlide: true,
         arrows: false,
-        className: "center gapgiven",
-        centerMode: true,
+        className: "center addmargin",
+        centerMode: false,
         responsive: [
             {
               breakpoint: 1024,
@@ -39,6 +39,8 @@ const CategorySeller = () => {
               breakpoint: 480,
               settings: {
                 slidesToShow: 1,
+                className:'removegap',
+                centerMode: false,
               }
             }
           ]
@@ -49,9 +51,9 @@ const CategorySeller = () => {
     const { category } = Category.category;
     return (
         <>
-            <div className="w-full mt-[1.6rem] flex flex-nowrap flex-col gap-4">
-                <div className='w-full  font-bold pl-[6px]'>
-                    <h1 className='text-bold text-[24px] leading-[40px]'>Top Sellers</h1>
+            <div className="w-full flex flex-nowrap flex-col gap-4">
+                <div className='w-full  font-bold '>
+                    <h1 className='text-bold text-[18px] md:text-[24px] leading-[40px]'>Top Sellers</h1>
                 </div>
                 <Slider
                     {...settings}
@@ -63,7 +65,7 @@ const CategorySeller = () => {
                                     <div className="relative w-[480px] rounded-[10px]" key={idx}>
                                         <img className="w-full h-full rounded-[10px]" src={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} alt="" />
                                         <div className="absolute bottom-0 flex justify-between w-full bg-gradient-to-b from-[#0000] to-[#000] rounded-[10px] items-end py-4 px-2">
-                                            <p className="w-[80%] text-white text-base"><span className="font-bold">{item.category_name}-</span> Hand Sanitizer
+                                            <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> Hand Sanitizer
                                                 in Green Apple,
                                                 Sandal Wood, Lemon Grass...</p>
                                             <button className="py-2 px-2 md:px-4 bg-[#FF983B] text-white text-[14px] rounded-[3px] text-sm md:text-base whitespace-nowrap hover:text-[#FF983B] hover:bg-white border-[#FF983B]">Shop Now</button>

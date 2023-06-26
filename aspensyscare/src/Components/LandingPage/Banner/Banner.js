@@ -14,7 +14,7 @@ const Banner = ({ position,Header=true }) => {
         autoplaySpeed: 5000,
         swipeToSlide: true,
         arrows: false,
-        className: "center manageHeight",
+        className: "center gapgiventoBanner",
         centerMode: false,
         responsive: [
             {
@@ -39,6 +39,7 @@ const Banner = ({ position,Header=true }) => {
               breakpoint: 480,
               settings: {
                 slidesToShow: 1,
+                className:'removegap'
               }
             }
           ]
@@ -47,17 +48,17 @@ const Banner = ({ position,Header=true }) => {
     const navigate = useNavigate();
     const Banner = useSelector((state) => state.banner);
     const { banner } = Banner.banner;
-    console.log(banner)
+    // console.log(banner)
     const itemIndex = banner !== undefined ? banner.findIndex((item) => item.position === position) : null;
-    console.log(itemIndex)
+    // console.log(itemIndex)
     const bannerImages = banner !== undefined && itemIndex !== null ? banner[itemIndex].banner_image : null
     const bannerImage = bannerImages !== null && bannerImages.split("@@@")
-    console.log(bannerImage)
+    // console.log(bannerImage)
 
     return (
         <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4 max-h-[500px]">
-            {Header===true?<div className='w-full  font-bold pl-[6px]'>
-                <h1 className='text-bold text-[24px] leading-[40px]'>Welcome to the Apsensyscare Family</h1>
+            {Header===true?<div className='w-full my-[10px] md:my-[30px] font-bold pl-[6px]'>
+                <h1 className='text-bold text-[18px] md:text-[24px] leading-[40px]'>Welcome to the Apsensyscare Family</h1>
             </div>:null}
             <Slider
                 {...settings}
@@ -66,7 +67,7 @@ const Banner = ({ position,Header=true }) => {
                     banner !== undefined ? (
                         bannerImage.map((item, idx) => {
                             return (
-                                <div className='pr-[10px] rounded-[10px]' key={idx}>
+                                <div className='rounded-[10px] ' key={idx}>
                                     <img className='w-full h-full rounded-[10px] object-contain' src={`${process.env.REACT_APP_URL}Image/Poster/${item}`} alt='' />
                                 </div>
                             )

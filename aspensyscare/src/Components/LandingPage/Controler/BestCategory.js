@@ -6,16 +6,16 @@ import Slider from 'react-slick'
 const BestCategory = () => {
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3.2,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 5000,
     swipeToSlide: true,
     arrows: false,
-    className: "center gapgiven",
-    centerMode: true,
+    className: "center addmargin",
+    centerMode: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -51,7 +51,7 @@ const BestCategory = () => {
   const { category } = Category.category;
   return (
     <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
-      <div className='w-full  font-bold pl-[6px]'>
+      <div className='w-full  font-bold '>
         <h1 className='text-bold text-[24px] leading-[40px]'>Top Sellers by Category</h1>
       </div>
       <Slider
@@ -85,7 +85,9 @@ const BestCategory = () => {
                       <p class="text-lg font-semibold"><span class="font-bold">₹{product[itemIndex].default_price}</span>
                         {/* <span class="text-gray-600 mx-2">₹310</span> <span class="text-green-600">20%</span> */}
                       </p>
-                      <button class="bg-orange-400 mt-4 text-white py-2 px-10 rounded-lg flex mx-auto hover:bg-white hover:text-orange-400 border border-orange-400">Details</button>
+                      <button class="bg-orange-400 mt-4 text-white py-2 px-10 rounded-lg flex mx-auto hover:bg-white hover:text-orange-400 border border-orange-400"
+                      onClick={() => navigate(`/product/${product[itemIndex].category_id}/${product[itemIndex].id}/${product[itemIndex].product_url}`, { state: { product: product[itemIndex] } })}
+                      >Details</button>
                     </div>
                   </div>
                 )

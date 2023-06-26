@@ -41,3 +41,12 @@
 .gapgiven > .slick-list >.slick-track{
     gap:30px !important;
 }
+.removegap > .slick-list >.slick-track{
+    gap:0px !important;
+}
+.gapgiventoBanner > .slick-list >.slick-track> div:first-child{
+   margin-right:30px !important;
+}
+.addmargin > .slick-list >.slick-track> div{
+    margin-right:30px !important;
+ }

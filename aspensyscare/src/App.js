@@ -38,7 +38,6 @@ function App() {
         dispatch(offeredBrands());
       } catch (error) {
         console.log(error);
-        
       }
     }
     fetchData();

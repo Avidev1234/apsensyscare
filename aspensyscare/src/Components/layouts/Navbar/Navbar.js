@@ -71,11 +71,21 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   backgroundColor: '#fff',
 }));
+const MenuIconWeapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#d9d9d9',
+  zIndex: 1000,
+}));
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: '#000',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(1)})`,
+    paddingLeft: `calc(3em + ${theme.spacing(1)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
     height: '20px',
@@ -108,6 +118,29 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 function Navbar(props) {
   const { window, handelLogin, openLogin } = props;
+  const ref = React.useRef({
+    render: false
+  });
+  const [isCategory, setCategory] = React.useState(false)
+
+  const handleClick = e => {
+    console.log(ref)
+    if (ref.current && !ref.current.contains(e.target)) {
+      ref.render=true
+      ref.current=null
+      // console.log(ref)
+    }else if(ref.render===true){
+      setCategory(false);
+    }
+  };
+  React.useEffect(() => {
+    console.log(ref)
+      document.addEventListener("click", handleClick);
+      return () => {
+        document.removeEventListener("click", handleClick);
+      };
+    
+  });
   //console.log(props)
   const navigate = useNavigate();
   var item_value = sessionStorage.getItem("LoginSuccess");
@@ -174,8 +207,8 @@ function Navbar(props) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const Wishlist = useSelector((state) => state.wishlist);
-  console.log(Wishlist.wishlist.length)
-  const wishlistCount=Wishlist!==undefined?Wishlist.wishlist.length:0
+  //console.log(Wishlist.wishlist.length)
+  const wishlistCount = Wishlist !== undefined ? Wishlist.wishlist.length : 0
   React.useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
@@ -210,7 +243,7 @@ function Navbar(props) {
     //console.log("hello i am results", (searchedItems))
 
     return (
-      <div className="scroolbar absolute top-[20] w-full h-[300px] max-h-[300px] bg-white w-full rounded-xl shadow-xl overflow-auto p-1">
+      <div className="scroolbar absolute top-[20] right-0 w-[90%] h-[300px] max-h-[300px] bg-white w-full rounded-xl shadow-xl overflow-auto p-1">
         {
           searchedItems.map((val, i) => {
             return (
@@ -241,11 +274,37 @@ function Navbar(props) {
       </div>
     )
   }
-  
+  const Category = useSelector((state) => state.category);
+  const { category } = Category.category;
+  const OpenCategory = () => {
+    return (
+      <>
+        <div ref={ref} className='scroolbar absolute top-[40px] left-[0px] bg-white w-[150px] rounded shadow-xl overflow-auto p-1 text-[black] flex flex-col no-wrap'>
+          {category !== undefined ? category.map((item, idx) => {
+            return (
+              <div key={idx} className='hover:bg-[#d9d9d9] p-2 rounded border-b-2' onClick={() => navigate(`/category/${item.category_url}`, { state: { id: item.id, val: item } })}>
+
+                {item.category_name}
+
+              </div>
+            )
+          }) : null}
+
+        </div>
+      </>
+    )
+  }
+  const opencategory = () => {
+    //console.log("hello")
+    setCategory(true)
+
+  }
+
+
   return (
-    <Box sx={{ display: 'flex', height: trigger ? "100px" : "100px" }} >
+    <Box sx={{ display: 'flex', height: trigger ? "80px" : "80px" }} >
       <CssBaseline />
-      <AppBar component="nav" sx={{ background: '#0112FE', height: trigger ? "100px" : "100px", transition: '200ms ease-in' }} >
+      <AppBar component="nav" sx={{ background: '#0112FE', height: trigger ? "80px" : "80px", transition: '200ms ease-in' }} >
         <Toolbar style={{ minHeight: '80px' }}>
           <IconButton
             color="inherit"
@@ -262,7 +321,7 @@ function Navbar(props) {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             onClick={() => navigate('/')}
           >
-            <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='aspensyscare' style={{ cursor: 'pointer', width: '140px',height:'65px' }} />
+            <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='aspensyscare' style={{ cursor: 'pointer', width: '140px', height: '65px' }} />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-between' }} className='sidewidth'>
             {/* {navItems.map((item) => (
@@ -271,13 +330,21 @@ function Navbar(props) {
               </Button>
             ))} */}
             <div style={{ margin: 'auto' }} className='relative'>
+              <MenuIconWeapper ref={ref} className='border-r-2 rounded-l-lg top-0 left-0 cursor-pointer	 bg-[#d9d9d9]]' onClick={opencategory}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-list" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+
+              </MenuIconWeapper>
+              {isCategory ? <OpenCategory /> : null}
               <Search >
+
                 <StyledInputBase
                   className="border-2 rounded-lg"
                   placeholder="Search your items…"
                   inputProps={{ 'aria-label': 'search' }}
                   onChange={(e) => ProductSearch(e)}
-                  onFocus={() => Setopensearch(true)}
+                  // onFocus={() => Setopensearch(true)}
                   onBlur={() => {
                     setTimeout(() => {
                       Setopensearch(false)
@@ -285,12 +352,13 @@ function Navbar(props) {
                   }}
                 />
 
-                <SearchIconWrapper className="border-r-2 rounded-r-lg top-0 right-0	">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" className="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                  </svg>
-                </SearchIconWrapper>
+
               </Search>
+              <SearchIconWrapper className="border-r-2 rounded-r-lg top-0 right-0	">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" className="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+              </SearchIconWrapper>
               {opensearch ? <SearchModel /> : null}
             </div>
             {auth && (
@@ -392,7 +460,7 @@ function Navbar(props) {
                     </div>
                     :
 
-                    <div className="MuiBox-root css-dxza1q" style={{ flexDirection: 'row', cursor: 'pointer',color:"#fff" }} onClick={() => handelLogin(true, 0)}>
+                    <div className="MuiBox-root css-dxza1q" style={{ flexDirection: 'row', cursor: 'pointer', color: "#fff" }} onClick={() => handelLogin(true, 0)}>
                       {/* <img src='./account.png' alt=''/> */}
                       Login
                       <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#fff" className="bi bi-person" viewBox="0 0 16 16">
@@ -405,7 +473,7 @@ function Navbar(props) {
             )}
           </Box>
         </Toolbar>
-        <CategoryLayout />
+        {/* <CategoryLayout /> */}
       </AppBar>
       <Box component="nav">
         <Drawer

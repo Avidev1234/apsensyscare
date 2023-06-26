@@ -5,27 +5,27 @@ import Slider from 'react-slick';
 const CategoryInFocus = () => {
     const settings = {
         dots: false,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 6.1,
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 5000,
         swipeToSlide: true,
-        arrows: true,
+        arrows: false,
         className: "center gapgiven",
         centerMode: false,
         responsive: [
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 3,
+                slidesToShow: 4,
               }
             },
             {
                 breakpoint: 768,
                 settings: {
-                  slidesToShow: 2,
+                  slidesToShow: 3,
                 }
               },
             {
@@ -47,8 +47,8 @@ const CategoryInFocus = () => {
     const { product } = Products.products;
     return (
         <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4 mb-[50px]">
-            <div className='w-full  font-bold pl-[6px]'>
-                <h1 className='text-bold text-[24px] leading-[40px]'>Category In Focus</h1>
+            <div className='w-full my-[30px]  font-bold '>
+                <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Category In Focus</h1>
             </div>
             <Slider
                 {...settings}
