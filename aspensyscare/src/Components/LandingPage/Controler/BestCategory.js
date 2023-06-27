@@ -2,8 +2,11 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const BestCategory = () => {
+  const skeletonarray = [1, 2, 3]
   const settings = {
     dots: false,
     infinite: false,
@@ -54,11 +57,22 @@ const BestCategory = () => {
       <div className='w-full  font-bold '>
         <h1 className='text-bold text-[24px] leading-[40px]'>Top Sellers by Category</h1>
       </div>
+      {Category.loading &&
+        (<div className='flex justify-between'>
+          {skeletonarray.map(() => {
+            return (
+              <Skeleton count={1} className='w-[350px] h-[350px]' />
+            )
+          })}
+        </div>
+        )
+      }
+      {!Category.loading && Category.error ? <div>Error: {Category.error}</div> : null}
       <Slider
         {...settings}
       >
         {
-          category !== undefined ? (
+          !Category.loading && category !== undefined ? (
             category.map((item, idx) => {
               const itemIndex = product !== undefined ? product.findIndex((product) => product.id === item.top_product_id) : null;
               console.log(itemIndex)
@@ -86,12 +100,12 @@ const BestCategory = () => {
                         {/* <span class="text-gray-600 mx-2">₹310</span> <span class="text-green-600">20%</span> */}
                       </p>
                       <button class="bg-orange-400 mt-4 text-white py-2 px-10 rounded-lg flex mx-auto hover:bg-white hover:text-orange-400 border border-orange-400"
-                      onClick={() => navigate(`/product/${product[itemIndex].category_id}/${product[itemIndex].id}/${product[itemIndex].product_url}`, { state: { product: product[itemIndex] } })}
+                        onClick={() => navigate(`/product/${product[itemIndex].category_id}/${product[itemIndex].id}/${product[itemIndex].product_url}`, { state: { product: product[itemIndex] } })}
                       >Details</button>
                     </div>
                   </div>
                 )
-              }else{
+              } else {
                 return null
               }
             })

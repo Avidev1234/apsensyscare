@@ -37,8 +37,7 @@ const Home = () => {
   }, []);
   const Category = useSelector((state) => state.category);
     const { category } = Category.category;
-    const Brand = useSelector((state) => state.Brand);
-    const { brands } = Brand.brands;
+    
     
   return (
     <Homecont>
@@ -47,14 +46,14 @@ const Home = () => {
           <CategorySeller/>
           <Banner position='1' Header={true}/>
           <BestSeller title={"Best Sellers"} count={true}/>
-          <BrandsOffer brand={brands} title={"Top Brands"}/>
+          <BrandsOffer  title={"Top Brands"}/>
           {/* <TopBrands/> */}
           <Advertise/>
           <BrandOfDay />
           <BestCategory/>
           <Banner position='2' Header={false}/>
           {/* <FeaturedBrand/> */}
-          <BrandsOffer brand={brands} title={"Featured Brands"}/>
+          <BrandsOffer  title={"Featured Brands"}/>
           <BestSeller title={"More Categories For You"} count={false}/>
           <CategoryInFocus/>
           <Advertise/>
