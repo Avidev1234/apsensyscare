@@ -75,7 +75,7 @@ const BestCategory = () => {
           !Category.loading && category !== undefined ? (
             category.map((item, idx) => {
               const itemIndex = product !== undefined ? product.findIndex((product) => product.id === item.top_product_id) : null;
-              console.log(itemIndex)
+              // console.log(itemIndex)
               if (itemIndex !== null) {
                 return (
                   <div class="border rounded-lg">

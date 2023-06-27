@@ -71,7 +71,8 @@ const ProductCard = ({ val }) => {
 
     return (
         <div>
-            <div class="w-full md:max-w-[200px] shrink cursor-pointer" onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`, { state: { product: val } })}>
+            <div class="w-full md:max-w-[200px] shrink cursor-pointer" 
+            onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`)}>
                 <div class="border rounded-lg relative">
                     <button class="absolute right-0 bg-orange-400 text-white px-2 py-1 text-sm rounded-tr-lg">Best sellers</button>
                     <img width="150" height="200" class="mx-auto pt-[30px] pb-[10px]" src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} alt="" />

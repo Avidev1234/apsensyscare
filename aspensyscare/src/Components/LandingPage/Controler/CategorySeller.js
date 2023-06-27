@@ -85,7 +85,10 @@ const CategorySeller = () => {
                         in Green Apple,
                         Sandal Wood, Lemon Grass...</p>
                       <button className="py-2 px-2 md:px-4 bg-[#FF983B] text-white text-[14px] rounded-[3px] text-sm md:text-base whitespace-nowrap hover:text-[#FF983B] hover:bg-white border-[#FF983B]"
-                        onClick={() => navigate(`/category/${item.category_url}`, { state: { id: item.id, val: item } })}
+                        onClick={() => navigate({
+                          pathname: `/category/${item.category_url}/c/${item.id}`,
+                          search: `?categoryId=${item.id}`
+                        })}
                       >Shop Now</button>
                     </div>
                   </div>

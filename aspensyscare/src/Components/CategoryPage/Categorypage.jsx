@@ -132,7 +132,6 @@ const Categorypage = () => {
                                 Price
                                 <ExpandMore
                                     expand={expanded}
-
                                     aria-expanded={expanded}
                                     aria-label="show more"
                                 >
