@@ -12,9 +12,10 @@ const BrandOfDay = () => {
     const skeletonarray = [1, 2, 3, 4]
     return (
         <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4">
-            <div className='w-full  font-bold  my-[30px]'>
+            {!Category.loading && category !== undefined ? (<div className='w-full  font-bold  my-[30px]'>
                 <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Category Of The Day</h1>
-            </div>
+            </div>) : <Skeleton count={2} />}
+
             {Category.loading &&
                 (<div className='flex justify-between'>
                     {skeletonarray.map(() => {

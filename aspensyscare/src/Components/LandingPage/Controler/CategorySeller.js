@@ -56,9 +56,10 @@ const CategorySeller = () => {
   return (
     <>
       <div className="w-full flex flex-nowrap flex-col gap-4">
-        <div className='w-full  font-bold '>
+
+        {!Category.loading && category !== undefined ? (<div className='w-full  font-bold '>
           <h1 className='text-bold text-[18px] md:text-[24px] leading-[40px]'>Top Sellers</h1>
-        </div>
+        </div>) : <Skeleton count={2} />}
         {Category.loading &&
           (<div className='flex justify-between'>
             {skeletonarray.map(() => {
