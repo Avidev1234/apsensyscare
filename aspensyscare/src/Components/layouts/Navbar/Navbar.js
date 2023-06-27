@@ -126,20 +126,20 @@ function Navbar(props) {
   const handleClick = e => {
     console.log(ref)
     if (ref.current && !ref.current.contains(e.target)) {
-      ref.render=true
-      ref.current=null
+      ref.render = true
+      ref.current = null
       // console.log(ref)
-    }else if(ref.render===true){
+    } else if (ref.render === true) {
       setCategory(false);
     }
   };
   React.useEffect(() => {
     console.log(ref)
-      document.addEventListener("click", handleClick);
-      return () => {
-        document.removeEventListener("click", handleClick);
-      };
-    
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+
   });
   //console.log(props)
   const navigate = useNavigate();
@@ -282,10 +282,15 @@ function Navbar(props) {
         <div ref={ref} className='scroolbar absolute top-[40px] left-[0px] bg-white w-[150px] rounded shadow-xl overflow-auto p-1 text-[black] flex flex-col no-wrap'>
           {category !== undefined ? category.map((item, idx) => {
             return (
-              <div key={idx} className='hover:bg-[#d9d9d9] p-2 rounded border-b-2' onClick={() =>{setCategory(false);navigate(`/category/${item.category_url}`, { state: { id: item.id, val: item } })} }>
-
+              <div key={idx} className='hover:bg-[#d9d9d9] p-2 rounded border-b-2 cursor-pointer' onClick={() => {
+                setCategory(false);
+                navigate({
+                  pathname: `/category/${item.category_url}/c/${item.id}`,
+                  search: `?categoryId=${item.id}`
+                })
+              }
+              }>
                 {item.category_name}
-
               </div>
             )
           }) : null}

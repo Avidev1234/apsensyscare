@@ -77,7 +77,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path='/category' element={<Category />} />
               <Route path='/products' element={<AllPopularProducts />} />
-              <Route path='/category/:url' element={<ProductByCategory />} />
+              <Route path='/category/:url/c/:id' element={<ProductByCategory />} />
               <Route path='/cart' element={<Cart  handelLogin={handelLogin} openLogin={openLogin}/>} />
               <Route path='/cart/:id' element={<Cart  handelLogin={handelLogin} openLogin={openLogin}/>} />
               <Route path='/wishlist' element={<Wishlist />} />

@@ -7,8 +7,8 @@ import ProductCarousel from './ProductCarousel'
 import ProductDetails from './ProductDetails'
 import Ratingpage from './Ratingpage'
 import TopQuestion from './TopQuestion'
-import { useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useLocation, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { magnifying } from '../../Api/Api'
 
 
@@ -58,7 +58,10 @@ const Partationcont_sec = styled(Box)`
 const Product = () => {
   const [magnified, setMagnified] = useState(false)
   const value = useLocation();
-  console.log("inside product details", value.state)
+  const { product_id } = useParams()
+  const Products = useSelector((state) => state.product);
+  const { product } = Products.products;
+  const itemIndex = product !== undefined ? product.findIndex((product) => product.id === product_id) : null;
   const imagemagnify = (text) => {
     setMagnified(text);
   }
@@ -67,24 +70,27 @@ const Product = () => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     try {
-      dispatch(magnifying(value.state.product.id));
+      dispatch(magnifying(product[itemIndex].id));
     } catch (error) {
       console.log(error);
     }
-  }, [value]);
+  });
 
   sessionStorage.setItem("initialized", true);
-
-
 
   return (
     <ProductCont>
       <ProductDetailsBox>
         <div className='w-full md:w-[44%] '>
-          <ProductCarousel id={value.state.product.id} imagemagnify={imagemagnify} />
+          {itemIndex !== null ?
+            <ProductCarousel id={product[itemIndex].id} imagemagnify={imagemagnify} />
+            : null}
+
         </div>
         <div className='w-full md:w-[44%] '>
-          <ProductDetails products={value.state.product} magnified={magnified} />
+          {itemIndex !== null ?
+            <ProductDetails products={product[itemIndex]} magnified={magnified} />
+            : null}
         </div>
       </ProductDetailsBox>
       <ProductDetailsBox>

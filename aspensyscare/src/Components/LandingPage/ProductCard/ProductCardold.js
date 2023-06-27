@@ -9,7 +9,7 @@ const ProductCardold = ({ val, page ,checked}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const WishlistproductId = useContext(Log);
-    console.log(WishlistproductId)
+    //console.log(WishlistproductId)
     let exsit
     if(WishlistproductId.includes(val.id)){
         exsit=true;
