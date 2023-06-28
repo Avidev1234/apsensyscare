@@ -5,6 +5,9 @@ import { addToCart } from '../../../Store/Slices/cartSlice';
 import { addToWishlist, removeFromWishlist } from '../../../Store/Slices/getwishlistSlice';
 import { Log } from '../../../App';
 
+
+
+
 const ProductCardold = ({ val, page ,checked}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -23,18 +26,12 @@ const ProductCardold = ({ val, page ,checked}) => {
     const { details } = products.productdetails;
     const { size } = sizedetails.sizes;
 
-    const itemIndex = details !== undefined ? details.findIndex((item) => item.product_id === val.id) : 'null';
-    let itemsize = '';
-
-    // if (itemIndex !== -1 && details !== undefined) {
-    //     const sizeid = details[itemIndex]['size_id'];
-    //     const sizeindex = size !== undefined ? size.findIndex((item) => item.id === sizeid) : 'null';
-    //     itemsize = size !== undefined ? size[sizeindex]['size_value'] : null;
-    // }
 
     // handling cart
 
     const handleCart = (product) => {
+   
+
         // destructure all data
         
         // get the all details belongs to product Id from product entry tables
@@ -56,6 +53,7 @@ const ProductCardold = ({ val, page ,checked}) => {
             navigate('/cart')
         }
     }
+    
     const Wishlist=(val,exsit)=>{
         if(exsit === true && sessionStorage.getItem('___user')){
             dispatch(removeFromWishlist(val.id))

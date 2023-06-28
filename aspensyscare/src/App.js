@@ -19,7 +19,7 @@ import TermsCondition from './Components/Policy/TermsCondition';
 import Shipping from './Components/Policy/Shipping';
 import ThankYou from './Others/ThankYou';
 import OrderFailed from './Others/OrderFailed';
-import { AllProducts, GetuserWishlist, fatchSizes, fetchBanner, fetchCategory, getAddress, offeredBrands, productData, pushUsers } from './Api/Api';
+import { AllProducts, GetCartDetails, GetuserWishlist, fatchSizes, fetchBanner, fetchCategory, getAddress, offeredBrands, productData, pushUsers } from './Api/Api';
 import Footer from './Components/layouts/Footer/Footer';
 import ProductByCategory from './Components/CategoryPage/ProductByCategory';
 import AllPopularProducts from './Components/Product/AllPopularProducts';
@@ -57,6 +57,9 @@ function App() {
     dispatch(getAddress(sessionStorage.getItem('___user')))
     dispatch(pushUsers(sessionStorage.getItem('___user')))
     dispatch(GetuserWishlist(sessionStorage.getItem('___user')));
+    GetCartDetails(sessionStorage.getItem('___user')).then((res)=>{
+      console.log(res.cartItems)
+    });
   }
 
   const WishlistData = useSelector((state) => state.wishlist);

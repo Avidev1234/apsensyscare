@@ -79,7 +79,7 @@ const Banner = ({ position, Header }) => {
         {...settings}
       >
         {
-          !Banner.loading &&  banner !== undefined ? (
+          banner !== undefined ? (
             bannerImage.map((item, idx) => {
               return (
                 <div className='rounded-[10px] ' key={idx}>

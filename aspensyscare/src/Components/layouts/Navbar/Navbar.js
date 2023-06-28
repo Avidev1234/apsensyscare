@@ -124,7 +124,7 @@ function Navbar(props) {
   const [isCategory, setCategory] = React.useState(false)
 
   const handleClick = e => {
-    console.log(ref)
+    //console.log(ref)
     if (ref.current && !ref.current.contains(e.target)) {
       ref.render = true
       ref.current = null
@@ -134,7 +134,7 @@ function Navbar(props) {
     }
   };
   React.useEffect(() => {
-    console.log(ref)
+    //console.log(ref)
     document.addEventListener("click", handleClick);
     return () => {
       document.removeEventListener("click", handleClick);

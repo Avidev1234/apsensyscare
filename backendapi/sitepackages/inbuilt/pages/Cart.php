@@ -15,11 +15,7 @@ switch ($method) {
 
         if($objQuery->deleteRows("`user_cart` WHERE  `user_id`='" . ($user_id) . "'") == true){
             for ($i = 0; $i < $length; $i++) {
-                if ($objQuery->insertData("`user_cart`", "`user_id`='" . ($user_id) . "',`qty`='" . $cartQuantity[$i] . "',`size_value`='" . $itemSize[$i] . "',`product_id`='" . $product_id[$i] . "',`created_at`='" . $Date . "',`product_name`='" . $product_name[$i] . "'")) {
-                    echo 'true';
-                } else {
-                    echo "false";
-                }
+                $objQuery->insertData("`user_cart`", "`user_id`='" . ($user_id) . "',`qty`='" . $cartQuantity[$i] . "',`size_value`='" . $itemSize[$i] . "',`product_id`='" . $product_id[$i] . "',`created_at`='" . $Date . "',`product_name`='" . $product_name[$i] . "'");
             }
         }else {
             http_response_code(500); exit;

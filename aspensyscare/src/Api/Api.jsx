@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
+import { useSelector } from "react-redux"
 
 
 export const CreateOrder = async (amount) => {
@@ -22,7 +23,14 @@ export const SignupUser = async (values) => {
     return await axios.post("/site_user", values)
         .then((res) => res.data)
 }
-
+export const Placeorder = async (values) => {
+    return await axios.post("/caseonorder", values)
+        .then((res) => res.data)
+}
+export const GetCartDetails = async (id) => {
+    return await axios.post("/cartdetails", id)
+        .then((res) => res.data)
+}
 // export const AddWishlist = async (wishListData) => {
 //     return await axios.post("/addwishlist", wishListData)
 //         .then((res) => res.data)
@@ -31,8 +39,6 @@ export const SignupUser = async (values) => {
 //     return await axios.post("/removewishlist", values)
 //         .then((res) => res.data)
 // }
-
-
 // Api for redux store sclices start 
 export const offeredBrands = createAsyncThunk('brand/offerbrands', async () => {
     return await axios
@@ -95,14 +101,19 @@ export const PushUserCart = async (productdetails, userId) => {
     let names = productdetails.map((item) => item.name);
     let cartQuantity = productdetails.map((item) => item.cartQuantity);
     let itemSize = productdetails.map((item) => item.itemSize);
-    await axios
-        .post("/usercart", [productId, names, cartQuantity, itemSize, userId])
-        .then((req, res) => {
-            console.log("done");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    console.log(productdetails.length)
+    console.log(productId)
+    if (productdetails.length !== 0) {
+
+        await axios
+            .post("/usercart", [productId, names, cartQuantity, itemSize, userId])
+            .then((req, res) => {
+                console.log("done");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 };
 export const pushUsers = createAsyncThunk('user/login_push_user', async (login) => {
     return await axios

@@ -32,7 +32,7 @@ import {
   updateCart,
 } from "../../Store/Slices/cartSlice";
 import { toast } from "react-toastify";
-import { AddWishlist, CreateOrder, CreateSigneture } from "../../Api/Api";
+import { AddWishlist, CreateOrder, CreateSigneture, Placeorder } from "../../Api/Api";
 import { useNavigate } from "react-router-dom";
 import { addToWishlist } from "../../Store/Slices/getwishlistSlice";
 // import { useLocation } from "react-router-dom";
@@ -113,7 +113,7 @@ const Cart = (props) => {
   const [expandedAddress, setExpandedAddress] = useState();
   const [expandedPay, setExpandedPay] = useState();
 
-
+  const cart = useSelector((state) => state.cart);
   const sizes = useSelector((state) => state.size);
   const size = sizes.sizes.size;
   const addressess = useSelector((state) => state.address);
@@ -179,10 +179,25 @@ const Cart = (props) => {
   };
   // payment start
   const navigate = useNavigate();
-  const handelOrder = async (amount) => {
-    console.log("hello ia m payment", amount);
+  const handelOrder = async (cart) => {
+    const amount=cart.cartTotalAmount
     if (orderType === 'case') {
       console.log(orderType)
+      const orderItem={
+        user_id:'',
+        order_d:'',
+        size:'',
+        price:'',
+        quntaity:"",
+        address_id:'',
+        payment_method:'',
+        total_order:'',
+        order_status:''
+      }
+      orderItem.userId=''
+      Placeorder(cart).then((res)=>{
+        console.log(res)
+      })
     } else if (orderType === 'online') {
       CreateOrder(amount).then((res) => {
         console.log(res)
@@ -231,7 +246,6 @@ const Cart = (props) => {
     }
   };
 
-  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(getTotals());
@@ -798,7 +812,7 @@ const Cart = (props) => {
                     type="buttom"
                     variant="contained"
                     style={{ width: '200px', backgroundColor: "green", marginTop: "10px" }}
-                    onClick={() => { handelOrder(cart.cartTotalAmount) }}
+                    onClick={() => { handelOrder(cart) }}
                   >
                     {orderType === 'case' ? "Place Order" : 'Pay'}
                   </Button>

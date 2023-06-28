@@ -41,6 +41,7 @@ const cartSlice = createSlice({
       if (sessionStorage.getItem('___user') !== null) {
         //console.log("login user cart")
         if (localStorage.getItem("cartItems") !== null) {
+          
           const productdetails = JSON.parse(localStorage.getItem("cartItems"))
           const userId = sessionStorage.getItem('___user')
           PushUserCart(productdetails, userId)

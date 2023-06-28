@@ -72,4 +72,8 @@ else if($uri==='/createOrder'){
     include('./sitepackages/inbuilt/pages/Getdbrand.php');
     die;
 }
+else if($uri==='/cartdetails'){
+    include('./sitepackages/inbuilt/pages/GetCart.php');
+    die;
+}
 ?>

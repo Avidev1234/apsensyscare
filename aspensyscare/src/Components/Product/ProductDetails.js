@@ -135,8 +135,8 @@ const ProductDetails = (product) => {
     }
 
     const [currentSize, setCurrentSize] = useState(currentItem);
-    
-    
+
+
     if (sessionStorage.getItem("initialized") === 'true') {
         setCurrentSize(currentItem);
         sessionStorage.setItem("initialized", false);
@@ -166,31 +166,32 @@ const ProductDetails = (product) => {
 
 
     // console.log(Productvariants)
-     console.log(currentSize)
-    // useEffect(() => {
-    //     //setCurrentSize(currentItem)
-    //     console.log("inside useefect")
-    //     if (Productvariants.length !== 0) {
-    //         if (sessionStorage.getItem("initialized") === true) {
-    //             console.log("inside if")
-    //             Productvariants.length !== 0 ? setCurrentSize({ size: Productvariants[0].size, price: Productvariants[0].price }) : 
-    //             initialized = false;
-    //             sessionStorage.setItem("initialized", false);
-    //         }else{
-    //             console.log(Productvariants)
-    //         }
-    //     } else {
-            
-    //     }
-    // }, [Productvariants])
-    //console.log("hello i am ", Productvariants)
+    console.log(currentSize)
+
     const handleCart = (product) => {
         console.log(product)
-        product.cartQuantity = val;
-        itemsize=currentSize.size;
-        product.price=currentSize.price;
-        dispatch(addToCart([product, itemsize]));
+        const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.id) : [];
+        let itemsize = '';
+        const Productvariants = [];
+        //console.log(itemIndex);
+        itemIndex.map((item, idx) => {
+            const index = size.filter((items) => items.id === item.size_id)
+            const values = {
+                "price": item.price,
+                "size": index[0]['size_value']
+            }
+            Productvariants.push(values)
+        })
+        const productDetails = Object.assign({ price: product.default_price }, product);
+        dispatch(addToCart([productDetails, product.default_size, Productvariants]));
         navigate('/cart')
+
+        //product.cartQuantity = val;
+        // const ProductObj=Object.assign({cartQuantity:val,price:currentSize.price},product)
+        // itemsize=currentSize.size;
+        // // product.price=currentSize.price;
+        // dispatch(addToCart([ProductObj, itemsize]));
+        // navigate('/cart')
     }
 
     // add cart items number
