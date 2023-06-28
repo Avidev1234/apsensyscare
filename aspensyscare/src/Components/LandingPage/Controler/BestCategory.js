@@ -54,9 +54,10 @@ const BestCategory = () => {
   const { category } = Category.category;
   return (
     <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4">
-      <div className='w-full  font-bold '>
+      {!Category.loading && category !== undefined ? (<div className='w-full  font-bold '>
         <h1 className='text-bold text-[24px] leading-[40px]'>Top Sellers by Category</h1>
-      </div>
+      </div>) : <Skeleton count={2} />}
+
       {Category.loading &&
         (<div className='flex justify-between'>
           {skeletonarray.map(() => {

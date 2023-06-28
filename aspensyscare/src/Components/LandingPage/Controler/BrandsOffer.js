@@ -9,9 +9,10 @@ const BrandsOffer = ({ title }) => {
     const { brands } = Brand.brands;
     return (
         <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4  rounded-lg">
-            <div className='w-full  font-bold  my-[30px]'>
+            {!Brand.loading && brands !== undefined ? (<div className='w-full  font-bold  my-[30px]'>
                 <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>{title}</h1>
-            </div>
+            </div>) : <Skeleton count={2} />}
+            
             {Brand.loading &&
                 (<div className='flex justify-between'>
                     {skeletonarray.map(() => {
