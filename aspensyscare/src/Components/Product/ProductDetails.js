@@ -169,7 +169,7 @@ const ProductDetails = (product) => {
     console.log(currentSize)
 
     const handleCart = (product) => {
-        console.log(product)
+        //console.log(product)
         const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.id) : [];
         let itemsize = '';
         const Productvariants = [];

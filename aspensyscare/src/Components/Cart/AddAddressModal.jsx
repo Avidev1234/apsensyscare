@@ -82,7 +82,7 @@ const AddAddressModal = ({ handelLogin }) => {
     );
     setOpen(false);
     AddAddress(address).then((res) => {
-      console.log("done");
+      //console.log("done");
       if (sessionStorage.getItem("___user")) {
         dispatch(getAddress(sessionStorage.getItem("___user")));
       }

@@ -23,9 +23,10 @@ import { AllProducts, GetCartDetails, GetuserWishlist, fatchSizes, fetchBanner, 
 import Footer from './Components/layouts/Footer/Footer';
 import ProductByCategory from './Components/CategoryPage/ProductByCategory';
 import AllPopularProducts from './Components/Product/AllPopularProducts';
-const Log= createContext(null);
+import { LoginAfterCart, addToCart } from './Store/Slices/cartSlice';
+const Log = createContext(null);
 function App() {
-  
+
   const dispatch = useDispatch();
   useEffect(() => {
     async function fetchData() {
@@ -41,11 +42,11 @@ function App() {
       }
     }
     fetchData();
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [dispatch])
   // console.log(`session value is${item_value}`)
 
-  
+
   const [openLogin, setOpenLogin] = useState(false)
   const [login, setLogin] = useState(false);
 
@@ -53,13 +54,44 @@ function App() {
     setOpenLogin(text);
     setLogin(true);
   }
-  if(sessionStorage.getItem('___user')){
+  const allproducts = useSelector((state) => state.product);
+  const products = useSelector((state) => state.productdetails);
+  const sizedetails = useSelector((state) => state.size);
+  if (sessionStorage.getItem('___user')) {
+    const { product } = allproducts.products;
+    const { details } = products.productdetails;
+    const { size } = sizedetails.sizes;
     dispatch(getAddress(sessionStorage.getItem('___user')))
     dispatch(pushUsers(sessionStorage.getItem('___user')))
     dispatch(GetuserWishlist(sessionStorage.getItem('___user')));
-    GetCartDetails(sessionStorage.getItem('___user')).then((res)=>{
-      console.log(res.cartItems)
-    });
+    GetCartDetails(sessionStorage.getItem('___user')).then((res) => {
+      console.log(product)
+      let cart = []
+      res.cartItems.map((items) => {
+        const findIndex = product !== undefined ? product.findIndex((item) => item.id === items.product_id) : null;
+        console.log(items)
+        // cart.push(product[findIndex])
+        // localStorage.setItem("cartItems", JSON.stringify(cart))
+        // get the all details belongs to product Id from product entry tables
+        const itemIndex = details !== undefined ? details.filter((item) => item.product_id === items.product_id) : [];
+        const Productvariants = [];
+        console.log(itemIndex);
+        if (itemIndex.length !== 0 && details !== undefined && size !== undefined) {
+          itemIndex.map((item, idx) => {
+            const index = size.filter((items) => items.id === item.size_id)
+            const values = {
+              "price": item.price,
+              "size": index[0]['size_value']
+            }
+            Productvariants.push(values)
+          })
+          const productDetails = Object.assign({ price: product[findIndex].default_price }, product[findIndex]);
+          dispatch(LoginAfterCart([productDetails, product[findIndex].default_size, Productvariants]));
+        }
+      })
+      console.log(cart)
+    })
+
   }
 
   const WishlistData = useSelector((state) => state.wishlist);
@@ -74,26 +106,26 @@ function App() {
       <BrowserRouter>
         <ToastContainer />
         <Log.Provider value={WishlistProducts}>
-          <Navbar handelLogin={handelLogin} openLogin={openLogin}/>
+          <Navbar handelLogin={handelLogin} openLogin={openLogin} />
           <Routes>
             <Route path='/' element={<LandingPage />}>
               <Route index element={<Home />} />
               <Route path='/category' element={<Category />} />
               <Route path='/products' element={<AllPopularProducts />} />
               <Route path='/category/:url/c/:id' element={<ProductByCategory />} />
-              <Route path='/cart' element={<Cart  handelLogin={handelLogin} openLogin={openLogin}/>} />
-              <Route path='/cart/:id' element={<Cart  handelLogin={handelLogin} openLogin={openLogin}/>} />
+              <Route path='/cart' element={<Cart handelLogin={handelLogin} openLogin={openLogin} />} />
+              <Route path='/cart/:id' element={<Cart handelLogin={handelLogin} openLogin={openLogin} />} />
               <Route path='/wishlist' element={<Wishlist />} />
               <Route path='/login' element={<Login />} />
               <Route path='/privacy-policy' element={<Privecy />} />
               <Route path='/contact-us' element={<ContactUS />} />
-              <Route path='/about-us' element={<AboutUs />} />  
-              <Route path='/payment-return-cancellation' element={<PaymentReturn />} />  
-              <Route path='/terms-condition' element={<TermsCondition />} />  
-              <Route path='/shipping' element={<Shipping />} /> 
-              <Route path='/product/:category/:product_id/:productname' element={<Product />} /> 
-              <Route path='/thankyou' element={<ThankYou />} /> 
-              <Route path='/order-failed' element={<OrderFailed />} /> 
+              <Route path='/about-us' element={<AboutUs />} />
+              <Route path='/payment-return-cancellation' element={<PaymentReturn />} />
+              <Route path='/terms-condition' element={<TermsCondition />} />
+              <Route path='/shipping' element={<Shipping />} />
+              <Route path='/product/:category/:product_id/:productname' element={<Product />} />
+              <Route path='/thankyou' element={<ThankYou />} />
+              <Route path='/order-failed' element={<OrderFailed />} />
             </Route>
           </Routes>
           <Footer />
@@ -104,4 +136,4 @@ function App() {
 }
 
 export default App;
-export {Log} ;
+export { Log };
