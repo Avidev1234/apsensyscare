@@ -130,6 +130,7 @@ const Footer = () => {
                             Service Rd, Vijaya Bank Colony
                             Kallumantapa, Horamavu
                             Bengaluru, Karnataka 560043<br />
+                            Email : apsensyscare@gmail.com <br />
                             Phone : +91 7022478825
                         </p>
                     </div>

@@ -22,13 +22,11 @@ import { styled, alpha } from '@mui/material/styles';
 import LanguageIcon from '@mui/icons-material/Language';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
-import Loginold from '../../Login/Loginold';
 import Login from '../../Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getTotals } from '../../../Store/Slices/cartSlice';
 import "./navbar.css";
 import { clearAddress } from '../../../Store/Slices/getAddressSlice';
-import CategoryLayout from '../CategoryLayout/CategoryLayout';
 import * as Scroll from 'react-scroll';
 import { clearWishlist } from '../../../Store/Slices/getwishlistSlice';
 

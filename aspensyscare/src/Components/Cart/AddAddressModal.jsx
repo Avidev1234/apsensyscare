@@ -44,7 +44,28 @@ const AddAddressModal = ({ handelLogin }) => {
       .required("Required")
       .matches(/^[0-9]+$/, "Must be only digits")
       .min(6, "Must be exactly 6 digits")
-      .max(6, "Must be exactly 6 digits"),
+      .max(6, "Must be exactly 6 digits")
+      .test('checkEmailUnique', 'This email is already registered.', value => {
+        //console.log(value)
+        if (value.length === 6) {
+          try {
+            fetch(`https://api.postalpincode.in/pincode/${value}`).then(async res => {
+              const  isEmailUnique  = await res.ok
+              console.log(isEmailUnique)
+              return isEmailUnique
+            })
+          } catch (error) {
+
+          }
+        }
+        // fetch(`https://api.postalpincode.in/pincode/${value}`).then(async res => {
+        //   const { isEmailUnique } = await res.json()
+
+        //   return isEmailUnique
+        // })
+      }
+      )
+    ,
     city: Yup.string()
       .min(2, "Too Short!")
       .max(50, "Too Long!")

@@ -82,7 +82,7 @@ const ContactUS = () => {
             <div className="address-ion">
               <a href="https://www.linkedin.com/company/apsensyscare/">
                 <img
-                  src={`${process.env.REACT_APP_URL}Image/icons/linkedin.png`}
+                  src={`${process.env.REACT_APP_URL}Image/icons/linkedIn.png`}
                   alt="social-icon"
                   width={30}
                   height={30}

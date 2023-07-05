@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/LandingPage/Home/Home';
 import Product from './Components/Product/Product';
-import Category from './Components/CategoryPage/Categorypage';
+
 import Cart from './Components/Cart/Cart';
 import Wishlist from './Components/WishList/Wishlist';
 import Login from './Components/Login/Login';
@@ -23,7 +23,7 @@ import { AllProducts, GetCartDetails, GetuserWishlist, fatchSizes, fetchBanner, 
 import Footer from './Components/layouts/Footer/Footer';
 import ProductByCategory from './Components/CategoryPage/ProductByCategory';
 import AllPopularProducts from './Components/Product/AllPopularProducts';
-import { LoginAfterCart, addToCart } from './Store/Slices/cartSlice';
+import { LoginAfterCart } from './Store/Slices/cartSlice';
 const Log = createContext(null);
 function App() {
 
@@ -65,11 +65,11 @@ function App() {
     dispatch(pushUsers(sessionStorage.getItem('___user')))
     dispatch(GetuserWishlist(sessionStorage.getItem('___user')));
     GetCartDetails(sessionStorage.getItem('___user')).then((res) => {
-      console.log(product)
+      //console.log(product)
       let cart = []
       res.cartItems.map((items) => {
         const findIndex = product !== undefined ? product.findIndex((item) => item.id === items.product_id) : null;
-        console.log(items)
+        //console.log(items)
         // cart.push(product[findIndex])
         // localStorage.setItem("cartItems", JSON.stringify(cart))
         // get the all details belongs to product Id from product entry tables
@@ -110,7 +110,7 @@ function App() {
           <Routes>
             <Route path='/' element={<LandingPage />}>
               <Route index element={<Home />} />
-              <Route path='/category' element={<Category />} />
+              
               <Route path='/products' element={<AllPopularProducts />} />
               <Route path='/category/:url/c/:id' element={<ProductByCategory />} />
               <Route path='/cart' element={<Cart handelLogin={handelLogin} openLogin={openLogin} />} />

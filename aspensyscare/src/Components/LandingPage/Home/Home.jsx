@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 import { Stack } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect } from 'react'
-import CategoryControler from '../CategoryControler/CategoryControler'
 import ProductCategory from '../Category/ProductCategory'
 import CategorySeller from '../Controler/CategorySeller'
 import Banner from '../Banner/Banner'
@@ -35,24 +34,19 @@ const Home = () => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
-  const Category = useSelector((state) => state.category);
-    const { category } = Category.category;
     
     
   return (
     <Homecont>
         <Homebox>
-          {/* <VideoComponent/> */}
           <CategorySeller/>
           <Banner position='1' Header={true}/>
           <BestSeller title={"Best Sellers"} count={true}/>
           <BrandsOffer  title={"Top Brands"}/>
-          {/* <TopBrands/> */}
           <Advertise/>
           <BrandOfDay />
           <BestCategory/>
           <Banner position='2' Header={false}/>
-          {/* <FeaturedBrand/> */}
           <BrandsOffer  title={"Featured Brands"}/>
           <BestSeller title={"More Categories For You"} count={false}/>
           <CategoryInFocus/>

@@ -90,10 +90,10 @@ const Signup = ({ openSignup }) => {
         >
 
             {({ errors, touched }) => (
-                <Form className="scroolbar max-w-[97% md:max-w-4xl mx-auto flex  h-[500px] md:[700px]  overflow-y-scroll  flex-col p-2">
+                <Form className=" max-w-[97% md:max-w-4xl mx-auto flex flex-col p-2">
                     <div className=" mx-auto flex  justify-center flex-col ">
                         <div className="flex flex-row flex-wrap justify-between">
-                            <h2 className="font-semibold text-3xl mb-5">Create account</h2>
+                            <h2 className="font-semibold text-2xl mb-8">Create account</h2>
                             {error !== null ? <h6 className="font-semibold text-xl mb-5 text-[red]">{error}</h6> : null}
                         </div>
 
@@ -102,7 +102,7 @@ const Signup = ({ openSignup }) => {
                                 <Field
                                     as={TextField}
                                     label="Email"
-                                    id="outlined-basic"
+                                    id="outlined-basic7"
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
@@ -114,7 +114,7 @@ const Signup = ({ openSignup }) => {
                                 <Field
                                     as={TextField}
                                     label="Email"
-                                    id="outlined-basic"
+                                    id="outlined-basic8"
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
@@ -136,7 +136,7 @@ const Signup = ({ openSignup }) => {
                                 <Field
                                     as={TextField}
                                     label="Phone"
-                                    id="outlined-basic"
+                                    id="outlined-basic9"
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
@@ -148,7 +148,7 @@ const Signup = ({ openSignup }) => {
                                 <Field
                                     as={TextField}
                                     label="Phone"
-                                    id="outlined-basic"
+                                    id="outlined-basic10"
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
@@ -169,7 +169,7 @@ const Signup = ({ openSignup }) => {
                                 <Field
                                     as={TextField}
                                     label="Password"
-                                    id="outlined-basic"
+                                    id="outlined-basic1"
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
@@ -181,7 +181,7 @@ const Signup = ({ openSignup }) => {
                                 <Field
                                     as={TextField}
                                     label="Password"
-                                    id="outlined-basic"
+                                    id="outlined-basic2"
                                     multiline
                                     maxRows={1}
                                     variant="outlined"
@@ -196,13 +196,13 @@ const Signup = ({ openSignup }) => {
                                 </FormHelperText>
                             ) : null}
                         </div>
-                        <p className="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care&nbsp;
+                        <p className="py-5 max-w-xl text-[16px]">By continuing, you agree to Apsensys Care&nbsp;
                             <a className="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and &nbsp;
                             <a className="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
                         <button type='submit' onClick={scrollToTop} className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign Up</button>
-                        <hr className="border-b my-10" />
-                        <p className="text-xl">Apsensys Care User?</p>
-                        <div className="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(true)}>Login your Apsensys Care account</div>
+                        <hr className="border-b my-5" />
+                        <p className="text-[16px]">Apsensys Care User?</p>
+                        <div className="my-5 border-[1px] p-3 text-center text-[16px] cursor-pointer text-blue-800 hover:shadow-lg" onClick={() => openSignup(true)}>Login your Apsensys Care account</div>
                     </div>
                 </Form>
             )}
@@ -275,7 +275,7 @@ const Login = ({ handelLogin }) => {
         <LoginCont>
             <div className="max-w-7xl bg-[#F5F5F5] mx-auto relative p-8 max-h-[100%] overflow-hidden rounded-md">
                 <div className="absolute right-0 top-0 bg-red-500 w-8 h-8  text-center text-xl text-white font-bold cursor-pointer font-['system-ui']" onClick={() => handelLogin(false)}>X</div>
-                <img src="https://apsensyscare.com/aspensyscare.png" className="w-[80%] md:w-[40%] mb-10 mx-auto" alt="" />
+                <img src="https://apsensyscare.com/aspensyscare.png" className="w-[80%] md:w-[40%] mb-2 mx-auto" alt="" />
                 {
                     showSignup ?
                         (
@@ -294,18 +294,18 @@ const Login = ({ handelLogin }) => {
                             >{({ errors, touched }) => (
                                 <Form 
                                 onChange={()=>setLoginError(null)}
-                                className='scroolbar max-w-[97%] md:max-w-[90%] mx-auto flex h-[500px] md:[700px] overflow-y-scroll  flex-col p-2'>
+                                className=' max-w-[97%] md:max-w-[90%] mx-auto flex flex-col p-2'>
                                     <div className=" mx-auto flex  justify-center flex-col  ">
                                         <div className="flex flex-row flex-wrap justify-between">
-                                            <h2 className="font-semibold text-3xl mb-5">Create account</h2>
+                                            <h2 className="font-semibold text-2xl mb-8">Login account</h2>
                                             {loginerror !== null ? <h6 className="font-semibold text-xl mb-5 text-[red]">{loginerror}</h6> : null}
                                         </div>
-                                        <div className='mb-5'>
+                                        <div className='mb-3'>
                                             {errors.phone && touched.phone ? (
                                                 <Field
                                                     as={TextField}
                                                     label="Phone Number"
-                                                    id="outlined-basic"
+                                                    id="outlined-basic3"
                                                     multiline
                                                     maxRows={1}
                                                     variant="outlined"
@@ -317,7 +317,7 @@ const Login = ({ handelLogin }) => {
                                                 <Field
                                                     as={TextField}
                                                     label="Phone Number"
-                                                    id="outlined-basic"
+                                                    id="outlined-basic4"
                                                     multiline
                                                     maxRows={1}
                                                     variant="outlined"
@@ -338,7 +338,7 @@ const Login = ({ handelLogin }) => {
                                                 <Field
                                                     as={TextField}
                                                     label="Password"
-                                                    id="outlined-basic"
+                                                    id="outlined-basic5"
                                                     multiline
                                                     maxRows={1}
                                                     variant="outlined"
@@ -350,7 +350,7 @@ const Login = ({ handelLogin }) => {
                                                 <Field
                                                     as={TextField}
                                                     label="Password"
-                                                    id="outlined-basic"
+                                                    id="outlined-6"
                                                     multiline
                                                     maxRows={1}
                                                     variant="outlined"
@@ -365,13 +365,14 @@ const Login = ({ handelLogin }) => {
                                                 </FormHelperText>
                                             ) : null}
                                         </div>
-                                        <p className="py-8 max-w-xl text-xl">By continuing, you agree to Apsensys Care
+                                        <p className="py-8 max-w-xl text-[16px]">By continuing, you agree to Apsensys Care
                                             <a className="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
-                                            <a className="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a></p>
+                                            <a className="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a>
+                                        </p>
                                         <button type='submit' className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign In</button>
-                                        <hr className="border-b my-10" />
-                                        <p className="text-xl">New to Apsensys Care?</p>
-                                        <div className="my-10 border-[1px] p-5 text-center text-xl cursor-pointer" onClick={() => openSignup(false)}>Create your Apsensys Care account</div>
+                                        <hr className="border-b my-5" />
+                                        <p className="text-[16px]">New to Apsensys Care?</p>
+                                        <div className="my-5 border-[1px] p-3 text-center text-[16px] cursor-pointer text-blue-800 hover:shadow-lg" onClick={() => openSignup(false)}>Create your Apsensys Care account</div>
                                     </div>
                                 </Form>
                             )}
