@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/LandingPage/Home/Home';
 import Product from './Components/Product/Product';
-
 import Cart from './Components/Cart/Cart';
 import Wishlist from './Components/WishList/Wishlist';
 import Login from './Components/Login/Login';
@@ -32,11 +31,11 @@ function App() {
     async function fetchData() {
       try {
         dispatch(fetchCategory());
+        dispatch(fetchBanner());
+        dispatch(offeredBrands());
         dispatch(AllProducts());
         dispatch(productData());
         dispatch(fatchSizes());
-        dispatch(fetchBanner());
-        dispatch(offeredBrands());
       } catch (error) {
         console.log(error);
       }

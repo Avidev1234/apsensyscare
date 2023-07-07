@@ -131,7 +131,7 @@ const Footer = () => {
                             Kallumantapa, Horamavu
                             Bengaluru, Karnataka 560043<br />
                             Email : apsensyscare@gmail.com <br />
-                            Phone : +91 7022478825
+                            Phone : +91 8496868788
                         </p>
                     </div>
 

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Slider from "react-slick";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import PregressiveImage from '../../layouts/ImageLoader/PregressiveImage';
 
 const CategorySeller = () => {
   const settings = {
@@ -53,6 +54,7 @@ const CategorySeller = () => {
   const { category } = Category.category;
   console.log(Category.loading)
   const skeletonarray = [1, 2,]
+  
   return (
     <>
       <div className="w-full flex flex-nowrap flex-col gap-4">
@@ -64,7 +66,7 @@ const CategorySeller = () => {
           (<div className='flex justify-between'>
             {skeletonarray.map(() => {
               return (
-                <Skeleton count={1} className='w-[650px] h-[300px]' />
+                <Skeleton count={1} className='w-[650px] h-[280px]' />
               )
             })}
           </div>
@@ -80,7 +82,8 @@ const CategorySeller = () => {
               category.map((item, idx) => {
                 return (
                   <div className="relative w-[480px] rounded-[10px]" key={idx} >
-                    <img className="w-full h-full rounded-[10px]" src={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} alt="" />
+                    {/* <img className="w-full h-[280px] rounded-[10px]" src={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} alt="" /> */}
+                    <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} previewSrc={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} classname={"w-full h-[300px] rounded-[10px]"}  />
                     <div className="absolute bottom-0 flex justify-between w-full bg-gradient-to-b from-[#0000] to-[#000] rounded-[10px] items-end py-4 px-2">
                       <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> Hand Sanitizer
                         in Green Apple,

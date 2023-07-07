@@ -69,7 +69,7 @@ const ContactUS = () => {
               <PhoneIcon className="icon" />
               <div>
                 <h4 className="font-bold tracking-wide text-xl">PHONE</h4>
-                <p className="pt-3">+91 7022478825</p>
+                <p className="pt-3">+91 8496868788</p>
               </div>
             </div>
             <div className="address-descri">

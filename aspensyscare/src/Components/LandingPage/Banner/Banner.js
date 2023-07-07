@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import PregressiveImage from '../../layouts/ImageLoader/PregressiveImage';
 
 const Banner = ({ position, Header }) => {
   const skeletonarray = [1, 2]
@@ -83,8 +84,9 @@ const Banner = ({ position, Header }) => {
           banner !== undefined ? (
             bannerImage.map((item, idx) => {
               return (
-                <div className='rounded-[10px] ' key={idx}>
-                  <img className='w-full h-full rounded-[10px] object-contain' src={`${process.env.REACT_APP_URL}Image/Poster/${item}`} alt='' />
+                <div className='rounded-[10px]' key={idx}>
+                  {/* <img className='w-full h-full rounded-[10px] object-contain' src={`${process.env.REACT_APP_URL}Image/Poster/${item}`} alt='' /> */}
+                  <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/Poster/${item}`} previewSrc={`${process.env.REACT_APP_URL}Image/Poster/${item}`} classname={'w-full h-full rounded-[10px] object-contain'}  />
                 </div>
               )
 
