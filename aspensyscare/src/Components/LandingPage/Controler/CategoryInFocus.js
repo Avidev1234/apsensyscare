@@ -9,7 +9,7 @@ const CategoryInFocus = () => {
   const skeletonarray = [1, 2, 3, 4, 5, 6]
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 6.1,
     slidesToScroll: 1,
@@ -58,9 +58,9 @@ const CategoryInFocus = () => {
      
       {Products.loading &&
         (<div className='flex justify-between'>
-          {skeletonarray.map(() => {
+          {skeletonarray.map((id) => {
             return (
-              <Skeleton count={1} className='w-[200px] h-[300px]' />
+              <Skeleton count={1} key={id} className='w-[200px] h-[300px]' />
             )
           })}
         </div>
@@ -74,7 +74,7 @@ const CategoryInFocus = () => {
         !Products.loading && product !== undefined ? (
             product.map((item, idx) => {
               return (
-                <div class="text-center text-gray-600 cursor-pointer"
+                <div key={idx} class="text-center text-gray-600 cursor-pointer"
                   onClick={() => navigate(`/product/${item.category_id}/${item.id}/${item.product_url}`, { state: { product: item } })}
                 >
                   <div class="w-full flex justify-center mt-[7rem] md:mt-[15rem]">

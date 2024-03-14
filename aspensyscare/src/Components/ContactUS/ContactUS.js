@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import MailIcon from "@mui/icons-material/Mail";
@@ -49,6 +49,9 @@ const ContactUS = () => {
       });
 
   };
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  })
   return (
     <div className="contactdiv">
       <div className="contactCont">

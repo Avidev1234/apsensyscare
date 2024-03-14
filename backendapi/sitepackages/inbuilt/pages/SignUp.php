@@ -16,7 +16,8 @@ switch ($method) {
                 'message' => "User Exit! please try Again"
             ));
         } else {
-            if ($objQuery->insertData("`site_user`", "`email_address`='" . rawurlencode($email) . "',`phone_number`='" . $phone . "',`password`='" . $password . "',`created_at`='$Date'")) {
+            $userId=$objQuery->generateUserID();
+            if ($objQuery->insertData("`site_user`", "`user_id`='".$userId."',`email_address`='" . rawurlencode($email) . "',`phone_number`='" . $phone . "',`password`='" . md5($password) . "',`created_at`='$Date'")) {
                 http_response_code(200);
                 echo json_encode(array(
                     'status' => 200, // success or not?

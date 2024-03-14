@@ -17,7 +17,7 @@ const BestSeller = ({ title, count }) => {
     autoplaySpeed: 5000,
     swipeToSlide: true,
     arrows: false,
-    className: "center gapgiven",
+    className: " gapgiven",
     centerMode: false,
     responsive: [
       {
@@ -62,14 +62,14 @@ const BestSeller = ({ title, count }) => {
     <>
       <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
         {title !== undefined ? <div className='w-full  font-bold my-[30px]'>
-        {!Products.loading && product !== undefined ? (<h1 className='text-bold text-[18px] md:text-[24px] leading-[40px]'>{title}</h1>) : <Skeleton count={2} />}
+        {!Products.loading && product !== undefined ? (<h1 className='text-bold text-[18px] md:text-[24px] leading-[40px]'>{title}</h1>) : <Skeleton  count={2} />}
           
         </div> : null}
         {Products.loading &&
           (<div className='flex justify-between'>
-            {skeletonarray.map(() => {
+            {skeletonarray.map((id) => {
               return (
-                <Skeleton count={1} className='w-[200px] h-[300px]' />
+                <Skeleton key={id} count={1} className='w-[200px] h-[300px]' />
               )
             })}
           </div>
@@ -83,7 +83,7 @@ const BestSeller = ({ title, count }) => {
            !Products.loading && product !== undefined ? (
               Descending.map((item, idx) => {
                 return (
-                  <ProductCard val={item} />
+                  <ProductCard key={idx} val={item} />
                 )
               })
             ) : null

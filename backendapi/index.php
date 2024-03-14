@@ -53,13 +53,7 @@ else if($uri==='/size'){
     include('./sitepackages/inbuilt/pages/AddContact.php');
     die;
 }
-else if($uri==='/createOrder'){
-    include('./sitepackages/inbuilt/razorpay/pay.php');
-    die;
-}else if($uri==='/createSigneture'){
-    include('./sitepackages/inbuilt/razorpay/signeture.php');
-    die;
-}else if($uri==='/login_push_user'){
+else if($uri==='/login_push_user'){
     include('./sitepackages/inbuilt/pages/pushUser.php');
     die;
 }else if($uri==='/addwishlist'){
@@ -75,5 +69,21 @@ else if($uri==='/createOrder'){
 else if($uri==='/cartdetails'){
     include('./sitepackages/inbuilt/pages/GetCart.php');
     die;
+}else if($uri==='/createOrder'){
+    include('./sitepackages/inbuilt/phonepay/pay.php');
+    die;
+}else if($uri==='/payment/status'){
+    include('./sitepackages/inbuilt/phonepay/status.php');
+    die;
+}
+else if($uri==='/unsubscribe'){
+    include('./sitepackages/inbuilt/pages/DoUnsubscribe.php');
+    die;
+}
+else if($uri==='/currentuser'){
+    include('./sitepackages/inbuilt/pages/GetCurrentUser.php');
+    die;
+}else{
+    echo "bed request";
 }
 ?>

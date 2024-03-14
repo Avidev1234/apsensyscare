@@ -10,12 +10,12 @@ const Banner = ({ position, Header }) => {
   const skeletonarray = [1, 2]
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 500,
     swipeToSlide: true,
     arrows: false,
     className: Header === true ? "gapgiventoBanner" : "addmargin",
@@ -56,25 +56,25 @@ const Banner = ({ position, Header }) => {
   const itemIndex = banner !== undefined ? banner.findIndex((item) => item.position === position) : null;
   // console.log(itemIndex)
   const bannerImages = banner !== undefined && itemIndex !== null ? banner[itemIndex].banner_image : null
+  const bannerImagesURL = banner !== undefined && itemIndex !== null ? banner[itemIndex].anchor_link : null
   const bannerImage = bannerImages !== null && bannerImages.split("@@@")
-  // console.log(bannerImage)
+  const bannerURL = bannerImagesURL !== null && bannerImagesURL.split("@@@")
 
   return (
-    <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4 max-h-[500px]">
+    <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4 max-h-[500px] h-auto lg:h-[500] ">
       {Header === true ? <div className='w-full my-[10px] md:my-[30px] font-bold pl-[6px]'>
       {!Banner.loading && banner !== undefined ? ( <h1 className='text-bold text-[18px] md:text-[24px] leading-[40px]'>Welcome to the Apsensyscare Family</h1>) : <Skeleton count={2} />}
        
       </div> : null}
-      {Banner.loading &&
+      {bannerImages===null&&
         (<div className='flex justify-between'>
-          {skeletonarray.map(() => {
+          {skeletonarray.map((idx) => {
             return (
-              <Skeleton count={1} className='w-[700px] h-[300px]' />
+              <Skeleton key={idx} count={1} className='w-[700px] h-[300px]' />
             )
           })}
         </div>
         )
-
       }
       {!Banner.loading && Banner.error ? <div>Error: {Banner.error}</div> : null}
       <Slider
@@ -83,19 +83,20 @@ const Banner = ({ position, Header }) => {
         {
           banner !== undefined ? (
             bannerImage.map((item, idx) => {
+              //console.log(item['anchor_link'])
               return (
-                <div className='rounded-[10px]' key={idx}>
+                <div className='rounded-[10px] cursor-pointer' key={idx} onClick={() => navigate({
+                  pathname: `/product/type`,
+                  search: `?category_type=${bannerURL[idx].toLowerCase().trim().replace(" ","-",2)}`
+                })}>
                   {/* <img className='w-full h-full rounded-[10px] object-contain' src={`${process.env.REACT_APP_URL}Image/Poster/${item}`} alt='' /> */}
                   <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/Poster/${item}`} previewSrc={`${process.env.REACT_APP_URL}Image/Poster/${item}`} classname={'w-full h-full rounded-[10px] object-contain'}  />
                 </div>
               )
-
             })
           ) : null
         }
       </Slider>
-
-
     </div>
   )
 }

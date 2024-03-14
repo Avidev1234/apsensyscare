@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import ProductCard from '../LandingPage/ProductCard/ProductCardold'
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import ProductCard from '../LandingPage/ProductCard/ProductCard'
+import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
@@ -9,17 +9,16 @@ const ProductByCategory = () => {
         // 👇️ scroll to top on page load
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
-    const value = useLocation();
     // localStorage.setItem("cartId", JSON.stringify(value.state.id));
-    const [expanded, setExpanded] = useState(false);
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
-    let { categoryId } = useParams();
+    // const [expanded, setExpanded] = useState(false);
+    // const handleExpandClick = () => {
+    //     setExpanded(!expanded);
+    // };
     //console.log(categoryId)
-    const [searchParams, setSearchParams] = useSearchParams()
-    //console.log(searchParams.get('categoryId'))
+    const [searchParams] = useSearchParams()
+    console.log(searchParams.get('categoryId'))
 
+    console.log(searchParams)
     const Category = useSelector((state) => state.category);
     const { category } = Category.category;
     const itemIndex = category !== undefined ? category.findIndex((product) => product.id === searchParams.get('categoryId')) : null;
@@ -46,6 +45,18 @@ const ProductByCategory = () => {
                         </Helmet>
                     ) : null
             }
+            {
+                itemIndex !== null ?
+                    (
+                        <div className='flex flex-row gap-x-2 justify-start item-start text-[#a7a6a6] mb-2'>
+                            <p className='text-sm m-0'>
+                                <a href='/' target='_blank' className='hover:text-[#997af6] hover:underline'>Home</a>
+                            <span>/</span>
+                                {category[itemIndex].category_name}
+                            </p>
+                        </div>
+                    ) : null
+            }
             <div className='w-full border-2 rounded p-3 font-bold'>
 
                 {
@@ -61,7 +72,7 @@ const ProductByCategory = () => {
                 {!Products.loading && Products.products.product !== undefined && categoryProducts.length !== 0 ? (
                     categoryProducts.map((val, i) => {
                         return (
-                            <ProductCard val={val} />
+                            <ProductCard val={val} key={i}/>
                         )
                     })
                 ) :

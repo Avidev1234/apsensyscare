@@ -1,10 +1,18 @@
 import React, { useEffect } from "react";
+import Slider from "react-slick";
 
 function AboutUs() {
   useEffect(() => {
     // 👇️ scroll to top on page load
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div className="container">
       <div className="p-10 text-justify">
@@ -90,6 +98,41 @@ function AboutUs() {
           </div>
         </div>
       </div>
+      <div className="container mb-6 ">
+        <h2 className="font-bold text-2xl my-10 text-center">Our Management</h2>
+        {/* <div>
+          <Slider {...settings}>
+            <div>
+              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border ">
+                <div className="w-[200px] h-[150px]">
+                  <img src="https://www.ciobulletin.com/assets/home_image/ciobulletin-manish-pandey,-ceo-of-apsensys-group-img-webp.webp" alt="" />
+                </div>
+                <div>
+                  <p >
+                    Apsensys Care is well-equipped with world-class infrastructure to produce better products consistently. Our team of experts was handpicked to craft products of great value for our consumers.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3>2</h3>
+            </div>
+            <div>
+              <h3>3</h3>
+            </div>
+            <div>
+              <h3>4</h3>
+            </div>
+            <div>
+              <h3>5</h3>
+            </div>
+            <div>
+              <h3>6</h3>
+            </div>
+          </Slider>
+        </div> */}
+      </div>
       <div className="container mb-5">
         <h2 className="font-bold text-2xl my-10 text-center">Our Values</h2>
         <img
@@ -118,7 +161,7 @@ function AboutUs() {
       </div>
       <div className="container bg-[#a0efe6] p-5 md:p-10">
         <div className="p-0 md:p-5 text-justify">
-        <h2 className="font-bold text-2xl my-10 border-b border-black pb-4 w-50 md:w-[30%] mx-auto text-center">
+          <h2 className="font-bold text-2xl my-10 border-b border-black pb-4 w-50 md:w-[30%] mx-auto text-center">
             Our strategies for success..!
           </h2>
           <div className="grid md:grid-cols-2 md:gap-10">
@@ -190,7 +233,7 @@ function AboutUs() {
       </div>
       <div className="container p-5 md:p-10">
         <div className="p-5 text-center">
-        <h2 className="font-bold text-2xl my-10 border-b border-black pb-4 w-50 md:w-[30%] mx-auto text-center">
+          <h2 className="font-bold text-2xl my-10 border-b border-black pb-4 w-50 md:w-[30%] mx-auto text-center">
             Authenticity
           </h2>
           <p className="mb-5 text-justify">
@@ -218,7 +261,7 @@ function AboutUs() {
       </a>
       <div className="container bg-black text-white p-5 md:p-10">
         <div className="p-5">
-        <h2 className="font-bold text-2xl my-10 border-b border-white pb-4 w-50 md:w-[30%] mx-auto text-center">
+          <h2 className="font-bold text-2xl my-10 border-b border-white pb-4 w-50 md:w-[30%] mx-auto text-center">
             What we are?
           </h2>
           <div className="grid md:grid-cols-2 gap-10">
@@ -318,13 +361,13 @@ function AboutUs() {
       </div>
       <div className="container p-5 md:p-20">
         <h2 className="font-bold text-2xl my-10 border-b border-white pb-4 w-full">
-        Payment Methods
+          Payment Methods
         </h2>
         <img
-            src="/Image/About/payment.png"
-            alt="Free Delivery"
-            className="w-full md:w-[50%] object-contain"
-          />
+          src="/Image/About/payment.png"
+          alt="Free Delivery"
+          className="w-full md:w-[50%] object-contain"
+        />
       </div>
     </div>
   );

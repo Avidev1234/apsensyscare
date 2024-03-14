@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
+import {  createSlice } from "@reduxjs/toolkit";
 import { fetchCategory } from "../../Api/Api";
 
 const initialState = {

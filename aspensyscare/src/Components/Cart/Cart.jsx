@@ -7,11 +7,11 @@ import {
   Box,
   Button,
   FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
   Typography,
   Modal,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useEffect, useState } from "react";
@@ -20,7 +20,6 @@ import RemoveCircleRoundedIcon from "@mui/icons-material/RemoveCircleRounded";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import RecentViews from "../LandingPage/Carousel/RecentViews";
 import { useDispatch, useSelector } from "react-redux";
-import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import AddAddressModal from "./AddAddressModal";
 import {
@@ -32,9 +31,13 @@ import {
   updateCart,
 } from "../../Store/Slices/cartSlice";
 import { toast } from "react-toastify";
-import { AddWishlist, CreateOrder, CreateSigneture, Placeorder } from "../../Api/Api";
+// import { AddWishlist, CreateOrder, CreateSigneture, Placeorder } from "../../Api/Api";
 import { useNavigate } from "react-router-dom";
 import { addToWishlist } from "../../Store/Slices/getwishlistSlice";
+import emailjs from '@emailjs/browser';
+import { CreateOrder } from "../../Api/Api";
+import { GenerateEmailForGaustOrder } from "./gaustUser";
+
 // import { useLocation } from "react-router-dom";
 
 const stylemodal = {
@@ -58,7 +61,7 @@ const Container = styled.div`
   margin-top: 20px;
 `;
 const Headdingcont = styled.div`
-  width: 90%;
+  width: 100%;
 `;
 const ContainerCart = styled.div`
   width: 90%;
@@ -112,20 +115,27 @@ const Cart = (props) => {
   const [expandedItem, setExpandedItem] = useState("panel1");
   const [expandedAddress, setExpandedAddress] = useState();
   const [expandedPay, setExpandedPay] = useState();
+  const [orderType, setOrderType] = useState("case");
+  const [error, setError] = useState(false);
+  const [order_address, setOredr_address] = useState(null);
+  const [gaust_address, setgaust_address] = useState((localStorage.getItem("___gaust_user_address")) !== null ? JSON.parse(localStorage.getItem("___gaust_user_address")) : []);
+
 
   const cart = useSelector((state) => state.cart);
-  const sizes = useSelector((state) => state.size);
-  const size = sizes.sizes.size;
+  // const sizes = useSelector((state) => state.size);
+  // const size = sizes.sizes.size;
   const addressess = useSelector((state) => state.address);
   const address = addressess.address.address;
+  // this comment will be used when we send user data to database while order
   const userdetails = useSelector((state) => state.users);
   const user = userdetails.users.details;
   const userName = user !== undefined ? user[0].f_name + " " + user[0].l_name : ""
   const userPhone = user !== undefined ? user[0].phone_number : ""
-  const userEmail = user !== undefined ? user[0].email_address : ""
+  const userID = user !== undefined ? user[0].userId : ""
+  // const userEmail = user !== undefined ? user[0].email_address : ""
   const handleOpen = (panel) => (event, isExpanded) => {
-    // console.log(panel)
-    // console.log(isExpanded)
+    // //console.log(panel)
+    // //console.log(isExpanded)
     // setExpanded(isExpanded ? panel : false);
     if (panel === "panel1") {
       setExpandedPay(false);
@@ -139,7 +149,8 @@ const Cart = (props) => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
     if (panel === "panel3") {
-      if (address !== undefined) {
+      console.log(order_address, address);
+      if (address !== undefined || order_address !== null) {
         setExpandedItem(false);
         setExpandedAddress(false);
         setExpandedPay(panel);
@@ -149,8 +160,8 @@ const Cart = (props) => {
     }
   };
   const handleChange = (panel) => (event, isExpanded) => {
-    // console.log(panel)
-    // console.log(isExpanded)
+    // //console.log(panel)
+    // //console.log(isExpanded)
     // setExpanded(isExpanded ? panel : false);
     if (panel === "panel1") {
       setExpandedPay(false);
@@ -165,95 +176,142 @@ const Cart = (props) => {
   };
   // address work start
 
-  const [orderType, setOrderType] = useState("case");
-  const [error, setError] = useState(false);
+
 
   const handleRadioChange = (event) => {
     setOrderType(event.target.value);
     setError(false);
   };
 
-  console.log("i am radio :- ", orderType)
+  ////console.log("i am radio :- ", orderType)
   const takeValue = (e) => {
-    console.log(e.target.value);
+    ////console.log("address value", e.target.value);
+    setOredr_address(JSON.parse(e.target.value));
   };
-  // payment start
   const navigate = useNavigate();
+  const handlegaust_address = (props) => {
+    setgaust_address(props)
+    ////console.log(gaust_address)
+  }
   const handelOrder = async (cart) => {
-    const amount=cart.cartTotalAmount
-    if (orderType === 'case') {
-      console.log(orderType)
-      const orderItem={
-        user_id:'',
-        order_d:'',
-        size:'',
-        price:'',
-        quntaity:"",
-        address_id:'',
-        payment_method:'',
-        total_order:'',
-        order_status:''
+    ////console.log("hello indide handelOrder", localStorage.getItem("___gaust_user_address"))
+    // console.log(cart);
+
+    if (sessionStorage.getItem("___user") !== null) {
+      const amount = cart.cartTotalAmount
+      const OrderItems={
+        TotalAmount:cart.cartTotalAmount,
+        OrderId:'ASCORDER'+Date.now(),
+        merchantTransactionId:'ASC'+Date.now()+"TR",
+        cartTotalQuantity:cart.cartTotalQuantity,
+        userAddress:order_address.id,
       }
-      orderItem.userId=''
-      Placeorder(cart).then((res)=>{
-        console.log(res)
+      let products = []
+      console.log(cart)
+      cart.cartItems.map((val) => {
+        products.push({
+          id:val.id,
+          brand: val.brand_name,
+          name: val.name,
+          size: val.itemSize,
+          price: val.price,
+          quantity: val.cartQuantity
+        })
       })
-    } else if (orderType === 'online') {
-      CreateOrder(amount).then((res) => {
-        console.log(res)
-        const res_order_id = res.replace(/^\s+|\s+$/gm, '');
-        var options = {
-          "key": "rzp_test_dt0Vsxsmad0Ry3", // Enter the Key ID generated from the Dashboard
-          "amount": `${amount * 100}`, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-          "currency": "INR",
-          "name": "Apsensys Care", //your business name
-          "description": "Test Transaction",
-          "image": "https://apsensyscare.com/favicon.ico",
-          "order_id": `${res_order_id}`, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-          "callback_url": "https://apsensyscare.com/thankyou",
-          "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
-            "name": `${userName}`, //your customer's name
-            "email": `${userEmail}`,
-            "contact": `${userPhone}` //Provide the customer's phone number for better conversion rates 
-          },
-          "handler": function (response) {
-            alert(response.razorpay_payment_id);
-            alert(response.razorpay_order_id);
-            alert(response.razorpay_signature)
-            // var hash = CryptoJS.HmacSHA256("message", "secret");
-            // var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
-            const signeture = {
-              'res_order_id': res_order_id,
-              'razorpay_payment_id': response.razorpay_payment_id,
-              'razorpay_signature': response.razorpay_signature
-            }
-            CreateSigneture(signeture).then((resp) => {
-              console.log(resp)
-              navigate('/thankyou', { state: { id: true } })
-              dispatch(clearCart())
-            })
-          },
-          "notes": {
-            "address": "Razorpay Corporate Office"
-          },
-          "theme": {
-            "color": "#3399cc"
+      OrderItems.products=products
+      const message = products.map((val) => {
+        return `<tr>
+      <td style="border: 1px solid #ddd;">${val.brand}</td>
+      <td style="border: 1px solid #ddd;">${val.name}</td>
+      <td style="border: 1px solid #ddd;">${val.size}</td>
+      <td style="border: 1px solid #ddd;">${val.price}</td>
+      <td style="border: 1px solid #ddd;">${val.quantity}</td>
+    </tr>`
+      });
+      ////console.log((message.join("")))
+      const message_table = `<table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse;"><tr><th style="background-color:green;border: 1px solid #ddd;">Brand</th><th style="background-color:green;border: 1px solid #ddd;">Name</th><th style="background-color:green;border: 1px solid #ddd;">Size</th><th style="background-color:green;border: 1px solid #ddd;">Price</th><th style="background-color:green;background-color:green;border: 1px solid #ddd;">Quantity</th></tr>${message.join("")}</table>`
+
+      // program to generate random strings
+      // const result = `ACS${Math.random().toString(36).substring(2, 9).toUpperCase()}${sessionStorage.getItem('___user')}`;
+      ////console.log(result);
+      if (orderType === 'case') {
+        ////console.log(products)
+        const orderItem = {
+          user_id: '',
+          order_d: '',
+          products: products,
+          address_id: order_address,
+          payment_method: 'case',
+          total_order: cart.cartTotalQuantity,
+          order_status: 'ordered',
+          total_amount: message_table
+        }
+
+
+        // emailjs.send('service_f7pqddb', 'template_042k23w', orderItem, 'JxfsKGnGvM2sBgEyn')
+        //   .then((result) => {
+        //     //console.log("message send")
+        //   }, (error) => {
+        //     // show the user an error
+        //     //console.log("message not send")
+        //   });
+        ////console.log(orderItem)
+        // Placeorder(cart).then((res) => {
+        //   //console.log(res)
+        // })
+      } else if (orderType === 'online') {
+        console.log(userID)
+        const data={
+          name:userName,
+          phone:userPhone,
+          order:OrderItems,
+          merchantUserId:userID,
+          amount:amount,
+        }
+        CreateOrder(data).then((res) => {
+          console.log(res)
+          if(res.url!==undefined){
+            console.log('Entered')
+            window.location=res.url
+          }else{
+            console.log("somthing went wrong");
           }
-        };
-        var rzp1 = new window.Razorpay(options);
-        rzp1.open();
+        })
+      }
+    } else if (localStorage.getItem("___gaust_user_address") !== null) {      
+      // //console.log(cart)
+      GenerateEmailForGaustOrder(cart,gaust_address)
+      .then((res)=>{
+        emailjs.send('service_cykcjmj', 'template_ju49o12', res, 'DRezFycYbf9fhBISj')
+          .then(() => {
+            toast.info("order placed", {
+              position: "bottom-left",
+            });
+  
+            dispatch(clearCart())
+            navigate("/thankyou")
+          }, (error) => {
+            // show the user an error
+            ////console.log("message not send")
+          });
       })
-    }
-  };
-
-
+      .catch((err)=>{
+        console.log("somthing went Wrong")
+      })
+      ////console.log(orderItem)
+      // Placeorder(cart).then((res) => {
+      //   //console.log(res)
+      // })
+    };
+  }
+  ////console.log(gaust_address)
   useEffect(() => {
     dispatch(getTotals());
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [cart, dispatch]);
-  // console.log(cart)
+  // //console.log(cart)
   const handleAddToCart = (product) => {
-    // console.log(product)
+    // //console.log(product)
     const temp = "";
     dispatch(addToCart([product, temp]));
   };
@@ -266,16 +324,16 @@ const Cart = (props) => {
 
   // work for model oppening and desplay sizes for products
   const [openmod, setOpen] = React.useState(false);
-  const [productSizes, setproductSizes] = useState({index:'',Size:[]})
-  const handleOpendilog = (cartItems,index) => {
-    setproductSizes({index:index,Size:cartItems.sizes})
+  const [productSizes, setproductSizes] = useState({ index: '', Size: [] })
+  const handleOpendilog = (cartItems, index) => {
+    setproductSizes({ index: index, Size: cartItems.sizes })
     setOpen(true)
   };
   const handleClosedilog = () => setOpen(false);
-  const changePriceAndSize=(id,currentsize_price)=>{
-    const product_id_size_price={
-      id:id,
-      size_price:currentsize_price
+  const changePriceAndSize = (id, currentsize_price) => {
+    const product_id_size_price = {
+      id: id,
+      size_price: currentsize_price
     }
     dispatch(updateCart(product_id_size_price))
     handleClosedilog()
@@ -301,38 +359,40 @@ const Cart = (props) => {
             sx={{ mt: 2 }}
           >
             {productSizes.Size.map((items, idx) => {
-              const currentsize_price=items;
-              console.log(currentsize_price)
+              const currentsize_price = items;
+              //console.log(currentsize_price)
               return (
                 <SizeButtom
                   variant="contained"
-                  onClick={()=>changePriceAndSize(productSizes.index,currentsize_price)}
+                  onClick={() => changePriceAndSize(productSizes.index, currentsize_price)}
                   style={{
                     backgroundColor: "green",
                     margin: "1rem",
                   }}
                   key={idx.toString()}
                 >
-                  {items.size}ml
+                  {
+                    items.size < 1000 ? `${items.size} ml` : `${(items.size / 1000)} L`
+                  }
                 </SizeButtom>
               );
-            }) }
+            })}
           </Typography>
         </Box>
       </Modal>
     )
   }
   // moving to wishlist 
-  const moveToWishList=(product)=>{
-    console.log(product)
-    const wishListData={
-      productid:product.id,
-      userId:sessionStorage.getItem('___user')
+  const moveToWishList = (product) => {
+    //console.log(product)
+    const wishListData = {
+      productid: product.id,
+      userId: sessionStorage.getItem('___user')
     }
     dispatch(addToWishlist(wishListData))
     dispatch(removeFromCart(product));
     // AddWishlist(wishListData).then((res)=>{
-    //   console.log("res")
+    //   //console.log("res")
     //   dispatch(removeFromCart(product));
     // })
   }
@@ -347,22 +407,12 @@ const Cart = (props) => {
         </Typography>
       </Headdingcont>
       {cart.cartItems.length === 0 ? (
-        <Box
-          style={{
-            width: "100%",
-            height: "70vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            variant="h1"
-            style={{ fontSize: "20px", fontWeight: "600", color: "red" }}
-          >
-            Your cart is empty
-          </Typography>
-        </Box>
+        <div className='w-full flex flex-col flex-wrap min-h-[90vh] items-center justify-center bg-[#f8f9fd]'>
+          <div className='w-full lg:w-[40%] flex flex-col items-center justify-center gap-10'>
+            <img src='./Image/Poster/empty-cart-page.jpg' alt='' />
+            <button className='px-5 py-1 bg-white border-2 border-[blue]'>Shop now</button>
+          </div>
+        </div>
       ) : (
         <ContainerCart>
           <Detailescont>
@@ -376,6 +426,8 @@ const Cart = (props) => {
                   Your Cart
                 </Typography>
               </AccordionSummary>
+              {/* selected cart products
+               */}
               <AccordionDetails
                 style={{
                   display: "flex",
@@ -471,7 +523,7 @@ const Cart = (props) => {
                         >
                           <img
                             width="auto"
-                            style={{ backgroundColor: "#bfdbfe",borderRadius:'8px' }}
+                            style={{ backgroundColor: "#bfdbfe", borderRadius: '8px' }}
                             height={100}
                             alt={cartItem.name}
                             src={`${process.env.REACT_APP_URL}/Image/all_products/${cartItem.product_image}`}
@@ -496,7 +548,7 @@ const Cart = (props) => {
                               remove
                             </p>
                             <p
-                            onClick={()=>{moveToWishList(cartItem)}}
+                              onClick={() => { moveToWishList(cartItem) }}
                               variant="subtitle2"
                               style={{
                                 fontSize: "12px",
@@ -531,15 +583,19 @@ const Cart = (props) => {
                       >
                         <div>
                           <SizeButtom
-                            onClick={() => handleOpendilog(cartItem,idx)}
+                            onClick={() => handleOpendilog(cartItem, idx)}
                             variant="contained"
-                            style={{ backgroundColor: "green" }}
+                            style={{ backgroundColor: "green", width: '100px', display: "flex", justifyContent: 'space-around' }}
                           >
-                            {cartItem.itemSize}ml
+                            {
+                              cartItem.itemSize < 1000 ? `${cartItem.itemSize} ml` : `${(cartItem.itemSize / 1000)} L`
+                            }
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" className="bi bi-caret-down-fill ml-[15px]" viewBox="0 0 16 16">
+                              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
                           </SizeButtom>
                         </div>
                         <ModelView cartItem={cartItem} />
-                        {/* <div><SizeButtom variant='contained' style={{ backgroundColor: 'gray' }}>100ml</SizeButtom></div> */}
                       </div>
                       {/* ----------------------size box end------------------ */}
                       {/* ----------------------Quantity box start------------------ */}
@@ -600,7 +656,7 @@ const Cart = (props) => {
                 </Button>
               </AccordionDetails>
             </Accordion>
-            {/* onChange={handleOpen('panel2')} */}
+            {/* onChange={handleOpen('panel2')}  select address*/}
             <Accordion expanded={expandedAddress === "panel2"}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -631,7 +687,7 @@ const Cart = (props) => {
                     variant="standard"
                     onChange={(e) => takeValue(e)}
                   >{
-                      address !== undefined ?
+                      address !== undefined && sessionStorage.getItem("___user") ?
                         address.map((items, idx) => {
                           return (
                             <div key={idx.toString()}
@@ -651,17 +707,17 @@ const Cart = (props) => {
                                   type="radio"
                                   id={`${items.id}`}
                                   name="address"
-                                  value={`${items.id}`}
-                                  defaultChecked
+                                  value={`${JSON.stringify(items)}`}
+
                                 /> :
                                 <input
                                   type="radio"
                                   id={`${items.id}`}
                                   name="address"
-                                  value={`${items.id}`}
+                                  value={`${JSON.stringify(items)}`}
                                 />
                               }
-                              <label for={`${items.id}`}
+                              <label htmlFor={`${items.id}`}
                                 style={{ display: "flex", flexDirection: "column" }}
                               >
                                 <div
@@ -702,15 +758,90 @@ const Cart = (props) => {
                                       color: "gray",
                                     }}
                                   >
-                                    {items.house_flat_office}{items.area_landmark}{items.city}{items.state}{items.pincode}
+                                    {items.house_flat_office} {items.area_landmark} {items.city} {items.state} {items.pincode}
                                   </Typography>
                                 </div>
                               </label>
                             </div>
                           )
                         })
+                        : gaust_address !== null ? gaust_address.map((items, idx) => {
+                          return (
+                            <div key={idx.toString()}
+                              style={{
+                                width: "70%",
+                                height: "65px",
+                                overFlow: "hidden",
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "flex-start",
+                                alignItems: "flex-start",
+                                gap: "1rem",
+                              }}
+                            >
+                              {idx === 0 ?
+                                <input
+                                  type="radio"
+                                  id={`${items.id}`}
+                                  name="address"
+                                  value={`${JSON.stringify(items)}`}
 
-                        : null
+                                /> :
+                                <input
+                                  type="radio"
+                                  id={`${items.id}`}
+                                  name="address"
+                                  value={`${JSON.stringify(items)}`}
+                                />
+                              }
+                              <label htmlFor={`${items.id}`}
+                                style={{ display: "flex", flexDirection: "column" }}
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    gap: "1rem",
+                                  }}
+                                >
+                                  <Typography
+                                    variant="h2"
+                                    style={{ fontSize: "14px", fontWeight: 600 }}
+                                  >
+                                    {items.name}
+                                  </Typography>
+                                  <Typography
+                                    variant="body"
+                                    style={{
+                                      height: "fit-content",
+                                      fontSize: "12px",
+                                      backgroundColor: "#d9d9d9",
+                                      padding: "0 4px",
+                                      borderRadius: "5px",
+                                    }}
+                                  >
+                                    Home
+                                  </Typography>
+                                  <Typography variant="body" style={{}}>
+                                    {items.contact}
+                                  </Typography>
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                  <Typography
+                                    variant="h2"
+                                    style={{
+                                      fontSize: "12px",
+                                      fontWeight: 600,
+                                      color: "gray",
+                                    }}
+                                  >
+                                    {items.house_flat_office} {items.area_landmark} {items.city} {items.state} {items.pincode}
+                                  </Typography>
+                                </div>
+                              </label>
+                            </div>
+                          )
+                        }) : null
                     }
                   </FormControl>
                   <div
@@ -720,9 +851,10 @@ const Cart = (props) => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <AddAddressModal handelLogin={handelLogin} />
+                    <AddAddressModal handelLogin={handelLogin} handlegaust_address={handlegaust_address} />
                     <Button
                       variant="contained"
+                      //onClick={() => { handelOrder(cart) }}
                       onClick={handleOpen("panel3")}
                       style={{
                         width: "max-content",
@@ -736,14 +868,13 @@ const Cart = (props) => {
                         backgroundColor: "green",
                       }}
                     >
-                      Proceed to pay
+                      Pay
                     </Button>
                   </div>
-
-                  {/* </form> */}
                 </div>
               </AccordionDetails>
             </Accordion>
+            {/* select payment */}
             <Accordion expanded={expandedPay === "panel3"}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -828,7 +959,7 @@ const Cart = (props) => {
               <AmountDetailsrow style={{ borderBottom: "1.4px solid gray" }}>
                 <Typography style={{ fontWeight: "600" }}>Price</Typography>
                 <Typography>
-                  <div
+                  <span
                     style={{
                       minWidth: "70px",
                       height: "max-content",
@@ -837,10 +968,10 @@ const Cart = (props) => {
                   >
                     <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
                     {cart.cartTotalAmount}
-                  </div>
+                  </span>
                 </Typography>
               </AmountDetailsrow>
-              <AmountDetailsrow style={{ borderBottom: "1.4px solid gray" }}>
+              {/* <AmountDetailsrow style={{ borderBottom: "1.4px solid gray" }}>
                 <Typography style={{ fontWeight: "600" }}>Discount</Typography>
                 <Typography
                   style={{
@@ -861,10 +992,10 @@ const Cart = (props) => {
                     }}
                   >
                     <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
-                    50
+                    
                   </div>
                 </Typography>
-              </AmountDetailsrow>
+              </AmountDetailsrow> */}
               <AmountDetailsrow style={{ borderBottom: "1.4px solid gray" }}>
                 <Typography style={{ fontWeight: "600" }}>Delivery</Typography>
                 <Typography
@@ -877,7 +1008,7 @@ const Cart = (props) => {
                   <AddOutlinedIcon
                     style={{ color: "green", fontSize: "14px" }}
                   />
-                  <div
+                  <span
                     style={{
                       width: "70px",
                       height: "max-content",
@@ -886,7 +1017,7 @@ const Cart = (props) => {
                   >
                     <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
                     50
-                  </div>
+                  </span>
                 </Typography>
               </AmountDetailsrow>
             </AmountDetailscont>
@@ -895,7 +1026,7 @@ const Cart = (props) => {
                 <Typography style={{ fontWeight: "600" }}>Subtotal</Typography>
                 <Typography>
                   <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
-                  {cart.cartTotalAmount - 50 + 50}
+                  {cart.cartTotalAmount + 50}
                 </Typography>
               </AmountDetailsrow>
             </AmountDetailscont>

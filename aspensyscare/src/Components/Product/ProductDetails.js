@@ -1,13 +1,13 @@
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Button, InputBase, Modal, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Box, Button, InputBase, Modal, } from '@mui/material'
+import React, { useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, decreaseCart } from '../../Store/Slices/cartSlice';
+import { addToCart } from '../../Store/Slices/cartSlice';
 import axios from 'axios';
 
 
@@ -39,6 +39,7 @@ const Detailscont = styled(Box)`
     flex-direction:column;
     flex-wrap:nowrap;
     gap:5px;
+    position:relative;
 `
 const Rattingcont = styled(Box)`
     width:30px;
@@ -103,14 +104,14 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
-let initialized = true;
 
 const ProductDetails = (product) => {
+    console.log(product);
     const currentItem = {
         size: `${product.products.default_size}`,
         price: `${product.products.default_price}`
     }
-    console.log("hello i am currentItem", product)
+    //console.log("hello i am currentItem", product)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [openmod, setOpen] = React.useState(false);
@@ -118,7 +119,7 @@ const ProductDetails = (product) => {
     const handleClosedilog = () => setOpen(false);
     const [val, setVal] = useState(1);
     const handelvalue = (str) => {
-        // console.log(str)
+        //console.log(str)
         const replaced = str.match(/\d+/);
         if (replaced !== '') {
             setVal(replaced[0]);
@@ -126,12 +127,14 @@ const ProductDetails = (product) => {
     }
     const portal = {
         position: 'absolute',
-        marginRight: '15px',
-        height: '500px',
-        width: '500px',
-        zIndex: 9,
+        left: '-50px',
+        maxHeight: '500px',
+        maxWidth: '600px',
+        zIndex: 999,
         display: product.magnified ? 'block' : 'none',
-        backgroundColor: 'white'
+        overflow: 'hidden',
+        backgroundColor: '#fff',
+        padding: '0 10px',
     }
 
     const [currentSize, setCurrentSize] = useState(currentItem);
@@ -144,54 +147,60 @@ const ProductDetails = (product) => {
 
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
-
+    const category = useSelector((state) => state.category.category.category);
+    const curremtcategory = category !== undefined ? category?.filter((item) => item.id === product.products.category_id) : []
+    console.log(product, curremtcategory)
     // destructure all data
     const { details } = products.productdetails;
     const { size } = sizedetails.sizes;
     // get the all details belongs to product Id from product entry tables
     const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.products.id) : [];
-    let itemsize = '';
     const Productvariants = [];
     //console.log(itemIndex);
     if (itemIndex.length !== 0 && details !== undefined && size !== undefined) {
         itemIndex.map((item, idx) => {
             const index = size.filter((items) => items.id === item.size_id)
+            //console.log(index)
             const values = {
                 "price": item.price,
                 "size": index[0]['size_value']
             }
             Productvariants.push(values)
+            return null;
         })
     }
 
 
-    // console.log(Productvariants)
-    console.log(currentSize)
+    //console.log(Productvariants)
+    //console.log(currentSize)
 
     const handleCart = (product) => {
         //console.log(product)
         const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.id) : [];
         let itemsize = '';
-        const Productvariants = [];
+        // const Productvariants = [];
         //console.log(itemIndex);
-        itemIndex.map((item, idx) => {
-            const index = size.filter((items) => items.id === item.size_id)
-            const values = {
-                "price": item.price,
-                "size": index[0]['size_value']
-            }
-            Productvariants.push(values)
-        })
-        const productDetails = Object.assign({ price: product.default_price }, product);
-        dispatch(addToCart([productDetails, product.default_size, Productvariants]));
-        navigate('/cart')
+        // itemIndex.map((item, idx) => {
+        //     const index = size.filter((items) => items.id === item.size_id)
+        //     const values = {
+        //         "price": item.price,
+        //         "size": index[0]['size_value']
+        //     }
+        //     Productvariants.push(values)
+        //     return null;
+        // })
+        //const productDetails = Object.assign({ price: product.default_price }, product);
+        //dispatch(addToCart([productDetails, product.default_size, Productvariants]));
+        //navigate('/cart')
 
         //product.cartQuantity = val;
-        // const ProductObj=Object.assign({cartQuantity:val,price:currentSize.price},product)
-        // itemsize=currentSize.size;
-        // // product.price=currentSize.price;
-        // dispatch(addToCart([ProductObj, itemsize]));
-        // navigate('/cart')
+        const ProductObj = Object.assign({ cartQuantity: val, price: currentSize.price }, product)
+        //console.log(ProductObj)
+        itemsize = currentSize.size;
+        //product.price=currentSize.price;
+        //console.log(Productvariants)
+        dispatch(addToCart([ProductObj, itemsize, Productvariants]));
+        navigate('/cart')
     }
 
     // add cart items number
@@ -227,10 +236,21 @@ const ProductDetails = (product) => {
                 id="portal"
                 style={portal}
             />
-            <div>
-                <h3 style={{ fontSize: '18px', fontWeight: '700', marginTop: '8px' }}>{product.products.name.replace(/-/g, ' ').toUpperCase()}</h3>
+            <div className='w-full'>
+                <div className='w-full flex flex-row gap-x-2 justify-start item-start text-[#a7a6a6] mb-2'>
+                    <div className='w-full text-sm m-0 flex flex-row gap-2'>
+                        <a href='/' target='_blank' className='hover:text-[#997af6] hover:underline'>Home</a>
+                        <span>/</span>
+                        <a href={`/category/${curremtcategory[0].category_url}/c/${curremtcategory[0].id}?categoryId=${curremtcategory[0].id}`} target='_blank' rel="noreferrer" className='hover:text-[#997af6] hover:underline'>{curremtcategory[0].category_name}</a>
+                        <span>/</span>
+                        <span >{product?.products?.short_name}</span>
+                        <span>/</span>
+                        <span>{product?.products?.name}</span>
+                    </div>
+                </div>
+                <h3 style={{ fontSize: '18px', fontWeight: '700', marginTop: '8px' }}>{product?.products?.name?.replace(/-/g, ' ').toUpperCase()}</h3>
                 <p variant='subtitle2' style={{ fontSize: '12px', fontWeight: '500', color: 'gray' }}>
-                    Product category:Skin care</p>
+                    Product category : {curremtcategory[0].category_name}</p>
             </div>
             <Rattingcont>
                 4<StarIcon style={{ fontSize: '12px' }} />
@@ -249,7 +269,15 @@ const ProductDetails = (product) => {
                 </p>
             </div>
             <ButtomBox>
-                <Button variant='contained' style={{ backgroundColor: 'green', textTransform: 'none' }} onClick={handleOpendilog}>{currentSize.size} ml</Button>
+                <Button variant='contained'
+                    style={{ backgroundColor: "green", width: '100px', display: "flex", justifyContent: 'space-around' }} onClick={handleOpendilog}>
+                    {
+                        currentSize.size < 1000 ? `${currentSize.size} ml` : `${(currentSize.size / 1000)} L`
+                    }
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" className="ml-[15px] bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                    </svg>
+                </Button>
             </ButtomBox>
             <Modal
                 open={openmod}
@@ -269,17 +297,20 @@ const ProductDetails = (product) => {
                         id="modal-modal-description"
                         sx={{ mt: 2 }}
                     >
-                        {Productvariants.length !== 0 ? Productvariants.map((items) => {
+                        {Productvariants.length !== 0 ? Productvariants.map((items, id) => {
                             return (
                                 <SizeButtom
+                                    key={id}
                                     variant="contained"
                                     style={{
                                         backgroundColor: "green",
                                         margin: "1rem",
                                     }}
-                                    onClick={() => { setCurrentSize({ ['size']: items.size, ['price']: items.price }); setOpen(false) }}
+                                    onClick={() => { setCurrentSize({ 'size': items.size, 'price': items.price }); setOpen(false) }}
                                 >
-                                    {items.size}ml
+                                    {
+                                        items.size < 1000 ? `${items.size} ml` : `${(items.size / 1000)} L`
+                                    }
                                 </SizeButtom>
                             );
                         }) : null}
@@ -310,7 +341,6 @@ const ProductDetails = (product) => {
                         <p style={{ color: 'red', fontWeight: 600 }}>{pincode !== '' && pincode === "Success" ? 'Sorry not able to delivery' : null}</p>
                     </div> : null
             }
-
             <ButtomBox>
                 <AddCart variant='contained' onClick={() => handleCart(product.products)}>Add Cart</AddCart>
                 <QuickBuy variant='contained' >Quick Buy</QuickBuy>

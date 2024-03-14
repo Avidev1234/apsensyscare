@@ -57,7 +57,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
         <div className="absolute top-3 right-3 group cursor-pointer z-10">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 group-hover:opacity-70 " fill="none"
             viewBox="0 0 24 24" stroke="#fff">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
               d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         </div>
@@ -65,30 +65,34 @@ const ProductCarousel = ({ imagemagnify, id }) => {
           asNavFor={nav2}
           ref={slider => (Setnav1(slider))}
           arrows={false}
+          infinite={true}
           className='Makecenter'
+          speed={500}
+          slidesToShow={1}
+          slidesToScroll={1}
+
         >
           {data.map((item, idx) => (
-            <Box style={{ width: 'auto', height: '450px' }} onMouseEnter={() => imagemagnify(true)}
-              onMouseLeave={() => imagemagnify(false)} key={idx.toString()}>
+            <Box style={{ width: '450px', height: '450px' }} onMouseEnter={() => imagemagnify(true)}
+              onMouseLeave={() => imagemagnify(false)} key={idx} id={idx}>
+              {console.log(idx,item)}
               <ReactImageMagnify {...{
                 smallImage: {
                   alt: 'Wristwatch by Ted Baker London',
-                  isFluidWidth: false,
-                  src: `${process.env.REACT_APP_URL}/Image/all_products/carousel-230-460/${item}`,
-                  height: 460,
-                  width: 250,
-                  sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
+                  isFluidWidth: true,
+                  src: `${process.env.REACT_APP_URL}Image/all_products/carousel-230-460/${item}`,
                 },
                 largeImage: {
-                  src: `${process.env.REACT_APP_URL}/Image/all_products/carousel-1200-1800/${data2[idx]}`,
-                  width: 1000,
-                  height: 1800
+                  src: `${process.env.REACT_APP_URL}Image/all_products/carousel-1200-1800/${data2[idx]}`,
+                  width: 900,
+                  height: 1000
                 },
                 enlargedImagePortalId: 'portal',
                 enlargedImageContainerDimensions: {
-                  width: '250%',
-                  height: '105%',
+                  width: idx < 2 ? `300%` : '120%',
+                  height: '100%',
                 },
+
                 shouldUsePositiveSpaceLens: true
               }}
               />
@@ -104,14 +108,15 @@ const ProductCarousel = ({ imagemagnify, id }) => {
         slidesToShow={3}
         swipeToSlide={true}
         focusOnSelect={true}
+        infinite={true}
         prevArrow={<PreviousBtn />}
         nextArrow={<NextBtn />}
         dotsClass="slick-dots custom-indicator"
         className="Gap"
       >
         {data1.map((item, idx) => (
-          <div style={{ width: "100%", height: "10%", margin: "20px" }} key={idx.toString()}>
-            <img src={`${process.env.REACT_APP_URL}/Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer', margin: 'auto', padding: '10px', minHeight: '65px' }} />
+          <div style={{ width: "100%", height: "10%", margin: "20px" }} key={idx}>
+            <img src={`${process.env.REACT_APP_URL}Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer', margin: 'auto', padding: '10px', minHeight: '65px' }} />
           </div>
         ))}
       </Slider>

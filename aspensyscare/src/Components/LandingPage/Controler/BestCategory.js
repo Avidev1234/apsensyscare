@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import PregressiveImage from '../../layouts/ImageLoader/PregressiveImage';
 
 const BestCategory = () => {
   const skeletonarray = [1, 2, 3]
@@ -17,7 +18,7 @@ const BestCategory = () => {
     autoplaySpeed: 5000,
     swipeToSlide: true,
     arrows: false,
-    className: "center addmargin",
+    className: "addmargin",
     centerMode: false,
     responsive: [
       {
@@ -60,9 +61,9 @@ const BestCategory = () => {
 
       {Category.loading &&
         (<div className='flex justify-between'>
-          {skeletonarray.map(() => {
+          {skeletonarray.map((id) => {
             return (
-              <Skeleton count={1} className='w-[350px] h-[350px]' />
+              <Skeleton  key={id} count={1} className='w-[350px] h-[350px]' />
             )
           })}
         </div>
@@ -74,13 +75,14 @@ const BestCategory = () => {
       >
         {
           !Category.loading && category !== undefined ? (
-            category.map((item, idx) => {
+            category.slice(0,8).map((item, idx) => {
               const itemIndex = product !== undefined ? product.findIndex((product) => product.id === item.top_product_id) : null;
               // console.log(itemIndex)
               if (itemIndex !== null) {
                 return (
-                  <div class="border rounded-lg">
-                    <img class="rounded-t-lg w-full" src={`${process.env.REACT_APP_URL}Image/Poster/${item.top_product}`} alt="" />
+                  <div class="border rounded-lg" key={idx}>
+                    {/* <img class="rounded-t-lg w-full h-[330px]" src={`${process.env.REACT_APP_URL}Image/Poster/${item.top_product}`} alt="" /> */}
+                    <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/Poster/${item.top_product}`} previewSrc={`${process.env.REACT_APP_URL}Image/Poster/${item.top_product}`} classname={"rounded-t-lg w-full h-[329px]"}  />
                     <div class="bg-[#CEEDFF] p-4 text-xl text-center font-semibold text-gray-700">{item.category_name}</div>
                     <button class="top-0 left-0 bg-orange-400 text-white py-1 px-3 text-lg rounded-br-lg">Bestsellers</button>
                     <div class="w-full flex justify-center mt-8">

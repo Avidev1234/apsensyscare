@@ -8,11 +8,11 @@ import TextField from "@mui/material/TextField";
 import FormHelperText from "@mui/material/FormHelperText";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { useDispatch, } from "react-redux";
 import { AddAddress, getAddress } from "../../Api/Api";
 import Radio from "./Radio";
 import { toast } from "react-toastify";
+// import { AddAddressgaust } from "../../Store/Slices/getAddressSlice";
 
 const style = {
   position: "absolute",
@@ -25,18 +25,20 @@ const style = {
   p: 4,
 };
 
-const AddAddressModal = ({ handelLogin }) => {
-  //console.log(handelLogin)
+const AddAddressModal = ({ handelLogin,handlegaust_address }) => {
+  //console.log(handlegaust_address)
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.users);
-  const { details } = user.users;
+  // const user = useSelector((state) => state.users);
+  // const { details } = user.users;
   const [open, setOpen] = React.useState(false);
+  const [gauseaddress, setgauseaddress] = React.useState(true);
   const handleOpen = () => {
-    if (sessionStorage.getItem("___user") === null) {
-      handelLogin(true);
-    } else {
-      setOpen(true);
-    }
+    setOpen(true);
+    // if (sessionStorage.getItem("___user") === null) {
+    //   handelLogin(true);
+    // } else {
+    //   setOpen(true);
+    // }
   };
   const handleClose = () => setOpen(false);
   const SignupSchema = Yup.object().shape({
@@ -45,26 +47,6 @@ const AddAddressModal = ({ handelLogin }) => {
       .matches(/^[0-9]+$/, "Must be only digits")
       .min(6, "Must be exactly 6 digits")
       .max(6, "Must be exactly 6 digits")
-      .test('checkEmailUnique', 'This email is already registered.', value => {
-        //console.log(value)
-        if (value.length === 6) {
-          try {
-            fetch(`https://api.postalpincode.in/pincode/${value}`).then(async res => {
-              const  isEmailUnique  = await res.ok
-              console.log(isEmailUnique)
-              return isEmailUnique
-            })
-          } catch (error) {
-
-          }
-        }
-        // fetch(`https://api.postalpincode.in/pincode/${value}`).then(async res => {
-        //   const { isEmailUnique } = await res.json()
-
-        //   return isEmailUnique
-        // })
-      }
-      )
     ,
     city: Yup.string()
       .min(2, "Too Short!")
@@ -91,7 +73,10 @@ const AddAddressModal = ({ handelLogin }) => {
         message: "Please enter valid number.",
         excludeEmptyString: false,
       })
+      .min(10, "Too Short!")
+      .max(10, "Too Long!")
       .required("Required"),
+
     email: Yup.string().email("Invalid email"),
   });
 
@@ -101,38 +86,55 @@ const AddAddressModal = ({ handelLogin }) => {
       { user: sessionStorage.getItem("___user") },
       values
     );
-    setOpen(false);
-    AddAddress(address).then((res) => {
-      //console.log("done");
-      if (sessionStorage.getItem("___user")) {
-        dispatch(getAddress(sessionStorage.getItem("___user")));
-      }
-      toast.success("Address added successfully", {
-        position: "bottom-left",
-      });
-    })
-      .catch((err) => {
+    
+    if (sessionStorage.getItem("___user")) {
+      AddAddress(address).then((res) => {
+        //console.log("done");
+        if (sessionStorage.getItem("___user")) {
+          dispatch(getAddress(sessionStorage.getItem("___user")));
+        }
+        toast.success("Address added successfully", {
+          position: "bottom-left",
+        });
+      }).catch((err) => {
         console.log(err);
       });
+    } else {
+      let Gaddress=[]
+      // if(localStorage.getItem("___gaust_user_address") !== null)
+      // {
+      //   // Gaddress.push(JSON.parse(localStorage.getItem("___gaust_user_address") ))
+        
+      // }
+      Gaddress.push(values)
+      localStorage.setItem("___gaust_user_address",JSON.stringify( Gaddress));
+      
+      handlegaust_address(Gaddress)
+      setOpen(false);
+      setgauseaddress(false)
+    }
+
   };
+  console.log(localStorage.getItem('___gaust_user_address')!==null);
   return (
     <>
-      <Button
-        onClick={handleOpen}
-        style={{
-          width: "max-content",
-          cursor: "pointer",
-          display: "flex",
-          fontSize: "12px",
-          color: "blueviolet",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          gap: ".2rem",
-        }}
-      >
-        <AddIcon style={{ fontSize: "20px" }} fontSize="large" />
-        Add New Address
-      </Button>
+    {gauseaddress===true && localStorage.getItem('___gaust_user_address')===null?
+    <Button
+      onClick={handleOpen}
+      style={{
+        width: "max-content",
+        cursor: "pointer",
+        display: "flex",
+        fontSize: "12px",
+        color: "blueviolet",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        gap: ".2rem",
+      }}
+    >
+      <AddIcon style={{ fontSize: "20px" }} fontSize="large" />
+      Add New Address
+    </Button>:"Address saved"}
       <Modal
         open={open}
         onClose={handleClose}

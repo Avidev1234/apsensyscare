@@ -63,6 +63,7 @@ const ProductCardold = ({ val, page ,checked}) => {
                 userId:sessionStorage.getItem('___user')
               }
             dispatch(addToWishlist(wishListData))
+            navigate('/wishlist')
         }
         
     }

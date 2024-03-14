@@ -1,10 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
+import {  createSlice } from "@reduxjs/toolkit";
 import { getAddress } from "../../Api/Api";
 
 const initialState = {
     loading: false,
-    address: [],
+    address: localStorage.getItem("___gaust_user_address")
+    ? {address:JSON.parse(localStorage.getItem("___gaust_user_address"))}
+    : [] ,
     error: '',
 }
 
@@ -17,6 +18,10 @@ const getAddressSlice = createSlice({
         clearAddress(state, action) {
             state.address = [];
           },
+          AddAddressgaust(state, action){
+            console.log(action);
+            state.address = action.payload;
+          }
     },
     extraReducers: (builder) => {
         builder.addCase(getAddress.pending, (state) => {
@@ -32,7 +37,8 @@ const getAddressSlice = createSlice({
             state.address = []
             state.error = action.error.message
         })
+        
     },
 })
-export const { clearAddress } = getAddressSlice.actions;
+export const { clearAddress,AddAddressgaust } = getAddressSlice.actions;
 export default getAddressSlice.reducer

@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
 // import axios from "axios";
 import { toast } from "react-toastify";
-import { PushUserCart, PushUserWishlist } from "../../Api/Api";
+import {  PushUserWishlist } from "../../Api/Api";
 
 const initialState = {
     wishlist: localStorage.getItem("wishlist") ? JSON.parse(localStorage.getItem("wishlist")) : [],
@@ -18,7 +17,7 @@ const getwishlistSlice = createSlice({
             const existingIndex = state.wishlist.findIndex(
                 (item) => item.productId === action.payload.productid
             );
-            console.log(existingIndex)
+            //console.log(existingIndex)
             if (existingIndex < 0) {
                 state.wishlist.push({ productId: action.payload.productid });
                 state.user = (action.payload.userId);
@@ -32,12 +31,12 @@ const getwishlistSlice = createSlice({
 
         removeFromWishlist(state, action) {
             state.wishlist.map((wishlist) => {
-                console.log(wishlist.productId, action.payload)
+                //console.log(wishlist.productId, action.payload)
                 if (wishlist.productId === action.payload) {
                     const nextCartItems = state.wishlist.filter(
                         (item) => item.productId !== wishlist.productId
                     );
-                    console.log(nextCartItems);
+                    //console.log(nextCartItems);
                     state.wishlist = nextCartItems;
 
                     toast.error("Product removed from wishlist", {

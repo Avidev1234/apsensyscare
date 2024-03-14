@@ -1,8 +1,6 @@
-import React, { createContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom';
-import { Box } from '@mui/material';
-import styled from '@emotion/styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Helmet } from "react-helmet";
 import { fetchBanner } from '../../Api/Api';
 

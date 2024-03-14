@@ -12,6 +12,12 @@ const Footer = () => {
         else if (text === 'about') {
             navigate('/about-us')
         }
+        else if (text === 'career') {
+            navigate('/career')
+        }
+        else if (text === 'sitemap') {
+            navigate('/sitemap')
+        }
         else if (text === 'payment-return') {
             navigate('/payment-return-cancellation')
         }
@@ -74,17 +80,17 @@ const Footer = () => {
                     </div>
 
                     <div className='text-start'>
-                        <p className='font-[400] leading-[25px] text-[14px] cursor-pointer hover:text-[#E34343] text-[#fff] py-1'>
+                        <p className='font-[400] leading-[25px] text-[14px] cursor-pointer hover:text-[#E34343] text-[#fff] py-1'onClick={() => Redirect('career')}>
                             Careers
                         </p>
                     </div>
-                    <div className='text-start'>
+                    {/* <div className='text-start'>
                         <p className='font-[400] leading-[25px] text-[14px] cursor- hover:text-[#E34343] text-[#fff] py-1'>
                             Blogs
                         </p>
-                    </div>
+                    </div> */}
                     <div className='text-start'>
-                        <p className='font-[400] leading-[25px] text-[14px] cursor-pointer hover:text-[#E34343] text-[#fff] py-1'>
+                        <p className='font-[400] leading-[25px] text-[14px] cursor-pointer hover:text-[#E34343] text-[#fff] py-1' onClick={() => Redirect('sitemap')}>
                             Site map
                         </p>
                     </div>

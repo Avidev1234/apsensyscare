@@ -1,37 +1,46 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { createContext, useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/LandingPage/Home/Home';
-import Product from './Components/Product/Product';
-import Cart from './Components/Cart/Cart';
-import Wishlist from './Components/WishList/Wishlist';
-import Login from './Components/Login/Login';
-import { useDispatch, useSelector } from 'react-redux';
-import { createContext, useEffect, useState } from 'react';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AllProducts,  GetuserWishlist, currentUser, fatchSizes, fetchBanner, fetchCategory, getAddress, offeredBrands, productData } from './Api/Api';
 import Navbar from './Components/layouts/Navbar/Navbar';
-import Privecy from './Components/Policy/Privecy';
-import ContactUS from './Components/ContactUS/ContactUS';
-import AboutUs from './Components/AboutUS/AboutUs';
-import PaymentReturn from './Components/Policy/PaymentReturn';
-import TermsCondition from './Components/Policy/TermsCondition';
-import Shipping from './Components/Policy/Shipping';
-import ThankYou from './Others/ThankYou';
-import OrderFailed from './Others/OrderFailed';
-import { AllProducts, GetCartDetails, GetuserWishlist, fatchSizes, fetchBanner, fetchCategory, getAddress, offeredBrands, productData, pushUsers } from './Api/Api';
 import Footer from './Components/layouts/Footer/Footer';
-import ProductByCategory from './Components/CategoryPage/ProductByCategory';
-import AllPopularProducts from './Components/Product/AllPopularProducts';
-import { LoginAfterCart } from './Store/Slices/cartSlice';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Cookies from 'js-cookie'
+
+const Privecy = React.lazy(() => import('./Components/Policy/Privecy'))
+const ContactUS = React.lazy(() => import('./Components/ContactUS/ContactUS'))
+const AboutUs = React.lazy(() => import('./Components/AboutUS/AboutUs'))
+const PaymentReturn = React.lazy(() => import('./Components/Policy/PaymentReturn'))
+const TermsCondition = React.lazy(() => import('./Components/Policy/TermsCondition'))
+const Shipping = React.lazy(() => import('./Components/Policy/Shipping'))
+const Sitemap = React.lazy(() => import('./Others/Sitemap'))
+const Jobs = React.lazy(() => import('./Others/Jobs'))
+const OrderFailed = React.lazy(() => import('./Others/OrderFailed'))
+const ThankYou = React.lazy(() => import('./Others/ThankYou'))
+
+const Login = React.lazy(() => import('./Components/Login/Login'))
+const Wishlist = React.lazy(() => import('./Components/WishList/Wishlist'))
+const Cart = React.lazy(() => import('./Components/Cart/Cart'))
+const Product = React.lazy(() => import('./Components/Product/Product'))
+const ProductVariant = React.lazy(() => import('./Components/LandingPage/Controler/ProductVariant'))
+const ProductByCategory = React.lazy(() => import('./Components/CategoryPage/ProductByCategory'))
+const PaymentLoading=React.lazy(()=>import('./Others/PaymentLoading'))
+const Unsubscribe=React.lazy(()=>import('./Others/Unsubscribe'))
 const Log = createContext(null);
 function App() {
 
   const dispatch = useDispatch();
+  
   useEffect(() => {
     async function fetchData() {
       try {
-        dispatch(fetchCategory());
         dispatch(fetchBanner());
+        dispatch(fetchCategory());
         dispatch(offeredBrands());
         dispatch(AllProducts());
         dispatch(productData());
@@ -40,6 +49,7 @@ function App() {
         console.log(error);
       }
     }
+
     fetchData();
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [dispatch])
@@ -47,52 +57,26 @@ function App() {
 
 
   const [openLogin, setOpenLogin] = useState(false)
-  const [login, setLogin] = useState(false);
+  // const [login, setLogin] = useState(false);
 
   const handelLogin = (text) => {
     setOpenLogin(text);
-    setLogin(true);
+    // setLogin(true);
   }
-  const allproducts = useSelector((state) => state.product);
-  const products = useSelector((state) => state.productdetails);
-  const sizedetails = useSelector((state) => state.size);
+
+  
   if (sessionStorage.getItem('___user')) {
-    const { product } = allproducts.products;
-    const { details } = products.productdetails;
-    const { size } = sizedetails.sizes;
-    dispatch(getAddress(sessionStorage.getItem('___user')))
-    dispatch(pushUsers(sessionStorage.getItem('___user')))
-    dispatch(GetuserWishlist(sessionStorage.getItem('___user')));
-    GetCartDetails(sessionStorage.getItem('___user')).then((res) => {
-      //console.log(product)
-      let cart = []
-      res.cartItems.map((items) => {
-        const findIndex = product !== undefined ? product.findIndex((item) => item.id === items.product_id) : null;
-        //console.log(items)
-        // cart.push(product[findIndex])
-        // localStorage.setItem("cartItems", JSON.stringify(cart))
-        // get the all details belongs to product Id from product entry tables
-        const itemIndex = details !== undefined ? details.filter((item) => item.product_id === items.product_id) : [];
-        const Productvariants = [];
-        console.log(itemIndex);
-        if (itemIndex.length !== 0 && details !== undefined && size !== undefined) {
-          itemIndex.map((item, idx) => {
-            const index = size.filter((items) => items.id === item.size_id)
-            const values = {
-              "price": item.price,
-              "size": index[0]['size_value']
-            }
-            Productvariants.push(values)
-          })
-          const productDetails = Object.assign({ price: product[findIndex].default_price }, product[findIndex]);
-          dispatch(LoginAfterCart([productDetails, product[findIndex].default_size, Productvariants]));
-        }
-      })
-      console.log(cart)
-    })
-
+    dispatch(getAddress({userid:sessionStorage.getItem('___user')}))
+    //dispatch(pushUsers(sessionStorage.getItem('___user')))
+    dispatch(GetuserWishlist({userid:sessionStorage.getItem('___user')}));
   }
-
+  setInterval(() => {
+    if(!Cookies.get('ACCESSTOKEN')){
+      if(Cookies.get('REFRESSTOKEN')){
+        dispatch(currentUser(Cookies.get('REFRESSTOKEN')))
+      }
+    }
+  }, 1000);
   const WishlistData = useSelector((state) => state.wishlist);
   const wishlist = WishlistData.wishlist
   const WishlistProducts = []
@@ -101,7 +85,6 @@ function App() {
   })
   return (
     <>
-
       <BrowserRouter>
         <ToastContainer />
         <Log.Provider value={WishlistProducts}>
@@ -109,22 +92,27 @@ function App() {
           <Routes>
             <Route path='/' element={<LandingPage />}>
               <Route index element={<Home />} />
-              
-              <Route path='/products' element={<AllPopularProducts />} />
-              <Route path='/category/:url/c/:id' element={<ProductByCategory />} />
-              <Route path='/cart' element={<Cart handelLogin={handelLogin} openLogin={openLogin} />} />
-              <Route path='/cart/:id' element={<Cart handelLogin={handelLogin} openLogin={openLogin} />} />
-              <Route path='/wishlist' element={<Wishlist />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/privacy-policy' element={<Privecy />} />
-              <Route path='/contact-us' element={<ContactUS />} />
-              <Route path='/about-us' element={<AboutUs />} />
-              <Route path='/payment-return-cancellation' element={<PaymentReturn />} />
-              <Route path='/terms-condition' element={<TermsCondition />} />
-              <Route path='/shipping' element={<Shipping />} />
-              <Route path='/product/:category/:product_id/:productname' element={<Product />} />
-              <Route path='/thankyou' element={<ThankYou />} />
-              <Route path='/order-failed' element={<OrderFailed />} />
+              <Route path='/login' element={<React.Suspense fallback="Loading..."><Login /></React.Suspense>} />
+              {/* <Route path='/products' element={<AllPopularProducts />} /> */}
+              <Route path='/category/:url/c/:id' element={<React.Suspense fallback="Loading..."><ProductByCategory /></React.Suspense>} />
+              <Route path='/cart' element={<React.Suspense fallback="Loading..."><Cart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
+              <Route path='/cart/:id' element={<React.Suspense fallback="Loading..."><Cart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
+              <Route path='/product/:category/:product_id/:productname' element={<React.Suspense fallback="Loading..."><Product /></React.Suspense>} />
+              <Route path='/product/type' element={<React.Suspense fallback="Loading..."><ProductVariant /></React.Suspense>} />
+              <Route path='/payment/status' element={<React.Suspense fallback="Loading..."><PaymentLoading /></React.Suspense>} />
+
+              <Route path='/thankyou' element={<React.Suspense fallback="Loading..."><ThankYou /></React.Suspense>} />
+              <Route path='/order-failed' element={<React.Suspense fallback="Loading..."><OrderFailed /></React.Suspense>} />
+              <Route path='/career' element={<React.Suspense fallback="Loading..."><Jobs /></React.Suspense>} />
+              <Route path='/sitemap' element={<React.Suspense fallback="Loading..."><Sitemap /></React.Suspense>} />
+              <Route path='/wishlist' element={<React.Suspense fallback="Loading..."><Wishlist /></React.Suspense>} />
+              <Route path='/privacy-policy' element={<React.Suspense fallback="Loading..."><Privecy /></React.Suspense>} />
+              <Route path='/contact-us' element={<React.Suspense fallback="Loading..."><ContactUS /></React.Suspense>} />
+              <Route path='/about-us' element={<React.Suspense fallback="Loading..."><AboutUs /></React.Suspense>} />
+              <Route path='/payment-return-cancellation' element={<React.Suspense fallback="Loading..."><PaymentReturn /></React.Suspense>} />
+              <Route path='/terms-condition' element={<React.Suspense fallback="Loading..."><TermsCondition /></React.Suspense>} />
+              <Route path='/shipping' element={<React.Suspense fallback="Loading..."><Shipping /></React.Suspense>} />
+              <Route path='/unsubscribe-me' element={<React.Suspense fallback="Loading..."><Unsubscribe /></React.Suspense>} />
             </Route>
           </Routes>
           <Footer />

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import PregressiveImage from '../../layouts/ImageLoader/PregressiveImage';
 
 
 const BrandOfDay = () => {
@@ -18,9 +19,9 @@ const BrandOfDay = () => {
 
             {Category.loading &&
                 (<div className='flex justify-between'>
-                    {skeletonarray.map(() => {
+                    {skeletonarray.map((id) => {
                         return (
-                            <Skeleton count={1} className='w-[250px] h-[350px]' />
+                            <Skeleton key={id} count={1} className='w-[250px] h-[350px]' />
                         )
                     })}
                 </div>
@@ -32,8 +33,12 @@ const BrandOfDay = () => {
                     !Category.loading && category !== undefined ? (
                         category.map((item, idx) => {
                             return (
-                                <div class="w-full border rounded-lg cursor-pointer" onClick={() => navigate(`/category/${item.category_url}`, { state: { id: item.id, val: item } })}>
-                                    <img class="w-full" src={`${process.env.REACT_APP_URL}Image/category/${item.category_img}`} alt="" />
+                                <div key={idx.toString()} class="w-full border rounded-lg cursor-pointer" onClick={() => navigate({
+                                    pathname: `/category/${item.category_url}/c/${item.id}`,
+                                    search: `?categoryId=${item.id}`
+                                  })}>
+                                    {/* <img class="w-full h-[315px]" src={`${process.env.REACT_APP_URL}Image/category/${item.category_img}`} alt="" /> */}
+                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/category/${item.category_img}`} previewSrc={`${process.env.REACT_APP_URL}Image/category/${item.category_img}`} classname={"w-full h-[330px]"}  />
                                     <div class="p-3 md:p-5 text-lg md:text-2xl text-center text-gray-600 font-semibold">Upto <span class="text-green-600">30% Off</span> on Entire Range</div>
                                 </div>
                             )

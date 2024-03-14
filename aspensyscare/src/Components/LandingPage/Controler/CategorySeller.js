@@ -9,21 +9,21 @@ import PregressiveImage from '../../layouts/ImageLoader/PregressiveImage';
 const CategorySeller = () => {
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 2.4,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 5000,
     swipeToSlide: true,
     arrows: false,
     className: "addmargin",
-    centerMode: false,
+    centerMode: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
         }
       },
       {
@@ -43,7 +43,6 @@ const CategorySeller = () => {
         settings: {
           slidesToShow: 1,
           className: 'removegap',
-          centerMode: false,
         }
       }
     ]
@@ -52,9 +51,8 @@ const CategorySeller = () => {
   const navigate = useNavigate();
   const Category = useSelector((state) => state.category);
   const { category } = Category.category;
-  console.log(Category.loading)
   const skeletonarray = [1, 2,]
-  
+
   return (
     <>
       <div className="w-full flex flex-nowrap flex-col gap-4">
@@ -64,9 +62,9 @@ const CategorySeller = () => {
         </div>) : <Skeleton count={2} />}
         {Category.loading &&
           (<div className='flex justify-between'>
-            {skeletonarray.map(() => {
+            {skeletonarray.map((id) => {
               return (
-                <Skeleton count={1} className='w-[650px] h-[280px]' />
+                <Skeleton key={id} count={1} className='w-[650px] h-[280px]' />
               )
             })}
           </div>
@@ -81,9 +79,15 @@ const CategorySeller = () => {
             !Category.loading && category !== undefined ? (
               category.map((item, idx) => {
                 return (
-                  <div className="relative w-[480px] rounded-[10px]" key={idx} >
+                  <div className="relative w-[480px] rounded-[10px] cursor-pointer" key={idx}
+                    onClick={() => navigate({
+                      pathname: `/category/${item.category_url}/c/${item.id}`,
+                      search: `?categoryId=${item.id}`
+                    })}
+                  >
                     {/* <img className="w-full h-[280px] rounded-[10px]" src={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} alt="" /> */}
-                    <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} previewSrc={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} classname={"w-full h-[300px] rounded-[10px]"}  />
+
+                    <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} previewSrc={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} classname={"w-full h-[300px] rounded-[10px]"} />
                     <div className="absolute bottom-0 flex justify-between w-full bg-gradient-to-b from-[#0000] to-[#000] rounded-[10px] items-end py-4 px-2">
                       <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> Hand Sanitizer
                         in Green Apple,
@@ -103,8 +107,6 @@ const CategorySeller = () => {
 
 
           }
-
-
         </Slider>
       </div>
     </>

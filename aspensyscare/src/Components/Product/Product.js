@@ -5,8 +5,7 @@ import RecentViews from '../LandingPage/Carousel/RecentViews'
 import ProductCarousel from './ProductCarousel'
 import ProductDetails from './ProductDetails'
 import Ratingpage from './Ratingpage'
-import TopQuestion from './TopQuestion'
-import { useLocation, useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { magnifying } from '../../Api/Api'
 
@@ -38,25 +37,13 @@ const ProductDetailsBox = styled(Box)`
     gap:0px;
 };
 `
-const Partationcont = styled(Box)`
-width:530px;
-height:100%;
-@media (max-width:768px){
-  width:100%;
-  padding:10px;
-}
-@media (max-width:450px){
-  width:44%;
-  padding:10px;
-}
-`
-const Partationcont_sec = styled(Box)`
+
+const PartationcontSec = styled(Box)`
  width:100%;
 `
 
 const Product = () => {
   const [magnified, setMagnified] = useState(false)
-  const value = useLocation();
   const { product_id } = useParams()
   const Products = useSelector((state) => state.product);
   const { product } = Products.products;
@@ -96,9 +83,9 @@ const Product = () => {
         <Ratingpage />
         {/* <TopQuestion /> */}
       </ProductDetailsBox>
-      <Partationcont_sec>
+      <PartationcontSec>
         <RecentViews />
-      </Partationcont_sec>
+      </PartationcontSec>
     </ProductCont>
   )
 }

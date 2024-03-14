@@ -20,13 +20,7 @@ const LoginCont = styled('div')`
   backdrop-filter: blur(5px);
   
 `;
-const BlurImg = styled('div')`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-`;
+
 const signupInitialvalue = {
     phone: "",
     email: "",
@@ -55,9 +49,9 @@ const Signup = ({ openSignup }) => {
     const handelSignUp = async (values) => {
         SignupUser(values).then((res) => {
             openSignup(true)
-            console.log(res.data.message);
+            // console.log(res.data.message);
         }).catch((err) => {
-            console.log(err.response.data.message);
+            // console.log(err.response.data.message);
             SetError(err.response.data.message)
         });
     };
@@ -103,7 +97,6 @@ const Signup = ({ openSignup }) => {
                                     as={TextField}
                                     label="Email"
                                     id="outlined-basic7"
-                                    multiline
                                     maxRows={1}
                                     variant="outlined"
                                     fullWidth
@@ -115,7 +108,6 @@ const Signup = ({ openSignup }) => {
                                     as={TextField}
                                     label="Email"
                                     id="outlined-basic8"
-                                    multiline
                                     maxRows={1}
                                     variant="outlined"
                                     fullWidth
@@ -137,7 +129,6 @@ const Signup = ({ openSignup }) => {
                                     as={TextField}
                                     label="Phone"
                                     id="outlined-basic9"
-                                    multiline
                                     maxRows={1}
                                     variant="outlined"
                                     fullWidth
@@ -149,7 +140,6 @@ const Signup = ({ openSignup }) => {
                                     as={TextField}
                                     label="Phone"
                                     id="outlined-basic10"
-                                    multiline
                                     maxRows={1}
                                     variant="outlined"
                                     fullWidth
@@ -170,7 +160,6 @@ const Signup = ({ openSignup }) => {
                                     as={TextField}
                                     label="Password"
                                     id="outlined-basic1"
-                                    multiline
                                     maxRows={1}
                                     variant="outlined"
                                     fullWidth
@@ -182,7 +171,6 @@ const Signup = ({ openSignup }) => {
                                     as={TextField}
                                     label="Password"
                                     id="outlined-basic2"
-                                    multiline
                                     maxRows={1}
                                     variant="outlined"
                                     fullWidth
@@ -236,16 +224,17 @@ const Login = ({ handelLogin }) => {
         setLogin({ ...login, [e.target.name]: e.target.value });
     };
     // ---------------------------work for login user------------------------------------
+    
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
+    // const user = useSelector((state) => state.user);
     const [loginerror, setLoginError] = useState(null)
     const handelLoginuser = async (values) => {
         try {
             dispatch(fetchUsers(values)).then((res) => {
-                console.log(res.meta.requestStatus)
-                if(res.payload!==undefined){
+                // console.log(res.meta.requestStatus)
+                if (res.payload !== undefined) {
                     handelLogin(false);
-                }else if(res.payload===undefined && res.meta.requestStatus==="rejected"){
+                } else if (res.payload === undefined && res.meta.requestStatus === "rejected") {
                     setLoginError("user not found")
                 }
             }).catch((error) => {
@@ -290,11 +279,11 @@ const Login = ({ handelLogin }) => {
                                     //console.log(values);
                                     handelLoginuser(values)
                                 }}
-                                
+
                             >{({ errors, touched }) => (
-                                <Form 
-                                onChange={()=>setLoginError(null)}
-                                className=' max-w-[97%] md:max-w-[90%] mx-auto flex flex-col p-2'>
+                                <Form
+                                    onChange={() => setLoginError(null)}
+                                    className=' max-w-[97%] md:max-w-[90%] mx-auto flex flex-col p-2'>
                                     <div className=" mx-auto flex  justify-center flex-col  ">
                                         <div className="flex flex-row flex-wrap justify-between">
                                             <h2 className="font-semibold text-2xl mb-8">Login account</h2>
@@ -306,7 +295,6 @@ const Login = ({ handelLogin }) => {
                                                     as={TextField}
                                                     label="Phone Number"
                                                     id="outlined-basic3"
-                                                    multiline
                                                     maxRows={1}
                                                     variant="outlined"
                                                     fullWidth
@@ -318,7 +306,6 @@ const Login = ({ handelLogin }) => {
                                                     as={TextField}
                                                     label="Phone Number"
                                                     id="outlined-basic4"
-                                                    multiline
                                                     maxRows={1}
                                                     variant="outlined"
                                                     fullWidth
@@ -339,7 +326,6 @@ const Login = ({ handelLogin }) => {
                                                     as={TextField}
                                                     label="Password"
                                                     id="outlined-basic5"
-                                                    multiline
                                                     maxRows={1}
                                                     variant="outlined"
                                                     fullWidth
@@ -351,7 +337,6 @@ const Login = ({ handelLogin }) => {
                                                     as={TextField}
                                                     label="Password"
                                                     id="outlined-6"
-                                                    multiline
                                                     maxRows={1}
                                                     variant="outlined"
                                                     fullWidth

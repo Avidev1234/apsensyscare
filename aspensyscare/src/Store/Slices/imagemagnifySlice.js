@@ -1,6 +1,5 @@
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
+import {  createSlice } from "@reduxjs/toolkit";
 import { magnifying } from "../../Api/Api";
 
 const initialState = {

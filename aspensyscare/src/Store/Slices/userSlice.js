@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
-import { GetuserWishlist, PushUserCart, fetchUsers, pushUsers } from "../../Api/Api";
+import {  PushUserCart, fetchUsers, pushUsers } from "../../Api/Api";
 const initialState = {
     loading: false,
     users: [],
@@ -19,9 +18,10 @@ const userSlice = createSlice({
             state.error = ''
             state.loading = false
             state.users = action.payload
+            
             if (!sessionStorage.getItem("LoginSuccess")) {
                 sessionStorage.setItem("LoginSuccess", true);
-                sessionStorage.setItem("___user", action.payload.details[0].id);
+                sessionStorage.setItem("___user", (action.payload.details[0].userId));
             }
             //console.log(localStorage.getItem("cartItems"))
             if (localStorage.getItem("cartItems") !== null ) {

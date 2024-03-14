@@ -9,28 +9,39 @@
         max-height: 90% !important;
         overflow-y: auto;
     }
+
     .formAlign {
         flex-direction: column !important;
     }
-    .css-zu82rx{
+
+    .css-zu82rx {
         padding: 20px !important;
     }
+
     .css-ljhgqg {
         flex-direction: column-reverse !important;
     }
-    .css-ljhgqg, .css-1w9qkf9, .css-1g1b0dg, .css-j74sn1, .css-j74sn1 {
+
+    .css-ljhgqg,
+    .css-1w9qkf9,
+    .css-1g1b0dg,
+    .css-j74sn1,
+    .css-j74sn1 {
         width: 100% !important;
     }
 
-    .css-1sra7t5-MuiTypography-root{
+    .css-1sra7t5-MuiTypography-root {
         font-size: 12px !important;
     }
+
     .css-f5coid {
         width: auto !important;
     }
+
     .css-f5coid h2 {
         font-size: 1.5rem !important;
     }
+
     .css-13k812k {
         padding: 0 !important;
     }
@@ -45,7 +56,7 @@
     margin-bottom: 20px;
 }
 
-.slick-prev{
+.slick-prev {
     left: 0px !important;
     z-index: 1 !important;
     border-radius: 0px 10px 10px 0px !important;
@@ -57,6 +68,7 @@
     justify-content: center !important;
     border-radius: 0px 10px 10px 0px !important;
 }
+
 .slick-next {
     right: 0px !important;
     z-index: 1 !important;
@@ -69,11 +81,116 @@
     border-radius: 10px 0 0 10px !important;
 
 }
-.Gap .slick-list > .slick-track{
+
+.Gap .slick-list>.slick-track {
     gap: 10px;
 }
+
 @media only screen and (max-width: 768px) {
-    .Gap .slick-list > .slick-track{
+    .Gap .slick-list>.slick-track {
         gap: 0px;
     }
 }
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.custom-indicator {
+    bottom: -65px;
+}
+
+.custom-indicator li {
+    width: 50px;
+    height: 50px;
+    filter: grayscale(100%);
+}
+
+.custom-indicator li.slick-active {
+    filter: grayscale(0%);
+}
+
+.multi__image:hover {
+    transform: scale(1.1);
+    transition: 500ms;
+}
+
+.css-0 {
+    width: auto !important;
+    margin: auto;
+}
+
+.portal2 {
+    display: block !important;
+}
+
+.detailsImgHover:hover .portal2 {
+    display: block !important;
+}
+.slick-slide {
+    padding: 1px !important;
+    /* width: 250px !important; */
+}
+.slick-next {
+    right: -25px;
+    width: 32px !important;
+    height: 90px !important;
+    display: flex !important;
+    /* background-color: #d9d9d9 !important; */
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0px 10px 10px 0px !important;
+}
+.slick-prev{
+    right: -25px;
+    width: 32px !important;
+    height: 90px !important;
+    display: flex !important;
+    /* background-color: #d9d9d9 !important; */
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 10px 0 0 10px !important;
+}
+/* .slick-initialized{
+    background-color: #fff;
+    padding:10px 40px;
+} */
+.slick-track {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+}
+.gapgiven > .slick-list >.slick-track{
+    gap:30px !important;
+}
+.removegap > .slick-list >.slick-track{
+    gap:0px !important;
+}
+.gapgiventoBanner > .slick-list >.slick-track> div:first-child{
+   margin-right:30px !important;
+}
+.addmargin > .slick-list >.slick-track> div{
+    margin-right:30px !important;
+ }
+ .Makecenter >.slick-list >.slick-track> .slick-slide >div{
+    display: flex;
+ }
+ .imageField{
+    width: 565px;
+    max-width: 565px;
+    border-radius: 10px;
+ }
+ .imageFieldlearge{
+    background: #000;
+ }
