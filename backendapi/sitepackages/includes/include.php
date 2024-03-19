@@ -8,4 +8,4 @@ $objSession = new Session();
 $objConn	= new Connection(HOST_NAME, USER_NAME, PASSWORD, DB_NAME);
 $objQuery 	= new Query();
 $objCategory= new Category();
-?>
+?>   

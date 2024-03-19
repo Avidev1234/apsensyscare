@@ -1,7 +1,7 @@
 <?php
 ##------------------------------ Site Path Define, Start ---------------------------------##
-define("SERVER_PATH", "http://".$_SERVER['HTTP_HOST']."/apsensyscare/backendapi");
-define("SERVER_ROOT",$_SERVER['DOCUMENT_ROOT']."/apsensyscare/backendapi");
+define("SERVER_PATH", "http://".$_SERVER['HTTP_HOST']."/aspensyscare/backendapi");
+define("SERVER_ROOT",$_SERVER['DOCUMENT_ROOT']."/aspensyscare/backendapi");
 define("FILE_UPLOAD_PATH", SERVER_ROOT."upload/");
 define("INCLUDE_PATH", SERVER_ROOT."/sitepackages/includes/");
 define("CLASS_PATH", SERVER_ROOT."/sitepackages/classes/");
@@ -19,7 +19,7 @@ define("DB_NAME", "apsensyscare");
 ##------------------------------ Error Message Define, Start -----------------------------##
 define("ERR_CONNECT_SERVER", "Unable to connect to mysql server.");
 define("ERR_NO_DATABASE", "Unable to select database.");	
-define("ERR_INSERT_DATA", "Unable to insert data.");
+define("ERR_INSERT_DATA", "Unable to insert data."); 
 define("SUCC_USER_REGISTER", "Member created successfully.Kindly wait for approvel");
 define("SUCC_COMPANY_REGISTER", "Company created successfully.");
 define("SUCC_INSERT_DATA", "Data inserted.");	

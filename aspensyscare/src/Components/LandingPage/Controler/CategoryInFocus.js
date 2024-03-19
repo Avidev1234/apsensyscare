@@ -53,7 +53,7 @@ const CategoryInFocus = () => {
   return (
     <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4">
       {!Products.loading && product !== undefined ? ( <div className='w-full my-[30px]  font-bold '>
-        <h1 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Category In Focus</h1>
+        <h2 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Category In Focus</h2>
       </div>) : <Skeleton count={2} />}
      
       {Products.loading &&

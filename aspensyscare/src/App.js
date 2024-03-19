@@ -70,13 +70,13 @@ function App() {
     //dispatch(pushUsers(sessionStorage.getItem('___user')))
     dispatch(GetuserWishlist({userid:sessionStorage.getItem('___user')}));
   }
-  setInterval(() => {
-    if(!Cookies.get('ACCESSTOKEN')){
-      if(Cookies.get('REFRESSTOKEN')){
-        dispatch(currentUser(Cookies.get('REFRESSTOKEN')))
-      }
-    }
-  }, 1000);
+  // setInterval(() => {
+  //   if(!Cookies.get('ACCESSTOKEN')){
+  //     if(Cookies.get('REFRESSTOKEN')){
+  //       dispatch(currentUser(Cookies.get('REFRESSTOKEN')))
+  //     }
+  //   }
+  // }, 1000);
   const WishlistData = useSelector((state) => state.wishlist);
   const wishlist = WishlistData.wishlist
   const WishlistProducts = []
