@@ -18,7 +18,6 @@ const userSlice = createSlice({
             state.error = ''
             state.loading = false
             state.users = action.payload
-            
             if (!sessionStorage.getItem("LoginSuccess")) {
                 sessionStorage.setItem("LoginSuccess", true);
                 sessionStorage.setItem("___user", (action.payload.details[0].userId));
