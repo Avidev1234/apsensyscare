@@ -62,7 +62,7 @@ const BestSeller = ({ title, count }) => {
     <>
       <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
         {title !== undefined ? <div className='w-full  font-bold my-[30px]'>
-        {!Products.loading && product !== undefined ? (<h1 className='text-bold text-[18px] md:text-[24px] leading-[40px]'>{title}</h1>) : <Skeleton  count={2} />}
+        {!Products.loading && product !== undefined ? (<h2 className='text-bold text-[18px] md:text-[24px] leading-[40px] item-center'>{title}</h2>) : <Skeleton  count={2} />}
           
         </div> : null}
         {Products.loading &&

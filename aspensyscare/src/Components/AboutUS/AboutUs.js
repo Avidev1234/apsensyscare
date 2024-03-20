@@ -100,38 +100,113 @@ function AboutUs() {
       </div>
       <div className="container mb-6 ">
         <h2 className="font-bold text-2xl my-10 text-center">Our Management</h2>
-        {/* <div>
+        <div>
           <Slider {...settings}>
             <div>
-              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border ">
-                <div className="w-[200px] h-[150px]">
-                  <img src="https://www.ciobulletin.com/assets/home_image/ciobulletin-manish-pandey,-ceo-of-apsensys-group-img-webp.webp" alt="" />
+              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
+                <div className="w-[200px] h-[200px] rounded-full">
+                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/pavan.webp" alt="" />
                 </div>
-                <div>
-                  <p >
-                    Apsensys Care is well-equipped with world-class infrastructure to produce better products consistently. Our team of experts was handpicked to craft products of great value for our consumers.
+                <div className="w-full lg:w-[70%] ">
+                  <p className="text-blue-500">CEO</p>
+                  <p>
+                    Kalla Pavan Kumar is the CEO of Apsensys Care. His leadership is marked by a strategic vision and a deep understanding of the FMCG sector. He has guided the company with measured strategies and a clear direction, ensuring growth and success.
                   </p>
+                  <p >
+                    Mr. Pavan Kumar has a lot of experience in Search Engine Optimization, networking, infrastructure, server administration, and technical support in the network fields, making him a great fit for a CEO role in an FMCG company. Mr. Pavan Kumar holds a Bachelor's degree in Information Technology from Lenora Engineering College, East Godavari District.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
+                <div className="w-[200px] h-[200px] rounded-full">
+                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/girish.webp" alt="" />
+                </div>
+                <div className="w-full lg:w-[70%] ">
+                  <p className="text-blue-500">COO and CMO</p>
+                  <p>
+                    Girish M. serves as the Chief Operating Officer and Chief Marketing Officer of Apsensys Care. His remarkable reservoir of patience, exceptional people management skills, and unwavering commitment to perfection make him the driving force behind the seamless day-to-day operations of Apsensys Care.
+                  </p>
+                  <p >
+                    Mr. Girish's interests in networking, technology, and management form the foundation of his expertise as COO and CMO.
+                  </p>
+                  <p>When he's not working, Mr. Girish enjoys playing cricket, a sport he is passionate about, and traveling to new places.</p>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3>2</h3>
+              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
+                <div className="w-[200px] h-[200px] rounded-full">
+                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/rahul.webp" alt="" />
+                </div>
+                <div className="w-full lg:w-[70%] ">
+                  <p className="text-blue-500">Production Manager</p>
+                  <p>
+                    Rahul Tiwari is the Production Manager at Apsensys Care, where he oversees and manages the production of various products such as the Clear Soft range, Nexpro, Sanitus, and more. With his technical skills, do-it-right attitude, and managerial abilities, he ensures efficient manufacturing processes and product quality.
+                  </p>
+                  <p >
+                    Rahul Tiwari has successfully completed a Bachelor of Science degree in Mathematics (Hons) from Veer Kunwar Singh University, Bihar.
+                  </p>
+                </div>
+              </div>
             </div>
             <div>
-              <h3>3</h3>
+              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
+                <div className="w-[200px] h-[200px] rounded-full">
+                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/nixon.webp" alt="" />
+                </div>
+                <div className="w-full lg:w-[70%] ">
+                  <p className="text-blue-500">Finance and Legal Head</p>
+                  <p>
+                    Nixon Nambiar, the Finance and Legal Head at Apsensys Care, brings a wealth of experience from various senior management roles. He possesses the necessary skills and expertise to effectively fulfill his responsibilities at the company. Moreover, his passion for management and counseling plays a significant role in driving Apsensys Care towards greater success.
+                  </p>
+                  <p >
+                    Mr. Nambiar has a Master of Business Administration degree. He is passionate about fitness and enjoys long distance running. He also finds solace in literature and practices yoga occasionally.
+                  </p>
+                </div>
+              </div>
             </div>
             <div>
-              <h3>4</h3>
+              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
+                <div className="w-[200px] h-[200px] rounded-full">
+                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/manish.webp" alt="" />
+                </div>
+                <div className="w-full lg:w-[70%] ">
+                  <p className="text-blue-500">President and Founder</p>
+                  <p>
+                    Manish Pandey, the President and Founder of Apsensys Care, is a true inspiration. Back in 2007, he was already setting an example for others on how to make the most of their time while working a part-time job and studying in Jharkhand. Manish established Apsensys Media in 2011 through hard work and bootstrapping. He turned a small startup into a thriving business, employing over 100 people. In 2023, he opened the Apsensys Business Towers, fulfilling his dream.
+                  </p>
+                  <p >
+                    Manish Pandey's story is incredible and shows us that, with determination, anything is possible.
+                  </p>
+                  <p>Manish holds a B.Sc. degree and an MBA, showing his commitment to education. He has a passion for reading, innovation, experiments, and troubleshooting, which highlights his drive to learn and push boundaries. Despite his success, he remains humble and has personally taken charge of housekeeping tasks. Manish's journey is extraordinary and shows what can be achieved through perseverance and passion.</p>
+                </div>
+              </div>
             </div>
             <div>
-              <h3>5</h3>
+              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
+                <div className="w-[200px] h-[200px] rounded-full">
+                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/chandrasekar.webp" alt="" />
+                </div>
+                <div className="w-full lg:w-[70%] ">
+                  <p className="text-blue-500">Accounts Manager</p>
+                  <p>
+                    Chandrashekar D. is the Accounts Manager at Apsensys Care. He is responsible for handling all financial transactions, from distributing employee salaries to releasing funds to clients and contractors. Mr. Chandrashekar plays a vital role in managing all monetary matters at the company.
+                  </p>
+                  <p >
+                    Mr. Chandrashekar has a B.Com. Degree from Indira Gandhi National Open University. He is also actively pursuing professional courses in Chartered Accountancy (CA), Fund Accounting, Certified Financial Planner, and Financial Risk Manager.
+                  </p>
+                  <p>Mr. Chandrashekar enjoys cricket, swimming, travel, and meditation as pastimes when he is not working.</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3>6</h3>
-            </div>
+
+
+
           </Slider>
-        </div> */}
+        </div>
       </div>
       <div className="container mb-5">
         <h2 className="font-bold text-2xl my-10 text-center">Our Values</h2>
