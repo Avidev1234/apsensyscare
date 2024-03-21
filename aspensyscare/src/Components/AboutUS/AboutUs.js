@@ -12,6 +12,9 @@ function AboutUs() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    initialSlide: 0,
+    autoplaySpeed: 5000,
   };
   return (
     <div className="container">
@@ -105,6 +108,23 @@ function AboutUs() {
             <div>
               <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
                 <div className="w-[200px] h-[200px] rounded-full">
+                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/manish.webp" alt="" />
+                </div>
+                <div className="w-full lg:w-[70%] ">
+                  <p className="text-blue-500">President and Founder</p>
+                  <p>
+                    Manish Pandey, the President and Founder of Apsensys Care, is a true inspiration. Back in 2007, he was already setting an example for others on how to make the most of their time while working a part-time job and studying in Jharkhand. Manish established Apsensys Media in 2011 through hard work and bootstrapping. He turned a small startup into a thriving business, employing over 100 people. In 2023, he opened the Apsensys Business Towers, fulfilling his dream.
+                  </p>
+                  <p >
+                    Manish Pandey's story is incredible and shows us that, with determination, anything is possible.
+                  </p>
+                  <p>Manish holds a B.Sc. degree and an MBA, showing his commitment to education. He has a passion for reading, innovation, experiments, and troubleshooting, which highlights his drive to learn and push boundaries. Despite his success, he remains humble and has personally taken charge of housekeeping tasks. Manish's journey is extraordinary and shows what can be achieved through perseverance and passion.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
+                <div className="w-[200px] h-[200px] rounded-full">
                   <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/pavan.webp" alt="" />
                 </div>
                 <div className="w-full lg:w-[70%] ">
@@ -168,23 +188,7 @@ function AboutUs() {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
-                <div className="w-[200px] h-[200px] rounded-full">
-                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/manish.webp" alt="" />
-                </div>
-                <div className="w-full lg:w-[70%] ">
-                  <p className="text-blue-500">President and Founder</p>
-                  <p>
-                    Manish Pandey, the President and Founder of Apsensys Care, is a true inspiration. Back in 2007, he was already setting an example for others on how to make the most of their time while working a part-time job and studying in Jharkhand. Manish established Apsensys Media in 2011 through hard work and bootstrapping. He turned a small startup into a thriving business, employing over 100 people. In 2023, he opened the Apsensys Business Towers, fulfilling his dream.
-                  </p>
-                  <p >
-                    Manish Pandey's story is incredible and shows us that, with determination, anything is possible.
-                  </p>
-                  <p>Manish holds a B.Sc. degree and an MBA, showing his commitment to education. He has a passion for reading, innovation, experiments, and troubleshooting, which highlights his drive to learn and push boundaries. Despite his success, he remains humble and has personally taken charge of housekeeping tasks. Manish's journey is extraordinary and shows what can be achieved through perseverance and passion.</p>
-                </div>
-              </div>
-            </div>
+
             <div>
               <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
                 <div className="w-[200px] h-[200px] rounded-full">

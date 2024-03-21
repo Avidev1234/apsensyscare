@@ -1,7 +1,7 @@
 <?php
 ##------------------------------ Site Path Define, Start ---------------------------------##
-define("SERVER_PATH", "http://".$_SERVER['HTTP_HOST']."/aspensyscare/backendapi");
-define("SERVER_ROOT",$_SERVER['DOCUMENT_ROOT']."/aspensyscare/backendapi");
+define("SERVER_PATH", "http://".$_SERVER['HTTP_HOST']."/apsensyscare/backendapi");
+define("SERVER_ROOT",$_SERVER['DOCUMENT_ROOT']."/apsensyscare/backendapi");
 define("FILE_UPLOAD_PATH", SERVER_ROOT."upload/");
 define("INCLUDE_PATH", SERVER_ROOT."/sitepackages/includes/");
 define("CLASS_PATH", SERVER_ROOT."/sitepackages/classes/");
