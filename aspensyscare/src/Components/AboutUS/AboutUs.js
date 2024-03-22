@@ -103,7 +103,7 @@ function AboutUs() {
       </div>
       <div className="container mb-6 ">
         <h2 className="font-bold text-2xl my-10 text-center">Our Management</h2>
-        <div>
+        <div className="slider-container">
           <Slider {...settings}>
             <div>
               <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
