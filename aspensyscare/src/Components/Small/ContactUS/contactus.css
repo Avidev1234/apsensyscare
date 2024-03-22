@@ -1,0 +1,151 @@
+.contactdiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to left, rgba(160, 239, 230, 1), rgba(176, 239, 160, 1));
+}
+
+.contactCont {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.address-div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 500px;
+    text-align: left;
+}
+
+.address-div-cont {
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.address-div h1 {
+    width: 100%;
+}
+
+.address-descri {
+    width: 80% !important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.address-descri h4 {
+    margin: 0px;
+}
+
+.address-descri p {
+    margin: 0px;
+}
+
+.form-div {
+    width: 30%;
+    max-width: 380px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 2.5px 2px rgba(0, 0, 0, 0.06),
+        0 4.3px 3.9px rgba(0, 0, 0, 0.072),
+        0 8.8px 3.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.form-div form {
+    width: 95%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.form-button {
+    padding: 10px 25px;
+    color: white;
+    font-size: 14px;
+    line-height: 1.4rem;
+    font-weight: 600;
+    background-color: #A2EFDF;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    margin-top: 30px;
+    text-transform: uppercase;
+}
+
+.address-ion {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px;
+}
+
+.contactdiv .icon {
+    font-size: 35px;
+}
+
+
+
+
+/* copied */
+.effect5 {
+    position: relative;
+}
+
+.effect5:before,
+.effect5:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 25px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #777;
+    -webkit-box-shadow: 0 35px 20px #777;
+    -moz-box-shadow: 0 35px 20px #777;
+    box-shadow: 0 35px 20px #777;
+    -webkit-transform: rotate(-8deg);
+    -moz-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
+    -ms-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+}
+
+.effect5:after {
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
+    right: 10px;
+    left: auto;
+}
