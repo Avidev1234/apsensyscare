@@ -1,0 +1,29 @@
+.sidewidth {
+    width: calc(100% - 100px);
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+    height: 2rem;
+    width: 2rem;
+}
+
+.scroolbar::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.scroolbar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+
+/* Handle */
+.scroolbar::-webkit-scrollbar-thumb {
+    background: #3b32df;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+.scroolbar::-webkit-scrollbar-thumb:hover {
+    background: #6627c5;
+}
