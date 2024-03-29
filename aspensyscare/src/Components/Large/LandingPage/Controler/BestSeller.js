@@ -13,35 +13,39 @@ const BestSeller = ({ title, count }) => {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000,
-    swipeToSlide: true, 
+    swipeToSlide: true,
     arrows: false,
+    className: "center gapgiven",
     centerMode: false,
-    initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1025,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 4,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 1,
 
         }
       }
@@ -76,9 +80,7 @@ const BestSeller = ({ title, count }) => {
           )
         }
         {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
-        <div className='slider-container'>
-
-
+        <div className="slider-container">
           <Slider
             {...settings}
           >

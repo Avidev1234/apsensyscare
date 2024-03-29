@@ -72,20 +72,20 @@ const ContactUS = () => {
               <PhoneIcon className="icon" />
               <div>
                 <h4 className="font-bold tracking-wide text-xl">PHONE</h4>
-                <p className="pt-3">+91 8496868788</p>
+                <p className="pt-3">+91 7996997979</p>
               </div>
             </div>
             <div className="address-descri">
               <MailIcon className="icon" />
               <div>
                 <h4 className="font-bold tracking-wide text-xl">EMAIL</h4>
-                <p className="pt-3">apsensyscare@gmail.com</p>
+                <p className="pt-3">sales@apsensyscare.com</p>
               </div>
             </div>
             <div className="address-ion">
               <a href="https://www.linkedin.com/company/apsensyscare/">
                 <img
-                  src={`${process.env.REACT_APP_URL}Image/icons/linkedIn.png`}
+                  src={`${process.env.REACT_APP_IMAGE}/icons/linkedIn.png`}
                   alt="social-icon"
                   width={30}
                   height={30}

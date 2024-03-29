@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { SignupUser, fetchUsers } from '../../Api/Api';
+import { AddAddress, SignupUser, fetchUsers, getAddress } from '../../Api/Api';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
 import FormHelperText from "@mui/material/FormHelperText";
+import { toast } from 'react-toastify';
 
 const LoginCont = styled('div')`
   width: 100%;
@@ -224,7 +225,6 @@ const Login = ({ handelLogin }) => {
         setLogin({ ...login, [e.target.name]: e.target.value });
     };
     // ---------------------------work for login user------------------------------------
-    
     const dispatch = useDispatch();
     // const user = useSelector((state) => state.user);
     const [loginerror, setLoginError] = useState(null)
@@ -234,6 +234,23 @@ const Login = ({ handelLogin }) => {
                 // console.log(res.meta.requestStatus)
                 if (res.payload !== undefined) {
                     handelLogin(false);
+                    if (localStorage.getItem("___gaust_user_address") !== undefined) {
+                        const address = {
+                            user: sessionStorage.getItem("___user"),
+                            ...JSON.parse(localStorage.getItem("___gaust_user_address"))[0]
+                        }
+                        AddAddress(address).then((res) => {
+                            //console.log("done");
+                            dispatch(getAddress({ userid: sessionStorage.getItem("___user") }));
+                            toast.success("Address added successfully", {
+                                position: "bottom-left",
+                            });
+                            localStorage.removeItem('___gaust_user_address')
+                        }).catch((err) => {
+                            toast.warning(err.message);
+                        });
+                    }
+
                 } else if (res.payload === undefined && res.meta.requestStatus === "rejected") {
                     setLoginError("user not found")
                 }

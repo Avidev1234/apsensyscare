@@ -19,7 +19,6 @@ const getAddressSlice = createSlice({
             state.address = [];
           },
           AddAddressgaust(state, action){
-            console.log(action);
             state.address = action.payload;
           }
     },

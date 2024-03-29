@@ -1,9 +1,9 @@
-export const Genaratemail = async({product, address,payment}) => {
+export const Genaratemail = async ({ product, address, payment }) => {
 
     const order_address = `<tr>
       <td style="border: 1px solid #ddd;">${address[0].name}</td>
       <td style="border: 1px solid #ddd;">${address[0].contact}</td>
-      <td style="border: 1px solid #ddd;">${address[0].email?address[0].email:"---"}</td>
+      <td style="border: 1px solid #ddd;">${address[0].email ? address[0].email : "---"}</td>
       <td style="border: 1px solid #ddd;">${address[0].state}</td>
       <td style="border: 1px solid #ddd;">${address[0].city}</td>
       <td style="border: 1px solid #ddd;">${address[0].pincode}</td>
@@ -36,6 +36,9 @@ export const Genaratemail = async({product, address,payment}) => {
     return orderItem;
 }
 
-export const checkAuth=()=>{
-
+export const setLoginSession = (user) => {
+    var expires = new Date();
+    sessionStorage.setItem('userexpired', JSON.stringify(expires));
+    sessionStorage.setItem("LoginSuccess", true);
+    sessionStorage.setItem("___user", user);
 }

@@ -115,7 +115,7 @@ const Cart = (props) => {
   const [expandedItem, setExpandedItem] = useState("panel1");
   const [expandedAddress, setExpandedAddress] = useState();
   const [expandedPay, setExpandedPay] = useState();
-  const [orderType, setOrderType] = useState("case");
+  const [orderType, setOrderType] = useState("online");
   const [error, setError] = useState(false);
   const [order_address, setOredr_address] = useState(null);
   const [gaust_address, setgaust_address] = useState((localStorage.getItem("___gaust_user_address")) !== null ? JSON.parse(localStorage.getItem("___gaust_user_address")) : []);
@@ -196,7 +196,10 @@ const Cart = (props) => {
   const handelOrder = async (cart) => {
     ////console.log("hello indide handelOrder", localStorage.getItem("___gaust_user_address"))
     // console.log(cart);
-
+    if(sessionStorage.getItem("___user") === null){  
+      handelLogin(true) 
+      return;
+    }
     if (sessionStorage.getItem("___user") !== null) {
       const amount = cart.cartTotalAmount
       const OrderItems={
@@ -207,7 +210,6 @@ const Cart = (props) => {
         userAddress:order_address.id,
       }
       let products = []
-      console.log(cart)
       cart.cartItems.map((val) => {
         products.push({
           id:val.id,
@@ -260,7 +262,7 @@ const Cart = (props) => {
         //   //console.log(res)
         // })
       } else if (orderType === 'online') {
-        console.log(userID)
+        // console.log(userID)
         const data={
           name:userName,
           phone:userPhone,
@@ -269,7 +271,7 @@ const Cart = (props) => {
           amount:amount,
         }
         CreateOrder(data).then((res) => {
-          console.log(res)
+          // console.log(res)
           if(res.url!==undefined){
             console.log('Entered')
             window.location=res.url
@@ -426,8 +428,7 @@ const Cart = (props) => {
                   Your Cart
                 </Typography>
               </AccordionSummary>
-              {/* selected cart products
-               */}
+              {/* selected cart products*/}
               <AccordionDetails
                 style={{
                   display: "flex",
@@ -526,7 +527,7 @@ const Cart = (props) => {
                             style={{ backgroundColor: "#bfdbfe", borderRadius: '8px' }}
                             height={100}
                             alt={cartItem.name}
-                            src={`${process.env.REACT_APP_URL}/Image/all_products/${cartItem.product_image}`}
+                            src={`${process.env.REACT_APP_IMAGE}/all_products/${cartItem.product_image}`}
                           />
                           <div
                             style={{
@@ -708,13 +709,15 @@ const Cart = (props) => {
                                   id={`${items.id}`}
                                   name="address"
                                   value={`${JSON.stringify(items)}`}
-
+                                  className="h-10 radio radio-primary"
+                                  checked
                                 /> :
                                 <input
                                   type="radio"
                                   id={`${items.id}`}
                                   name="address"
                                   value={`${JSON.stringify(items)}`}
+                                  className="h-10 radio radio-primary"
                                 />
                               }
                               <label htmlFor={`${items.id}`}
@@ -785,13 +788,16 @@ const Cart = (props) => {
                                   id={`${items.id}`}
                                   name="address"
                                   value={`${JSON.stringify(items)}`}
-
+                                  className="h-10 radio radio-primary"
+                                  checked
                                 /> :
                                 <input
                                   type="radio"
                                   id={`${items.id}`}
                                   name="address"
                                   value={`${JSON.stringify(items)}`}
+                                  className="h-10 radio radio-primary"
+                                  
                                 />
                               }
                               <label htmlFor={`${items.id}`}
@@ -933,7 +939,7 @@ const Cart = (props) => {
                       />
                       <FormControlLabel
                         value="case"
-                        control={<Radio />}
+                        control={<Radio/>}
                         label="Case On Delivery"
                       />
                     </RadioGroup>

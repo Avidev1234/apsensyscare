@@ -19,7 +19,9 @@ const ProductVariant = React.lazy(() => import('./Components/Large/LandingPage/C
 const ProductByCategory = React.lazy(() => import('./Components/Large/CategoryPage/ProductByCategory'))
 const PaymentLoading=React.lazy(()=>import('./Others/PaymentLoading'))
 const Unsubscribe=React.lazy(()=>import('./Others/Unsubscribe'))
-
-
 const ProductByCategorySmall=React.lazy(()=>import('./Components/Small/CategoryPage/ProductByCategory'))
-export {Privecy,ContactUS,AboutUs,PaymentReturn,TermsCondition,Shipping,Sitemap,Jobs,OrderFailed,ThankYou,Login,Wishlist,Smallwishlist,Cart,Product,ProductVariant,ProductByCategory,PaymentLoading,Unsubscribe,ProductByCategorySmall} 
+const LandingPage= React.lazy(()=>import('./Components/Large/LandingPage/LandingPage'))
+const Home= React.lazy(()=>import('./Components/Large/LandingPage/Home/Home'))
+const SmallHome= React.lazy(()=>import('./Components/Small/LandingPage/Home/Homesmall'))
+
+export {LandingPage,Home,SmallHome,Privecy,ContactUS,AboutUs,PaymentReturn,TermsCondition,Shipping,Sitemap,Jobs,OrderFailed,ThankYou,Login,Wishlist,Smallwishlist,Cart,Product,ProductVariant,ProductByCategory,PaymentLoading,Unsubscribe,ProductByCategorySmall} 

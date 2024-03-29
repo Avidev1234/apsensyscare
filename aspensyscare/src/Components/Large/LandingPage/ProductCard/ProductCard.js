@@ -62,14 +62,14 @@ const ProductCard = ({ val, page }) => {
         } else if (sessionStorage.getItem('___user')) {
             const wishListData = {
                 productid: val.id,
-                userId: sessionStorage.getItem('___user') 
+                userId: sessionStorage.getItem('___user')
             }
             dispatch(addToWishlist(wishListData))
             navigate('/wishlist')
         }
-    } 
-    return (  
-        <div className="max-w-[200px] shrink cursor-pointer"
+    }
+    return (
+        <div className="max-w-[160px] shrink cursor-pointer mx-2"
         >
             <div className=" rounded-lg relative">
                 <button className="absolute left-0 bg-orange-400 text-white px-2 py-1 text-sm rounded-tl-lg z-10">Best sellers</button>
@@ -84,12 +84,12 @@ const ProductCard = ({ val, page }) => {
                         </div> : null
                 }
             </div>
-            <div className="border rounded-lg relative flex justify-center px-[20px]" onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`)}>
-                {/* <img width="150" height="200" className="mx-auto pt-[30px] pb-[10px]" src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} alt="" /> */}
-                <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} previewSrc={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} classname={"w-[150px] h-[240px] mx-auto pt-[30px] pb-[10px]"} />
+            <div className="w-[160px] border rounded-lg relative flex justify-center"
+                onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`)}>
+                <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`} previewSrc={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`} classname={"w-[100px] h-[240px] mx-auto pt-[30px] pb-[10px]"} />
             </div>
             <div className="text-gray-700" onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`)}>
-                <p className="mt-1 font-bold h-[45px]">{val.brand_name} <br /> <span className='text-[#A1A6AD] '>{val.name.substr(0, 20)}...</span></p>
+                <p className="mt-1 font-bold h-[65px] text-center">{val.brand_name} <br /> <span className='text-[#A1A6AD] '>{val.name.substr(0, 20)}...</span></p>
                 <div className='w-full flex flex-row flex-nowrap justify-between'>
                     <p className="text-gray-600 my-2">
                         {val.default_size}ml
@@ -103,7 +103,7 @@ const ProductCard = ({ val, page }) => {
                 </div>
 
                 <p className="text-lg font-semibold"><span className="font-bold">₹{val.default_price}</span>
-                    <span className="text-gray-600 mx-2">₹{val.default_price}</span> <span className="text-green-600">20%</span>
+                    <span className="text-[#d9d9d9] mx-2 line-through">₹{val.default_price}</span> <span className="text-green-600">20%</span>
                 </p>
             </div>
         </div>

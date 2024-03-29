@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {  PushUserCart, fetchUsers, pushUsers } from "../../Api/Api";
+import Cookies from 'js-cookie'
+
+import {  PushUserCart, fetchUsers, currentUser } from "../../Api/Api";
+import { setLoginSession } from "../../Function/helper";
 const initialState = {
     loading: false,
     users: [],
@@ -18,10 +21,9 @@ const userSlice = createSlice({
             state.error = ''
             state.loading = false
             state.users = action.payload
-            if (!sessionStorage.getItem("LoginSuccess")) {
-                sessionStorage.setItem("LoginSuccess", true);
-                sessionStorage.setItem("___user", (action.payload.details[0].userId));
-            }
+            Cookies.set('u__r_t_____',action.payload.token)
+            setLoginSession(action.payload.details[0].userId)
+            
             //console.log(localStorage.getItem("cartItems"))
             if (localStorage.getItem("cartItems") !== null ) {
                 const productdetails = JSON.parse(localStorage.getItem("cartItems"))
@@ -35,9 +37,14 @@ const userSlice = createSlice({
             state.users = []
             state.error = action.error.message
         })
-        builder.addCase(pushUsers.fulfilled, (state, action) => {
+        builder.addCase(currentUser.fulfilled, (state, action) => {
             state.users.length = 0;
             state.users=action.payload
+        })
+        builder.addCase(currentUser.rejected, (state, action) => {
+            state.loading = false
+            state.users = []
+            state.error = action.error.message
         })
     },
 })

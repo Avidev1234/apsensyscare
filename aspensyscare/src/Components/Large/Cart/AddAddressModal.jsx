@@ -25,7 +25,7 @@ const style = {
   p: 4,
 };
 
-const AddAddressModal = ({ handelLogin,handlegaust_address }) => {
+const AddAddressModal = ({ handelLogin, handlegaust_address }) => {
   //console.log(handlegaust_address)
   const dispatch = useDispatch();
   // const user = useSelector((state) => state.users);
@@ -86,12 +86,11 @@ const AddAddressModal = ({ handelLogin,handlegaust_address }) => {
       { user: sessionStorage.getItem("___user") },
       values
     );
-    
     if (sessionStorage.getItem("___user")) {
       AddAddress(address).then((res) => {
         //console.log("done");
         if (sessionStorage.getItem("___user")) {
-          dispatch(getAddress(sessionStorage.getItem("___user")));
+          dispatch(getAddress({ userid: sessionStorage.getItem("___user") }));
         }
         toast.success("Address added successfully", {
           position: "bottom-left",
@@ -100,41 +99,41 @@ const AddAddressModal = ({ handelLogin,handlegaust_address }) => {
         console.log(err);
       });
     } else {
-      let Gaddress=[]
+      let Gaddress = []
       // if(localStorage.getItem("___gaust_user_address") !== null)
       // {
       //   // Gaddress.push(JSON.parse(localStorage.getItem("___gaust_user_address") ))
-        
+
       // }
       Gaddress.push(values)
-      localStorage.setItem("___gaust_user_address",JSON.stringify( Gaddress));
-      
+      localStorage.setItem("___gaust_user_address", JSON.stringify(Gaddress));
+
       handlegaust_address(Gaddress)
       setOpen(false);
       setgauseaddress(false)
     }
 
   };
-  console.log(localStorage.getItem('___gaust_user_address')!==null);
+  // console.log(localStorage.getItem('___gaust_user_address')!==null);
   return (
     <>
-    {gauseaddress===true && localStorage.getItem('___gaust_user_address')===null?
-    <Button
-      onClick={handleOpen}
-      style={{
-        width: "max-content",
-        cursor: "pointer",
-        display: "flex",
-        fontSize: "12px",
-        color: "blueviolet",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        gap: ".2rem",
-      }}
-    >
-      <AddIcon style={{ fontSize: "20px" }} fontSize="large" />
-      Add New Address
-    </Button>:"Address saved"}
+      {(sessionStorage.getItem("___user") !== null) || (gauseaddress === true && localStorage.getItem('___gaust_user_address') === null) ?
+        <Button
+          onClick={handleOpen}
+          style={{
+            width: "max-content",
+            cursor: "pointer",
+            display: "flex",
+            fontSize: "12px",
+            color: "blueviolet",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            gap: ".2rem",
+          }}
+        >
+          <AddIcon style={{ fontSize: "20px" }} fontSize="large" />
+          Add New Address
+        </Button> : "Address saved"}
       <Modal
         open={open}
         onClose={handleClose}
