@@ -39,26 +39,24 @@ const Footer = () => {
                     </div>
                     <div className='w-full lg:w-[70%] text-start py-5'>
                         <p className='text-white text-[14px]'>
-                            Taking Care of your self doesn’t have to feel like a
-                            Routine, Taking Care of your self doesn’t
-                            have to feel like a Routin
+                            Take a moment for yourself and celebrate each day with Apsensys Care's amazing selection of self-care essentials.
                         </p>
                     </div>
                     <div className='w-full flex flex-row flex-nowrap justify-start gap-[10px] items-center'>
                         <a href='https://www.facebook.com/apsensyscare/' target='_blank' rel="noreferrer">
-                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/facebook-white.png`} alt="" />
+                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/facebook-white.png`} alt="" />
                         </a>
                         <a href='https://www.youtube.com/@apsensyscare' target='_blank' rel="noreferrer">
-                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/youtube-white.png`} alt="" />
+                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/youtube-white.png`} alt="" />
                         </a>
                         <a href='https://www.instagram.com/apsensyscaresolution/' target='_blank' rel="noreferrer">
-                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/insta-white.png`} alt="" />
+                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/insta-white.png`} alt="" />
                         </a>
                         <a href='https://www.linkedin.com/company/apsensyscare/' target='_blank' rel="noreferrer">
-                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/linkedin-white.png`} alt="" />
+                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/linkedin-white.png`} alt="" />
                         </a>
                         <a href='https://twitter.com/ApsensysCare' target='_blank' rel="noreferrer">
-                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_URL}Image/icons/twitter-white.png`} alt="" />
+                            <img className='w-[40px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/twitter-white.png`} alt="" />
                         </a>
                     </div>
                 </div>
@@ -80,7 +78,7 @@ const Footer = () => {
                     </div>
 
                     <div className='text-start'>
-                        <p className='font-[400] leading-[25px] text-[14px] cursor-pointer hover:text-[#E34343] text-[#fff] py-1'onClick={() => Redirect('career')}>
+                        <p className='font-[400] leading-[25px] text-[14px] cursor-pointer hover:text-[#E34343] text-[#fff] py-1' onClick={() => Redirect('career')}>
                             Careers
                         </p>
                     </div>
@@ -136,8 +134,8 @@ const Footer = () => {
                             Service Rd, Vijaya Bank Colony
                             Kallumantapa, Horamavu
                             Bengaluru, Karnataka 560043<br />
-                            Email : apsensyscare@gmail.com <br />
-                            Phone : +91 8496868788
+                            Email : sales@apsensyscare.com <br />
+                            Phone : +91 7996997979
                         </p>
                     </div>
 

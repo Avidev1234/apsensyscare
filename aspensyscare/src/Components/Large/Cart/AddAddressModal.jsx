@@ -86,7 +86,6 @@ const AddAddressModal = ({ handelLogin, handlegaust_address }) => {
       { user: sessionStorage.getItem("___user") },
       values
     );
-
     if (sessionStorage.getItem("___user")) {
       AddAddress(address).then((res) => {
         //console.log("done");

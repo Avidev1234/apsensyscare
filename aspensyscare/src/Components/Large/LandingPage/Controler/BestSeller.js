@@ -11,37 +11,41 @@ const BestSeller = ({ title, count }) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 6.1,
+    slidesToShow: 6,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000,
-    swipeToSlide: true, 
+    swipeToSlide: true,
     arrows: false,
-    className: " gapgiven",
+    className: "center gapgiven",
     centerMode: false,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 1,
 
         }
       }
@@ -62,8 +66,8 @@ const BestSeller = ({ title, count }) => {
     <>
       <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
         {title !== undefined ? <div className='w-full  font-bold my-[30px]'>
-        {!Products.loading && product !== undefined ? (<h2 className='text-bold text-[18px] md:text-[24px] leading-[40px] item-center'>{title}</h2>) : <Skeleton  count={2} />}
-          
+          {!Products.loading && product !== undefined ? (<h2 className='text-bold text-[18px] md:text-[24px] leading-[40px] item-center'>{title}</h2>) : <Skeleton count={2} />}
+
         </div> : null}
         {Products.loading &&
           (<div className='flex justify-between'>
@@ -76,21 +80,23 @@ const BestSeller = ({ title, count }) => {
           )
         }
         {!Products.loading && Products.error ? <div>Error: {Products.error}</div> : null}
-        <Slider
-          {...settings}
-        >
-          {
-           !Products.loading && product !== undefined ? (
-              Descending.map((item, idx) => {
-                return (
-                  <ProductCard key={idx} val={item} />
-                )
-              })
-            ) : null
-          }
+        <div className="slider-container">
+          <Slider
+            {...settings}
+          >
+            {
+              !Products.loading && product !== undefined ? (
+                Descending.map((item, idx) => {
+                  return (
+                    <ProductCard key={idx} val={item} />
+                  )
+                })
+              ) : null
+            }
 
 
-        </Slider>
+          </Slider>
+        </div>
       </div>
     </>
   )

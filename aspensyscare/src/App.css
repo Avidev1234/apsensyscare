@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/* loader css start */
+.lorder {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+
+.lorder::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border: 5px dotted gray;
+    border-top-color: blue;
+    border-right-color: blue;
+
+    border-radius: 50%;
+    animation: loading 2s ease infinite;
+
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+
+    }
+
+    to {
+        transform: rotate(1turn);
+
+    }
+
+}
+/* loader css end */
 
 @media only screen and (max-width: 600px) {
     .css-zu82rx {
@@ -131,10 +171,12 @@
 .detailsImgHover:hover .portal2 {
     display: block !important;
 }
+
 .slick-slide {
     padding: 1px !important;
     /* width: 250px !important; */
 }
+
 .slick-next {
     right: -25px;
     width: 32px !important;
@@ -145,7 +187,8 @@
     justify-content: center !important;
     border-radius: 0px 10px 10px 0px !important;
 }
-.slick-prev{
+
+.slick-prev {
     right: -25px;
     width: 32px !important;
     height: 90px !important;
@@ -155,6 +198,7 @@
     justify-content: center !important;
     border-radius: 10px 0 0 10px !important;
 }
+
 /* .slick-initialized{
     background-color: #fff;
     padding:10px 40px;
@@ -171,26 +215,41 @@
     justify-content: center !important;
     flex-wrap: nowrap !important;
 }
-.gapgiven > .slick-list >.slick-track{
-    gap:30px !important;
+
+.gapgiven>.slick-list>.slick-track {
+    gap: 30px !important;
 }
-.removegap > .slick-list >.slick-track{
-    gap:0px !important;
+
+.padding-current>.slick-list>.slick-track>.slick-active {
+    padding: 0 0 0 14px !important;
 }
-.gapgiventoBanner > .slick-list >.slick-track> div:first-child{
-   margin-right:30px !important;
+
+.padding-current>.slick-list>.slick-track>.slick-current {
+    padding: 0 14px 0 0 !important;
 }
-.addmargin > .slick-list >.slick-track> div{
-    margin-right:30px !important;
- }
- .Makecenter >.slick-list >.slick-track> .slick-slide >div{
+
+.removegap>.slick-list>.slick-track {
+    gap: 0px !important;
+}
+
+.gapgiventoBanner>.slick-list>.slick-track>div:first-child {
+    margin-right: 30px !important;
+}
+
+.addmargin>.slick-list>.slick-track>div {
+    margin-right: 30px !important;
+}
+
+.Makecenter>.slick-list>.slick-track>.slick-slide>div {
     display: flex;
- }
- .imageField{
+}
+
+.imageField {
     width: 565px;
     max-width: 565px;
     border-radius: 10px;
- }
- .imageFieldlearge{
+}
+
+.imageFieldlearge {
     background: #000;
- }
+}

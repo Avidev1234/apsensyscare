@@ -56,7 +56,7 @@ export default function Smallproct({ val, page }) {
                     {val.default_size}ml
                 </p>
                 <h2 className="text-gray-700 font-bold text-base my-2">₹ {val.default_price}.00<span className='ml-[5px] text-[12px] text-gray-600 line-through'>(₹{val.actual_price}.00)</span></h2>
-                <button class="bg-yellow-400 rounded-[5px] w-full h-[32px] text-white">Add to Cart</button> 
+                <button class="bg-yellow-400 rounded-[5px] w-full h-[32px] text-white" onClick={()=>navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`)}>Add to Cart</button> 
             </div>
         </div>
     )

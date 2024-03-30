@@ -89,8 +89,8 @@ const Banner = ({ position, Header }) => {
                   pathname: `/product/type`,
                   search: `?category_type=${bannerURL[idx].toLowerCase().trim().replace(" ","-",2)}`
                 })}>
-                  {/* <img className='w-full h-full rounded-[10px] object-contain' src={`${process.env.REACT_APP_URL}Image/Poster/${item}`} alt='' /> */}
-                  <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/Poster/${item}`} previewSrc={`${process.env.REACT_APP_URL}Image/Poster/${item}`} classname={'w-full h-full rounded-[10px] object-contain'}  />
+                  {/* <img className='w-full h-full rounded-[10px] object-contain' src={`${process.env.REACT_APP_IMAGE}/Poster/${item}`} alt='' /> */}
+                  <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item}`} classname={'w-full h-full rounded-[10px] object-contain'}  />
                 </div>
               )
             })

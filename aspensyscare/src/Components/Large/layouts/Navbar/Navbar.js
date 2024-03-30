@@ -116,6 +116,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 function Navbar(props) {
+
   const { window, handelLogin, openLogin } = props;
   const ref = React.useRef({
     render: false
@@ -205,8 +206,11 @@ function Navbar(props) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const Wishlist = useSelector((state) => state.wishlist);
+  const username = useSelector((state) => state.users);
   //console.log(Wishlist.wishlist.length)
   const wishlistCount = Wishlist !== undefined ? Wishlist.wishlist.length : 0
+  const user = username !== undefined  ? username.users.details? username.users.details[0].f_name[0]: '':''
+  console.log(user)
   React.useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
@@ -332,7 +336,7 @@ function Navbar(props) {
                   }}
                 />
               </Search> :
-              <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='apsensyscare' style={{ cursor: 'pointer', width: '140px', height: '65px' }} />
+              <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='apsensyscare' style={{ cursor: 'pointer', width: '140px', height: '65px' }} className='cursor-pointer' onClick={() => navigate('/')} />
             }
             {opensearch ? <SearchModel /> : null}
 
@@ -346,7 +350,9 @@ function Navbar(props) {
           </Box>
           {/* mobile view end   */}
           {/* desktop view start   */}
-          <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='apsensyscare' className='w-[140px] h-[65px] hidden sm:block' />
+          <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='apsensyscare'
+            onClick={() => navigate('/')}
+            className='w-[140px] h-[65px] hidden sm:block cursor-pointer' />
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-between' }} className='sidewidth'>
             <div style={{ margin: 'auto' }} className='relative'>
               <MenuIconWeapper ref={ref} className='border-r-2 rounded-l-lg top-0 left-0 cursor-pointer	 bg-[#d9d9d9]]' onClick={opencategory}>
@@ -384,36 +390,6 @@ function Navbar(props) {
                 style={{ display: 'flex', flexDirection: 'row', gap: '2rem' }}
               >
 
-                {/* <AvtarIcon>
-                  <IconButton size="small">
-                    <LanguageIcon
-                      aria-label="account of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      onClick={handleLang}
-
-                    />
-                  </IconButton>
-                  English
-                </AvtarIcon> */}
-                {/* <Menu
-                  id="menu-appbar"
-                  anchorEl={leLang}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(leLang)}
-                  onClose={handleCloseLang}
-                >
-                  <MenuItem onClick={handleCloseLang}>English</MenuItem>
-                  <MenuItem onClick={handleCloseLang}>Hindi</MenuItem>
-                </Menu> */}
                 <AvtarIcon
                   onClick={() => navigate('/wishlist')}
                   style={{ color: '#fff' }}
@@ -452,7 +428,12 @@ function Navbar(props) {
                           aria-haspopup="true"
                           onClick={handleMenu}
                         >
-                          <AccountCircle style={{ fontSize: '37px', color: '#fff' }} />
+                          {/* <AccountCircle style={{ fontSize: '37px', color: '#fff' }} /> */}
+                          <div className="avatar placeholder">
+                            <div className="bg-neutral text-white rounded-full w-12  border-2 shadow-inner">
+                              <span>{user}</span>
+                            </div>
+                          </div>
                         </IconButton>
                         {/* Account */}
                       </AvtarIcon>
@@ -465,14 +446,14 @@ function Navbar(props) {
                         }}
                         keepMounted
                         transformOrigin={{
-                          vertical: 'bottom',
+                          vertical: 'top',
                           horizontal: 'right',
                         }}
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                       >
-                        {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem> */}
+                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
                         <MenuItem onClick={handelLogout}>Logout</MenuItem>
                       </Menu>
                     </div>

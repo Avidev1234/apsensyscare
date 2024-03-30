@@ -21,11 +21,11 @@ const Home = () => {
   return (
     <div className='w-full flex flex-col justify-center items-center bg-[#d9d9d9]'>
         <div className='w-full flex flex-col justify-center items-center p-[5px] bg-[#fff]'>
+          <Advertise/>
           <CategorySeller/>
           <Banner position='1' Header={true}/>
           <BestSeller title={"Best Sellers"} count={true}/>
           <BrandsOffer  title={"Top Brands"}/>
-          <Advertise/>
           <BrandOfDay />
           <BestCategory/>
           <Banner position='2' Header={false}/>
