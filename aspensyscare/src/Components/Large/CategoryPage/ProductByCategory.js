@@ -14,9 +14,10 @@ const ProductByCategory = () => {
     // const handleExpandClick = () => {
     //     setExpanded(!expanded);
     // };
+
     //console.log(categoryId)
     const [searchParams] = useSearchParams()
-    console.log(searchParams.get('categoryId'))
+    // console.log(searchParams.get('categoryId'))
 
     // console.log(searchParams)
     const Category = useSelector((state) => state.category);
