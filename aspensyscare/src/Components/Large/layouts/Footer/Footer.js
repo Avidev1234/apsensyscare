@@ -138,7 +138,6 @@ const Footer = () => {
                             Phone : +91 7996997979
                         </p>
                     </div>
-
                 </div>
             </div>
             <div className='w-full text-center mt-4'>
