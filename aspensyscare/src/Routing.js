@@ -23,5 +23,6 @@ const ProductByCategorySmall=React.lazy(()=>import('./Components/Small/CategoryP
 const LandingPage= React.lazy(()=>import('./Components/Large/LandingPage/LandingPage'))
 const Home= React.lazy(()=>import('./Components/Large/LandingPage/Home/Home'))
 const SmallHome= React.lazy(()=>import('./Components/Small/LandingPage/Home/Homesmall'))
+const AllCategory= React.lazy(()=>import('./Components/Large/CategoryPage/AllCategory'))
 
-export {LandingPage,Home,SmallHome,Privecy,ContactUS,AboutUs,PaymentReturn,TermsCondition,Shipping,Sitemap,Jobs,OrderFailed,ThankYou,Login,Wishlist,Smallwishlist,Cart,Product,ProductVariant,ProductByCategory,PaymentLoading,Unsubscribe,ProductByCategorySmall} 
+export {LandingPage,Home,SmallHome,Privecy,ContactUS,AboutUs,PaymentReturn,TermsCondition,Shipping,Sitemap,Jobs,OrderFailed,ThankYou,Login,Wishlist,Smallwishlist,Cart,Product,ProductVariant,ProductByCategory,PaymentLoading,Unsubscribe,ProductByCategorySmall,AllCategory} 

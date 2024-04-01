@@ -9,12 +9,11 @@ import Footer from './Components/Large/layouts/Footer/Footer';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Cookies from 'js-cookie'
-import { LandingPage,Home,SmallHome,Privecy, ContactUS, AboutUs, PaymentReturn, TermsCondition, Shipping, Sitemap, Jobs, OrderFailed, ThankYou, Login, Wishlist, Smallwishlist, Cart, Product, ProductVariant, ProductByCategory, PaymentLoading, Unsubscribe, Kitchencare, ProductByCategorySmall } from './Routing';
+import { LandingPage, Home, SmallHome, Privecy, ContactUS, AboutUs, PaymentReturn, TermsCondition, Shipping, Sitemap, Jobs, OrderFailed, ThankYou, Wishlist, Smallwishlist, Cart, Product, ProductVariant, ProductByCategory, PaymentLoading, Unsubscribe, ProductByCategorySmall, AllCategory } from './Routing';
 // import Smallfooter from './Components/Small/layouts/Footer/Smallfooter';
 
 const Log = createContext(null);
 function App() {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,13 +51,13 @@ function App() {
   }
   if (sessionStorage.getItem('LoginSuccess') === 'true') {
     if (Cookies.get('u__r_t_____') !== undefined) {
-      dispatch(currentUser({refesstoken:Cookies.get('u__r_t_____')}))
+      dispatch(currentUser({ refesstoken: Cookies.get('u__r_t_____') }))
     }
 
-  }else{
-    dispatch(currentUser({refesstoken:Cookies.get('u__r_t_____')}))
+  } else {
+    dispatch(currentUser({ refesstoken: Cookies.get('u__r_t_____') }))
   }
-  
+
 
   const WishlistData = useSelector((state) => state.wishlist);
   const wishlist = WishlistData.wishlist
@@ -114,6 +113,7 @@ function App() {
                   {/* <Route path='/login' element={<React.Suspense fallback={<div class="lorder"></div>}><Login /></React.Suspense>} /> */}
                   {/* <Route path='/products' element={<AllPopularProducts />} /> */}
                   <Route path='/category/:url/c/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><ProductByCategory /></React.Suspense>} />
+                  <Route path='/category' element={<React.Suspense fallback={<div class="lorder"></div>}><AllCategory /></React.Suspense>} />
                   <Route path='/cart' element={<React.Suspense fallback={<div class="lorder"></div>}><Cart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
                   <Route path='/cart/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Cart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
                   <Route path='/product/:category/:product_id/:productname' element={<React.Suspense fallback={<div class="lorder"></div>}><Product /></React.Suspense>} />
