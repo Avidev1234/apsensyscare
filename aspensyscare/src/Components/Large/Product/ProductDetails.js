@@ -1,6 +1,6 @@
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Button, InputBase, Modal, } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../../Store/Slices/cartSlice';
 import axios from 'axios';
+import { addToWishlist, removeFromWishlist } from '../../../Store/Slices/getwishlistSlice';
+import { toast } from 'react-toastify';
+import { Log } from '../../../App';
 
 
 const stylemodal = {
@@ -107,9 +110,18 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 const ProductDetails = (product) => {
     console.log(product);
+    const WishlistproductId = useContext(Log);
+    //console.log(WishlistproductId)
+    let exsit
+    if (WishlistproductId.includes(product.products.id)) {
+        exsit = true;
+    }
     const currentItem = {
-        size: `${product.products.default_size}`,
-        price: `${product.products.default_price}`
+        size: `${product.products.size_value}`,
+        price: `${product.products.price}`,
+        mrp: `${product.products.mrp}`,
+        discount: `${product.products.discount}`,
+        current: true
     }
     //console.log("hello i am currentItem", product)
     const navigate = useNavigate();
@@ -149,7 +161,7 @@ const ProductDetails = (product) => {
     const sizedetails = useSelector((state) => state.size);
     const category = useSelector((state) => state.category.category.category);
     const curremtcategory = category !== undefined ? category?.filter((item) => item.id === product.products.category_id) : []
-    console.log(product, curremtcategory)
+    // console.log(product, curremtcategory)
     // destructure all data
     const { details } = products.productdetails;
     const { size } = sizedetails.sizes;
@@ -163,7 +175,9 @@ const ProductDetails = (product) => {
             //console.log(index)
             const values = {
                 "price": item.price,
-                "size": index[0]['size_value']
+                "size": index[0]['size_value'],
+                "mrp": item.mrp,
+                "discount": Math.round(((item.mrp - item.price) / item.mrp) * 100)
             }
             Productvariants.push(values)
             return null;
@@ -230,13 +244,27 @@ const ProductDetails = (product) => {
             })
             .catch(error => console.log(error));
     };
+    const Wishlist = (val, exsit) => {
+        if (exsit === true && sessionStorage.getItem('___user')) {
+            dispatch(removeFromWishlist(val.id))
+        } else if (sessionStorage.getItem('___user')) {
+            const wishListData = {
+                productid: val.id,
+                userId: sessionStorage.getItem('___user')
+            }
+            dispatch(addToWishlist(wishListData))
+            navigate('/wishlist')
+        } else {
+            toast.warning("You are not loged in")
+        }
+    }
     return (
         <Detailscont>
             <div
                 id="portal"
                 style={portal}
             />
-            <div className='w-full'>
+            <div className='w-full '>
                 <div className='w-full flex flex-row gap-x-2 justify-start item-start text-[#a7a6a6] mb-2'>
                     <div className='w-full text-sm m-0 flex flex-row gap-2'>
                         <a href='/' target='_blank' className='hover:text-[#997af6] hover:underline'>Home</a>
@@ -260,15 +288,17 @@ const ProductDetails = (product) => {
                     {product.products.long_description}
                 </p>
             </div>
-            <div>
+            <div className='flex flex-col'>
                 <p variant='h3' style={{ fontSize: '20px', fontWeight: '700', marginTop: '8px' }}>
                     <CurrencyRupeeIcon style={{ fontSize: '20px' }} />{currentSize.price}.00
-                    <p variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
-                        Inclusive of all Taxes
-                    </p>
+                    <span className="text-[#bbbaba] mx-2 line-through text-[12px]">{Number(currentSize.mrp) > currentSize.price ? "₹" + currentSize.mrp + ".00" : ''}</span>
+                    <span className="text-green-600 text-[12px]">{currentSize.discount > 0 ? currentSize.discount + "% off" : ''}</span>
+                </p>
+                <p variant='subtitle2' style={{ fontSize: '10px', fontWeight: '500', color: 'gray', marginTop: '-3px' }}>
+                    Inclusive of all Taxes
                 </p>
             </div>
-            <ButtomBox>
+            {/* <ButtomBox>
                 <Button variant='contained'
                     style={{ backgroundColor: "green", width: '100px', display: "flex", justifyContent: 'space-around' }} onClick={handleOpendilog}>
                     {
@@ -278,8 +308,29 @@ const ProductDetails = (product) => {
                         <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                     </svg>
                 </Button>
-            </ButtomBox>
-            <Modal
+            </ButtomBox> */}
+            <div className='w-full flex flex-row flex-wrap gap-x-2 mt-2'>
+                {Productvariants.length !== 0 ? Productvariants.map((items, id) => {
+                    return (
+                        <SizeButtom
+                            key={id}
+                            variant="contained"
+                            style={{
+                                backgroundColor: currentSize.size === items.size ? "green" : '#000',
+                            }}
+                            onClick={() => {
+                                setCurrentSize({ 'size': items.size, 'price': items.price, 'mrp': items.mrp, 'discount': Math.round(((items.mrp - items.price) / items.mrp) * 100) });
+                                setOpen(false)
+                            }}
+                        >
+                            {
+                                items.size < 1000 ? `${items.size} ml` : `${(items.size / 1000)} L`
+                            }
+                        </SizeButtom>
+                    );
+                }) : null}
+            </div>
+            {/* <Modal
                 open={openmod}
                 onClose={handleClosedilog}
                 aria-labelledby="modal-modal-title"
@@ -316,7 +367,7 @@ const ProductDetails = (product) => {
                         }) : null}
                     </p>
                 </Box>
-            </Modal>
+            </Modal> */}
             <ButtomBox>
                 <RemoveCircleRoundedIcon style={{ fontSize: '18px', cursor: val >= 2 ? 'pointer' : 'not-allowed', color: val >= 2 ? 'black' : '#d9d9d9' }} onClick={() => handleDecreaseCart()} />
                 <input
@@ -326,7 +377,7 @@ const ProductDetails = (product) => {
                     style={{ width: '60px', height: '25px', border: '2px solid black', display: 'flex', textAlign: 'center', borderRadius: '3px' }} />
                 <AddCircleRoundedIcon style={{ fontSize: '18px', cursor: 'pointer' }} onClick={() => handleAddToCart()} />
             </ButtomBox>
-            <ButtomBox>
+            {/* <ButtomBox>
                 <BootstrapInput size="small"
                     placeholder="Please pincode"
                     value={postal}
@@ -340,10 +391,10 @@ const ProductDetails = (product) => {
                     <div>
                         <p style={{ color: 'red', fontWeight: 600 }}>{pincode !== '' && pincode === "Success" ? 'Sorry not able to delivery' : null}</p>
                     </div> : null
-            }
+            } */}
             <ButtomBox>
                 <AddCart variant='contained' onClick={() => handleCart(product.products)}>Add Cart</AddCart>
-                <QuickBuy variant='contained' >Quick Buy</QuickBuy>
+                <QuickBuy variant='contained' onClick={() => { Wishlist(product.products, exsit) }}>Add to wishlist</QuickBuy>
             </ButtomBox>
         </Detailscont>
     )

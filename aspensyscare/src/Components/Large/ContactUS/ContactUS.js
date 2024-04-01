@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import FormHelperText from "@mui/material/FormHelperText";
 import { Adcontact } from "../../../Api/Api";
-
+import emailjs from '@emailjs/browser';
 const ContactUS = () => {
   //console.log(handelLogin)
   const ContactSchema = Yup.object().shape({
@@ -30,22 +30,20 @@ const ContactUS = () => {
       { user: sessionStorage.getItem("___user") },
       values
     );
-    console.log(contact);
+    // console.log(contact);
     Adcontact(contact).then((res) => {
-      console.log(typeof(res));
-      if(res===true){
-        toast.success("Message send successfully", {
-          position: "bottom-left",
-        });
-      }else{
-        toast.error("Somethings went wrong", {
-          position: "bottom-left",
-        });
-      }
-      
+      // console.log(typeof (res));
+      emailjs.send('service_ku0q4co', 'template_sgadbch', contact, 'OW7pYkljP7tzyg0Pz')
+        .then(() => {
+          toast.success("Message send successfully", {
+            position: "bottom-left",
+          });
+        })
     })
       .catch((err) => {
-        console.log(err);
+        toast.warning("somethings went wrong", {
+          position: "bottom-left",
+        });
       });
 
   };
@@ -63,8 +61,7 @@ const ContactUS = () => {
               <div>
                 <h4 className="font-bold tracking-wide text-xl">ADDRESS</h4>
                 <p className="pt-3">
-                  Apsensys Business Tower Service Rd, Vijaya Bank Colony
-                  Kallumantapa, Horamavu, Bengaluru, Karnataka 560043
+                  Apsensys Care Solution Pvt Ltd.,<br />  No: 105, Apsensys Business Tower, Service Road, Hormavu, Bengaluru, Karnataka 560043.
                 </p>
               </div>
             </div>
@@ -82,49 +79,7 @@ const ContactUS = () => {
                 <p className="pt-3">sales@apsensyscare.com</p>
               </div>
             </div>
-            <div className="address-ion">
-              <a href="https://www.linkedin.com/company/apsensyscare/">
-                <img
-                  src={`${process.env.REACT_APP_IMAGE}/icons/linkedIn.png`}
-                  alt="social-icon"
-                  width={30}
-                  height={30}
-                  className="pointer"
-                />
-              </a>
-              <a href="https://twitter.com/ApsensysCare">
-                <img
-                  src={`${process.env.REACT_APP_URL}Image/icons/twiter.png`}
-                  alt="social-icon"
-                  width={30}
-                  height={30}
-                />
-              </a>
-              <a href="https://www.youtube.com/@apsensyscare">
-                <img
-                  src={`${process.env.REACT_APP_URL}Image/icons/youtube.png`}
-                  alt="social-icon"
-                  width={30}
-                  height={30}
-                />
-              </a>
-              <a href="https://www.facebook.com/apsensyscare/">
-                <img
-                  src={`${process.env.REACT_APP_URL}Image/icons/facebook.png`}
-                  alt="social-icon"
-                  width={30}
-                  height={30}
-                />
-              </a>
-              <a href="https://www.instagram.com/apsensyscaresolution/">
-                <img
-                  src={`${process.env.REACT_APP_URL}Image/icons/instagram.png`}
-                  alt="social-icon"
-                  width={30}
-                  height={30}
-                />
-              </a>
-            </div>
+
           </div>
         </div>
         <div className="form-div ">

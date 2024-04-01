@@ -84,14 +84,14 @@ const ProductCardold = ({ val, page ,checked}) => {
             >
                 <div className="w-[35%] md:w-1/3 flex justify-center mt-8 md:m-0">
                     <div className="bg-blue-200 w-24 md:w-[7rem] h-24 md:h-[7rem] rounded-full relative border-b-[4px] ">
-                        <img src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`}
+                        <img src={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`}
                             className="h-28 md:h-[8rem] w-[8rem] object-contain absolute bottom-[10px]" alt="" />
                     </div>
                 </div>
                 <div className="w-[63%] md:w-2/3 p-2 md:p-3">
                     <h2 className="text-gray-900 font-bold text-base uppercase">{val.brand_name}</h2>
                     <p className="text-gray-600 text-sm md:text-base">{val.name}</p>
-                    <h2 className="text-gray-700 font-bold text-base my-2">₹ {val.default_price}<span className='ml-[5px] text-[12px] text-gray-600'>({val.default_size})ml</span></h2>
+                    <h2 className="text-gray-700 font-bold text-base my-2">₹ {val.price}<span className='ml-[5px] text-[12px] text-gray-600'>({val.size_value})ml</span></h2>
                     <div className="flex items-center">
                         <div className="flex items-center text-xs bg-green-600 text-white font-semibold px-2.5 py-0.5 rounded w-auto md:w-[20%]">
                             <span>4.0</span>

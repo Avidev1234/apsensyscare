@@ -105,7 +105,7 @@ function AboutUs() {
           <div>
               <div className="w-full flex flex-col justify-center items-center px-4 py-4 text-center border gap-y-4">
                 <div className="w-[200px] h-[200px] rounded-full">
-                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/manish.webp" alt="" />
+                  <img className="w-[200px] h-[200px] rounded-full" src="/Image/About/manish.jpg" alt="" />
                 </div>
                 <div className="w-full lg:w-[70%] ">
                   <p className="text-blue-500">President and Founder</p>

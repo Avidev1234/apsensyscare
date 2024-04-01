@@ -130,10 +130,7 @@ const Footer = () => {
                     </div>
                     <div className='text-start'>
                         <p className='font-[400] leading-[25px] text-[14px] text-[#fff] py-1'>
-                            Apsensys Business Tower
-                            Service Rd, Vijaya Bank Colony
-                            Kallumantapa, Horamavu
-                            Bengaluru, Karnataka 560043<br />
+                            Apsensys Care Solution Pvt Ltd.,  No: 105, Apsensys Business Tower, Service Road, Hormavu, Bengaluru, Karnataka 560043.<br />
                             Email : sales@apsensyscare.com <br />
                             Phone : +91 7996997979
                         </p>

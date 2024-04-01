@@ -32,7 +32,7 @@ const Home = () => {
           <BrandsOffer  title={"Featured Brands"}/>
           <BestSeller title={"More Categories For You"} count={false}/>
           <CategoryInFocus/>
-          <Advertise/>
+          {/* <Advertise/> */}
         </div>
     </div>
   )

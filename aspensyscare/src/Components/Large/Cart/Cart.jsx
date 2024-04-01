@@ -149,16 +149,20 @@ const Cart = (props) => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
     if (panel === "panel3") {
-      console.log(order_address, address);
       if (address !== undefined || order_address !== null) {
         setExpandedItem(false);
         setExpandedAddress(false);
         setExpandedPay(panel);
+        if (order_address === null) {
+          setOredr_address((address[0]));
+        }
       } else {
         toast.error("please add Address", { position: "top-center" });
       }
+      
     }
   };
+  // console.log(order_address, address);
   const handleChange = (panel) => (event, isExpanded) => {
     // //console.log(panel)
     // //console.log(isExpanded)
@@ -196,23 +200,24 @@ const Cart = (props) => {
   const handelOrder = async (cart) => {
     ////console.log("hello indide handelOrder", localStorage.getItem("___gaust_user_address"))
     // console.log(cart);
-    if(sessionStorage.getItem("___user") === null){  
-      handelLogin(true) 
+    if (sessionStorage.getItem("___user") === null) {
+      handelLogin(true)
       return;
     }
+   
     if (sessionStorage.getItem("___user") !== null) {
       const amount = cart.cartTotalAmount
-      const OrderItems={
-        TotalAmount:cart.cartTotalAmount,
-        OrderId:'ASCORDER'+Date.now(),
-        merchantTransactionId:'ASC'+Date.now()+"TR",
-        cartTotalQuantity:cart.cartTotalQuantity,
-        userAddress:order_address.id,
+      const OrderItems = {
+        TotalAmount: cart.cartTotalAmount,
+        OrderId: 'ASCORDER' + Date.now(),
+        merchantTransactionId: 'ASC' + Date.now() + "TR",
+        cartTotalQuantity: cart.cartTotalQuantity,
+        userAddress: order_address.id,
       }
       let products = []
       cart.cartItems.map((val) => {
         products.push({
-          id:val.id,
+          id: val.id,
           brand: val.brand_name,
           name: val.name,
           size: val.itemSize,
@@ -220,7 +225,7 @@ const Cart = (props) => {
           quantity: val.cartQuantity
         })
       })
-      OrderItems.products=products
+      OrderItems.products = products
       const message = products.map((val) => {
         return `<tr>
       <td style="border: 1px solid #ddd;">${val.brand}</td>
@@ -263,43 +268,43 @@ const Cart = (props) => {
         // })
       } else if (orderType === 'online') {
         // console.log(userID)
-        const data={
-          name:userName,
-          phone:userPhone,
-          order:OrderItems,
-          merchantUserId:userID,
-          amount:amount,
+        const data = {
+          name: userName,
+          phone: userPhone,
+          order: OrderItems,
+          merchantUserId: userID,
+          amount: amount,
         }
         CreateOrder(data).then((res) => {
           // console.log(res)
-          if(res.url!==undefined){
+          if (res.url !== undefined) {
             console.log('Entered')
-            window.location=res.url
-          }else{
+            window.location = res.url
+          } else {
             console.log("somthing went wrong");
           }
         })
       }
-    } else if (localStorage.getItem("___gaust_user_address") !== null) {      
+    } else if (localStorage.getItem("___gaust_user_address") !== null) {
       // //console.log(cart)
-      GenerateEmailForGaustOrder(cart,gaust_address)
-      .then((res)=>{
-        emailjs.send('service_cykcjmj', 'template_ju49o12', res, 'DRezFycYbf9fhBISj')
-          .then(() => {
-            toast.info("order placed", {
-              position: "bottom-left",
+      GenerateEmailForGaustOrder(cart, gaust_address)
+        .then((res) => {
+          emailjs.send('service_cykcjmj', 'template_ju49o12', res, 'DRezFycYbf9fhBISj')
+            .then(() => {
+              toast.info("order placed", {
+                position: "bottom-left",
+              });
+
+              dispatch(clearCart())
+              navigate("/thankyou")
+            }, (error) => {
+              // show the user an error
+              ////console.log("message not send")
             });
-  
-            dispatch(clearCart())
-            navigate("/thankyou")
-          }, (error) => {
-            // show the user an error
-            ////console.log("message not send")
-          });
-      })
-      .catch((err)=>{
-        console.log("somthing went Wrong")
-      })
+        })
+        .catch((err) => {
+          console.log("somthing went Wrong")
+        })
       ////console.log(orderItem)
       // Placeorder(cart).then((res) => {
       //   //console.log(res)
@@ -591,7 +596,7 @@ const Cart = (props) => {
                             {
                               cartItem.itemSize < 1000 ? `${cartItem.itemSize} ml` : `${(cartItem.itemSize / 1000)} L`
                             }
-                            <svg  xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" className="bi bi-caret-down-fill ml-[15px]" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" className="bi bi-caret-down-fill ml-[15px]" viewBox="0 0 16 16">
                               <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                             </svg>
                           </SizeButtom>
@@ -797,7 +802,7 @@ const Cart = (props) => {
                                   name="address"
                                   value={`${JSON.stringify(items)}`}
                                   className="h-10 radio radio-primary"
-                                  
+
                                 />
                               }
                               <label htmlFor={`${items.id}`}
@@ -939,7 +944,7 @@ const Cart = (props) => {
                       />
                       <FormControlLabel
                         value="case"
-                        control={<Radio/>}
+                        control={<Radio />}
                         label="Case On Delivery"
                       />
                     </RadioGroup>

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
 import "./Carousel.css";
 import "slick-carousel/slick/slick.css";
@@ -20,8 +20,15 @@ const BoxCont = styled(Box)`
 
 const ProductCarousel = ({ imagemagnify, id }) => {
   //console.log(id)
-  const [nav1, Setnav1] = useState();
-  const [nav2, Setnav2] = useState();
+  const [nav1, setNav1] = useState(null);
+  const [nav2, setNav2] = useState(null);
+  let sliderRef1 = useRef(null);
+  let sliderRef2 = useRef(null);
+
+  useEffect(() => {
+    setNav1(sliderRef1);
+    setNav2(sliderRef2);
+  }, []);
   const PreviousBtn = (props) => {
     // console.log(props);
     const { className, onClick } = props;
@@ -63,19 +70,19 @@ const ProductCarousel = ({ imagemagnify, id }) => {
         </div>
         <Slider
           asNavFor={nav2}
-          ref={slider => (Setnav1(slider))}
+          ref={slider => (sliderRef1 = slider)}
           arrows={false}
           infinite={true}
           className='Makecenter'
           speed={500}
           slidesToShow={1}
           slidesToScroll={1}
-
+          initialSlide='0'
         >
           {data.map((item, idx) => (
             <Box style={{ width: '450px', height: '450px' }} onMouseEnter={() => imagemagnify(true)}
               onMouseLeave={() => imagemagnify(false)} key={idx} id={idx}>
-              {console.log(idx,item)}
+              
               <ReactImageMagnify {...{
                 smallImage: {
                   alt: 'Wristwatch by Ted Baker London',
@@ -105,7 +112,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
 
       <Slider
         asNavFor={nav1}
-        ref={slider => (Setnav2(slider))}
+        ref={slider => (sliderRef2 = slider)}
         slidesToShow={3}
         swipeToSlide={true}
         focusOnSelect={true}
@@ -114,6 +121,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
         nextArrow={<NextBtn />}
         dotsClass="slick-dots custom-indicator"
         className="Gap"
+        initialSlide='0'
       >
         {data1.map((item, idx) => (
           <div style={{ width: "100%", height: "10%", margin: "20px" }} key={idx}>
