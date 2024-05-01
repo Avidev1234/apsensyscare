@@ -40,7 +40,7 @@ export default function Smallproct({ val, page }) {
     return (
         <div class="flex flex-col justify-center w-[48%] sm:w-[32%]">
             <div class="bg-blue-300 rounded-lg relative flex justify-center">
-                <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} previewSrc={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} classname={"w-auto  mx-auto  pt-[30px] pb-[10px]"} />
+                <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`} previewSrc={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`} classname={"w-auto  mx-auto  pt-[30px] pb-[10px]"} />
             </div>
             <div class="w-full flex flex-col">
                 <div class="w-[100%] relative ">

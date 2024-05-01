@@ -50,7 +50,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
   let data = images !== undefined ? images[0].image_230.split('@@@') : [];
   let data1 = images !== undefined ? images[0].image_100.split('@@@') : [];
   let data2 = images !== undefined ? images[0].image_1200.split('@@@') : [];
-  //console.log(images)
+  // console.log(images)
   return (
     <BoxCont>
       <Box style={{ marginBottom: '15px', backgroundColor: '#D4EBF5', borderRadius: '20px' }} className="relative">

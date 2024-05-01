@@ -139,15 +139,18 @@ const ProductDetails = (product) => {
     }
     const portal = {
         position: 'absolute',
-        left: '-50px',
+        // top: '550px',
+        left: '-70px',
         maxHeight: '500px',
-        maxWidth: '600px',
+        maxWidth: '899px',
         zIndex: 999,
         display: product.magnified ? 'block' : 'none',
         overflow: 'hidden',
         backgroundColor: '#fff',
         padding: '0 10px',
+
     }
+    
 
     const [currentSize, setCurrentSize] = useState(currentItem);
 
@@ -258,9 +261,9 @@ const ProductDetails = (product) => {
             toast.warning("You are not loged in")
         }
     }
-    return (
+    return (   
         <Detailscont>
-            <div
+             <div
                 id="portal"
                 style={portal}
             />
@@ -283,6 +286,7 @@ const ProductDetails = (product) => {
             <Rattingcont>
                 4<StarIcon style={{ fontSize: '12px' }} />
             </Rattingcont>
+            
             <div>
                 <p variant='subtitle2' style={{ fontSize: '13px', fontWeight: '500', color: 'black' }}>
                     {product.products.long_description}
@@ -396,6 +400,7 @@ const ProductDetails = (product) => {
                 <AddCart variant='contained' onClick={() => handleCart(product.products)}>Add Cart</AddCart>
                 <QuickBuy variant='contained' onClick={() => { Wishlist(product.products, exsit) }}>Add to wishlist</QuickBuy>
             </ButtomBox>
+          
         </Detailscont>
     )
 }

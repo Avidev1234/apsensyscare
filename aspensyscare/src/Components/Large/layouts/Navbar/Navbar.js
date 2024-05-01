@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,13 +15,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 // import Button from '@mui/material/Button';
 import { Badge, InputBase, Menu, MenuItem, useScrollTrigger } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
+// import { AccountCircle } from '@mui/icons-material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 // import LanguageIcon from '@mui/icons-material/Language';
 // import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import Login from '../../../Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getTotals } from '../../../../Store/Slices/cartSlice';
@@ -114,7 +114,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     border: `2px solid ${theme.palette.background.paper}`,
     padding: '0 4px',
   },
-}));
+})); 
+function refreshPage(e){ 
+  // e.preventDefault();
+  window.scrollTo(0, 0);
+  // window.location.reload(); 
+}
 function Navbar(props) {
 
   const { window, handelLogin, openLogin } = props;
@@ -261,7 +266,7 @@ function Navbar(props) {
               >
                 <div className="mr-4">
                   <div className="h-8 w-8 rounded-sm flex items-center justify-center text-xl">
-                    <img src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`} alt={`${val.name}`} />
+                    <img src={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`} alt={`${val.name}`} />
                   </div>
                 </div>
                 <div>
@@ -351,7 +356,12 @@ function Navbar(props) {
           {/* mobile view end   */}
           {/* desktop view start   */}
           <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='apsensyscare'
-            onClick={() => navigate('/')}
+            // onClick={() => { navigate('/'); }}
+            
+            onClick={(e) => { 
+              navigate('/');
+              refreshPage(e);
+            }}
             className='w-[140px] h-[65px] hidden sm:block cursor-pointer' />
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-between' }} className='sidewidth'>
             <div style={{ margin: 'auto' }} className='relative'>

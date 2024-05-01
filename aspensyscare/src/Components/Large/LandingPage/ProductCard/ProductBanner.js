@@ -60,10 +60,10 @@ const ProductBanner = ({ cat }) => {
         navigate('/cart')
     }
     return (
-        <div className='w-full flex flex-col gap-2'>
+        <div className='w-full flex flex-col gap-2 border border-red-100'>
             <div>
                 <img className="w-full h-[330px] md:h-[355px]" src={`${process.env.REACT_APP_URL}Image/Poster/${Img}`} alt="" />
-                <div className="bg-[#5EABE3] p-3 text-center text-white font-semibold text-2xl ">Best Seller</div>
+                <div className="bg-[#5EABE3] p-3 text-center text-white font-semibold text-2xl "></div>
             </div>
             <div className="w-full  md:h-[355px]">
                 <Slider className="center"

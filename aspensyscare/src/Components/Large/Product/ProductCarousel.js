@@ -70,7 +70,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
         </div>
         <Slider
           asNavFor={nav2}
-          ref={slider => (sliderRef1 = slider)}
+          ref={slider => (sliderRef1 = slider)} 
           arrows={false}
           infinite={true}
           className='Makecenter'
@@ -89,15 +89,15 @@ const ProductCarousel = ({ imagemagnify, id }) => {
                   isFluidWidth: true,
                   
                   src: `${process.env.REACT_APP_IMAGE}/all_products/carousel-230-460/${item}`,
-                },
+                }, 
                 largeImage: {
                   src: `${process.env.REACT_APP_IMAGE}/all_products/carousel-1200-1800/${data2[idx]}`,
-                  width: 900,
+                  width: 700,
                   height: 1000
                 },
                 enlargedImagePortalId: 'portal',
                 enlargedImageContainerDimensions: {
-                  width: idx < 2 ? `300%` : '120%',
+                  width: idx < 2 ? `260%` : '240%',
                   height: '100%',
                 },
 
@@ -114,8 +114,9 @@ const ProductCarousel = ({ imagemagnify, id }) => {
         asNavFor={nav1}
         ref={slider => (sliderRef2 = slider)}
         slidesToShow={3}
+        arrows={false}
         swipeToSlide={true}
-        focusOnSelect={true}
+        focusOnSelect={true} 
         infinite={true}
         prevArrow={<PreviousBtn />}
         nextArrow={<NextBtn />}

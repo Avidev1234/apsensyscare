@@ -11,11 +11,11 @@ const AllCategory = () => {
     const { product } = Products.products;
 
     return (
-        <div className='w-full flex flex-col flex-wrap min-h-[100vh] content-start	justify-start p-5'>
+        <div className='w-full flex flex-col flex-wrap min-h-[100vh] content-start	justify-start  p-5 '>
 
             {
 
-                <div className='flex flex-row gap-x-2 justify-start item-start text-[#a7a6a6] mb-2'>
+                <div className='flex flex-row gap-x-2 justify-start item-start text-[#a7a6a6] mb-2 ' >
                     <p className='text-sm m-0'>
                         <a href='/' target='_blank' className='hover:text-[#997af6] hover:underline'>Home</a>
                         <span>/all-category</span>
@@ -23,19 +23,20 @@ const AllCategory = () => {
                 </div>
 
             }
-
-            <div className='w-full flex flex-row flex-wrap content-center	justify-center items-start p-5 gap-5'>
-                {!Products.loading && Products.products.product !== undefined && product.length !== 0 ? (
-                    product.map((val, i) => {
-                        return (
-                            <ProductCard val={val} key={i} />
-                        )
-                    })
-                ) :
-                    <div style={{ width: '100%', height: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <p variant='h1' style={{ fontSize: '20px', fontWeight: '600', color: 'red' }}>No Products.</p>
-                    </div>
-                }
+            <div className='w-full flex justify-center'>
+                <div className='w-full flex flex-wrap gap-y-10 justify-center'>
+                    {!Products.loading && Products.products.product !== undefined && product.length !== 0 ? (
+                        product.map((val, i) => {
+                            return (
+                                <ProductCard val={val} key={i} />
+                            )
+                        })
+                    ) :
+                        <div style={{ width: '100%', height: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <p variant='h1' style={{ fontSize: '20px', fontWeight: '600', color: 'red' }}>No Products.</p>
+                        </div>
+                    }
+                </div>
             </div>
         </div >
     )

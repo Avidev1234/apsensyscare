@@ -239,7 +239,7 @@ function Navbar(props) {
     //console.log("hello i am results", (searchedItems))
 
     return (
-      <div className="scroolbar absolute top-[20] right-0 w-[90%] h-[300px] max-h-[300px] bg-white w-full rounded-xl shadow-xl overflow-auto p-1">
+      <div className="scroolbar absolute top-[20] right-0  h-[300px] max-h-[300px] bg-white w-full rounded-xl shadow-xl overflow-auto p-1">
         {
           searchedItems.map((val, i) => {
             return (
@@ -328,7 +328,7 @@ function Navbar(props) {
             {/* {navItems.map((item) => (
               <Button key={item} sx={{ color: '#000' }}>
                 {item}
-              </Button>
+              </Button> 
             ))} */}
             <div style={{ margin: 'auto' }} className='relative'>
               <MenuIconWeapper ref={ref} className='border-r-2 rounded-l-lg top-0 left-0 cursor-pointer	 bg-[#d9d9d9]]' onClick={opencategory}>

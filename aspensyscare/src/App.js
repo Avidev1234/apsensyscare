@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AllProducts, GetuserWishlist, currentUser, fatchSizes, fetchBanner, fetchCategory, getAddress, offeredBrands, productData } from './Api/Api';
 import Navbar from './Components/Large/layouts/Navbar/Navbar';
 import Footer from './Components/Large/layouts/Footer/Footer';
+// import Sidebar from './Components/Large/layouts/Sidebar/Sidebar';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Cookies from 'js-cookie'
@@ -98,6 +99,7 @@ function App() {
                   <Route path='/shipping' element={<React.Suspense fallback={<div class="lorder"></div>}><Shipping /></React.Suspense>} />
                   <Route path='/unsubscribe-me' element={<React.Suspense fallback={<div class="lorder"></div>}><Unsubscribe /></React.Suspense>} />
                 </Route>
+              
               </Routes>
               <Footer />
             </Log.Provider>
@@ -133,6 +135,7 @@ function App() {
                   <Route path='/unsubscribe-me' element={<React.Suspense fallback={<div class="lorder"></div>}><Unsubscribe /></React.Suspense>} />
                 </Route>
               </Routes>
+              {/* <Sidebar/> */}
               <Footer />
             </Log.Provider>
           </BrowserRouter>

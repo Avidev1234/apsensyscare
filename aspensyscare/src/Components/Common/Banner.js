@@ -64,7 +64,7 @@ const Banner = ({ position, Header }) => {
     <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4 max-h-[500px] h-auto lg:h-[500] ">
       {Header === true ? <div className='w-full my-[10px] md:my-[30px] font-bold pl-[6px]'>
       {!Banner.loading && banner !== undefined ? ( <h1 className='text-bold text-[18px] md:text-[24px] leading-[40px]'>Welcome to the Apsensyscare Family</h1>) : <Skeleton count={2} />}
-       
+        
       </div> : null}
       {bannerImages===null&&
         (<div className='flex justify-between'>

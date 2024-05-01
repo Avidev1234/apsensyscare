@@ -78,6 +78,7 @@ const CategorySeller = () => {
 
             !Category.loading && category !== undefined ? (
               category.map((item, idx) => {
+                console.log("The item is",item);
                 return (
                   <div className="relative rounded-[10px] cursor-pointer" key={idx}
                     onClick={() => navigate({
@@ -89,9 +90,10 @@ const CategorySeller = () => {
 
                     <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/top-sellers/${item.topsellers}`} previewSrc={`${process.env.REACT_APP_IMAGE}Image/top-sellers/${item.topsellers}`} classname={"w-full  rounded-[10px]"} />
                     <div className="absolute bottom-0 flex justify-between w-full bg-gradient-to-b from-[#0000] to-[#000] rounded-[10px] items-end py-4 px-2">
-                      <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> Hand Sanitizer
+                      <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> {item.category_des}</p>
+                      {/* <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> Hand Sanitizer
                         in Green Apple,
-                        Sandal Wood, Lemon Grass...</p>
+                        Sandal Wood, Lemon Grass...</p> */}
                       <button className="py-2 px-2 md:px-4 bg-[#FF983B] text-white text-[14px] rounded-[3px] text-sm md:text-base whitespace-nowrap hover:text-[#FF983B] hover:bg-white border-[#FF983B]"
                         onClick={() => navigate({
                           pathname: `/category/${item.category_url}/c/${item.id}`,

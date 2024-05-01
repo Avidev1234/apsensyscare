@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux" 
 import { LoginAfterCart } from "../Store/Slices/cartSlice"
 
 
@@ -83,7 +83,7 @@ export const fetchCategory = createAsyncThunk('category/fetchCategory', async ()
         .post(`${process.env.REACT_APP_APIURL}fatch_category`,{cache: {
             methods: ['post']
           }})
-        .then((response) => response.data)
+        .then((response) => response.data) 
 });
 export const getAddress = createAsyncThunk('user/address', async (id) => {
     return await axios

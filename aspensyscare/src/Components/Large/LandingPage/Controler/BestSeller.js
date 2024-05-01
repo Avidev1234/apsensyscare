@@ -5,20 +5,21 @@ import { useSelector } from 'react-redux';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const BestSeller = ({ title, count }) => {
+const BestSeller = ({ title, count }) => { 
   const skeletonarray = [1, 2, 3, 4, 5, 6]
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 1,
+    slidesToShow: 4,
+    slidesToScroll: 3,
     autoplay: false,
     autoplaySpeed: 5000,
     swipeToSlide: true,
     arrows: false,
     className: "center gapgiven",
     centerMode: false,
+    // cssEase: "ease-in-out",
     responsive: [
       {
         breakpoint: 1024,
@@ -88,7 +89,7 @@ const BestSeller = ({ title, count }) => {
               !Products.loading && product !== undefined ? (
                 Descending.map((item, idx) => {
                   return (
-                    <ProductCard key={idx} val={item} />
+                    <ProductCard key={idx} val={item} /> 
                   )
                 })
               ) : null

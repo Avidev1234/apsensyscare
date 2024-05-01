@@ -49,10 +49,10 @@ import { useNavigate } from 'react-router-dom';
                                     }}>
                                         {title === "Top Brands" ? (
                                             // <img class="w-full h-[235px] rounded-t-lg" src={`${process.env.REACT_APP_URL}Image/Poster/${item.top_brand}`} alt="" />
-                                            <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/Poster/${item.top_brand}`} previewSrc={`${process.env.REACT_APP_URL}Image/Poster/${item.top_brand}`} classname={"w-full h-[235px] rounded-t-lg"} />
+                                            <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}/Poster/${item.top_brand}`} previewSrc={`${process.env.REACT_APP_URL}/Poster/${item.top_brand}`} classname={"w-full h-[235px] rounded-t-lg"} />
                                         ) :
                                             // <img class="w-full h-[235px] rounded-t-lg" src={`${process.env.REACT_APP_URL}Image/Poster/${item.featured_brand}`} alt="" />
-                                            <PregressiveImage imgSrc={`${process.env.REACT_APP_URL}Image/Poster/${item.featured_brand}`} previewSrc={`${process.env.REACT_APP_URL}Image/Poster/${item.featured_brand}`} classname={"w-full h-[235px] rounded-t-lg"} />
+                                            <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.featured_brand}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.featured_brand}`} classname={"w-full h-[235px] rounded-t-lg"} />
 
                                         }
 

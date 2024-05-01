@@ -18,7 +18,7 @@ const ProductCardold = ({ val, page ,checked}) => {
         exsit=true;
     }
 
-    //console.log(val)
+    console.log(val)
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
    

@@ -69,7 +69,7 @@ const ProductByCategory = () => {
                         ) : null}
             </div> */}
 
-            <div className='w-full flex flex-row flex-wrap content-start	justify-start p-5 gap-4'>
+            <div className='w-full flex flex-row flex-wrap content-start justify-start p-5 gap-4'>
                 {!Products.loading && Products.products.product !== undefined && categoryProducts.length !== 0 ? (
                     categoryProducts.map((val, i) => {
                         return (

@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Merriweather', serif !important;
+  font-family: Inter, Roboto, Arial, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -8,4 +8,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  footer {
+    display: none;
+  }
+ 
 }

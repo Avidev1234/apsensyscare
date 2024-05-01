@@ -6,7 +6,7 @@ const initialState = {
     category: [],
     error: '',
 }
-
+ 
 
 
 const categorySlice = createSlice({
