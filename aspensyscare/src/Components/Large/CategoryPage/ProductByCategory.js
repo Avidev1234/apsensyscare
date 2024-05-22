@@ -23,7 +23,7 @@ const ProductByCategory = () => {
     const Category = useSelector((state) => state.category);
     const { category } = Category.category;
     const itemIndex = category !== undefined ? category.findIndex((product) => product.id === searchParams.get('categoryId')) : null;
-    // console.log(itemIndex);
+    // console.log("itemIndex",itemIndex);
     // fatching products regarding category id
     const Products = useSelector((state) => state.product);
     const { product } = Products.products;
@@ -41,6 +41,7 @@ const ProductByCategory = () => {
                 itemIndex !== null ?
                     (
                         <Helmet>
+                            {console.log(category[itemIndex])}
                             <meta name="description" content={`${category[itemIndex].category_title}`} />
                             {/* <title>{category[itemIndex].category_title}</title> */}
                         </Helmet>

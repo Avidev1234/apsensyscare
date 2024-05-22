@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 
-const Privecy = () => {
+const Privecy = () => { 
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }, []);
+  }, []);  
   return (
     <div style={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'justify',marginBottom:'20px'}}>
       <div style={{ width: '90%' }}>

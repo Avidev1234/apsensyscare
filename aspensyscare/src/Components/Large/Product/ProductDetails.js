@@ -22,8 +22,8 @@ const stylemodal = {
     width: 400,
     bgcolor: "background.paper",
     border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
+    boxShadow: 24
+   
 };
 
 const SizeButtom = styled(Button)`
@@ -140,7 +140,7 @@ const ProductDetails = (product) => {
     const portal = {
         position: 'absolute',
         // top: '550px',
-        left: '-70px',
+        left: '-40px',
         maxHeight: '500px',
         maxWidth: '899px',
         zIndex: 999,
@@ -148,8 +148,9 @@ const ProductDetails = (product) => {
         overflow: 'hidden',
         backgroundColor: '#fff',
         padding: '0 10px',
-
-    }
+        // border:'0.5px solid black',
+        boxShadow:' 0px 0px 2px 2px  #D3D3D3'
+    } 
     
 
     const [currentSize, setCurrentSize] = useState(currentItem);
@@ -164,14 +165,14 @@ const ProductDetails = (product) => {
     const sizedetails = useSelector((state) => state.size);
     const category = useSelector((state) => state.category.category.category);
     const curremtcategory = category !== undefined ? category?.filter((item) => item.id === product.products.category_id) : []
-    // console.log(product, curremtcategory)
+    // console.log("category",product, curremtcategory)
     // destructure all data
     const { details } = products.productdetails;
     const { size } = sizedetails.sizes;
     // get the all details belongs to product Id from product entry tables
     const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.products.id) : [];
     const Productvariants = [];
-    //console.log(itemIndex);
+    console.log("itemIndex",itemIndex);
     if (itemIndex.length !== 0 && details !== undefined && size !== undefined) {
         itemIndex.map((item, idx) => {
             const index = size.filter((items) => items.id === item.size_id)
@@ -194,6 +195,7 @@ const ProductDetails = (product) => {
     const handleCart = (product) => {
         //console.log(product)
         const itemIndex = details !== undefined ? details.filter((item) => item.product_id === product.id) : [];
+        
         let itemsize = '';
         // const Productvariants = [];
         //console.log(itemIndex);

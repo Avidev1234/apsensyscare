@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddAddress, SignupUser, fetchUsers, getAddress } from '../../Api/Api';
 import { Formik, Form, Field } from "formik";
@@ -200,6 +201,7 @@ const Signup = ({ openSignup }) => {
     )
 }
 const Login = ({ handelLogin }) => {
+    const navigate = useNavigate();
     // --------------------------work for password input visiable or hidden and open login /sign up-----------------------------------
     const [showPassword, setShowPassword] = React.useState(false);
     const [showSignup, setShowSignup] = React.useState(true);
@@ -371,6 +373,10 @@ const Login = ({ handelLogin }) => {
                                             <a className="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
                                             <a className="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a>
                                         </p>
+                                        {/* <p>
+                                            <a onClick={() => navigate('/forgot-password')} className="text-blue-500 cursor-pointer">Forgot password ?</a>
+
+                                        </p> */}
                                         <button type='submit' className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign In</button>
                                         <hr className="border-b my-5" />
                                         <p className="text-[16px]">New to Apsensys Care?</p>

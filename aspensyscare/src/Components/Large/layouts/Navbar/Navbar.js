@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography';
 import { Badge, InputBase, Menu, MenuItem, useScrollTrigger } from '@mui/material';
 // import { AccountCircle } from '@mui/icons-material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import HistoryIcon from '@mui/icons-material/History';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 // import LanguageIcon from '@mui/icons-material/Language';
@@ -26,6 +27,7 @@ import Login from '../../../Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getTotals } from '../../../../Store/Slices/cartSlice';
 import "./navbar.css";
+// import { Helmet } from 'react-helmet';
 import { clearAddress } from '../../../../Store/Slices/getAddressSlice';
 // import * as Scroll from 'react-scroll';
 import { clearWishlist } from '../../../../Store/Slices/getwishlistSlice';
@@ -423,6 +425,19 @@ function Navbar(props) {
                   >
                     <StyledBadge badgeContent={cart.cartTotalQuantity} color="secondary">
                       <ShoppingCartCheckoutIcon style={{ color: '#fff', fontSize: '35px' }} />
+                    </StyledBadge>
+                  </IconButton>
+                  {/* Cart */}
+                </AvtarIcon> 
+                
+                <AvtarIcon onClick={() => navigate('/history')} style={{ color: '#fff' }}>
+                  <IconButton
+                    style={{ fontSize: '60px !important' }}
+                    aria-label="account of current user"
+                    color="black"
+                  >
+                    <StyledBadge badgeContent={cart.cartTotalQuantity} color="secondary">
+                      <HistoryIcon style={{ color: '#fff', fontSize: '35px' }} />
                     </StyledBadge>
                   </IconButton>
                   {/* Cart */}

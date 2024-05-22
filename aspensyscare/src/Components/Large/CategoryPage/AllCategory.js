@@ -15,7 +15,7 @@ const AllCategory = () => {
 
             {
 
-                <div className='flex flex-row gap-x-2 justify-start item-start text-[#a7a6a6] mb-2 ' >
+                <div className='flex flex-row gap-x-2 justify-start item-start text-[#a7a6a6] mb-2 2xl:ml-[150px] xl:ml-[120px] lg:ml-[35px]' >
                     <p className='text-sm m-0'>
                         <a href='/' target='_blank' className='hover:text-[#997af6] hover:underline'>Home</a>
                         <span>/all-category</span>

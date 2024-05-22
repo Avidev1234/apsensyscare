@@ -47,7 +47,7 @@ const Shipping = () => {
         </p>
         <h2 className="text-3xl font-bold py-4">FAQ</h2>
         <p>
-          <ul class="list-decimal px-10">
+          <ul className="list-decimal px-10">
             <li>
               How much time will it take to ship the product?
               <ul>

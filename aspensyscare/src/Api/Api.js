@@ -8,6 +8,14 @@ export const CreateOrder = async (amount) => {
     return await axios.post(`${process.env.REACT_APP_APIURL}createOrder`, amount)
         .then((res) => res.data)
 }
+export const resetPassword = async (email) => {
+    return await axios.post(`${process.env.REACT_APP_APIURL}resetPassword`, { email })
+        .then((res) => res.data)
+};
+export const userResetPassword = async (email) => {
+    return await axios.post(`${process.env.REACT_APP_APIURL}userresetPassword`, { email })
+        .then((res) => res.data)
+};
 export const CreateSigneture = async (signeture) => {
     return await axios.post(`${process.env.REACT_APP_APIURL}createSigneture`, signeture)
         .then((res) => res.data)
@@ -28,8 +36,27 @@ export const Placeorder = async (values) => {
     return await axios.post(`${process.env.REACT_APP_APIURL}caseonorder`, values)
         .then((res) => res.data)
 }
+export const orderCommand = async (data) => {
+    return await axios
+        .post(`${process.env.REACT_APP_APIURL}commands`, data)
+        .then((response) => response.data.orderdata)
+};
+export const fetchorderDetails = async (id) => {
+    return await axios
+        .post(`${process.env.REACT_APP_APIURL}orderDetails`, id)
+        .then((response) => response.data)
+}
+// export const customerfetch = async () => {
+//     return await axios
+//         .post(`${process.env.REACT_APP_APIURL}customer`)
+//         .then((response) => response.data.Customer_order_details)
+// };
 export const GetCartDetails = async (id) => {
     return await axios.post(`${process.env.REACT_APP_APIURL}cartdetails`, id)
+        .then((res) => res.data)
+}
+export const GetHistoryDetails = async (id) => {
+    return await axios.post(`${process.env.REACT_APP_APIURL}historydetails`, id)
         .then((res) => res.data)
 }
 // export const AddWishlist = async (wishListData) => {

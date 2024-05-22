@@ -47,7 +47,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
     );
   };
 
-
+ 
   // let ProductImage = `./Image/all_products/${image.image}`;
 
   // console.log(ProductImage) boxShadow:'0 3px 10px rgb(0 0 0 / 0.2)',
@@ -78,6 +78,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
           slidesToShow={1}
           slidesToScroll={1}
           initialSlide='0'
+           
         >
           {data.map((item, idx) => (
             <Box style={{ width: '450px', height: '450px' }} onMouseEnter={() => imagemagnify(true)}
@@ -89,17 +90,19 @@ const ProductCarousel = ({ imagemagnify, id }) => {
                   isFluidWidth: true,
                   
                   src: `${process.env.REACT_APP_IMAGE}/all_products/carousel-230-460/${item}`,
+                  width:10,
+                  
                 }, 
                 largeImage: {
                   src: `${process.env.REACT_APP_IMAGE}/all_products/carousel-1200-1800/${data2[idx]}`,
-                  width: 700,
+                  width: 750,
                   height: 1000
                 },
                 enlargedImagePortalId: 'portal',
                 enlargedImageContainerDimensions: {
-                  width: idx < 2 ? `260%` : '240%',
+                  width: idx < 2 ? `260%` : '119%',
                   height: '100%',
-                },
+                }, 
 
                 shouldUsePositiveSpaceLens: true
               }}
@@ -115,7 +118,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
         ref={slider => (sliderRef2 = slider)}
         slidesToShow={3}
         arrows={false}
-        swipeToSlide={true}
+        swipeToSlide={false}
         focusOnSelect={true} 
         infinite={true}
         prevArrow={<PreviousBtn />}
@@ -123,6 +126,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
         dotsClass="slick-dots custom-indicator"
         className="Gap"
         initialSlide='0'
+        
       >
         {data1.map((item, idx) => (
           <div style={{ width: "100%", height: "10%", margin: "20px" }} key={idx}>

@@ -142,6 +142,14 @@ module.exports = function(app) {
     })
   );
   app.use(
+    '/getuserhistory',
+    createProxyMiddleware({
+      
+      target: `${process.env.REACT_APP_PROXY_API_URL}`,
+      changeOrigin: true,
+    })
+  );
+  app.use(
     '/cartdetails',
     createProxyMiddleware({
       target: `${process.env.REACT_APP_PROXY_API_URL}`,

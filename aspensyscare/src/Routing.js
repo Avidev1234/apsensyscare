@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Privecy = React.lazy(() => import('./Components/Large/Policy/Privecy'))
+const Privecy = React.lazy(() => import('./Components/Large/Policy/Privecy')) 
 const ContactUS = React.lazy(() => import('./Components/Large/ContactUS/ContactUS'))
 const AboutUs = React.lazy(() => import('./Components/Large/AboutUS/AboutUs'))
 const PaymentReturn = React.lazy(() => import('./Components/Large/Policy/PaymentReturn'))
@@ -14,6 +14,9 @@ const Login = React.lazy(() => import('./Components/Login/Login'))
 const Wishlist = React.lazy(() => import('./Components/Large/WishList/Wishlist'))
 const Smallwishlist = React.lazy(() => import('./Components/Small/WishList/Wishlist'))
 const Cart = React.lazy(() => import('./Components/Large/Cart/Cart'))
+const History = React.lazy(() => import('./Components/Large/History/History'))
+const Forgotpassword = React.lazy(() => import('./Components/Login/ForgotPassword'))
+const Orderhistory = React.lazy(() => import('./Components/Large/History/Orderhistory'))
 const Product = React.lazy(() => import('./Components/Large/Product/Product'))
 const ProductVariant = React.lazy(() => import('./Components/Large/LandingPage/Controler/ProductVariant'))
 const ProductByCategory = React.lazy(() => import('./Components/Large/CategoryPage/ProductByCategory'))
@@ -24,5 +27,5 @@ const LandingPage= React.lazy(()=>import('./Components/Large/LandingPage/Landing
 const Home= React.lazy(()=>import('./Components/Large/LandingPage/Home/Home'))
 const SmallHome= React.lazy(()=>import('./Components/Small/LandingPage/Home/Homesmall'))
 const AllCategory= React.lazy(()=>import('./Components/Large/CategoryPage/AllCategory'))
-
-export {LandingPage,Home,SmallHome,Privecy,ContactUS,AboutUs,PaymentReturn,TermsCondition,Shipping,Sitemap,Jobs,OrderFailed,ThankYou,Login,Wishlist,Smallwishlist,Cart,Product,ProductVariant,ProductByCategory,PaymentLoading,Unsubscribe,ProductByCategorySmall,AllCategory} 
+ 
+export {LandingPage,Home,SmallHome,Privecy,ContactUS,AboutUs,PaymentReturn,TermsCondition,Shipping,Sitemap,Jobs,OrderFailed,ThankYou,Login,Forgotpassword,Wishlist,Smallwishlist,Cart,History,Orderhistory,Product,ProductVariant,ProductByCategory,PaymentLoading,Unsubscribe,ProductByCategorySmall,AllCategory} 

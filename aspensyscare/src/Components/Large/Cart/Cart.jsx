@@ -289,7 +289,8 @@ const Cart = (props) => {
       // //console.log(cart)
       GenerateEmailForGaustOrder(cart, gaust_address)
         .then((res) => {
-          emailjs.send('service_cykcjmj', 'template_ju49o12', res, 'DRezFycYbf9fhBISj')
+          
+          emailjs.send('service_ku0q4co', 'template_sgadbch', res, 'OW7pYkljP7tzyg0Pz')
             .then(() => {
               toast.info("order placed", {
                 position: "bottom-left",

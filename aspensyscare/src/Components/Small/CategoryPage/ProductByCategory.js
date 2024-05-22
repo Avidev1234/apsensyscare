@@ -29,6 +29,7 @@ export default function ProductByCategory() {
                 itemIndex !== null ?
                     (
                         <Helmet>
+                            {/* {console.log(category[itemIndex])} */}
                             <meta name="description" content={`${category[itemIndex].category_title}`} />
                             {/* <title>{category[itemIndex].category_title}</title> */}
                         </Helmet>

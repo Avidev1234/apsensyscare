@@ -18,7 +18,7 @@ const ProductByCategory = () => {
     //console.log((wishlist));
     const length = wishlist !== undefined ? wishlist.length : 0
     let temp = 0;
-    //console.log(length)
+    //console.log(length) 
 
     const wishListArray = []
 

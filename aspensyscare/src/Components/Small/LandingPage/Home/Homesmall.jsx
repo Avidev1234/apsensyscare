@@ -12,7 +12,7 @@ export default function Homesmall() {
         <Productcont position='1' Header={true} />
       </div>
       <div className="w-full flex flex-row justify-around ">
-       <Smallbestseller title={"Best Sellers"} count={true}/>
+       <Smallbestseller title={""} count={true}/>
       </div>
       <div className="w-full flex flex-row justify-around ">
        <Smallbrandoffer title={"Featured Brands"}/>
