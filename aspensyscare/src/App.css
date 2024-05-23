@@ -349,3 +349,203 @@
         text-align: center;
         border-radius: 0 0 0 0;
       }
+
+
+      .order-history {
+        text-align: center;
+        font-size: 35px;
+      }
+
+      .nav-logo {
+        width: 120px;
+        height: 60px;
+      }
+
+      .order-card {
+        padding: 1rem;
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 0.375rem;
+        margin-bottom: 1rem;
+        border: 1px solid rgb(190, 190, 190);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+
+      .total-amount {
+        font-size: 18px;
+      }
+
+      .product-details {
+        flex-grow: 1;
+        margin-left: 100px;
+      }
+
+      .product-images {
+        display: flex;
+        align-items: center;
+      }
+
+      .product-image {
+        width: 100px;
+        height: auto;
+        margin-left: 0.5rem;
+        transition: transform 0.2s;
+      }
+
+      .product-image:hover {
+        transform: scale(1.2);
+      }
+
+      .button-group {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        background-color: #f0f0f0;
+        padding: 1rem;
+        border-radius: 0.375rem;
+      }
+
+      .button-group button {
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: rgb(0, 0, 0);
+        background-color: transparent;
+        border: 0.5px solid rgb(190, 190, 190);
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+      }
+
+      .button-group button:hover {
+        background-color: blue;
+        color: rgb(255, 255, 255);
+        transform: translateY(-2px) scale(1.05);
+      }
+
+      .button-group .support-button {
+        background-color: blue;
+        border-color: #001affd0;
+        color: rgb(255, 255, 255);
+      }
+
+      .button-group .support-button:hover {
+        background-color: rgb(0, 89, 255);
+        color: rgb(255, 255, 255);
+      }
+
+      .buy {
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: rgb(0, 89, 255);
+        border-color: #fcd200;
+        width: auto;
+        padding: 6px;
+        font-weight: 500;
+        color: white;
+      }
+
+      .buy:hover {
+        background-color: blue;
+      }
+
+      .buy img {
+        width: 25px;
+        height: 25px;
+      }
+
+      @media (max-width: 640px) {
+        .order-card {
+          flex-direction: row;
+          align-items: center;
+          width: 100%;
+          border-radius: 0;
+          box-shadow: none;
+          height: 180px;
+          position: relative;
+          border: none;
+          border-bottom: 1px solid rgb(190, 190, 190);
+          margin-bottom: 0px;
+        }
+
+        .product-details {
+          margin-left: 0;
+          margin-top: 1rem;
+          text-align: center;
+        }
+
+        .product-images {
+          width: 80px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .product-image {
+          width: 80px;
+          height: auto;
+          margin-left: 0;
+          transition: transform 0.2s;
+        }
+
+        .button-group {
+          display: none;
+        }
+
+        .buy {
+          display: none;
+        }
+
+        .total-amount {
+          display: none;
+        }
+
+        .order-history {
+          font-size: 24px;
+        }
+
+        .product-details ul,
+        .product-details h2,
+        .product-details p:not(:first-of-type) {
+          display: none;
+        }
+
+        .product-details::before {
+          content: "Arriving Soon";
+          font-size: 18px;
+          font-weight: bold;
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+
+        .arrow-icon {
+          display: block;
+          position: absolute;
+          right: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      @media (min-width: 641px) {
+        .arrow-icon {
+          display: none;
+        }
+        
+      }
+
+      @media (max-width: 320px) {
+        .order-card {
+          width: 100%;
+        }
+
+        .product-images {
+          justify-content: center;
+        }
+      }

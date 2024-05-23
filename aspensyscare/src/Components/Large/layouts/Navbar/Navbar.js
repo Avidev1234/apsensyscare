@@ -1,4 +1,4 @@
-import  React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -22,12 +22,12 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 // import LanguageIcon from '@mui/icons-material/Language';
 // import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Login from '../../../Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getTotals } from '../../../../Store/Slices/cartSlice';
 import "./navbar.css";
-// import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { clearAddress } from '../../../../Store/Slices/getAddressSlice';
 // import * as Scroll from 'react-scroll';
 import { clearWishlist } from '../../../../Store/Slices/getwishlistSlice';
@@ -116,8 +116,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     border: `2px solid ${theme.palette.background.paper}`,
     padding: '0 4px',
   },
-})); 
-function refreshPage(e){ 
+}));
+function refreshPage(e) {
   // e.preventDefault();
   window.scrollTo(0, 0);
   // window.location.reload(); 
@@ -177,6 +177,7 @@ function Navbar(props) {
 
   const container = window !== undefined ? () => window().document.body : undefined;
   const [auth] = React.useState(true);
+  const [Auth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   // const [setleLang] = React.useState(null);
 
@@ -216,7 +217,7 @@ function Navbar(props) {
   const username = useSelector((state) => state.users);
   //console.log(Wishlist.wishlist.length)
   const wishlistCount = Wishlist !== undefined ? Wishlist.wishlist.length : 0
-  const user = username !== undefined  ? username.users.details? username.users.details[0].f_name[0]: '':''
+  const user = username !== undefined ? username.users.details ? username.users.details[0].f_name[0] : '' : ''
   console.log(user)
   React.useEffect(() => {
     dispatch(getTotals());
@@ -359,8 +360,8 @@ function Navbar(props) {
           {/* desktop view start   */}
           <img src={`${process.env.REACT_APP_URL}website-logo-200-100.png`} alt='apsensyscare'
             // onClick={() => { navigate('/'); }}
-            
-            onClick={(e) => { 
+
+            onClick={(e) => {
               navigate('/');
               refreshPage(e);
             }}
@@ -428,9 +429,21 @@ function Navbar(props) {
                     </StyledBadge>
                   </IconButton>
                   {/* Cart */}
-                </AvtarIcon> 
+                </AvtarIcon>
                 
-                <AvtarIcon onClick={() => navigate('/history')} style={{ color: '#fff' }}>
+                {/* This one history */}
+                {
+                !sessionStorage.getItem('___user')?
+                  
+                      <div>
+                          <Helmet>
+                              <title>{ }</title>
+                              <meta name="description" content={""} />
+                          </Helmet>
+                          
+                      </div>
+                      :
+                  <AvtarIcon onClick={() => navigate('/history')} style={{ color: '#fff' }}>
                   <IconButton
                     style={{ fontSize: '60px !important' }}
                     aria-label="account of current user"
@@ -442,6 +455,23 @@ function Navbar(props) {
                   </IconButton>
                   {/* Cart */}
                 </AvtarIcon>
+                
+              }
+                {/* <div className="MuiBox-root css-dxza1q" style={{ flexDirection: 'row', cursor: 'pointer', color: "#fff" }} onClick={() => handelLogin(true, 0)}>
+                      
+                      <AvtarIcon onClick={() => navigate('/history')} style={{ color: '#fff' }}>
+                  <IconButton
+                    style={{ fontSize: '60px !important' }}
+                    aria-label="account of current user"
+                    color="black"
+                  >
+                    <StyledBadge badgeContent={cart.cartTotalQuantity} color="secondary">
+                      <HistoryIcon style={{ color: '#fff', fontSize: '35px' }} />
+                    </StyledBadge>
+                  </IconButton>
+                </AvtarIcon>
+                </div> */}
+
                 {
                   item_value !== null ?
                     <div className="MuiBox-root css-dxza1q">

@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { orderCommand } from '../../../Api/Api';
+import "../../../App.css"
+import { orderhistory } from '../../../Api/Api';
 import { useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 
 export default function Deliveredtable() {
     const [deliveredtable, setDeliveredtable] = useState([]);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     useEffect(() => {
-        orderCommand({ status: "Delivered" })
-            .then((res) => {
-                setDeliveredtable(res);
-                console.log("Response is", res);
-            })
-            .catch((error) => {
-                console.error("Error fetching order history:", error);
-            });
+        const user = sessionStorage.getItem('___user');
+        if (user) {
+            orderhistory({ user_id: user, status: "Delivered" })
+                .then((res) => {
+                    setDeliveredtable(res);
+                    console.log("Response is", res);
+                })
+                .catch((error) => {
+                    console.error("Error fetching order history:", error);
+                });
+        }
     }, []);
-    const openOrderDetails = (orderId) => {
-        navigate(`/history/orderhistory/${orderId}`)
-    }
+
     if (!sessionStorage.getItem('___user')) {
         return (
             <div className='w-full flex flex-col flex-wrap min-h-[90vh] items-center justify-center p-5 bg-[#d2efff]'>
@@ -34,55 +37,53 @@ export default function Deliveredtable() {
         )
     } else {
         return (
-            <div className='w-full flex flex-col'>
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                        <tr >
-                            <th scope="col" className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">
-                                <span>Date</span>
-                            </th>
-                            <th scope="col" className="px-12 py-3.5 text-left text-sm font-normal text-gray-700">
-                                Reference
-                            </th>
-                            {/* <th scope="col" className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">
-                                Customer
-                            </th> */}
-                            <th scope="col" className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">
-                                Address
-                            </th>
-                            <th scope="col" className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">
-                                Nb Item
-                            </th>
-                            <th scope="col" className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">
-                                Total Amount
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white">
-                        {deliveredtable.map((dtable) => (
-                            <tr key={dtable.id} className='hover cursor-pointer' onClick={() => openOrderDetails(dtable.order_id)}>
-                                <td className="whitespace-nowrap px-4 py-4">
-                                    <div className="text-sm font-medium text-gray-900">{dtable.order_date}</div>
-                                </td>
-                                <td className="whitespace-nowrap px-12 py-4">
-                                    <div className="text-sm text-gray-900">{dtable.order_id.trim()}</div>
-                                </td>
-                                {/* <td className="whitespace-nowrap px-4 py-4">
-                                    <div className="text-sm text-gray-900">{dtable.name}</div>
-                                </td> */}
-                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                                    {`${dtable.house_flat_office}, ${dtable.area_landmark}, ${dtable.city}, ${dtable.state}, ${dtable.pincode}`}
-                                </td>
-                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
-                                    {dtable.total_quantity.trim()}
-                                </td>
-                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
-                                    {dtable.order_total}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div className="container mx-auto py-8">
+                <h2 className="text-2xl font-semibold mb-4 order-history">
+                    Your Order History
+                </h2>
+                <div className="flex flex-col ">
+                    {deliveredtable.map((order, index) => (
+                        <div key={index} className="bg-white shadow-md p-4 order-card">
+                            <div className="product-images">
+                                <img
+                                    src={`https://apsensyscare.com/assets/all_products/${order.product_image}`}
+                                    alt={order.short_name}
+                                    className="product-image rounded-md"
+                                />
+                            </div>
+                            <div className="product-details">
+                                <p className="text-gray-600 mb-2 font-semibold">
+                                    Date: <span className="font-bold">{order.order_date}</span>
+                                </p>
+                                <h2 className="text-lg font-semibold mb-2">Order #{order.order_id}</h2>
+                                <p className="text-gray-600 mb-2">Products:</p>
+                                <ul className="text-sm mb-4">
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="font-bold text-base text-blue-700 hover:underline"
+                                        >{order.short_name}</a>
+                                        - Qty: {order.quantity}
+                                    </li>
+                                </ul>
+                                <p className="text-gray-600 font-semibold total-amount">
+                                    Total-amount: Rs {order.order_total}
+                                </p>
+                                <button className="buy"> Buy It Again </button>
+                            </div>
+                            <div className="button-group">
+                                <button className="support-button">Get Product Support</button>
+                                <button>Track</button>
+                                <button>Get Product</button>
+                                <button>Print Slip</button>
+                                <button>Review</button>
+                            </div>
+                            <a href="your-page.html">
+                                <img src="arrow.png" alt="Arrow Icon" className="arrow-icon" />
+                            </a>
+                        </div>
+                    ))}
+                </div>
             </div>
         );
     }

@@ -36,6 +36,10 @@ export const Placeorder = async (values) => {
     return await axios.post(`${process.env.REACT_APP_APIURL}caseonorder`, values)
         .then((res) => res.data)
 }
+export const orderhistory = async (data) => {
+    return await axios.post(`${process.env.REACT_APP_APIURL}orderhistory`, data)
+        .then((res) => res.data.orderhistory)
+}
 export const orderCommand = async (data) => {
     return await axios
         .post(`${process.env.REACT_APP_APIURL}commands`, data)
