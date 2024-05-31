@@ -16,7 +16,11 @@ const Smallwishlist = React.lazy(() => import('./Components/Small/WishList/Wishl
 const Cart = React.lazy(() => import('./Components/Large/Cart/Cart'))
 const History = React.lazy(() => import('./Components/Large/History/History'))
 const Forgotpassword = React.lazy(() => import('./Components/Login/ForgotPassword'))
+const Otpverification = React.lazy(() => import('./Components/Login/Otpverification'))
 const Orderhistory = React.lazy(() => import('./Components/Large/History/Orderhistory'))
+const Track = React.lazy(() => import('./Components/Large/History/Track'))
+const HistoryDetails = React.lazy(() => import('./Components/Large/History/Historydetails'))
+const Invoice = React.lazy(() => import('./Components/Large/History/Invoice'))
 const Product = React.lazy(() => import('./Components/Large/Product/Product'))
 const ProductVariant = React.lazy(() => import('./Components/Large/LandingPage/Controler/ProductVariant'))
 const ProductByCategory = React.lazy(() => import('./Components/Large/CategoryPage/ProductByCategory'))
@@ -28,4 +32,4 @@ const Home= React.lazy(()=>import('./Components/Large/LandingPage/Home/Home'))
 const SmallHome= React.lazy(()=>import('./Components/Small/LandingPage/Home/Homesmall'))
 const AllCategory= React.lazy(()=>import('./Components/Large/CategoryPage/AllCategory'))
  
-export {LandingPage,Home,SmallHome,Privecy,ContactUS,AboutUs,PaymentReturn,TermsCondition,Shipping,Sitemap,Jobs,OrderFailed,ThankYou,Login,Forgotpassword,Wishlist,Smallwishlist,Cart,History,Orderhistory,Product,ProductVariant,ProductByCategory,PaymentLoading,Unsubscribe,ProductByCategorySmall,AllCategory} 
+export {LandingPage,Home,SmallHome,Privecy,ContactUS,AboutUs,PaymentReturn,TermsCondition,Shipping,Sitemap,Jobs,OrderFailed,ThankYou,Login,Forgotpassword,Otpverification,Wishlist,Smallwishlist,Cart,History,Orderhistory,Track,HistoryDetails,Invoice,Product,ProductVariant,ProductByCategory,PaymentLoading,Unsubscribe,ProductByCategorySmall,AllCategory}  

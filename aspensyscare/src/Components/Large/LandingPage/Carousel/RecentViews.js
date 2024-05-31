@@ -28,7 +28,7 @@ const RecentViews = () => {
     return (
         <Homecont width={'100%'}>
             <Box padding={'20px'} width={'93%'}>
-                <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '600', color: 'black' }}>You might be interested in</Typography>
+                <Typography variant='h3' style={{ fontSize: '20px', fontWeight: '600', color: 'black' }}>You Might Be Interested In</Typography>
             </Box>
             <div className='w-full md:w-[90%] flex flex-col md:flex-row flex-wrap justify-center items-center md:justify-start gap-5'>
                 {Products.loading && skeletonloading.map((items, idx) => { return (<Skeleton key={idx.toString()} variant="rectangular" animation="wave" width={232} height={270} />) })}

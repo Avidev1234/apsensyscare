@@ -199,7 +199,7 @@ const Cart = (props) => {
   }
   const handelOrder = async (cart) => {
     ////console.log("hello indide handelOrder", localStorage.getItem("___gaust_user_address"))
-    // console.log(cart);
+    console.log(cart);
     if (sessionStorage.getItem("___user") === null) {
       handelLogin(true)
       return;
@@ -1028,7 +1028,7 @@ const Cart = (props) => {
                     }}
                   >
                     <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
-                    50
+                    100
                   </span>
                 </Typography>
               </AmountDetailsrow>

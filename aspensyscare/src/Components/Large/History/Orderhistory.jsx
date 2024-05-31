@@ -11,7 +11,7 @@ export default function Orderhistory() {
             setOrderDetails(res.shoporder[0])
             setorder_lineDetails(res.order_line)
         })
-    }, [id])
+    }, [id]) 
     return (
         <div className="container mx-auto py-8">
             <h2 className="text-3xl font-semibold mb-4">Your Order History</h2>

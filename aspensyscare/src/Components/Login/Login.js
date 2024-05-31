@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AddAddress, SignupUser, fetchUsers, getAddress } from '../../Api/Api';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -86,7 +86,7 @@ const Signup = ({ openSignup }) => {
         >
 
             {({ errors, touched }) => (
-                <Form className=" max-w-[97% md:max-w-4xl mx-auto flex flex-col p-2">
+                <Form className=" max-w-[97%] md:max-w-4xl mx-auto flex flex-col p-2">
                     <div className=" mx-auto flex  justify-center flex-col ">
                         <div className="flex flex-row flex-wrap justify-between">
                             <h2 className="font-semibold text-2xl mb-8">Create account</h2>
@@ -373,10 +373,16 @@ const Login = ({ handelLogin }) => {
                                             <a className="text-blue-800" href="https://apsensyscare.com/terms-condition">Terms of Use</a> and
                                             <a className="text-blue-800" href="https://apsensyscare.com/privacy-policy">Privacy Policy</a>
                                         </p>
-                                        {/* <p>
-                                            <a onClick={() => navigate('/forgot-password')} className="text-blue-500 cursor-pointer">Forgot password ?</a>
+                                         <p>
+                                            <a onClick={() => { handelLogin(false); 
+                                            
+                                            navigate('/forgot-password'); 
+                                        }}
+                                            className="text-blue-500 cursor-pointer">
+                                            Forgot password?
+                                          </a>
 
-                                        </p> */}
+                                        </p> 
                                         <button type='submit' className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Sign In</button>
                                         <hr className="border-b my-5" />
                                         <p className="text-[16px]">New to Apsensys Care?</p>

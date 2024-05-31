@@ -10,7 +10,7 @@ import Footer from './Components/Large/layouts/Footer/Footer';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Cookies from 'js-cookie'
-import { LandingPage, Home, SmallHome, Privecy, ContactUS, AboutUs, PaymentReturn, TermsCondition, Shipping, Sitemap, Jobs, OrderFailed, ThankYou, Wishlist, Smallwishlist, Cart, Product, ProductVariant, ProductByCategory, PaymentLoading, Unsubscribe, ProductByCategorySmall, AllCategory,History,Orderhistory,Forgotpassword } from './Routing';
+import { LandingPage, Home, SmallHome, Privecy, ContactUS, AboutUs, PaymentReturn, TermsCondition, Shipping, Sitemap, Jobs, OrderFailed, ThankYou, Wishlist, Smallwishlist, Cart, Product, ProductVariant, ProductByCategory, PaymentLoading, Unsubscribe, ProductByCategorySmall, AllCategory,History,Orderhistory,Forgotpassword,Otpverification,Track ,HistoryDetails,Invoice } from './Routing';
 // import Orderhistory from './Components/Large/History/Orderhistory';
 // import Smallfooter from './Components/Small/layouts/Footer/Smallfooter';
 
@@ -93,13 +93,17 @@ function App() {
                   <Route path='/sitemap' element={<React.Suspense fallback={<div class="lorder"></div>}><Sitemap /></React.Suspense>} />
                   <Route path='/wishlist' element={<React.Suspense fallback={<div class="lorder"></div>}><Smallwishlist /></React.Suspense>} />
                   <Route path='/history' element={<React.Suspense fallback={<div class="lorder"></div>}><History handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
-                  <Route path='/history/orderhistory/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Orderhistory handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
+                  {/* <Route path='/history/orderhistory/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Orderhistory handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} /> */}
                   <Route path='/privacy-policy' element={<React.Suspense fallback={<div class="lorder"></div>}><Privecy /></React.Suspense>} />
+                  <Route path='/track/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Track /></React.Suspense>} />
+                  <Route path='/history-details/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><HistoryDetails /></React.Suspense>} />
+                  <Route path='/invoice/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Invoice /></React.Suspense>} />
                   <Route path='/contact-us' element={<React.Suspense fallback={<div class="lorder"></div>}><ContactUS /></React.Suspense>} />
                   <Route path='/about-us' element={<React.Suspense fallback={<div class="lorder"></div>}><AboutUs /></React.Suspense>} />
                   <Route path='/payment-return-cancellation' element={<React.Suspense fallback={<div class="lorder"></div>}><PaymentReturn /></React.Suspense>} />
                   <Route path='/terms-condition' element={<React.Suspense fallback={<div class="lorder"></div>}><TermsCondition /></React.Suspense>} />
                   <Route path='/forgot-password' element={<React.Suspense fallback={<div class="lorder"></div>}><TermsCondition /></React.Suspense>} />
+                  <Route path='/otp-verification' element={<React.Suspense fallback={<div class="lorder"></div>}><Otpverification /></React.Suspense>} />
                   <Route path='/shipping' element={<React.Suspense fallback={<div class="lorder"></div>}><Shipping /></React.Suspense>} />
                   <Route path='/unsubscribe-me' element={<React.Suspense fallback={<div class="lorder"></div>}><Unsubscribe /></React.Suspense>} />
                 </Route>
@@ -131,10 +135,14 @@ function App() {
                   <Route path='/sitemap' element={<React.Suspense fallback={<div class="lorder"></div>}><Sitemap /></React.Suspense>} />
                   <Route path='/wishlist' element={<React.Suspense fallback={<div class="lorder"></div>}><Wishlist /></React.Suspense>} />
                   <Route path='/forgot-password' element={<React.Suspense fallback={<div class="lorder"></div>}><Forgotpassword /></React.Suspense>} />
+                  <Route path='/otp-verification' element={<React.Suspense fallback={<div class="lorder"></div>}><Otpverification /></React.Suspense>} />
                   <Route path='/privacy-policy' element={<React.Suspense fallback={<div class="lorder"></div>}><Privecy /></React.Suspense>} />
                   <Route path='/contact-us' element={<React.Suspense fallback={<div class="lorder"></div>}><ContactUS /></React.Suspense>} />
                   <Route path='/history' element={<React.Suspense fallback={<div class="lorder"></div>}><History /></React.Suspense>} />
                   <Route path='/history/orderhistory/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Orderhistory /></React.Suspense>} />
+                  <Route path='/track/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Track /></React.Suspense>} />
+                  <Route path='/history-details/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><HistoryDetails /></React.Suspense>} />
+                  <Route path='/invoice/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Invoice /></React.Suspense>} />
                   <Route path='/about-us' element={<React.Suspense fallback={<div class="lorder"></div>}><AboutUs /></React.Suspense>} />
                   <Route path='/payment-return-cancellation' element={<React.Suspense fallback={<div class="lorder"></div>}><PaymentReturn /></React.Suspense>} />
                   <Route path='/terms-condition' element={<React.Suspense fallback={<div class="lorder"></div>}><TermsCondition /></React.Suspense>} />

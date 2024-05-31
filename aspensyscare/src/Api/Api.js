@@ -8,12 +8,27 @@ export const CreateOrder = async (amount) => {
     return await axios.post(`${process.env.REACT_APP_APIURL}createOrder`, amount)
         .then((res) => res.data)
 }
-export const resetPassword = async (email) => {
-    return await axios.post(`${process.env.REACT_APP_APIURL}resetPassword`, { email })
+// Avidev
+export const updatePassword = async (id) => {
+    return await axios.post(`${process.env.REACT_APP_APIURL}updatepassword`, id)
+        .then((res) => res.data.CustomerEdit)
+};
+// Avidev
+// export const customerbyId = async (id) => {
+//     return await axios
+//         .post(`${process.env.REACT_APP_APIURL}customeredit`, id)
+//         .then((response) => response.data.CustomerEdit)
+// };
+export const userResetPassword = async (phone) => {
+    return await axios.post(`${process.env.REACT_APP_APIURL}userresetPassword`,  phone,{cache: {
+        methods: ['post']
+      }})
         .then((res) => res.data)
 };
-export const userResetPassword = async (email) => {
-    return await axios.post(`${process.env.REACT_APP_APIURL}userresetPassword`, { email })
+export const getOrderDetails = async (phone) => {
+    return await axios.post(`${process.env.REACT_APP_APIURL}getorderdetails`,  phone,{cache: {
+        methods: ['post']
+      }})
         .then((res) => res.data)
 };
 export const CreateSigneture = async (signeture) => {
@@ -39,6 +54,11 @@ export const Placeorder = async (values) => {
 export const orderhistory = async (data) => {
     return await axios.post(`${process.env.REACT_APP_APIURL}orderhistory`, data)
         .then((res) => res.data.orderhistory)
+}
+// Avidev 5-31-2024
+export const orderhistorydetails = async (id) => {
+    return await axios.post(`${process.env.REACT_APP_APIURL}orderhistorydetails`, id)
+        .then((res) => res.data)
 }
 export const orderCommand = async (data) => {
     return await axios

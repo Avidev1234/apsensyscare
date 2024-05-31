@@ -14,7 +14,7 @@ export default function Deliveredtable() {
             orderhistory({ user_id: user, status: "Delivered" })
                 .then((res) => {
                     setDeliveredtable(res);
-                    console.log("Response is", res);
+                    // console.log("Response is", res);
                 })
                 .catch((error) => {
                     console.error("Error fetching order history:", error);
@@ -69,14 +69,15 @@ export default function Deliveredtable() {
                                 <p className="text-gray-600 font-semibold total-amount">
                                     Total-amount: Rs {order.order_total}
                                 </p>
-                                <button className="buy"> Buy It Again </button>
+                                {/* <button className="buy"> Buy It Again </button> */}
                             </div>
                             <div className="button-group">
-                                <button className="support-button">Get Product Support</button>
-                                <button>Track</button>
-                                <button>Get Product</button>
-                                <button>Print Slip</button>
-                                <button>Review</button>
+                                <button className="track" onClick={() => navigate(`/track/${order.order_id}`)}>Track</button>
+                                {/* <button onClick={() => navigate(`/history-details`)}>Product Details</button> */}
+                                <button onClick={() => navigate(`/history-details/${order.order_id}`)}>Product Details</button>
+                                {/* <button onClick={() => navigate(`/invoice`)}>Print Slip</button> */}
+                                <button onClick={() => navigate(`/invoice/${order.order_id}`)}>Print Slip</button>
+                               
                             </div>
                             <a href="your-page.html">
                                 <img src="arrow.png" alt="Arrow Icon" className="arrow-icon" />
