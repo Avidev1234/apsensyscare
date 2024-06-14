@@ -7,16 +7,16 @@ export default function ForgotPassword() {
   const navigate = useNavigate();
   const [phone, setPhone] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  
+   
   const handleSubmit = (e) => {
     e.preventDefault(); 
 
     userResetPassword( {phone} ) // Pass an object with the phone field
       .then((res) => {
-        // console.log('Success:', res);
+        console.log('Success:', phone);
         toast.success(res.message|| 'We have send reset password link to your registerd phone');
         // Redirect to OTP verification page or display OTP input field
-        navigate('/otp-verification');
+        navigate(`/otp-verification`);
         localStorage.setItem('__phone', phone);
       })
       .catch((err) => {

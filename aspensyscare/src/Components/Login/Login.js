@@ -266,11 +266,16 @@ const Login = ({ handelLogin }) => {
     };
 
 
-
     const LoginSchema = Yup.object().shape({
         phone: Yup.string()
-            .min(1, "Not a Phone Number!")
-            .max(10, "Too Long!")
+            .test('phoneOrEmail', 'Invalid phone or email', value => {
+                // Check if the input matches the email format
+                if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    return true; // If it matches email format, return true
+                }
+                // Otherwise, check if it's a valid phone number
+                return /^[6-9]\d{9}$/.test(value);
+            })
             .required("Required"),
         password: Yup.string()
             .required("No password provided.")
@@ -278,6 +283,8 @@ const Login = ({ handelLogin }) => {
             .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
             .required("Required")
     });
+    
+    
 
     return (
         <LoginCont>
@@ -312,7 +319,7 @@ const Login = ({ handelLogin }) => {
                                             {errors.phone && touched.phone ? (
                                                 <Field
                                                     as={TextField}
-                                                    label="Phone Number"
+                                                    label="Phone Number/Email"
                                                     id="outlined-basic3"
                                                     maxRows={1}
                                                     variant="outlined"
@@ -323,7 +330,7 @@ const Login = ({ handelLogin }) => {
                                             ) : (
                                                 <Field
                                                     as={TextField}
-                                                    label="Phone Number"
+                                                    label="Phone Number/Email"
                                                     id="outlined-basic4"
                                                     maxRows={1}
                                                     variant="outlined"

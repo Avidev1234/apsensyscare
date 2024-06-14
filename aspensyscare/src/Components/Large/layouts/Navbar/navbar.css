@@ -27,3 +27,95 @@
 .scroolbar::-webkit-scrollbar-thumb:hover {
     background: #6627c5;
 }
+/*location*/
+.hover-border:hover {
+cursor: pointer;
+/* border: 2px solid white;
+width: 250px;
+height: 80px; */
+} 
+
+
+/* For location popup */
+      
+      .popup-container {
+        /* display: none; */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+      .popup {
+        position: absolute;
+        top: 480px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 25%;
+      }
+      .small-text {
+        font-size: 0.8rem;
+      }
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #999;
+      }
+      .close-button:hover {
+        color: #333;
+      }
+
+      .icon-container {
+        display: flex;
+        flex-direction: row;
+         /* Default gap */
+      }
+      
+      @media (max-width: 1200px) {
+        .icon-container {
+          gap: 9px; /* Adjust gap for larger screens */
+        }
+      }
+      @media (max-width: 1440px) {
+        .icon-container {
+          gap: 11px; /* Adjust gap for larger screens */
+        }
+      }
+      @media (max-width: 2560px) {
+        .icon-container {
+          gap: 14px; /* Adjust gap for larger screens */
+        }
+      }
+      
+      @media (max-width: 992px) {
+        .icon-container {
+          gap: 0px; /* Adjust gap for medium screens */
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .icon-container {
+          gap: -1px; /* Adjust gap for smaller screens */
+        }
+      }
+      
+      @media (max-width: 576px) {
+        .icon-container {
+          gap: 2px; /* Adjust gap for extra small screens */
+        }
+      }
+      @media (max-width: 768px) {
+        .toolbar-custom {
+          gap: 25px !important; /* Adjust this value as needed */
+        }
+      }

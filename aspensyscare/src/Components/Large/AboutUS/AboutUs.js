@@ -329,12 +329,12 @@ function AboutUs() {
           </p>
         </div>
       </div>
-      <a
+      {/* <a
         class="mx-auto mb-20 flex items-center justify-center w-[50%] md:w-[10%] text-center rounded border border-[#a0efe6] bg-[#a0efe6] px-6 py-3 font-medium text-black hover:bg-transparent hover:text-[#a0efe6] focus:outline-none focus:ring active:text-[#a0efe6]"
         href="/download"
       >
         Know more
-      </a>
+      </a> */}
       <div className="container bg-black text-white p-5 md:p-10">
         <div className="p-5">
           <h2 className="font-bold text-2xl my-10 border-b border-white pb-4 w-50 md:w-[30%] mx-auto text-center">

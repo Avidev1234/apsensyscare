@@ -1,5 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
+import Login from "../../Login/Login";
+
 import {
   Accordion,
   AccordionDetails,
@@ -34,7 +36,7 @@ import { toast } from "react-toastify";
 // import { AddWishlist, CreateOrder, CreateSigneture, Placeorder } from "../../Api/Api";
 import { useNavigate } from "react-router-dom";
 import { addToWishlist } from "../../../Store/Slices/getwishlistSlice";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import { CreateOrder } from "../../../Api/Api";
 import { GenerateEmailForGaustOrder } from "./gaustUser";
 
@@ -109,6 +111,7 @@ const SizeButtom = styled(Button)`
 `;
 
 const Cart = (props) => {
+  const isLoggedIn = sessionStorage.getItem("___user");
   const { handelLogin } = props;
   // const productId = useLocation();
   const dispatch = useDispatch();
@@ -118,8 +121,11 @@ const Cart = (props) => {
   const [orderType, setOrderType] = useState("online");
   const [error, setError] = useState(false);
   const [order_address, setOredr_address] = useState(null);
-  const [gaust_address, setgaust_address] = useState((localStorage.getItem("___gaust_user_address")) !== null ? JSON.parse(localStorage.getItem("___gaust_user_address")) : []);
-
+  const [gaust_address, setgaust_address] = useState(
+    localStorage.getItem("___gaust_user_address") !== null
+      ? JSON.parse(localStorage.getItem("___gaust_user_address"))
+      : []
+  );
 
   const cart = useSelector((state) => state.cart);
   // const sizes = useSelector((state) => state.size);
@@ -129,9 +135,10 @@ const Cart = (props) => {
   // this comment will be used when we send user data to database while order
   const userdetails = useSelector((state) => state.users);
   const user = userdetails.users.details;
-  const userName = user !== undefined ? user[0].f_name + " " + user[0].l_name : ""
-  const userPhone = user !== undefined ? user[0].phone_number : ""
-  const userID = user !== undefined ? user[0].userId : ""
+  const userName =
+    user !== undefined ? user[0].f_name + " " + user[0].l_name : "";
+  const userPhone = user !== undefined ? user[0].phone_number : "";
+  const userID = user !== undefined ? user[0].userId : "";
   // const userEmail = user !== undefined ? user[0].email_address : ""
   const handleOpen = (panel) => (event, isExpanded) => {
     // //console.log(panel)
@@ -154,12 +161,11 @@ const Cart = (props) => {
         setExpandedAddress(false);
         setExpandedPay(panel);
         if (order_address === null) {
-          setOredr_address((address[0]));
+          setOredr_address(address[0]);
         }
       } else {
         toast.error("please add Address", { position: "top-center" });
       }
-      
     }
   };
   // console.log(order_address, address);
@@ -180,8 +186,6 @@ const Cart = (props) => {
   };
   // address work start
 
-
-
   const handleRadioChange = (event) => {
     setOrderType(event.target.value);
     setError(false);
@@ -194,27 +198,27 @@ const Cart = (props) => {
   };
   const navigate = useNavigate();
   const handlegaust_address = (props) => {
-    setgaust_address(props)
+    setgaust_address(props);
     ////console.log(gaust_address)
-  }
+  };
   const handelOrder = async (cart) => {
     ////console.log("hello indide handelOrder", localStorage.getItem("___gaust_user_address"))
     console.log(cart);
     if (sessionStorage.getItem("___user") === null) {
-      handelLogin(true)
+      handelLogin(true);
       return;
     }
-   
+
     if (sessionStorage.getItem("___user") !== null) {
-      const amount = cart.cartTotalAmount
+      const amount = cart.cartTotalAmount;
       const OrderItems = {
         TotalAmount: cart.cartTotalAmount,
-        OrderId: 'ASCORDER' + Date.now(),
-        merchantTransactionId: 'ASC' + Date.now() + "TR",
+        OrderId: "ASCORDER" + Date.now(),
+        merchantTransactionId: "ASC" + Date.now() + "TR",
         cartTotalQuantity: cart.cartTotalQuantity,
         userAddress: order_address.id,
-      }
-      let products = []
+      };
+      let products = [];
       cart.cartItems.map((val) => {
         products.push({
           id: val.id,
@@ -222,10 +226,10 @@ const Cart = (props) => {
           name: val.name,
           size: val.itemSize,
           price: val.price,
-          quantity: val.cartQuantity
-        })
-      })
-      OrderItems.products = products
+          quantity: val.cartQuantity,
+        });
+      });
+      OrderItems.products = products;
       const message = products.map((val) => {
         return `<tr>
       <td style="border: 1px solid #ddd;">${val.brand}</td>
@@ -233,27 +237,28 @@ const Cart = (props) => {
       <td style="border: 1px solid #ddd;">${val.size}</td>
       <td style="border: 1px solid #ddd;">${val.price}</td>
       <td style="border: 1px solid #ddd;">${val.quantity}</td>
-    </tr>`
+    </tr>`;
       });
       ////console.log((message.join("")))
-      const message_table = `<table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse;"><tr><th style="background-color:green;border: 1px solid #ddd;">Brand</th><th style="background-color:green;border: 1px solid #ddd;">Name</th><th style="background-color:green;border: 1px solid #ddd;">Size</th><th style="background-color:green;border: 1px solid #ddd;">Price</th><th style="background-color:green;background-color:green;border: 1px solid #ddd;">Quantity</th></tr>${message.join("")}</table>`
+      const message_table = `<table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse;"><tr><th style="background-color:green;border: 1px solid #ddd;">Brand</th><th style="background-color:green;border: 1px solid #ddd;">Name</th><th style="background-color:green;border: 1px solid #ddd;">Size</th><th style="background-color:green;border: 1px solid #ddd;">Price</th><th style="background-color:green;background-color:green;border: 1px solid #ddd;">Quantity</th></tr>${message.join(
+        ""
+      )}</table>`;
 
       // program to generate random strings
       // const result = `ACS${Math.random().toString(36).substring(2, 9).toUpperCase()}${sessionStorage.getItem('___user')}`;
       ////console.log(result);
-      if (orderType === 'case') {
+      if (orderType === "case") {
         ////console.log(products)
         const orderItem = {
-          user_id: '',
-          order_d: '',
+          user_id: "",
+          order_d: "",
           products: products,
           address_id: order_address,
-          payment_method: 'case',
+          payment_method: "case",
           total_order: cart.cartTotalQuantity,
-          order_status: 'ordered',
-          total_amount: message_table
-        }
-
+          order_status: "ordered",
+          total_amount: message_table,
+        };
 
         // emailjs.send('service_f7pqddb', 'template_042k23w', orderItem, 'JxfsKGnGvM2sBgEyn')
         //   .then((result) => {
@@ -266,7 +271,7 @@ const Cart = (props) => {
         // Placeorder(cart).then((res) => {
         //   //console.log(res)
         // })
-      } else if (orderType === 'online') {
+      } else if (orderType === "online") {
         // console.log(userID)
         const data = {
           name: userName,
@@ -274,44 +279,52 @@ const Cart = (props) => {
           order: OrderItems,
           merchantUserId: userID,
           amount: amount,
-        }
+        };
         CreateOrder(data).then((res) => {
           // console.log(res)
           if (res.url !== undefined) {
-            console.log('Entered')
-            window.location = res.url
+            console.log("Entered");
+            window.location = res.url;
           } else {
             console.log("somthing went wrong");
           }
-        })
+        });
       }
     } else if (localStorage.getItem("___gaust_user_address") !== null) {
       // //console.log(cart)
       GenerateEmailForGaustOrder(cart, gaust_address)
         .then((res) => {
-          
-          emailjs.send('service_ku0q4co', 'template_sgadbch', res, 'OW7pYkljP7tzyg0Pz')
-            .then(() => {
-              toast.info("order placed", {
-                position: "bottom-left",
-              });
+          emailjs
+            .send(
+              "service_ku0q4co",
+              "template_sgadbch",
+              res,
+              "OW7pYkljP7tzyg0Pz"
+            )
+            .then(
+              () => {
+                toast.info("order placed", {
+                  position: "bottom-left",
+                });
 
-              dispatch(clearCart())
-              navigate("/thankyou")
-            }, (error) => {
-              // show the user an error
-              ////console.log("message not send")
-            });
+                dispatch(clearCart());
+                navigate("/thankyou");
+              },
+              (error) => {
+                // show the user an error
+                ////console.log("message not send")
+              }
+            );
         })
         .catch((err) => {
-          console.log("somthing went Wrong")
-        })
+          console.log("somthing went Wrong");
+        });
       ////console.log(orderItem)
       // Placeorder(cart).then((res) => {
       //   //console.log(res)
       // })
-    };
-  }
+    }
+  };
   ////console.log(gaust_address)
   useEffect(() => {
     dispatch(getTotals());
@@ -332,20 +345,20 @@ const Cart = (props) => {
 
   // work for model oppening and desplay sizes for products
   const [openmod, setOpen] = React.useState(false);
-  const [productSizes, setproductSizes] = useState({ index: '', Size: [] })
+  const [productSizes, setproductSizes] = useState({ index: "", Size: [] });
   const handleOpendilog = (cartItems, index) => {
-    setproductSizes({ index: index, Size: cartItems.sizes })
-    setOpen(true)
+    setproductSizes({ index: index, Size: cartItems.sizes });
+    setOpen(true);
   };
   const handleClosedilog = () => setOpen(false);
   const changePriceAndSize = (id, currentsize_price) => {
     const product_id_size_price = {
       id: id,
-      size_price: currentsize_price
-    }
-    dispatch(updateCart(product_id_size_price))
-    handleClosedilog()
-  }
+      size_price: currentsize_price,
+    };
+    dispatch(updateCart(product_id_size_price));
+    handleClosedilog();
+  };
   const ModelView = () => {
     return (
       <Modal
@@ -355,55 +368,50 @@ const Cart = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={stylemodal}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-          >
+          <Typography id="modal-modal-title" variant="h6" component="h2">
             Select a Size
           </Typography>
-          <Typography
-            id="modal-modal-description"
-            sx={{ mt: 2 }}
-          >
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {productSizes.Size.map((items, idx) => {
               const currentsize_price = items;
               //console.log(currentsize_price)
               return (
                 <SizeButtom
                   variant="contained"
-                  onClick={() => changePriceAndSize(productSizes.index, currentsize_price)}
+                  onClick={() =>
+                    changePriceAndSize(productSizes.index, currentsize_price)
+                  }
                   style={{
                     backgroundColor: "green",
                     margin: "1rem",
                   }}
                   key={idx.toString()}
                 >
-                  {
-                    items.size < 1000 ? `${items.size} ml` : `${(items.size / 1000)} L`
-                  }
+                  {items.size < 1000
+                    ? `${items.size} ml`
+                    : `${items.size / 1000} L`}
                 </SizeButtom>
               );
             })}
           </Typography>
         </Box>
       </Modal>
-    )
-  }
-  // moving to wishlist 
+    );
+  };
+  // moving to wishlist
   const moveToWishList = (product) => {
     //console.log(product)
     const wishListData = {
       productid: product.id,
-      userId: sessionStorage.getItem('___user')
-    }
-    dispatch(addToWishlist(wishListData))
+      userId: sessionStorage.getItem("___user"),
+    };
+    dispatch(addToWishlist(wishListData));
     dispatch(removeFromCart(product));
     // AddWishlist(wishListData).then((res)=>{
     //   //console.log("res")
     //   dispatch(removeFromCart(product));
     // })
-  }
+  };
   return (
     <Container>
       <Headdingcont>
@@ -411,14 +419,51 @@ const Cart = (props) => {
           variant="h2"
           style={{ fontSize: "18px", padding: "10px", fontWeight: 600 }}
         >
-          Your Cart
+          {/* Your Cart */}
         </Typography>
       </Headdingcont>
       {cart.cartItems.length === 0 ? (
-        <div className='w-full flex flex-col flex-wrap min-h-[90vh] items-center justify-center bg-[#f8f9fd]'>
-          <div className='w-full lg:w-[40%] flex flex-col items-center justify-center gap-10'>
-            <img src='./Image/Poster/empty-cart-page.jpg' alt='' />
-            <button className='px-5 py-1 bg-white border-2 border-[blue]'>Shop now</button>
+        <div className="w-full flex flex-col flex-wrap items-center justify-center">
+          <div className="w-full flex justify-center">
+            {isLoggedIn?(
+              <div>
+                <p className="w-full inline font-normal font-serif items-center text-4xl">
+                  YOUR CART IS EMPTY !!
+                </p>
+              </div>):(
+                null
+              )
+            }
+          </div>
+          <div className="relative">
+            {isLoggedIn ? (
+              <img
+                src={`${process.env.REACT_APP_IMAGE}/all_products/YOUR-CART-IS-EMPTY.png`}
+                alt="Your Cart Is Empty"
+                className="rounded-md shadow-lg"
+              />
+            ) : (
+              <img
+                src={`${process.env.REACT_APP_IMAGE}/all_products/logincart.png`}
+                alt="Login to View Cart"
+                className="rounded-md shadow-lg w-[1211px]"
+              />
+            )}
+            {isLoggedIn ? (
+              <button
+                className="py-2 px-2 md:px-4 bg-[#FF983B] text-white text-[14px] rounded-[3px] text-sm md:text-base whitespace-nowrap hover:text-[#FF983B] hover:bg-white border-[#FF983B] absolute top-[93%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                onClick={() => navigate("/category")}
+              >
+                Shop Now
+              </button>
+            ) : (
+              <button
+                className="py-2 px-2 md:px-4 bg-[#FF983B] text-white text-[14px] rounded-[3px] text-sm md:text-base whitespace-nowrap hover:text-[#FF983B] hover:bg-white border-[#FF983B] absolute top-[93%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                onClick={() => handelLogin(true, 0)}
+              >
+                Login or Sign Up
+              </button>
+            )}
           </div>
         </div>
       ) : (
@@ -497,7 +542,8 @@ const Cart = (props) => {
 
                 {cart.cartItems &&
                   cart.cartItems.map((cartItem, idx) => (
-                    <div key={idx.toString()}
+                    <div
+                      key={idx.toString()}
                       style={{
                         width: "95%",
                         display: "flex",
@@ -530,7 +576,10 @@ const Cart = (props) => {
                         >
                           <img
                             width="auto"
-                            style={{ backgroundColor: "#bfdbfe", borderRadius: '8px' }}
+                            style={{
+                              backgroundColor: "#bfdbfe",
+                              borderRadius: "8px",
+                            }}
                             height={100}
                             alt={cartItem.name}
                             src={`${process.env.REACT_APP_IMAGE}/all_products/${cartItem.product_image}`}
@@ -555,7 +604,9 @@ const Cart = (props) => {
                               remove
                             </p>
                             <p
-                              onClick={() => { moveToWishList(cartItem) }}
+                              onClick={() => {
+                                moveToWishList(cartItem);
+                              }}
                               variant="subtitle2"
                               style={{
                                 fontSize: "12px",
@@ -592,12 +643,24 @@ const Cart = (props) => {
                           <SizeButtom
                             onClick={() => handleOpendilog(cartItem, idx)}
                             variant="contained"
-                            style={{ backgroundColor: "green", width: '100px', display: "flex", justifyContent: 'space-around' }}
+                            style={{
+                              backgroundColor: "green",
+                              width: "100px",
+                              display: "flex",
+                              justifyContent: "space-around",
+                            }}
                           >
-                            {
-                              cartItem.itemSize < 1000 ? `${cartItem.itemSize} ml` : `${(cartItem.itemSize / 1000)} L`
-                            }
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" className="bi bi-caret-down-fill ml-[15px]" viewBox="0 0 16 16">
+                            {cartItem.itemSize < 1000
+                              ? `${cartItem.itemSize} ml`
+                              : `${cartItem.itemSize / 1000} L`}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="10"
+                              height="10"
+                              fill="currentColor"
+                              className="bi bi-caret-down-fill ml-[15px]"
+                              viewBox="0 0 16 16"
+                            >
                               <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                             </svg>
                           </SizeButtom>
@@ -693,11 +756,12 @@ const Cart = (props) => {
                     error={error}
                     variant="standard"
                     onChange={(e) => takeValue(e)}
-                  >{
-                      address !== undefined && sessionStorage.getItem("___user") ?
-                        address.map((items, idx) => {
+                  >
+                    {address !== undefined && sessionStorage.getItem("___user")
+                      ? address.map((items, idx) => {
                           return (
-                            <div key={idx.toString()}
+                            <div
+                              key={idx.toString()}
                               style={{
                                 width: "70%",
                                 height: "65px",
@@ -709,7 +773,7 @@ const Cart = (props) => {
                                 gap: "1rem",
                               }}
                             >
-                              {idx === 0 ?
+                              {idx === 0 ? (
                                 <input
                                   type="radio"
                                   id={`${items.id}`}
@@ -717,7 +781,8 @@ const Cart = (props) => {
                                   value={`${JSON.stringify(items)}`}
                                   className="h-10 radio radio-primary"
                                   checked
-                                /> :
+                                />
+                              ) : (
                                 <input
                                   type="radio"
                                   id={`${items.id}`}
@@ -725,9 +790,13 @@ const Cart = (props) => {
                                   value={`${JSON.stringify(items)}`}
                                   className="h-10 radio radio-primary"
                                 />
-                              }
-                              <label htmlFor={`${items.id}`}
-                                style={{ display: "flex", flexDirection: "column" }}
+                              )}
+                              <label
+                                htmlFor={`${items.id}`}
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
                               >
                                 <div
                                   style={{
@@ -738,7 +807,10 @@ const Cart = (props) => {
                                 >
                                   <Typography
                                     variant="h2"
-                                    style={{ fontSize: "14px", fontWeight: 600 }}
+                                    style={{
+                                      fontSize: "14px",
+                                      fontWeight: 600,
+                                    }}
                                   >
                                     {items.name}
                                   </Typography>
@@ -758,7 +830,12 @@ const Cart = (props) => {
                                     {items.contact}
                                   </Typography>
                                 </div>
-                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                  }}
+                                >
                                   <Typography
                                     variant="h2"
                                     style={{
@@ -767,16 +844,20 @@ const Cart = (props) => {
                                       color: "gray",
                                     }}
                                   >
-                                    {items.house_flat_office} {items.area_landmark} {items.city} {items.state} {items.pincode}
+                                    {items.house_flat_office}{" "}
+                                    {items.area_landmark} {items.city}{" "}
+                                    {items.state} {items.pincode}
                                   </Typography>
                                 </div>
                               </label>
                             </div>
-                          )
+                          );
                         })
-                        : gaust_address !== null ? gaust_address.map((items, idx) => {
+                      : gaust_address !== null
+                      ? gaust_address.map((items, idx) => {
                           return (
-                            <div key={idx.toString()}
+                            <div
+                              key={idx.toString()}
                               style={{
                                 width: "70%",
                                 height: "65px",
@@ -788,7 +869,7 @@ const Cart = (props) => {
                                 gap: "1rem",
                               }}
                             >
-                              {idx === 0 ?
+                              {idx === 0 ? (
                                 <input
                                   type="radio"
                                   id={`${items.id}`}
@@ -796,18 +877,22 @@ const Cart = (props) => {
                                   value={`${JSON.stringify(items)}`}
                                   className="h-10 radio radio-primary"
                                   checked
-                                /> :
+                                />
+                              ) : (
                                 <input
                                   type="radio"
                                   id={`${items.id}`}
                                   name="address"
                                   value={`${JSON.stringify(items)}`}
                                   className="h-10 radio radio-primary"
-
                                 />
-                              }
-                              <label htmlFor={`${items.id}`}
-                                style={{ display: "flex", flexDirection: "column" }}
+                              )}
+                              <label
+                                htmlFor={`${items.id}`}
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
                               >
                                 <div
                                   style={{
@@ -818,7 +903,10 @@ const Cart = (props) => {
                                 >
                                   <Typography
                                     variant="h2"
-                                    style={{ fontSize: "14px", fontWeight: 600 }}
+                                    style={{
+                                      fontSize: "14px",
+                                      fontWeight: 600,
+                                    }}
                                   >
                                     {items.name}
                                   </Typography>
@@ -838,7 +926,12 @@ const Cart = (props) => {
                                     {items.contact}
                                   </Typography>
                                 </div>
-                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                  }}
+                                >
                                   <Typography
                                     variant="h2"
                                     style={{
@@ -847,14 +940,16 @@ const Cart = (props) => {
                                       color: "gray",
                                     }}
                                   >
-                                    {items.house_flat_office} {items.area_landmark} {items.city} {items.state} {items.pincode}
+                                    {items.house_flat_office}{" "}
+                                    {items.area_landmark} {items.city}{" "}
+                                    {items.state} {items.pincode}
                                   </Typography>
                                 </div>
                               </label>
                             </div>
-                          )
-                        }) : null
-                    }
+                          );
+                        })
+                      : null}
                   </FormControl>
                   <div
                     style={{
@@ -863,7 +958,10 @@ const Cart = (props) => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <AddAddressModal handelLogin={handelLogin} handlegaust_address={handlegaust_address} />
+                    <AddAddressModal
+                      handelLogin={handelLogin}
+                      handlegaust_address={handlegaust_address}
+                    />
                     <Button
                       variant="contained"
                       //onClick={() => { handelOrder(cart) }}
@@ -937,7 +1035,6 @@ const Cart = (props) => {
                       onChange={handleRadioChange}
                       style={{ width: "100%" }}
                     >
-
                       <FormControlLabel
                         value="online"
                         control={<Radio />}
@@ -954,10 +1051,16 @@ const Cart = (props) => {
                     sx={{ mt: 1, mr: 1 }}
                     type="buttom"
                     variant="contained"
-                    style={{ width: '200px', backgroundColor: "green", marginTop: "10px" }}
-                    onClick={() => { handelOrder(cart) }}
+                    style={{
+                      width: "200px",
+                      backgroundColor: "green",
+                      marginTop: "10px",
+                    }}
+                    onClick={() => {
+                      handelOrder(cart);
+                    }}
                   >
-                    {orderType === 'case' ? "Place Order" : 'Pay'}
+                    {orderType === "case" ? "Place Order" : "Pay"}
                   </Button>
                 </div>
               </AccordionDetails>
@@ -1028,7 +1131,7 @@ const Cart = (props) => {
                     }}
                   >
                     <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
-                    100
+                    50
                   </span>
                 </Typography>
               </AmountDetailsrow>
@@ -1045,8 +1148,19 @@ const Cart = (props) => {
           </Amountcont>
         </ContainerCart>
       )}
+
       <div style={{ width: "100%" }}>
         <RecentViews />
+        <div className="w-full flex justify-center p-[37px]">
+          {/* <button
+            class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+            onClick={() => navigate(`/category`)}
+          >
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              Shop Now
+            </span>
+          </button> */}
+        </div>
       </div>
     </Container>
   );

@@ -82,7 +82,7 @@ const Footer = () => {
                                 <a href='https://www.instagram.com/apsensyscaresolution/' target='_blank' rel="noreferrer">
                                     <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/insta-white.png`} alt="" />
                                 </a>
-                                <a href='https://www.linkedin.com/company/apsensyscare/' target='_blank' rel="noreferrer">
+                                <a href='https://www.linkedin.com/in/apsensys-care-925186250/' target='_blank' rel="noreferrer">
                                     <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/linkedin-white.png`} alt="" />
                                 </a>
                                 <a href='https://twitter.com/ApsensysCare' target='_blank' rel="noreferrer">

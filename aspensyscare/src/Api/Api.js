@@ -9,8 +9,9 @@ export const CreateOrder = async (amount) => {
         .then((res) => res.data)
 }
 // Avidev
-export const updatePassword = async (id) => {
-    return await axios.post(`${process.env.REACT_APP_APIURL}updatepassword`, id)
+export const UserupdatePassword = async (id) => {
+    return await axios
+    .post(`${process.env.REACT_APP_APIURL}userupdatepassword`, id)
         .then((res) => res.data.CustomerEdit)
 };
 // Avidev
@@ -19,7 +20,7 @@ export const updatePassword = async (id) => {
 //         .post(`${process.env.REACT_APP_APIURL}customeredit`, id)
 //         .then((response) => response.data.CustomerEdit)
 // };
-export const userResetPassword = async (phone) => {
+export const userResetPassword = async (phone) => {//1st step of reset password
     return await axios.post(`${process.env.REACT_APP_APIURL}userresetPassword`,  phone,{cache: {
         methods: ['post']
       }})

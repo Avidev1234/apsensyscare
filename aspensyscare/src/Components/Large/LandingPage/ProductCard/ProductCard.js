@@ -17,7 +17,7 @@ const ProductCard = ({ val, page }) => {
         exsit = true;
     }
 
-    console.log(val);
+    // console.log(val);
     // const products = useSelector((state) => state.productdetails);
     // const sizedetails = useSelector((state) => state.size);
 
@@ -74,7 +74,7 @@ const ProductCard = ({ val, page }) => {
     }
     return (
         <div className="max-w-[860px] shrink cursor-pointer mx-2 rounded-lg flex">
-            <div className="2xl:w-[328px] xl:w-[262px] lg:w-[205px] md:w-[179px] border 2xl:h-[553px]">
+            <div className="2xl:w-[326px] xl:w-[262px] lg:w-[205px] md:w-[179px] border 2xl:h-[553px]">
                 <div className=" relative">
                     <button className="absolute left-0 bg-orange-400 text-white px-4 py-1 text-sm z-10">Best sellers</button>
                     {

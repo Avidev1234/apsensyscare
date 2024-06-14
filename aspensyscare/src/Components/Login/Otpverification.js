@@ -1,7 +1,7 @@
 import React, {  useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { updatePassword } from '../../Api/Api';
+import { UserupdatePassword } from '../../Api/Api';
 // import { updatePassword, customerbyId } from '../../Api/Api';
 const phonenum = JSON.parse(localStorage.getItem('__phone')) ;
 
@@ -13,9 +13,9 @@ function Otpverification() {
     password: '',
     otp: '',
     confirmPassword: '',
-    phone: phonenum
+    phone: JSON.stringify(phonenum)
 };
-
+console.log(initialPasswordState.phone);
 
   // useEffect(() => {
   //   customerbyId({ userid }).then((res) => {
@@ -44,7 +44,7 @@ const updateClick = () => {
         console.error('Password does not meet requirements');
         toast.error('Password does not meet requirements');
     } else {
-        updatePassword(password)
+      UserupdatePassword(password)
             .then(() => {
                 console.log('Password updated successfully');
                 setPassword(initialPasswordState);
