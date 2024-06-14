@@ -27,7 +27,7 @@ export default function ForgotPassword() {
           toast.error(err.response?.data?.message || 'phone number has been not registered ');
   
         }
-        console.log('Error:', err);
+        // console.log('Error:', err);
        
       });
 
