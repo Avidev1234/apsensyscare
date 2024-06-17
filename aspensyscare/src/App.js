@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AllProducts, GetuserWishlist, currentUser, fatchSizes, fetchBanner, fetchCategory, getAddress, offeredBrands, productData } from './Api/Api';
 import Navbar from './Components/Large/layouts/Navbar/Navbar';
 import Footer from './Components/Large/layouts/Footer/Footer';
+// import Wishlist from './Components/Small/WishList/Wishlist';
 // import Sidebar from './Components/Large/layouts/Sidebar/Sidebar';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -133,7 +134,7 @@ function App() {
                   <Route path='/order-failed' element={<React.Suspense fallback={<div class="lorder"></div>}><OrderFailed /></React.Suspense>} />
                   <Route path='/career' element={<React.Suspense fallback={<div class="lorder"></div>}><Jobs /></React.Suspense>} />
                   <Route path='/sitemap' element={<React.Suspense fallback={<div class="lorder"></div>}><Sitemap /></React.Suspense>} />
-                  <Route path='/wishlist' element={<React.Suspense fallback={<div class="lorder"></div>}><Wishlist /></React.Suspense>} />
+                  <Route path='/wishlist' element={<React.Suspense fallback={<div class="lorder"></div>}><Wishlist handelLogin={handelLogin} openLogin={openLogin}/></React.Suspense>} />
                   <Route path='/forgot-password' element={<React.Suspense fallback={<div class="lorder"></div>}><Forgotpassword /></React.Suspense>} />
                   <Route path='/otp-verification' element={<React.Suspense fallback={<div class="lorder"></div>}><Otpverification /></React.Suspense>} />
                   <Route path='/privacy-policy' element={<React.Suspense fallback={<div class="lorder"></div>}><Privecy /></React.Suspense>} />
