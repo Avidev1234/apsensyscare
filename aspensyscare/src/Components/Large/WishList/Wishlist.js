@@ -59,7 +59,7 @@ const ProductByCategory = (props) => {
                
       }
            >
-             Login or Sig Up 
+             Login or Sign Up 
            </button>       
   </div>
             </div>
