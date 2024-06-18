@@ -653,8 +653,8 @@
   justify-content: center; 
 }
 
-/* .product-card {
+.product-card {
   flex: 1 1 45%; 
   max-width: 45%; 
   margin-bottom: 1rem;
-} */
+}
