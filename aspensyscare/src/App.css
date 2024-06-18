@@ -645,3 +645,16 @@
   transform: scale(1.1); 
 }
 
+
+.wishlist-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; 
+  justify-content: center; 
+}
+
+.product-card {
+  flex: 1 1 45%; 
+  max-width: 45%; 
+  margin-bottom: 1rem;
+}
