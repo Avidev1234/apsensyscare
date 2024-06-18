@@ -83,7 +83,7 @@ const ProductCardold = ({ val, page ,checked}) => {
                 onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`, { state: { product: val } })}
             >
                 <div className="w-[35%] md:w-1/3 flex justify-center mt-8 md:m-0">
-                    <div className="bg-blue-200 w-24 md:w-[7rem] h-24 md:h-[7rem] rounded-full relative border-b-[4px] ">
+                    <div className="bg-slate-100 w-24 md:w-[7rem] h-24 md:h-[9rem]  relative ">
                         <img src={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`}
                             className="h-28 md:h-[8rem] w-[8rem] object-contain absolute bottom-[10px]" alt="" />
                     </div>
