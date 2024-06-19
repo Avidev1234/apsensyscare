@@ -94,7 +94,7 @@ const BestCategory = () => {
                     <div class="w-full flex justify-center  bg-slate-100 md:h-60">
                       <div class="w-32 md:w-44 h-32 md:h-44  relative ">
                         <img src={`${process.env.REACT_APP_IMAGE}/all_products/${product[itemIndex].product_image}`}
-                          class="h-32 md:h-[190px] lg:h-[197px]  md:mb-[-59px] w-44 object-contain absolute bottom-[20px]" alt="" />
+                          class="h-32 md:h-[190px] lg:h-[197px]  md:mb-[-59px] w-44 object-contain absolute bottom-[20px]" alt="poster-img" />
                       </div>
                     </div>
                     <div class="text-gray-700 p-5">

@@ -59,7 +59,7 @@ export default function ProductByCategory() {
             </div>
             <div>
                 <div class="w-auto text-center p-[11px]">
-                    <img class="flex mx-auto w-full" src="../src/image/add.png" alt="" />
+                    <img class="flex mx-auto w-full" src="../src/image/add.png" alt="categorypage-img" />
                 </div>
             </div>
             <div className='w-full flex flex-row gap-2 flex-wrap px-2 py-5'>

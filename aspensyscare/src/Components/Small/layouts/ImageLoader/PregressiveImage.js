@@ -16,6 +16,6 @@ export default function PregressiveImage ({ imgSrc, previewSrc,classname}) {
     }, []);
 
     //return <img src={usedSrc} className={classname} style={{ transition: 'filter 0.1s ease-out', ...usedEffectStyle }} alt=""/>;
-     return <LazyLoadImage  className={classname} effect="blur" src={imgSrc}  alt=""/>;
+     return <LazyLoadImage  className={classname} effect="blur" src={imgSrc}  alt="poster-img"/>;
 
 }

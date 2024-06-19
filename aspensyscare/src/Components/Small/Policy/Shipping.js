@@ -20,7 +20,7 @@ const Shipping = () => {
     <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'justify', marginBottom: '20px' }}>
       <div style={{ width: '90%' }}>
         <HBanner>
-          <img style={{ width: '100%', height: '500px', cursor: 'pointer' }} src='./Image/Poster/Shippng-banner01.jpg' alt='' />
+          <img style={{ width: '100%', height: '500px', cursor: 'pointer' }} src='./Image/Poster/Shippng-banner01.jpg' alt='shipping-img' />
         </HBanner>
         <h1 className="text-3xl font-bold text-center py-4" style={{ textAlign: 'center' }}>Shipping Policy</h1>
         <p>

@@ -62,7 +62,7 @@ const ProductBanner = ({ cat }) => {
     return (
         <div className='w-full flex flex-col gap-2 border border-red-100'>
             <div>
-                <img className="w-full h-[330px] md:h-[355px]" src={`${process.env.REACT_APP_URL}Image/Poster/${Img}`} alt="" />
+                <img className="w-full h-[330px] md:h-[355px]" src={`${process.env.REACT_APP_URL}Image/Poster/${Img}`} alt="product-img" />
                 <div className="bg-[#5EABE3] p-3 text-center text-white font-semibold text-2xl "></div>
             </div>
             <div className="w-full  md:h-[355px]">
@@ -80,7 +80,7 @@ const ProductBanner = ({ cat }) => {
                                             <div className="w-full md:w-1/3 flex justify-center mt-8 md:m-0">
                                                 <div className="bg-blue-200 w-28 md:w-[7rem] h-28 md:h-[7rem] rounded-full relative border-b-[4px] ">
                                                     <img src={`${process.env.REACT_APP_URL}Image/all_products/${val.product_image}`}
-                                                        className="h-28 md:h-[7rem] w-[7rem] object-contain absolute bottom-[20px]" alt="" />
+                                                        className="h-28 md:h-[7rem] w-[7rem] object-contain absolute bottom-[20px]" alt="product-img" />
                                                 </div>
                                             </div>
                                             <div className="w-full md:w-2/3 p-2 md:p-3">

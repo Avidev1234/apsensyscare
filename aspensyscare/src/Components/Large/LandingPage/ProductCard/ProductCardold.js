@@ -85,7 +85,7 @@ const ProductCardold = ({ val, page ,checked}) => {
                 <div className="w-[35%] md:w-1/3 flex justify-center mt-8 md:m-0">
                     <div className="bg-slate-100 w-24 md:w-[7rem] h-24 md:h-[9rem]  relative ">
                         <img src={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`}
-                            className="h-28 md:h-[8rem] w-[8rem] object-contain absolute bottom-[10px]" alt="" />
+                            className="h-28 md:h-[8rem] w-[8rem] object-contain absolute bottom-[10px]" alt="productold-img" />
                     </div>
                 </div>
                 <div className="w-[63%] md:w-2/3 p-2 md:p-3">

@@ -42,7 +42,7 @@ const Footer = () => {
             <div className="hidden lg:flex circle-container flex justify-center items-center mt-[105px]">
                 <div className="w-[130px] h-[130px]  rounded-full flex flex-col justify-center items-center text-white mb-[-48px]">
 
-                    <img className='w-[1138px] h-[134px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/Apsensyscare-logo.png`} alt=""
+                    <img className='w-[1138px] h-[134px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/Apsensyscare-logo.png`} alt="apsensyscare-logo"
                         // onClick={refreshPage}
                         // onClick={(e) => { this.refreshPage(); navigate('/'); }}
                         onClick={(e) => { 
@@ -70,23 +70,23 @@ const Footer = () => {
                         </div>
                         <div className='w-[33%] flex-col mt-[18px]'>
                             <div className='w-full flex justify-center  '>
-                                <img className='w-[100%] h-[47px] md:w-[100%] object-contain cursor-pointer ' src={`${process.env.REACT_APP_IMAGE}/icons/apsensycare.png`} alt="" />
+                                <img className='w-[100%] h-[47px] md:w-[100%] object-contain cursor-pointer ' src={`${process.env.REACT_APP_IMAGE}/icons/apsensycare.png`} alt="apsensycare-logo" />
                             </div>
                             <div className='w-full flex flex-row flex-nowrap justify-center gap-[11px] mt-[7px] '>
                                 <a href='https://www.facebook.com/apsensyscare/' target='_blank' rel="noreferrer">
-                                    <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/facebook-white.png`} alt="" />
+                                    <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/facebook-white.png`} alt="facebook-logo" />
                                 </a>
                                 <a href='https://www.youtube.com/@apsensyscare' target='_blank' rel="noreferrer">
-                                    <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/youtube-white.png`} alt="" />
+                                    <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/youtube-white.png`} alt="you-tube-logo" />
                                 </a>
                                 <a href='https://www.instagram.com/apsensyscaresolution/' target='_blank' rel="noreferrer">
-                                    <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/insta-white.png`} alt="" />
+                                    <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/insta-white.png`} alt="insta-logo" />
                                 </a>
                                 <a href='https://www.linkedin.com/in/apsensys-care-925186250/' target='_blank' rel="noreferrer">
-                                    <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/linkedin-white.png`} alt="" />
+                                    <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/linkedin-white.png`} alt="linkedin-logo" />
                                 </a>
                                 <a href='https://twitter.com/ApsensysCare' target='_blank' rel="noreferrer">
-                                    <img className='w-[42px] h-[31px] object-contain cursor-pointer mt-[6px]' src={`${process.env.REACT_APP_IMAGE}/icons/twitter-white.png`} alt="" />
+                                    <img className='w-[42px] h-[31px] object-contain cursor-pointer mt-[6px]' src={`${process.env.REACT_APP_IMAGE}/icons/twitter-white.png`} alt="twitter-logo" />
                                 </a>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ const Footer = () => {
                 <div className='w-full flex justify-center gap-[4% md:gap-6 lg:gap-10]'>
                     <div className="w-full md:w-[25%] deliver flex justify-center items-center gap-5">
                         <div class="image w-[74px] h-[73px] lg:w-[69px] lg:h-[69px] rounded-full border p-[10px] bg-white ">
-                            <img className='w-[171px] h-[51px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/Premium Packaging.png`} alt="" />
+                            <img className='w-[171px] h-[51px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/Premium Packaging.png`} alt="premium-icons" />
                         </div>
                         <div className="desc">
                             <h5 class="py-4 text-white lg:text-[13px] text-[16px]  lg:font-bold">Premium Packaging</h5>
@@ -119,7 +119,7 @@ const Footer = () => {
                     </div>
                     <div className="w-full md:w-[25%] deliver flex justify-center items-center gap-5">
                         <div class="image w-[92px] h-[67px]  xl:w-[69px] xl:h-[67px] rounded-full border p-[7px] bg-white">
-                            <img className='w-[171px] h-[51px] mt-[4px] object-contain cursor-pointer lg:w-[163px] lg:h-[44px] rounded-full xl:mt-[5px]' src={`${process.env.REACT_APP_IMAGE}/icons/authenticity.png`} alt="" />
+                            <img className='w-[171px] h-[51px] mt-[4px] object-contain cursor-pointer lg:w-[163px] lg:h-[44px] rounded-full xl:mt-[5px]' src={`${process.env.REACT_APP_IMAGE}/icons/authenticity.png`} alt="authentic-icons" />
                         </div>
                         <div class="desc">
                             <h5 class="py-4 text-white text-[16px] lg:text-[13px] lg:font-bold">Genuine Products</h5>
@@ -131,7 +131,7 @@ const Footer = () => {
 
                     <div className="w-full md:w-[25%] authentic flex justify-center items-center gap-5">
                         <div class="image w-[74px] h-[73px] rounded-full border p-[5px] bg-white lg:w-[69px] lg:h-[67px]">
-                            <img className='w-[171px] h-[51px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/brands.png`} alt="" />
+                            <img className='w-[171px] h-[51px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/brands.png`} alt="brands-icons" />
                         </div>
                         <div class="desc">
                             <h5 class="py-4 text-white text-[16px] lg:text-[13px]   lg:font-bold">Made to Fit</h5>
@@ -142,7 +142,7 @@ const Footer = () => {
                     </div>
                     <div className="w-full md:w-[25%] brand flex justify-center items-center gap-5">
                         <div class="image w-[74px] h-[73px] rounded-full border p-[10px] bg-white lg:w-[69px] lg:h-[67px]">
-                            <img className='w-[171px] h-[51px]  object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/fast-delivery.png`} alt="" />
+                            <img className='w-[171px] h-[51px]  object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/fast-delivery.png`} alt="delivery-icons" />
                         </div>
                         <div class="desc">
                             <h5 class="py-4 text-white text-[16px] lg:text-[12px] lg:font-bold">Expedited Shipping</h5>

@@ -8,7 +8,7 @@ const Advertise = () => {
   }
   return (
     <div className='w-full cursor-pointer' onClick={handelNavigation}>
-        <img className='w-full h-full object-contain' src='https://apsensyscare.com/assets/Poster/ACS-Banner.webp' alt=''/>
+        <img className='w-full h-full object-contain' src='https://apsensyscare.com/assets/Poster/ACS-Banner.webp' alt='first-banner'/>
     </div>
   )
 }

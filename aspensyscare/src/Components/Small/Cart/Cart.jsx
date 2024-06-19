@@ -409,7 +409,7 @@ const Cart = (props) => {
       {cart.cartItems.length === 0 ? (
         <div className='w-full flex flex-col flex-wrap min-h-[90vh] items-center justify-center bg-[#f8f9fd]'>
           <div className='w-full lg:w-[40%] flex flex-col items-center justify-center gap-10'>
-            <img src='./Image/Poster/empty-cart-page.jpg' alt='' />
+            <img src='./Image/Poster/empty-cart-page.jpg' alt='cart-img' />
             <button className='px-5 py-1 bg-white border-2 border-[blue]'>Shop now</button>
           </div>
         </div>

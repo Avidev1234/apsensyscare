@@ -32,7 +32,7 @@ const Smallfooter = () => {
     }
     return (
         <footer class="w-full  flex bg-[#0112FE] border-slate-900 p-1 bottom-0 fixed">
-            <img src="/image/Rectangle .png" alt="" />
+            <img src="/image/Rectangle .png" alt="img" />
             <div class="w-[1500px] h-18 flex flex-row">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
                     <path d="M18.6456 8.0917L10.4535 1.16601C10.3267 1.05882 10.166 1 10 1C9.83396 1 9.67329 1.05882 9.54649 1.16601L1.35439 8.0917C1.12964 8.2817 1 8.56106 1 8.85537V20C1 20.5523 1.44772 21 2 21H18C18.5523 21 19 20.5523 19 20V8.85537C19 8.56106 18.8704 8.2817 18.6456 8.0917Z" stroke="white" stroke-width="2" />

@@ -116,7 +116,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
       >
         {data1.map((item, idx) => (
           <div style={{ width: "100%", height: "10%", margin: "20px" }} key={idx}>
-            <img src={`${process.env.REACT_APP_URL}Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer', margin: 'auto', padding: '10px', minHeight: '65px' }} />
+            <img src={`${process.env.REACT_APP_URL}Image/all_products/carousel-100-100/${item}`} alt="" style={{ width: "100", height: "10vh", cursor: 'pointer', margin: 'auto', padding: '10px', minHeight: '65px' }}  />
           </div>
         ))}
       </Slider>
