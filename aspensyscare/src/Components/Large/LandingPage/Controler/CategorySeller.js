@@ -88,7 +88,7 @@ const CategorySeller = () => {
                   >
                     {/* <img className="w-full h-[280px] rounded-[10px]" src={`${process.env.REACT_APP_URL}Image/top-sellers/${item.topsellers}`} alt="" /> */}
 
-                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/top-sellers/${item.topsellers}`} previewSrc={`${process.env.REACT_APP_IMAGE}Image/top-sellers/${item.topsellers}`} className={"w-full  rounded-[10px]"} />
+                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/top-sellers/${item.topsellers}`} previewSrc={`${process.env.REACT_APP_IMAGE}Image/top-sellers/${item.topsellers}`} className={"w-full  rounded-[10px]"} Alt={`${item.topsellers}`}/>
                     <div className="absolute bottom-0 flex justify-between w-full bg-gradient-to-b from-[#0000] to-[#000] rounded-[10px] items-end py-4 px-2">
                       <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> {item.category_des}</p>
                       {/* <p className="w-[80%] text-white text-[14px] md:text-base"><span className="font-bold">{item.category_name}-</span> Hand Sanitizer

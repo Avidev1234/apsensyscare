@@ -82,15 +82,16 @@ const Banner = ({ position, Header }) => {
       >
         {
           banner !== undefined ? (
-            bannerImage.map((item, idx) => {
-              //console.log(item['anchor_link'])
+            bannerImage.map((item, idx) => { 
+              console.log(item)
+
               return (
                 <div className='rounded-[10px] cursor-pointer' key={idx} onClick={() => navigate({
                   pathname: `/product/type`,
                   search: `?category_type=${bannerURL[idx].toLowerCase().trim().replace(" ","-",2)}`
                 })}>
                   {/* <img className='w-full h-full rounded-[10px] object-contain' src={`${process.env.REACT_APP_IMAGE}/Poster/${item}`} alt='' /> */}
-                  <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item}`} classname={'w-full h-full rounded-[10px] object-contain'}  />
+                  <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item}`} classname={'w-full h-full rounded-[10px] object-contain'} Alt={`${item}`}  />
                 </div>
               )
             })
