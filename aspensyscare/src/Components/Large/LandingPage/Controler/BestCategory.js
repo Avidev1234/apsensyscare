@@ -88,13 +88,13 @@ const BestCategory = () => {
                 return (
                   <div class="border rounded-lg" key={idx}>
                     {/* <img class="rounded-t-lg w-full h-[330px]" src={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_product}`} alt="" /> */}
-                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_product}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_product}`} classname={"rounded-t-lg w-full "} />
+                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_product}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_product}`} classname={"rounded-t-lg w-full "} Alt={`${item.top_product}`} />
                     <div class="bg-[#CEEDFF] p-4 text-xl text-center font-semibold text-gray-700">{item.category_name}</div>
                     <button class="top-0 left-0 bg-orange-400 text-white py-1 px-3 text-lg rounded-br-lg">Bestsellers</button>
                     <div class="w-full flex justify-center  bg-slate-100 md:h-60">
                       <div class="w-32 md:w-44 h-32 md:h-44  relative ">
                         <img src={`${process.env.REACT_APP_IMAGE}/all_products/${product[itemIndex].product_image}`}
-                          class="h-32 md:h-[190px] lg:h-[197px]  md:mb-[-59px] w-44 object-contain absolute bottom-[20px]" alt="poster-img" />
+                          class="h-32 md:h-[190px] lg:h-[197px]  md:mb-[-59px] w-44 object-contain absolute bottom-[20px]" Alt={`${item.top_product}`}/>
                       </div>
                     </div>
                     <div class="text-gray-700 p-5">
