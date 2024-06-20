@@ -46,10 +46,10 @@ const BrandsOffer = ({ title }) => {
                                 }}>
                                     {title === "Top Brands" ? (
                                     // <img class="w-full h-[235px] rounded-t-lg" src={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_brand}`} alt="" />
-                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_brand}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_brand}`} classname={"w-full  rounded-t-lg"}  />
+                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_brand}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.top_brand}`} classname={"w-full  rounded-t-lg"} Alt={`${item.top_brand}`}  />
                                     ) :
                                     // <img class="w-full h-[235px] rounded-t-lg" src={`${process.env.REACT_APP_IMAGE}/Poster/${item.featured_brand}`} alt="" />
-                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.featured_brand}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.featured_brand}`} classname={"w-full rounded-t-lg"}  />
+                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.featured_brand}`} previewSrc={`${process.env.REACT_APP_IMAGE}/Poster/${item.featured_brand}`} classname={"w-full rounded-t-lg"}  Alt={`${item.featured_brand}`}  />
                                     }
                                     <div class="p-3 md:p-5 text-lg md:text-2xl text-center text-gray-600 font-semibold">Upto <span class="text-green-600">30% Off</span> on Entire Range</div>
                                 </div>

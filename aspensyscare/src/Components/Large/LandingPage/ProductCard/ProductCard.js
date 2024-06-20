@@ -92,7 +92,7 @@ const ProductCard = ({ val, page }) => {
                     onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`)}>
 
                     <div className='md:mx-auto'>
-                        <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`} previewSrc={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`} classname={"w-[113px] h-[278px] mx-auto pt-[30px] pb-[10px]  mt-[25px] "} />
+                        <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image}`} previewSrc={`${process.env.REACT_APP_IMAGE}/all_products/${val.product_image} ` }  classname={"w-[113px] h-[278px] mx-auto pt-[30px] pb-[10px]  mt-[25px]"} Alt={`${val.product_image}`}  />
                     </div>
 
                 </div>

@@ -38,7 +38,7 @@ const BrandOfDay = () => {
                                     search: `?categoryId=${item.id}`
                                   })}>
                                     {/* <img class="w-full h-[315px]" src={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} alt="" /> */}
-                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} previewSrc={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} classname={"w-full "}  />
+                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} previewSrc={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} classname={"w-full "} Alt={`${item.category_url}`} />
                                     <div class="p-3 md:p-5 text-lg md:text-2xl text-center text-gray-600 font-semibold">Upto <span class="text-green-600">30% Off</span> on Entire Range</div>
                                 </div>
                             )

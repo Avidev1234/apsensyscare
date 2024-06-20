@@ -80,7 +80,7 @@ const CategoryInFocus = () => {
                   <div class="w-full flex justify-center mt-[7rem] md:mt-[15rem]">
                     <div class="w-32 md:w-44 h-12 md:h-12 rounded-[100%] relative">
                       <img src={`${process.env.REACT_APP_IMAGE}/all_products/${item.product_image}`}
-                        class="h-32 md:h-[8rem] lg:h-48 w-44 object-contain absolute bottom-[20px]" alt="" />
+                        class="h-32 md:h-[8rem] lg:h-48 w-44 object-contain absolute bottom-[20px]" Alt={`${item.product_image}`} />
                     </div>
                   </div>
                   <div class="text-xl md:text-2xl font-semibold mt-5">{item.short_name}</div>
