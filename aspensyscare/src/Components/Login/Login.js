@@ -186,6 +186,7 @@ const ForgotPassword = ({ openResetPassword }) => {
                 variant="outlined"
                 fullWidth
                 name="phone"
+                
                 error={errors.phone && touched.phone}
                 helperText={errors.phone && touched.phone && errors.phone}
                 color="success"
