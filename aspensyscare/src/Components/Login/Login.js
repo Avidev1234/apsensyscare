@@ -7,7 +7,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
 import { toast } from 'react-toastify';
-import "./Login.css";
+// import "./Login.css";
 const LoginCont = styled('div')`
   width: 100%;
   height: 100%;
