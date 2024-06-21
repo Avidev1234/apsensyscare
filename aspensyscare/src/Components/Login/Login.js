@@ -7,7 +7,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
 import { toast } from 'react-toastify';
-
+import "./Login.css";
 const LoginCont = styled('div')`
   width: 100%;
   height: 100%;
@@ -138,6 +138,8 @@ const Signup = ({ openSignup }) => {
 };
 
 const ForgotPassword = ({ openResetPassword }) => {
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
   const ForgotPasswordSchema = Yup.object().shape({
     phone: Yup.string()
       .matches(/^[6-9]\d{9}$/, {
@@ -163,43 +165,54 @@ const ForgotPassword = ({ openResetPassword }) => {
         toast.error(err.response?.data?.message || 'Phone number has not been registered');
       }
     }
+    // setPopupMessage('OTP has been sent to your phone number');
+    setPopupVisible(true);
   };
 
-  return (
-    <Formik
-      initialValues={{ phone: "" }}
-      validationSchema={ForgotPasswordSchema}
-      onSubmit={(values) => {
-        handleSubmit(values);
-      }}
-    >
-      {({ errors, touched }) => (
-        <Form className="max-w-[97%] md:max-w-4xl mx-auto flex flex-col p-2">
-          <div className="mx-auto flex justify-center flex-col">
-            <h2 className="font-semibold text-2xl mb-8">Forgot Password</h2>
-            <div className='mb-5'>
-              <Field
-                as={TextField}
-                label="Enter Registered phone number"
-                id="outlined-basic-phone"
-                maxRows={1}
-                variant="outlined"
-                fullWidth
-                name="phone"
-                error={errors.phone && touched.phone}
-                helperText={errors.phone && touched.phone && errors.phone}
-                color="success"
-                
-              />
+ return (
+    <>
+      <Formik
+        initialValues={{ phone: "" }}
+        validationSchema={ForgotPasswordSchema}
+        onSubmit={(values) => {
+          handleSubmit(values);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form className="max-w-[97%] md:max-w-4xl mx-auto flex flex-col p-2">
+            <div className="mx-auto flex justify-center flex-col">
+              <h2 className="font-semibold text-2xl mb-8">Forgot Password</h2>
+              <div className='mb-5'>
+                <Field
+                  as={TextField}
+                  label="Enter Registered phone number"
+                  id="outlined-basic-phone"
+                  maxRows={1}
+                  variant="outlined"
+                  fullWidth
+                  name="phone"
+                  error={errors.phone && touched.phone}
+                  helperText={errors.phone && touched.phone && errors.phone}
+                  color="success"
+                />
+              </div>
+              <button type='submit' className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Send OTP</button>
             </div>
-            <button type='submit' className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Send OTP</button>
+          </Form>
+        )}
+      </Formik>
+
+      {popupVisible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className=" box-popup bg-white p-4 rounded-md shadow-lg">
+            <p className='w-[10%] flex justify-center items-center popup-msg'>{popupMessage}</p>
+            <button onClick={() => setPopupVisible(false)} className="mt-4 border-2 border-[#0112FE] float-right px-4 py-2 bg-[#0112FE] text-white font-bold rounded-md hover:bg-white hover:text-[#0112FE]">Close</button>
           </div>
-        </Form>
+        </div>
       )}
-    </Formik>
+    </>
   );
 };
-
 const ResetPassword = ({ openResetPassword }) => {
   const ResetPasswordSchema = Yup.object().shape({
     otp: Yup.string()
