@@ -127,3 +127,12 @@
 .GoogleSignup p{
     margin: 4px;
 }
+
+/* For forget password pop-up */
+.box-popup{
+    width: 25%;
+}
+
+.popup-msg{
+    color: red;
+}

@@ -7,7 +7,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
 import { toast } from 'react-toastify';
-
+import "./Login.css";
 const LoginCont = styled('div')`
   width: 100%;
   height: 100%;
@@ -138,6 +138,8 @@ const Signup = ({ openSignup }) => {
 };
 
 const ForgotPassword = ({ openResetPassword }) => {
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
   const ForgotPasswordSchema = Yup.object().shape({
     phone: Yup.string()
       .matches(/^[6-9]\d{9}$/, {
@@ -163,6 +165,8 @@ const ForgotPassword = ({ openResetPassword }) => {
         toast.error(err.response?.data?.message || 'Phone number has not been registered');
       }
     }
+    // setPopupMessage('OTP has been sent to your phone number');
+    setPopupVisible(true);
   };
 
   return (
@@ -193,14 +197,21 @@ const ForgotPassword = ({ openResetPassword }) => {
                 
               />
             </div>
-            <button type='submit' className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]">Send OTP</button>
+          </Form>
+        )}
+      </Formik>
+
+      {popupVisible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className=" box-popup bg-white p-4 rounded-md shadow-lg">
+            <p className='w-[10%] flex justify-center items-center popup-msg'>{popupMessage}</p>
+            <button onClick={() => setPopupVisible(false)} className="mt-4 border-2 border-[#0112FE] float-right px-4 py-2 bg-[#0112FE] text-white font-bold rounded-md hover:bg-white hover:text-[#0112FE]">Close</button>
           </div>
-        </Form>
+        </div>
       )}
-    </Formik>
+    </>
   );
 };
-
 const ResetPassword = ({ openResetPassword }) => {
   const ResetPasswordSchema = Yup.object().shape({
     otp: Yup.string()
