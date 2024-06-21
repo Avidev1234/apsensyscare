@@ -15,7 +15,7 @@ function Otpverification() {
     confirmPassword: '',
     phone: JSON.stringify(phonenum)
 };
-console.log(initialPasswordState.phone);
+// console.log(initialPasswordState.phone);
 
   // useEffect(() => {
   //   customerbyId({ userid }).then((res) => {
