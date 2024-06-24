@@ -13,16 +13,10 @@ import {
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
-<<<<<<< HEAD
 import { toast } from "react-toastify";
 import "./Login.css";
 
 const LoginCont = styled("div")`
-=======
-import { toast } from 'react-toastify';
-// import "./Login.css";
-const LoginCont = styled('div')`
->>>>>>> f21de26dec7ab686eb02c5c7cec4ec2afcae0ad1
   width: 100%;
   height: 100%;
   position: fixed;
