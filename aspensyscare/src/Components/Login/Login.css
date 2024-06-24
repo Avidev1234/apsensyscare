@@ -134,5 +134,5 @@
 }
 
 .popup-msg{
-    color: red;
+    color: red !important;
 }
