@@ -290,6 +290,7 @@ const ResetPassword = ({ openResetPassword }) => {
   };
 
   const [password, setPassword] = useState(initialPasswordState);
+  const [passworderror, setPassworderror] = useState(null);
 
   const validatePassword = (password) => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
@@ -319,7 +320,97 @@ const ResetPassword = ({ openResetPassword }) => {
         console.error("Error updating password:", error);
         toast.error("Error updating password");
       }
-    }
+    };
+  
+    return (
+      <Formik
+        initialValues={password}
+        validationSchema={ResetPasswordSchema}
+        onSubmit={(values) => {
+          handleResetPassword(values);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form className="max-w-[97%] md:max-w-4xl mx-auto flex flex-col p-2">
+            <div className="mx-auto flex justify-center flex-col">
+              <h2 className="font-semibold text-2xl mb-8">Reset Password</h2>
+              {passworderror && (
+                <h6 className="font-semibold text-xl mb-5 text-[red]">
+                  {passworderror}
+                </h6>
+              )}
+              <div className="mb-5">
+                <Field
+                  as={TextField}
+                  label="OTP"
+                  id="outlined-basic-otp"
+                  maxRows={1}
+                  variant="outlined"
+                  fullWidth
+                  name="otp"
+                  value={password.otp}
+                  onChange={handleChange}
+                  error={errors.otp && touched.otp}
+                  helperText={errors.otp && touched.otp && errors.otp}
+                  color="success"
+                />
+              </div>
+              <div className="mb-5">
+                <Field
+                //   type="password"
+                  name="password"
+                  placeholder="Enter New Password"
+                  required
+                  as={TextField}
+                  label="New Password"
+                  id="outlined-basic-new-password"
+                  maxRows={1}
+                  variant="outlined"
+                  fullWidth
+                  value={password.password}
+                  onChange={handleChange}
+                  error={errors.password && touched.password}
+                  helperText={
+                    errors.password && touched.password && errors.password
+                  }
+                  color="success"
+                />
+              </div>
+              <div className="mb-5">
+                <Field
+                //   type="password"
+                  name="confirmPassword"
+                  placeholder="Enter Confirm Password"
+                  required
+                  as={TextField}
+                  label="Confirm Password"
+                  id="outlined-basic-confirm-password"
+                  maxRows={1}
+                  variant="outlined"
+                  fullWidth
+                  value={password.confirmPassword}
+                  onChange={handleChange}
+                  error={errors.confirmPassword && touched.confirmPassword}
+                  helperText={
+                    errors.confirmPassword &&
+                    touched.confirmPassword &&
+                    errors.confirmPassword
+                  }
+                  color="success"
+                />
+              </div>
+              <button
+                type="submit"
+                onClick={handleResetPassword}
+                className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]"
+              >
+                Reset Password
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    );
   };
 
   return (
@@ -407,7 +498,6 @@ const ResetPassword = ({ openResetPassword }) => {
     </Formik>
   );
 };
-
 const Login = ({ handelLogin }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
