@@ -86,17 +86,15 @@ const Footer = () => {
                                     <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/linkedin-white.png`} alt="linkedin-logo" />
                                 </a>
                                 <a href='https://twitter.com/ApsensysCare' target='_blank' rel="noreferrer">
-                                    <img className='w-[42px] h-[31px] object-contain cursor-pointer mt-[6px]' src={`${process.env.REACT_APP_IMAGE}/icons/twitter-white.png`} alt="twitter-logo" />
+                                    <img className='w-[41px] h-[30px] object-contain cursor-pointer mt-[6px]' src={`${process.env.REACT_APP_IMAGE}/icons/twitter-white.png`} alt="twitter-logo" />
                                 </a>
                             </div>
                         </div>
                         {/* <p className='text-white'>Apsensys care</p> */}
                         <div className='w-[30%] mt-[-18px]'>
-                            <h2 class="text-lg font-semibold">FOR ANY HELP, YOU MAY CALL US AT <span className='hover:text-[#080808] cursor-pointer'>+91 7996997979</span></h2><br />
-                            <h2>
-                                (Monday to Saturday, 9AM to 9PM and Sunday, 10AM to 7PM)
-
-                            </h2>
+                            <h4 className="text-lg font-semibold">FOR ANY HELP, YOU MAY CALL US AT <span className='hover:text-[#080808] cursor-pointer'> <br/> +91 7996997979</span></h4><br />
+                            
+                                <h4 className=" w-[124%] text-base font-semibold">(Monday to Saturday, 9AM to 9PM and Sunday, 10AM to 7PM)</h4>
 
                         </div>
                     </div>
