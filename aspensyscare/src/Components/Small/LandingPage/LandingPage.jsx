@@ -29,8 +29,8 @@ const LandingPage = () => {
   return (
     <div className='w-full 2xl:w-[1440px] bg-[#fff] mt-[15px]'>
       <Helmet>
-        <title>Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys care</title>
-        <meta name="description" content="Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys Care" />
+        {/* <title>Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys care</title>
+        <meta name="description" content="Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys Care" /> */}
       </Helmet>
       <Outlet />
     </div>

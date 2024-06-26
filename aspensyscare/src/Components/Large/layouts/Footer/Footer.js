@@ -42,7 +42,7 @@ const Footer = () => {
             <div className="hidden lg:flex circle-container flex justify-center items-center mt-[105px]">
                 <div className="w-[130px] h-[130px]  rounded-full flex flex-col justify-center items-center text-white mb-[-48px]">
 
-                    <img className='w-[1138px] h-[134px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/Apsensyscare-logo.png`} alt="apsensyscare-logo"
+                    <img className='w-[1138px] h-[134px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/Apsensyscare-logo.png`} alt="apsensyscare"
                         // onClick={refreshPage}
                         // onClick={(e) => { this.refreshPage(); navigate('/'); }}
                         onClick={(e) => { 
@@ -158,7 +158,7 @@ const Footer = () => {
                 <div className='w-full flex flex-wrap justify-center flex-col lg:flex-row p-5 bg-[#5EABE3] lg:gap-[69px]'>
                     <div className='w-full lg:w-[30%] flex flex-nowrap flex-col xl:p-[25px] 2xl:p-[25px] gap-[13px] '>
                         <div className='w-[40%]'>
-                            <img className='cursor-pointer' src={`${process.env.REACT_APP_URL}apsensyscare-white.png`} alt='apsensyscare logo' onClick={() => Redirect('home')} />
+                            <img className='cursor-pointer' src={`${process.env.REACT_APP_URL}apsensyscare-white.png`} alt='apsensyscare' onClick={() => Redirect('home')} />
                         </div>
                         <div className='w-full lg:w-[70%] text-start py-5'>
                             <p className='text-white text-[15px]'>
