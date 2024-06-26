@@ -97,7 +97,7 @@ const ProductCard = ({ val, page }) => {
 
                 </div>
                 <div className="text-gray-700 p-2 h-auto" onClick={() => navigate(`/product/${val.category_id}/${val.id}/${val.product_url}`)}>
-                    <h1 className="mt-1 font-bold w-[273px] text-start text-[20px] ">{val.brand_name}</h1>
+                    <h3 className="mt-1 font-bold w-[273px] text-start text-[20px] ">{val.brand_name}</h3>
                     <p className='font-family:Calibri md:h-[115px] md:text-[13px] lg:h-[64px] xl:h-[67px] 2xl:h-[90px] 2xl:text-[18px] lg:text-[12px]  '> <span className='text-[#000000] '>{val.name.length>=0 && val.name.length<=21  ?  val.name.substr(0, 80)+ '...' :  val.name.substr(0, 87)+ '...'}</span></p>
                     {/* <p className='font-family:Calibri md:h-[115px] md:text-[13px] lg:h-[93px] 2xl:text-[18px] lg:text-[12px] '> <span className='text-[#000000] '>{val.name.substr(0, 100)+ '...'}</span></p> */}
                     <span className="bg-slate-100 text-green-600 p-2 md:text-[12px] lg:text-[15px] xl:text-[15px] 2xl:text-[19px]">{val.flavour}</span>
