@@ -79,7 +79,7 @@ const ProductByCategory = (props) => {
             <div className="relative">
               <img
                 src={`${process.env.REACT_APP_IMAGE}/all_products/wishlist.png`}
-                alt=""
+                alt="wishlist-image"
                 className="w-[1211px] rounded-md shadow-lg"
               />
               <button
