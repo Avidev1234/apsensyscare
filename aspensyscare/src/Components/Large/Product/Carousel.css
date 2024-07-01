@@ -1,0 +1,20 @@
+/* Default style for all images in the smaller slider */
+.Gap .slick-slide img {
+  border: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+/* Apply blue border to the current (selected) image in the smaller slider */
+.Gap .slick-slide.slick-current img {
+  border-color: rgb(197, 197, 197);
+}
+
+/* Additional style for the main carousel images */
+/* .Makecenter .slick-slide img {
+  transition: border-color 0.8s ease;
+} */
+
+/* Remove border for the current (selected) image in the main carousel */
+/* .Makecenter .slick-slide.slick-current img {
+  border-color: transparent;
+} */
