@@ -61,7 +61,7 @@ const BestCategory = () => {
   const { category } = Category.category;
   return (
     <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4">
-      {!Category.loading && category !== undefined ? (<div className='w-full  font-bold '>
+      {!Category.loading && category !== undefined ? (<div className='w-full  font-bold pl-[8px]'>
         <h2 className='text-bold text-[24px] leading-[40px]'>Top Sellers by Category</h2>
       </div>) : <Skeleton count={2} />}
 

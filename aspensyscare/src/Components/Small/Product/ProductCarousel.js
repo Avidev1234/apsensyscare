@@ -89,7 +89,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
                 },
                 enlargedImagePortalId: 'portal',
                 enlargedImageContainerDimensions: {
-                  width: idx < 2 ? `300%` : '120%',
+                  width: idx < 2 ? `200%` : '119%',
                   height: '100%',
                 },
 

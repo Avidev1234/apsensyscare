@@ -13,7 +13,7 @@ const BrandOfDay = () => {
     const skeletonarray = [1, 2, 3, 4]
     return (
         <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4">
-            {!Category.loading && category !== undefined ? (<div className='w-full  font-bold  my-[30px]'>
+            {!Category.loading && category !== undefined ? (<div className='w-full  font-bold pl-[8px]'>
                 <h2 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Category Of The Day</h2>
             </div>) : <Skeleton count={2} />}
 
@@ -38,7 +38,7 @@ const BrandOfDay = () => {
                                     search: `?categoryId=${item.id}`
                                   })}>
                                     {/* <img class="w-full h-[315px]" src={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} alt="" /> */}
-                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} previewSrc={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} classname={"w-full "} Alt={`${item.category_url}`} />
+                                    <PregressiveImage imgSrc={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} previewSrc={`${process.env.REACT_APP_IMAGE}/category/${item.category_img}`} classname={"w-full rounded-t-lg"} Alt={`${item.category_url}`} />
                                     <div class="p-3 md:p-5 text-lg md:text-2xl text-center text-gray-600 font-semibold">Upto <span class="text-green-600">30% Off</span> on Entire Range</div>
                                 </div>
                             )

@@ -102,8 +102,7 @@ const ProductCarousel = ({ imagemagnify, id }) => {
                 enlargedImageContainerDimensions: {
                   width: idx < 2 ? `260%` : '119%',
                   height: '100%',
-                }, 
-
+                },
                 shouldUsePositiveSpaceLens: true
               }}
               />

@@ -66,7 +66,7 @@ const BestSeller = ({ title, count }) => {
   return (
     <>
       <div className="w-full mt-[1rem] flex flex-nowrap flex-col gap-4">
-        {title !== undefined ? <div className='w-full  font-bold my-[30px]'>
+        {title !== undefined ? <div className='w-full  font-bold pl-[8px]'>
           {!Products.loading && product !== undefined ? (<h2 className='text-bold text-[18px] md:text-[24px] leading-[40px] item-center'>{title}</h2>) : <Skeleton count={2} />}
 
         </div> : null}

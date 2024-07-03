@@ -12,8 +12,8 @@ const BrandsOffer = ({ title }) => {
     const Brand = useSelector((state) => state.Brand);
     const { brands } = Brand.brands;
     return (
-        <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4  rounded-lg">
-            {!Brand.loading && brands !== undefined ? (<div className='w-full  font-bold  my-[30px]'>
+        <div className="w-full mt-[2rem] mb-[30px] flex flex-nowrap flex-col gap-4  rounded-lg">
+            {!Brand.loading && brands !== undefined ? (<div className='w-full  font-bold pl-[8px]'>
                 <h2 className='text-bold text-2xl md:text-[24px] leading-[40px]'>{title}</h2>
             </div>) : <Skeleton count={2} />}
             

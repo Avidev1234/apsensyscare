@@ -10,11 +10,11 @@ const CategoryInFocus = () => {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 600,
     slidesToShow: 6.1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     swipeToSlide: true,
     arrows: false,
     className: "center gapgiven",
@@ -52,7 +52,7 @@ const CategoryInFocus = () => {
   const navigate = useNavigate();
   return (
     <div className="w-full mt-[1rem] mb-[30px] flex flex-nowrap flex-col gap-4">
-      {!Products.loading && product !== undefined ? ( <div className='w-full my-[30px]  font-bold '>
+      {!Products.loading && product !== undefined ? ( <div className='w-full  font-bold pl-[8px] '>
         <h2 className='text-bold text-2xl md:text-[24px] leading-[40px]'>Category In Focus</h2>
       </div>) : <Skeleton count={2} />}
      
