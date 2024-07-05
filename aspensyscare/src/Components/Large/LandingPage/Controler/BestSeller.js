@@ -14,7 +14,7 @@ const BestSeller = ({ title, count }) => {
     slidesToShow: 4,
     slidesToScroll: 3,
     autoplay: false,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     swipeToSlide: true,
     arrows: false,
     className: "center gapgiven",

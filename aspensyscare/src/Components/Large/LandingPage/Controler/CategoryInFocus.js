@@ -9,7 +9,7 @@ const CategoryInFocus = () => {
   const skeletonarray = [1, 2, 3, 4, 5, 6]
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 600,
     slidesToShow: 6.1,
     slidesToScroll: 1,
