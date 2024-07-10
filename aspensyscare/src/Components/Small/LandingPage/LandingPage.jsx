@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 import { fetchBanner } from '../../../Api/Api';
 
 // const LandingBox = styled(Box)`
@@ -28,10 +28,10 @@ const LandingPage = () => {
   
   return (
     <div className='w-full 2xl:w-[1440px] bg-[#fff] mt-[15px]'>
-      <Helmet>
+      {/* <Helmet>
         <title>Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys care</title>
         <meta name="description" content="Buy Best Home, Kitchen, Skin & Body care products in India at best price || Apsensys Care" />
-      </Helmet>
+      </Helmet> */}
       <Outlet />
     </div>
   )

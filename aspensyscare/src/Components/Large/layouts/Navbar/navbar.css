@@ -119,3 +119,58 @@ height: 80px; */
           gap: 25px !important; /* Adjust this value as needed */
         }
       }
+
+
+/*  profile section styling*/
+.edit-button {
+  position: absolute;
+  top: 1rem;
+  right: 6rem; /* Adjusted right margin to create space for review button */
+  background-color: transparent;
+  color: #000000;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  border: 1px solid grey;
+  transition: background-color 0.3s ease;
+  font-size: 0.875rem;
+  z-index: 10;
+}
+
+.edit-button:hover {
+  background-color: #e4e4e4;
+  color: rgb(0, 0, 0);
+}
+
+.review-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem; 
+  background-color: #ffd814;
+  color: #030303;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  border: 1px solid #fcd200;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 0.875rem;
+  z-index: 10;
+}
+
+.review-button:hover {
+  background-color: #dfbc0d;
+  color: rgb(0, 0, 0);
+   border: 1px solid #fcd200;
+}
+
+.profile-container {
+  position: relative;
+  width: 60%;
+}
+
+.hidden {
+  display: none;
+}
+.profile-content {
+  margin-left: 2rem; 
+}

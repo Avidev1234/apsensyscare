@@ -17,7 +17,7 @@ const ProductCard = ({ val, page }) => {
         exsit = true;
     }
 
-    // console.log(val);
+    console.log("val",val);
     // const products = useSelector((state) => state.productdetails);
     // const sizedetails = useSelector((state) => state.size);
 

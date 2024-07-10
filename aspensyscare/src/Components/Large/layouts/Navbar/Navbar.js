@@ -599,8 +599,12 @@ function Navbar(props) {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
+                  <MenuItem onClick={() => {navigate("/profile"); handleClose();}}>Manage My Account</MenuItem>
+                  <hr/>
+                  <MenuItem onClick={() => {navigate("/wishlist"); handleClose();}}>Wishlist</MenuItem>
+                  <MenuItem onClick={() => {navigate("/history"); handleClose();}}>your order</MenuItem>
+                  <MenuItem onClick={() => {navigate("/cart"); handleClose();}}>Shopping List</MenuItem>
+                  <MenuItem onClick={() => {navigate("/contact-us"); handleClose();}}>Customer Services</MenuItem>
                   <MenuItem onClick={handelLogout}>Logout</MenuItem>
                 </Menu>
               </div>
@@ -618,7 +622,7 @@ function Navbar(props) {
                 }}
                 onClick={() => handelLogin(true, 0)}
               >
-                {/* <img src='./account.png' alt=''/> */}
+                <img src='./account.png' alt=''/>
                 Login
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
