@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Cookies from 'js-cookie'
 import { LandingPage, Home, SmallHome, Privecy, ContactUS, AboutUs, PaymentReturn, TermsCondition, Shipping, Sitemap, Jobs, OrderFailed, ThankYou, Wishlist, Smallwishlist, Cart, Product, ProductVariant, ProductByCategory, PaymentLoading, Unsubscribe, ProductByCategorySmall, AllCategory,History,Orderhistory,Forgotpassword,Otpverification,Track ,HistoryDetails,Invoice } from './Routing';
 import ProfileManager from './Components/Large/layouts/Navbar/ProfileManager';
+import Ratingpage from './Components/Large/Product/Ratingpage';
 // import Orderhistory from './Components/Large/History/Orderhistory';
 // import Smallfooter from './Components/Small/layouts/Footer/Smallfooter';
 
@@ -109,6 +110,7 @@ function App() {
                   <Route path='/otp-verification' element={<React.Suspense fallback={<div class="lorder"></div>}><Otpverification /></React.Suspense>} />
                   <Route path='/shipping' element={<React.Suspense fallback={<div class="lorder"></div>}><Shipping /></React.Suspense>} />
                   <Route path='/unsubscribe-me' element={<React.Suspense fallback={<div class="lorder"></div>}><Unsubscribe /></React.Suspense>} />
+                  {/* <Route path='/rating' element={<React.Suspense fallback={<div class="lorder"></div>}><Ratingpage/></React.Suspense>} /> */}
                 </Route>
               
               </Routes>
@@ -152,6 +154,7 @@ function App() {
                   <Route path='/terms-condition' element={<React.Suspense fallback={<div class="lorder"></div>}><TermsCondition /></React.Suspense>} />
                   <Route path='/shipping' element={<React.Suspense fallback={<div class="lorder"></div>}><Shipping /></React.Suspense>} />
                   <Route path='/unsubscribe-me' element={<React.Suspense fallback={<div class="lorder"></div>}><Unsubscribe /></React.Suspense>} />
+                  {/* <Route path='/rating' element={<React.Suspense fallback={<div class="lorder"></div>}><Ratingpage/></React.Suspense>} /> */}
                 </Route>
               </Routes>
               {/* <Sidebar/> */}

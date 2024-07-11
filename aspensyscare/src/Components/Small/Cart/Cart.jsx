@@ -934,7 +934,7 @@ const Cart = (props) => {
                       <FormControlLabel
                         value="case"
                         control={<Radio />}
-                        label="Case On Delivery"
+                        label="Cash On Delivery"
                       />
                     </RadioGroup>
                   </FormControl>

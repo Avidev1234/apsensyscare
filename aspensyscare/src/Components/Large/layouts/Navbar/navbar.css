@@ -124,8 +124,8 @@ height: 80px; */
 /*  profile section styling*/
 .edit-button {
   position: absolute;
-  top: 1rem;
-  right: 6rem; /* Adjusted right margin to create space for review button */
+  bottom: 1rem;
+  left: 45rem; 
   background-color: transparent;
   color: #000000;
   padding: 0.25rem 0.75rem;
@@ -133,7 +133,7 @@ height: 80px; */
   cursor: pointer;
   border: 1px solid grey;
   transition: background-color 0.3s ease;
-  font-size: 0.875rem;
+  font-size: 1rem;
   z-index: 10;
 }
 
@@ -144,8 +144,8 @@ height: 80px; */
 
 .review-button {
   position: absolute;
-  top: 1rem;
-  right: 1rem; 
+  bottom: 1rem;
+  left: 34rem; 
   background-color: #ffd814;
   color: #030303;
   padding: 0.25rem 0.75rem;
@@ -153,7 +153,7 @@ height: 80px; */
   cursor: pointer;
   border: 1px solid #fcd200;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-size: 0.875rem;
+  font-size: 1rem;
   z-index: 10;
 }
 
@@ -165,7 +165,7 @@ height: 80px; */
 
 .profile-container {
   position: relative;
-  width: 60%;
+  width: 100%;
 }
 
 .hidden {
@@ -173,4 +173,38 @@ height: 80px; */
 }
 .profile-content {
   margin-left: 2rem; 
+}
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-content {
+  text-align: center;
+}
+
+.options-container {
+  display: flex;
+  gap: 20rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.option-item .icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
 }

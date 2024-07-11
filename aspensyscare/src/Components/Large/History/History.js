@@ -18,7 +18,7 @@ export default function Deliveredtable() {
                 })
                 .catch((error) => {
                     console.error("Error fetching order history:", error);
-                });
+                }); 
         }
     }, []);
 

@@ -224,11 +224,14 @@ function Navbar(props) {
   //console.log(Wishlist.wishlist.length)
   const wishlistCount = Wishlist !== undefined ? Wishlist.wishlist.length : 0;
   const user =
-    username !== undefined
-      ? username.users.details
-        ? username.users.details[0].f_name[0]
-        : ""
-      : "";
+  username !== undefined &&
+  username.users.details &&
+  username.users.details.length > 0
+    ? username.users.details[0].f_name +
+      (username.users.details[0].l_name
+        ? ' ' + username.users.details[0].l_name
+        : '')
+    : "";
   console.log(user);
   React.useEffect(() => {
     dispatch(getTotals());
@@ -577,8 +580,8 @@ function Navbar(props) {
                   >
                     {/* <AccountCircle style={{ fontSize: '37px', color: '#fff' }} /> */}
                     <div className="avatar placeholder">
-                      <div className="bg-neutral text-white rounded-full w-12  border-2 shadow-inner">
-                        <span>{user}</span>
+                      <div className="bg-neutral text-white rounded-full w-[120px]  inline text-[20px] shadow-inner">
+                        <span>Hello, {user}</span>
                       </div>
                     </div>
                   </IconButton>
