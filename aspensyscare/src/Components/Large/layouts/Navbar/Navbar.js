@@ -119,10 +119,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    right: -3,
-    top: 13,
+    right: -1,
+    top: "7px",
     border: `2px solid ${theme.palette.background.paper}`,
-    padding: "0 4px",
+    padding: "0 3px",
+    fontSize: "12px"
   },
 }));
 function refreshPage(e) {
@@ -530,7 +531,7 @@ function Navbar(props) {
                   color="secondary"
                 >
                   <ShoppingCartCheckoutIcon
-                    style={{ color: "#fff", fontSize: "35px" }}
+                    style={{ color: "#fff", fontSize: "43px", marginRight: "-23px" }}
                   />
                 </StyledBadge>
               </IconButton>
