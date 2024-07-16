@@ -8,7 +8,7 @@ export default function Deliveredtable() {
     const [deliveredtable, setDeliveredtable] = useState([]);
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect(() => { 
         const user = sessionStorage.getItem('___user');
         if (user) {
             orderhistory({ user_id: user, status: "Delivered" })

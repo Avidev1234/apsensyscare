@@ -86,7 +86,7 @@ const Footer = () => {
                                     <img className='w-[42px] h-[40px] object-contain cursor-pointer' src={`${process.env.REACT_APP_IMAGE}/icons/linkedin-white.png`} alt="linkedin-logo" />
                                 </a>
                                 <a href='https://twitter.com/ApsensysCare' target='_blank' rel="noreferrer">
-                                    <img className='w-[41px] h-[30px] object-contain cursor-pointer mt-[6px]' src={`${process.env.REACT_APP_IMAGE}/icons/twitter-white.png`} alt="twitter-logo" />
+                                    <img className='w-[41px] h-[39px] object-contain cursor-pointer mt-[2px]' src={`${process.env.REACT_APP_IMAGE}/icons/twitter-white.png`} alt="twitter-logo" />
                                 </a>
                             </div>
                         </div>

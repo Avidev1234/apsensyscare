@@ -119,11 +119,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    right: -1,
-    top: "7px",
+    right: -3,
+    top: 13,
     border: `2px solid ${theme.palette.background.paper}`,
-    padding: "0 3px",
-    fontSize: "12px"
+    padding: "0 4px",
   },
 }));
 function refreshPage(e) {
@@ -531,7 +530,7 @@ function Navbar(props) {
                   color="secondary"
                 >
                   <ShoppingCartCheckoutIcon
-                    style={{ color: "#fff", fontSize: "43px", marginRight: "-23px" }}
+                    style={{ color: "#fff", fontSize: "35px" }}
                   />
                 </StyledBadge>
               </IconButton>
@@ -603,13 +602,17 @@ function Navbar(props) {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={() => {navigate("/profile"); handleClose();}}>Manage My Account</MenuItem>
+                  {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
+                  <MenuItem  className="hover-underline" onClick={() => {navigate("/profile"); handleClose();}}>Manage My Account</MenuItem>
                   <hr/>
-                  <MenuItem onClick={() => {navigate("/wishlist"); handleClose();}}>Wishlist</MenuItem>
-                  <MenuItem onClick={() => {navigate("/history"); handleClose();}}>your order</MenuItem>
-                  <MenuItem onClick={() => {navigate("/cart"); handleClose();}}>Shopping List</MenuItem>
-                  <MenuItem onClick={() => {navigate("/contact-us"); handleClose();}}>Customer Services</MenuItem>
-                  <MenuItem onClick={handelLogout}>Logout</MenuItem>
+                  {/* <MenuItem   className="hover-underline"  onClick={() => {navigate("/manageaddress"); handleClose();}}>YourAddress</MenuItem> */}
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/wishlist"); handleClose();}}>Wishlist</MenuItem>
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/history"); handleClose();}}>your orders</MenuItem>
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/category"); handleClose();}}>Explore products</MenuItem>
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/cart"); handleClose();}}>Shopping List</MenuItem>
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/privacy-policy"); handleClose();}}>Shipping and privacy policies</MenuItem>
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/contact-us"); handleClose();}}>Customer Services</MenuItem>
+                  <MenuItem   className="hover-underline"  onClick={handelLogout}>Logout</MenuItem>
                 </Menu>
               </div>
             ) : (
@@ -626,7 +629,7 @@ function Navbar(props) {
                 }}
                 onClick={() => handelLogin(true, 0)}
               >
-                <img src='./account.png' alt=''/>
+                {/* <img src='./account.png' alt=''/> */}
                 Login
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

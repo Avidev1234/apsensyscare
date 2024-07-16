@@ -1,6 +1,6 @@
 /* Default style for all images in the smaller slider */
 .Gap .slick-slide img {
-  border: 1px solid transparent;
+  border: 1px solid grey;
   /* box-shadow: 2px 2px 8px rgba(0, 183, 255, 0.3); */
    /* Box shadow */
   transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition for border and box shadow */

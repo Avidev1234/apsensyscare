@@ -281,6 +281,8 @@ const ResetPassword = ({ openResetPassword }) => {
   });
 
   const phonenum = JSON.parse(localStorage.getItem("__phone"));
+  const phonenumStr = String(phonenum); 
+  const lastTwoDigits = phonenumStr.slice(-2); 
 
   const initialPasswordState = {
     password: "",
@@ -415,87 +417,93 @@ const ResetPassword = ({ openResetPassword }) => {
 
   return (
     <Formik
-      initialValues={password}
-      validationSchema={ResetPasswordSchema}
-      onSubmit={(values) => {
-        handleResetPassword(values);
-      }}
-    >
-      {({ errors, touched }) => (
-        <Form className="max-w-[97%] md:max-w-4xl mx-auto flex flex-col p-2">
-          <div className="mx-auto flex justify-center flex-col">
-            <h2 className="font-semibold text-2xl mb-8">Reset Password</h2>
-            <div className="mb-5">
-              <Field
-                as={TextField}
-                label="OTP"
-                id="outlined-basic-otp"
-                maxRows={1}
-                variant="outlined"
-                fullWidth
-                name="otp"
-                value={password.otp}
-                onChange={handleChange}
-                error={errors.otp && touched.otp}
-                helperText={errors.otp && touched.otp && errors.otp}
-                color="success"
-              />
-            </div>
-            <div className="mb-5">
-              <Field
-                type="text"
-                name="password"
-                placeholder="Enter New Password"
-                required
-                as={TextField}
-                label="New Password"
-                id="outlined-basic-new-password"
-                maxRows={1}
-                variant="outlined"
-                fullWidth
-                value={password.password}
-                onChange={handleChange}
-                error={errors.password && touched.password}
-                helperText={
-                  errors.password && touched.password && errors.password
-                }
-                color="success"
-              />
-            </div>
-            <div className="mb-5">
-              <Field
-                type="text"
-                name="confirmPassword"
-                placeholder="Enter Confirm Password"
-                required
-                as={TextField}
-                label="Confirm Password"
-                id="outlined-basic-confirm-password"
-                maxRows={1}
-                variant="outlined"
-                fullWidth
-                value={password.confirmPassword}
-                onChange={handleChange}
-                error={errors.confirmPassword && touched.confirmPassword}
-                helperText={
-                  errors.confirmPassword &&
-                  touched.confirmPassword &&
-                  errors.confirmPassword
-                }
-                color="success"
-              />
-            </div>
-            <button
-              type="submit"
-              onClick={handleResetPassword}
-              className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]"
-            >
-              Reset Password
-            </button>
+    initialValues={password}
+    validationSchema={ResetPasswordSchema}
+    onSubmit={(values) => {
+      handleResetPassword(values);
+    }}
+  >
+    {({ errors, touched }) => (
+      <Form className="max-w-[97%] md:max-w-4xl mx-auto flex flex-col p-2">
+        <div className="mx-auto flex justify-center flex-col">
+          <h2 className="font-semibold text-2xl mb-8">Reset Password</h2>
+          <h4 className="text-blue-600">We have sent a reset password link to your registered phone ******{lastTwoDigits}</h4><br/>
+          
+          <div className="mb-5 flex  items-center gap-[37px]">
+            <label className="font-bold  mr-2"> Enter OTP:</label>
+            <Field
+              as={TextField}
+              id="outlined-basic-otp"
+              placeholder="Enter otp"
+              maxRows={1}
+              variant="outlined"
+              fullWidth
+              name="otp"
+              value={password.otp}
+              onChange={handleChange}
+              error={errors.otp && touched.otp}
+              helperText={errors.otp && touched.otp && errors.otp}
+              color="success"
+            />
           </div>
-        </Form>
-      )}
-    </Formik>
+          
+          <div className="mb-5 flex items-center gap-[11px]">
+            <label className="font-bold mr-2">New Password:</label>
+            <Field
+              type="text"
+              name="password"
+              placeholder="Enter New Password"
+              required
+              as={TextField}
+              id="outlined-basic-new-password"
+              maxRows={1}
+              variant="outlined"
+              fullWidth
+              value={password.password}
+              onChange={handleChange}
+              error={errors.password && touched.password}
+              helperText={
+                errors.password && touched.password && errors.password
+              }
+              color="success"
+            />
+          </div>
+          
+          <div className="mb-5 flex items-center ">
+            <label className="font-bold">Confirm Password:</label>
+            <Field
+              type="text"
+              name="confirmPassword"
+              placeholder="Enter Confirm Password"
+              required
+              as={TextField}
+              id="outlined-basic-confirm-password"
+              maxRows={1}
+              variant="outlined"
+              fullWidth
+              value={password.confirmPassword}
+              onChange={handleChange}
+              error={errors.confirmPassword && touched.confirmPassword}
+              helperText={
+                errors.confirmPassword &&
+                touched.confirmPassword &&
+                errors.confirmPassword
+              }
+              color="success"
+            />
+          </div>
+          
+          <button
+            type="submit"
+            onClick={handleResetPassword}
+            className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]"
+          >
+            Reset Password
+          </button>
+        </div>
+      </Form>
+    )}
+  </Formik>
   );
 };
 
@@ -642,6 +650,7 @@ const Login = ({ handelLogin }) => {
                   <div>
                     <Field
                       as={TextField}
+                      // type="password"
                       label="Password"
                       id="outlined-basic6"
                       maxRows={1}

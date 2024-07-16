@@ -14,6 +14,7 @@ import Cookies from 'js-cookie'
 import { LandingPage, Home, SmallHome, Privecy, ContactUS, AboutUs, PaymentReturn, TermsCondition, Shipping, Sitemap, Jobs, OrderFailed, ThankYou, Wishlist, Smallwishlist, Cart, Product, ProductVariant, ProductByCategory, PaymentLoading, Unsubscribe, ProductByCategorySmall, AllCategory,History,Orderhistory,Forgotpassword,Otpverification,Track ,HistoryDetails,Invoice } from './Routing';
 import ProfileManager from './Components/Large/layouts/Navbar/ProfileManager';
 import Ratingpage from './Components/Large/Product/Ratingpage';
+import YourAddress from './Components/Large/layouts/Navbar/YourAddress';
 // import Orderhistory from './Components/Large/History/Orderhistory';
 // import Smallfooter from './Components/Small/layouts/Footer/Smallfooter';
 
@@ -111,6 +112,8 @@ function App() {
                   <Route path='/shipping' element={<React.Suspense fallback={<div class="lorder"></div>}><Shipping /></React.Suspense>} />
                   <Route path='/unsubscribe-me' element={<React.Suspense fallback={<div class="lorder"></div>}><Unsubscribe /></React.Suspense>} />
                   {/* <Route path='/rating' element={<React.Suspense fallback={<div class="lorder"></div>}><Ratingpage/></React.Suspense>} /> */}
+                  <Route path='/manageaddress' element={<React.Suspense fallback={<div class="lorder"></div>}><YourAddress handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
+
                 </Route>
               
               </Routes>
@@ -155,6 +158,8 @@ function App() {
                   <Route path='/shipping' element={<React.Suspense fallback={<div class="lorder"></div>}><Shipping /></React.Suspense>} />
                   <Route path='/unsubscribe-me' element={<React.Suspense fallback={<div class="lorder"></div>}><Unsubscribe /></React.Suspense>} />
                   {/* <Route path='/rating' element={<React.Suspense fallback={<div class="lorder"></div>}><Ratingpage/></React.Suspense>} /> */}
+                  <Route path='/manageaddress' element={<React.Suspense fallback={<div class="lorder"></div>}><YourAddress handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
+
                 </Route>
               </Routes>
               {/* <Sidebar/> */}

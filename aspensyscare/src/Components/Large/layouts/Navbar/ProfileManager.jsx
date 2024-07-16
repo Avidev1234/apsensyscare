@@ -47,9 +47,9 @@ function ProfileManager() {
     }
   }, []);
 
-  const toggleEdit = () => {
-    setIsEditing(!isEditing);
-  };
+  // const toggleEdit = () => {
+  //   setIsEditing(!isEditing);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -68,7 +68,7 @@ function ProfileManager() {
     };
     setProfile(updatedProfile);
     setProfileDetails(updatedProfile);
-    toggleEdit();
+    // toggleEdit();
   };
 
   if (!sessionStorage.getItem("___user")) {
@@ -116,7 +116,10 @@ function ProfileManager() {
                   <p className="text-gray-700">
                     <strong>Phone No:</strong> {profileDetails.phone_number}
                   </p>
-                  <button className="edit-button w-36 mt-4" onClick={toggleEdit}>
+                  {/* <button className="edit-button w-36 mt-4" onClick={toggleEdit}>
+                    Edit your profile
+                  </button> */}
+                  <button className="edit-button w-36 mt-4">
                     Edit your profile
                   </button>
                   <button className="review-button w-36 mt-4">Review</button>
@@ -218,13 +221,13 @@ function ProfileManager() {
                     >
                       Save
                     </button>
-                    <button
+                    {/* <button
                       type="button"
                       className="text-gray-700 border px-4 py-2 rounded-md"
                       onClick={toggleEdit}
                     >
                       Cancel
-                    </button>
+                    </button> */}
                   </div>
                 </form>
               )}

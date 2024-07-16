@@ -19,6 +19,10 @@ export const profileDetals = async (data) => {
     return await axios.post(`${process.env.REACT_APP_APIURL}profiledetails`, data)
         .then((res) => res.data.CustomerEditDetails)
 }
+export const youraddress = async (data) => {//Avidev 7-11-2024 proile details
+    return await axios.post(`${process.env.REACT_APP_APIURL}userAddress`, data)
+        .then((res) => res.data.Youraddress)
+}
 // Avidev
 // export const customerbyId = async (id) => {
 //     return await axios
