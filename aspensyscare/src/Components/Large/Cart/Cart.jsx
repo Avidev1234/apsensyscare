@@ -1040,11 +1040,11 @@ const Cart = (props) => {
                         control={<Radio />}
                         label="Pay Online"
                       />
-                      <FormControlLabel
+                      {/* <FormControlLabel
                         value="case"
                         control={<Radio />}
                         label="Cash On Delivery"
-                      />
+                      /> */}
                     </RadioGroup>
                   </FormControl>
                   <Button

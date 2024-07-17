@@ -605,7 +605,7 @@ function Navbar(props) {
                   {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
                   <MenuItem  className="hover-underline" onClick={() => {navigate("/profile"); handleClose();}}>Manage My Account</MenuItem>
                   <hr/>
-                  {/* <MenuItem   className="hover-underline"  onClick={() => {navigate("/manageaddress"); handleClose();}}>YourAddress</MenuItem> */}
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/manageaddress"); handleClose();}}>YourAddress</MenuItem>
                   <MenuItem   className="hover-underline"  onClick={() => {navigate("/wishlist"); handleClose();}}>Wishlist</MenuItem>
                   <MenuItem   className="hover-underline"  onClick={() => {navigate("/history"); handleClose();}}>your orders</MenuItem>
                   <MenuItem   className="hover-underline"  onClick={() => {navigate("/category"); handleClose();}}>Explore products</MenuItem>

@@ -58,7 +58,7 @@ const CategorySeller = () => {
       <div className="w-full flex flex-nowrap flex-col gap-4">
 
         {!Category.loading && category !== undefined ? (<div className='w-full  font-bold '>
-          <h2 className='text-bold text-[18px] md:text-[24px] leading-[40px]'></h2>
+          {/* <h2 className='text-bold text-[18px] md:text-[24px] leading-[40px]'></h2> */}
         </div>) : <Skeleton count={2} />}
         {Category.loading &&
           (<div className='flex justify-between '>

@@ -109,7 +109,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const ProductDetails = (product) => {
-    console.log(product);
+    console.log("product",product);
     const WishlistproductId = useContext(Log);
     //console.log(WishlistproductId)
     let exsit
@@ -161,6 +161,7 @@ const ProductDetails = (product) => {
         sessionStorage.setItem("initialized", false);
     }
 
+    const isLoggedIn = sessionStorage.getItem('___user');
     const products = useSelector((state) => state.productdetails);
     const sizedetails = useSelector((state) => state.size);
     const category = useSelector((state) => state.category.category.category);
@@ -398,9 +399,24 @@ const ProductDetails = (product) => {
                         <p style={{ color: 'red', fontWeight: 600 }}>{pincode !== '' && pincode === "Success" ? 'Sorry not able to delivery' : null}</p>
                     </div> : null
             } */}
-            <ButtomBox>
-                <AddCart variant='contained' onClick={() => handleCart(product.products)}>Add Cart</AddCart>
-                <QuickBuy variant='contained' onClick={() => { Wishlist(product.products, exsit) }}>Add to wishlist</QuickBuy>
+           <ButtomBox>
+                {!isLoggedIn && (
+                    <AddCart variant='contained' onClick={() => navigate('/before-cart')}>
+                        Add Cart
+                    </AddCart>
+                )}
+                {isLoggedIn && (
+                    <>
+                        <AddCart variant='contained' onClick={() => handleCart(product.products)}>
+                            Add Cart
+                        </AddCart>
+                        
+                    </>
+                    
+                )}
+                <QuickBuy variant='contained' onClick={() => { Wishlist(product.products, exsit) }}>
+                            Add to wishlist
+                        </QuickBuy>
             </ButtomBox>
           
         </Detailscont>

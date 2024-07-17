@@ -140,17 +140,17 @@ const Signup = ({ openSignup }) => {
             <p className="py-5 max-w-xl text-[16px]">
               By continuing, you agree to Apsensys Care&nbsp;
               <a
-                className="text-blue-800"
+                className="text-[#0112FE]"
                 href="https://apsensyscare.com/terms-condition"
               >
                 Terms of Use
               </a>{" "}
-              and &nbsp;
+              and&nbsp;
               <a
-                className="text-blue-800"
+                className="text-[#0112FE]"
                 href="https://apsensyscare.com/privacy-policy"
               >
-                Privacy Policy
+              Privacy Policy
               </a>
             </p>
             <button
@@ -160,13 +160,25 @@ const Signup = ({ openSignup }) => {
               Sign Up
             </button>
             <hr className="border-b my-5" />
-            <p className="text-[16px]">Apsensys Care User?</p>
+            {/* <p className="text-[16px] font-semibold">Apsensys Care User?</p> */}
+            {/* <h2 className="font-semibold text-xl mb-8">Already Apsensys Care User ?</h2>
             <div
-              className="my-5 border-[1px] p-3 text-center text-[16px] cursor-pointer text-blue-800 hover:shadow-lg"
+              className="my-5 border-[1px] p-3 text-center text-[16px] cursor-pointer text-[#0112FE] hover:shadow-lg"
               onClick={() => openSignup(true)}
             >
               Login your Apsensys Care account
-            </div>
+            </div> */}
+
+            <h2 className="font-semibold text-base text-[17px] mb-8 flex items-center">
+              Already Apsensys Care User ?
+              <a
+                href="#"
+                className="my-5  p-3 text-center text-[17px] cursor-pointer text-[#0112FE] hover:underline"
+                onClick={() => openSignup(true)}
+              >
+                Login 
+              </a>
+            </h2>
           </div>
         </Form>
       )}
@@ -190,7 +202,7 @@ const ForgotPassword = ({ openResetPassword }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [labelColor, setLabelColor] = useState("grey");
   const handleSubmit = async (values) => {
-    setLabelColor("red");                                                                                                           
+    setLabelColor("red");
     try {
       await userResetPassword({ phone: values.phone });
       toast.success(
@@ -281,8 +293,8 @@ const ResetPassword = ({ openResetPassword }) => {
   });
 
   const phonenum = JSON.parse(localStorage.getItem("__phone"));
-  const phonenumStr = String(phonenum); 
-  const lastTwoDigits = phonenumStr.slice(-2); 
+  const phonenumStr = String(phonenum);
+  const lastTwoDigits = phonenumStr.slice(-2);
 
   const initialPasswordState = {
     password: "",
@@ -322,8 +334,8 @@ const ResetPassword = ({ openResetPassword }) => {
         console.error("Error updating password:", error);
         toast.error("Error updating password");
       }
-    };
-  
+    }
+
     return (
       <Formik
         initialValues={password}
@@ -359,7 +371,7 @@ const ResetPassword = ({ openResetPassword }) => {
               </div>
               <div className="mb-5">
                 <Field
-                //   type="password"
+                  //   type="password"
                   name="password"
                   placeholder="Enter New Password"
                   required
@@ -380,7 +392,7 @@ const ResetPassword = ({ openResetPassword }) => {
               </div>
               <div className="mb-5">
                 <Field
-                //   type="password"
+                  //   type="password"
                   name="confirmPassword"
                   placeholder="Enter Confirm Password"
                   required
@@ -417,93 +429,97 @@ const ResetPassword = ({ openResetPassword }) => {
 
   return (
     <Formik
-    initialValues={password}
-    validationSchema={ResetPasswordSchema}
-    onSubmit={(values) => {
-      handleResetPassword(values);
-    }}
-  >
-    {({ errors, touched }) => (
-      <Form className="max-w-[97%] md:max-w-4xl mx-auto flex flex-col p-2">
-        <div className="mx-auto flex justify-center flex-col">
-          <h2 className="font-semibold text-2xl mb-8">Reset Password</h2>
-          <h4 className="text-blue-600">We have sent a reset password link to your registered phone ******{lastTwoDigits}</h4><br/>
-          
-          <div className="mb-5 flex  items-center gap-[37px]">
-            <label className="font-bold  mr-2"> Enter OTP:</label>
-            <Field
-              as={TextField}
-              id="outlined-basic-otp"
-              placeholder="Enter otp"
-              maxRows={1}
-              variant="outlined"
-              fullWidth
-              name="otp"
-              value={password.otp}
-              onChange={handleChange}
-              error={errors.otp && touched.otp}
-              helperText={errors.otp && touched.otp && errors.otp}
-              color="success"
-            />
+      initialValues={password}
+      validationSchema={ResetPasswordSchema}
+      onSubmit={(values) => {
+        handleResetPassword(values);
+      }}
+    >
+      {({ errors, touched }) => (
+        <Form className="max-w-[97%] md:max-w-4xl mx-auto flex flex-col p-2">
+          <div className="mx-auto flex justify-center flex-col">
+            <h2 className="font-semibold text-2xl mb-8">Reset Password</h2>
+            <h4 className="text-blue-600">
+              We have sent a reset password link to your registered phone ******
+              {lastTwoDigits}
+            </h4>
+            <br />
+
+            <div className="mb-5 flex  items-center gap-[37px]">
+              <label className="font-bold  mr-2"> Enter OTP:</label>
+              <Field
+                as={TextField}
+                id="outlined-basic-otp"
+                placeholder="Enter otp"
+                maxRows={1}
+                variant="outlined"
+                fullWidth
+                name="otp"
+                value={password.otp}
+                onChange={handleChange}
+                error={errors.otp && touched.otp}
+                helperText={errors.otp && touched.otp && errors.otp}
+                color="success"
+              />
+            </div>
+
+            <div className="mb-5 flex items-center gap-[11px]">
+              <label className="font-bold mr-2">New Password:</label>
+              <Field
+                type="text"
+                name="password"
+                placeholder="Enter New Password"
+                required
+                as={TextField}
+                id="outlined-basic-new-password"
+                maxRows={1}
+                variant="outlined"
+                fullWidth
+                value={password.password}
+                onChange={handleChange}
+                error={errors.password && touched.password}
+                helperText={
+                  errors.password && touched.password && errors.password
+                }
+                color="success"
+              />
+            </div>
+
+            <div className="mb-5 flex items-center ">
+              <label className="font-bold">Confirm Password:</label>
+              <Field
+                type="text"
+                name="confirmPassword"
+                placeholder="Enter Confirm Password"
+                required
+                as={TextField}
+                id="outlined-basic-confirm-password"
+                maxRows={1}
+                variant="outlined"
+                fullWidth
+                value={password.confirmPassword}
+                onChange={handleChange}
+                error={errors.confirmPassword && touched.confirmPassword}
+                helperText={
+                  errors.confirmPassword &&
+                  touched.confirmPassword &&
+                  errors.confirmPassword
+                }
+                color="success"
+              />
+            </div>
+
+            <button
+              type="submit"
+              onClick={handleResetPassword}
+              className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]"
+            >
+              Reset Password
+            </button>
           </div>
-          
-          <div className="mb-5 flex items-center gap-[11px]">
-            <label className="font-bold mr-2">New Password:</label>
-            <Field
-              type="text"
-              name="password"
-              placeholder="Enter New Password"
-              required
-              as={TextField}
-              id="outlined-basic-new-password"
-              maxRows={1}
-              variant="outlined"
-              fullWidth
-              value={password.password}
-              onChange={handleChange}
-              error={errors.password && touched.password}
-              helperText={
-                errors.password && touched.password && errors.password
-              }
-              color="success"
-            />
-          </div>
-          
-          <div className="mb-5 flex items-center ">
-            <label className="font-bold">Confirm Password:</label>
-            <Field
-              type="text"
-              name="confirmPassword"
-              placeholder="Enter Confirm Password"
-              required
-              as={TextField}
-              id="outlined-basic-confirm-password"
-              maxRows={1}
-              variant="outlined"
-              fullWidth
-              value={password.confirmPassword}
-              onChange={handleChange}
-              error={errors.confirmPassword && touched.confirmPassword}
-              helperText={
-                errors.confirmPassword &&
-                touched.confirmPassword &&
-                errors.confirmPassword
-              }
-              color="success"
-            />
-          </div>
-          
-          <button
-            type="submit"
-            onClick={handleResetPassword}
-            className="border-2 border-[#0112FE] px-[30px] py-2 bg-[#0112FE] text-white mx-auto font-bold text-l rounded-md hover:bg-white hover:text-[#0112FE]"
-          >
-            Reset Password
-          </button>
-        </div>
-      </Form>
-    )}
-  </Formik>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
@@ -665,25 +681,25 @@ const Login = ({ handelLogin }) => {
                     />
                   </div>
                   <p className="py-8 max-w-xl text-[16px]">
-                    By continuing, you agree to Apsensys Care
+                    By continuing, you agree to Apsensys Care 
                     <a
-                      className="text-blue-800"
+                      className="text-[#0112FE]"
                       href="https://apsensyscare.com/terms-condition"
                     >
-                      Terms of Use
+                       &nbsp;Terms of Use
                     </a>{" "}
                     and
                     <a
-                      className="text-blue-800"
+                      className="text-[#0112FE]"
                       href="https://apsensyscare.com/privacy-policy"
                     >
-                      Privacy Policy
+                     &nbsp;Privacy Policy
                     </a>
                   </p>
                   <p>
                     <a
                       onClick={() => openForgotPassword(true)}
-                      className="text-blue-500 cursor-pointer"
+                      className="text-[#0112FE] cursor-pointer"
                     >
                       Forgot password?
                     </a>
@@ -695,13 +711,21 @@ const Login = ({ handelLogin }) => {
                     Sign In
                   </button>
                   <hr className="border-b my-5" />
-                  <p className="text-[16px]">New to Apsensys Care?</p>
-                  <div
-                    className="my-5 border-[1px] p-3 text-center text-[16px] cursor-pointer text-blue-800 hover:shadow-lg"
+                  <h2 className="font-semibold text-xl mb-8">
+                    New to Apsensys Care?
+                  </h2>
+                  {/* <button
+                    className="my-5 border-[1px] p-3 text-center text-[16px] cursor-pointer font-medium text-[#0112FE] hover:shadow-lg"
                     onClick={() => openSignup(false)}
                   >
                     Create your Apsensys Care account
-                  </div>
+                  </button> */}
+                  <button
+                    className="my-5 border-2 p-3 text-center text-16px cursor-pointer font-medium text-white bg-gradient-to-r from-blue-500 to-indigo-800 hover:shadow-lg hover:bg-gradient-to-l hover:from-blue-500 hover:to-[#0112FE] transition-all duration-300 ease-in-out transform hover:scale-105 rounded-lg"
+                    onClick={() => openSignup(false)}
+                  >
+                    Create your Apsensys Care account
+                  </button>
                 </div>
               </Form>
             )}

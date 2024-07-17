@@ -15,6 +15,8 @@ import { LandingPage, Home, SmallHome, Privecy, ContactUS, AboutUs, PaymentRetur
 import ProfileManager from './Components/Large/layouts/Navbar/ProfileManager';
 import Ratingpage from './Components/Large/Product/Ratingpage';
 import YourAddress from './Components/Large/layouts/Navbar/YourAddress';
+import Loginbeforecart from './Components/Large/Cart/Loginbeforecart';
+// import Gotocart from './Components/Large/Cart/Gotocart';
 // import Orderhistory from './Components/Large/History/Orderhistory';
 // import Smallfooter from './Components/Small/layouts/Footer/Smallfooter';
 
@@ -86,8 +88,10 @@ function App() {
                   {/* <Route path='/products' element={<AllPopularProducts />} /> */}
                   <Route path='/category/:url/c/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><ProductByCategorySmall /></React.Suspense>} />
                   <Route path='/cart' element={<React.Suspense fallback={<div class="lorder"></div>}><Cart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
+                  {/* <Route path='/go-to-cart' element={<React.Suspense fallback={<div class="lorder"></div>}><Gotocart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} /> */}
                   <Route path='/cart/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Cart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
                   <Route path='/product/:category/:product_id/:productname' element={<React.Suspense fallback={<div class="lorder"></div>}><Product /></React.Suspense>} />
+                  <Route path='/before-cart' element={<React.Suspense fallback={<div class="lorder"></div>}><Loginbeforecart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
                   <Route path='/product/type' element={<React.Suspense fallback={<div class="lorder"></div>}><ProductVariant /></React.Suspense>} />
                   <Route path='/payment/status' element={<React.Suspense fallback={<div class="lorder"></div>}><PaymentLoading /></React.Suspense>} />
                   <Route path='/thankyou' element={<React.Suspense fallback={<div class="lorder"></div>}><ThankYou /></React.Suspense>} />
@@ -121,7 +125,7 @@ function App() {
             </Log.Provider>
           </BrowserRouter>
           :
-          <BrowserRouter>
+          <BrowserRouter> 
             <ToastContainer />
             <Log.Provider value={WishlistProducts}>
               <Navbar handelLogin={handelLogin} openLogin={openLogin} />
@@ -133,10 +137,12 @@ function App() {
                   <Route path='/category/:url/c/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><ProductByCategory /></React.Suspense>} />
                   <Route path='/category' element={<React.Suspense fallback={<div class="lorder"></div>}><AllCategory /></React.Suspense>} />
                   <Route path='/cart' element={<React.Suspense fallback={<div class="lorder"></div>}><Cart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
+                  {/* <Route path='/go-to-cart' element={<React.Suspense fallback={<div class="lorder"></div>}><Gotocart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} /> */}
                   <Route path='/cart/:id' element={<React.Suspense fallback={<div class="lorder"></div>}><Cart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
                   <Route path='/product/:category/:product_id/:productname' element={<React.Suspense fallback={<div class="lorder"></div>}><Product /></React.Suspense>} />
                   <Route path='/product/type' element={<React.Suspense fallback={<div class="lorder"></div>}><ProductVariant /></React.Suspense>} />
                   <Route path='/payment/status' element={<React.Suspense fallback={<div class="lorder"></div>}><PaymentLoading /></React.Suspense>} />
+                  <Route path='/before-cart' element={<React.Suspense fallback={<div class="lorder"></div>}><Loginbeforecart handelLogin={handelLogin} openLogin={openLogin} /></React.Suspense>} />
                   <Route path='/thankyou' element={<React.Suspense fallback={<div class="lorder"></div>}><ThankYou /></React.Suspense>} />
                   <Route path='/order-failed' element={<React.Suspense fallback={<div class="lorder"></div>}><OrderFailed /></React.Suspense>} />
                   <Route path='/career' element={<React.Suspense fallback={<div class="lorder"></div>}><Jobs /></React.Suspense>} />

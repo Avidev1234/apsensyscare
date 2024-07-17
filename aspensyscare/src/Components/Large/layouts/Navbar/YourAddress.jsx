@@ -239,12 +239,14 @@ const YourAddress = () => {
                   </>
                 ) : (
                   <>
-                    <div className="mb-1">{profile.name}</div>
-                    <div className="mb-1">{profile.house_flat_office}</div>
-                    <div>{profile.phoneNumber}</div>
-                    <div>{profile.state}</div>
+                    <div className="mb-1"><strong>Name:</strong>{profile.name}</div>
+                    <div className="mb-1"><strong>Address:</strong> {profile.house_flat_office}</div>
+                    <div><strong>Phone Number:</strong> {profile.contact}</div>
+                    <div><strong>State:</strong> {profile.state}</div>
+                    <div><strong>Pincode:</strong> {profile.pincode}</div>
+                    <div><strong>Email:</strong> {profile.email}</div>
                     <div className="absolute bottom-4 right-4 flex gap-2">
-                      <button
+                      {/* <button
                         className="text-blue-500 underline"
                         onClick={() => handleEdit(index, profile)}
                       >
@@ -255,7 +257,7 @@ const YourAddress = () => {
                         onClick={() => handleRemove(index)}
                       >
                         Remove
-                      </button>
+                      </button> */}
                     </div>
                   </>
                 )}

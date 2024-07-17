@@ -102,7 +102,7 @@ const Footer = () => {
             </footer>
             <hr className='hidden md:block' />
 
-            <div className="hidden lg:flex Second-footer flex justify-evenly bg-[#0112fe] shadow-lg p-8 ">
+            <div className="hidden lg:flex Second-footer flex justify-evenly bg-[#131A22] shadow-lg p-8 ">
                 <div className='w-full flex justify-center gap-[4% md:gap-6 lg:gap-10]'>
                     <div className="w-full md:w-[25%] deliver flex justify-center items-center gap-5">
                         <div class="image w-[74px] h-[73px] lg:w-[69px] lg:h-[69px] rounded-full border p-[10px] bg-white ">
@@ -153,9 +153,9 @@ const Footer = () => {
 
             <hr className='hidden md:block' />
 
-            <div className='w-full flex flex-wrap justify-center flex-col p-5 bg-[#131A22] gap-[27px]'>
+            <div className='w-full flex flex-wrap justify-center flex-col p-5   bg-[#0112fe] gap-[27px]'>
 
-                <div className='w-full flex flex-wrap justify-center flex-col lg:flex-row p-5 bg-[#131A22] lg:gap-[69px]'>
+                <div className='w-full flex flex-wrap justify-center flex-col lg:flex-row p-5 bg-[#0112fe]  lg:gap-[69px]'>
                     <div className='w-full lg:w-[30%] flex flex-nowrap flex-col xl:p-[25px] 2xl:p-[25px] gap-[13px] '>
                         <div className='w-[40%]'>
                             <img className='cursor-pointer' src={`${process.env.REACT_APP_URL}apsensyscare-white.png`} alt='apsensyscare' onClick={() => Redirect('home')} />

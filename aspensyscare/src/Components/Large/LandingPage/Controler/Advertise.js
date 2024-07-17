@@ -7,7 +7,7 @@ const Advertise = () => {
     navigate('/category')
   }
   return (
-    <div className='w-full cursor-pointer' onClick={handelNavigation}>
+    <div className='w-full cursor-pointer ' onClick={handelNavigation}>
         <img className='w-full h-full object-contain' src='https://apsensyscare.com/assets/Poster/ACS-Banner.webp' alt='first-banner'/>
     </div>
   )
