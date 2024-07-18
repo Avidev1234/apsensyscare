@@ -229,22 +229,22 @@ const YourAddress = () => {
                       placeholder="State"
                     />
                     <div className="flex justify-end mt-2">
-                      <button
+                      {/* <button
                         className="px-3 py-1 bg-blue-500 text-white rounded-md mr-2"
                         onClick={handleSave}
                       >
                         Save
-                      </button>
+                      </button> */}
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="mb-1"><strong>Name:</strong>{profile.name}</div>
-                    <div className="mb-1"><strong>Address:</strong> {profile.house_flat_office}</div>
-                    <div><strong>Phone Number:</strong> {profile.contact}</div>
-                    <div><strong>State:</strong> {profile.state}</div>
-                    <div><strong>Pincode:</strong> {profile.pincode}</div>
-                    <div><strong>Email:</strong> {profile.email}</div>
+                    <div className="mb-1"><strong>Name:  </strong>{profile.name}</div>
+                    <div className="mb-1"><strong>Address:  </strong> {profile.house_flat_office}</div>
+                    <div><strong>Phone Number:  </strong> {profile.contact}</div>
+                    <div><strong>State:  </strong> {profile.state}</div>
+                    <div><strong>Pincode:  </strong> {profile.pincode}</div>
+                    <div><strong>Email:  </strong> {profile.email}</div>
                     <div className="absolute bottom-4 right-4 flex gap-2">
                       {/* <button
                         className="text-blue-500 underline"

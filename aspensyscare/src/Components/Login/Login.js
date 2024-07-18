@@ -371,7 +371,7 @@ const ResetPassword = ({ openResetPassword }) => {
               </div>
               <div className="mb-5">
                 <Field
-                  //   type="password"
+                    type="password"
                   name="password"
                   placeholder="Enter New Password"
                   required
@@ -392,7 +392,7 @@ const ResetPassword = ({ openResetPassword }) => {
               </div>
               <div className="mb-5">
                 <Field
-                  //   type="password"
+                    type="password"
                   name="confirmPassword"
                   placeholder="Enter Confirm Password"
                   required
@@ -466,7 +466,7 @@ const ResetPassword = ({ openResetPassword }) => {
             <div className="mb-5 flex items-center gap-[11px]">
               <label className="font-bold mr-2">New Password:</label>
               <Field
-                type="text"
+                type="password"
                 name="password"
                 placeholder="Enter New Password"
                 required
@@ -488,7 +488,7 @@ const ResetPassword = ({ openResetPassword }) => {
             <div className="mb-5 flex items-center ">
               <label className="font-bold">Confirm Password:</label>
               <Field
-                type="text"
+                type="password"
                 name="confirmPassword"
                 placeholder="Enter Confirm Password"
                 required
@@ -666,7 +666,7 @@ const Login = ({ handelLogin }) => {
                   <div>
                     <Field
                       as={TextField}
-                      // type="password"
+                      type="password"
                       label="Password"
                       id="outlined-basic6"
                       maxRows={1}
