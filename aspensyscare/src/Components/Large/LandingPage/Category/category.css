@@ -1,0 +1,43 @@
+.imageContainer {
+    display: inline-block;
+    position: relative;
+}
+
+.imageContainer::before {
+    position: absolute;
+    top: -7%;
+    right: -7%;
+    width: 250px;
+    height: 250px;
+    border: 4px solid #BAEAE2;
+    content: '';
+}
+
+@media screen and (max-width: 468px) {
+    .imageContainer::before {
+        position: absolute;
+        top: -7%;
+        width: 140px;
+        height: 140PX;
+        border: 4px solid #BAEAE2;
+        content: '';
+        right: -9%;
+    
+    }
+}
+@media screen and (max-width: 375px) {
+    .imageContainer::before {
+        position: absolute;
+        top: -7%;
+        width: 130px;
+        height: 130PX;
+        border: 4px solid #BAEAE2;
+        content: '';
+        right: -9%;
+    
+    }
+}
+.bg-color{
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) -3.61%, #B0ECE2 49.07%, rgba(255, 255, 255, 0) 102.86%);
+    color: black;
+}
