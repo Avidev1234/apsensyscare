@@ -371,7 +371,7 @@ const ResetPassword = ({ openResetPassword }) => {
               </div>
               <div className="mb-5">
                 <Field
-                    type="password"
+                  type="password"
                   name="password"
                   placeholder="Enter New Password"
                   required

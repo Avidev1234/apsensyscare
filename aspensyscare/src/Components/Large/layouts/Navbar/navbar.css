@@ -261,3 +261,20 @@ height: 80px; */
 }
 
 
+/*  new additional box your address */
+
+
+.border-small-line {
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #6B7280;
+}
+
+.text-darkest {
+  color: #000000;
+}
+
+
+
+
+

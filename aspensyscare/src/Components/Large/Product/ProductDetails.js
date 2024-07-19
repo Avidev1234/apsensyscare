@@ -132,11 +132,15 @@ const ProductDetails = (product) => {
   const handleClosedilog = () => setOpen(false);
   const [val, setVal] = useState(1);
   const handelvalue = (str) => {
-    //console.log(str)
+    // console.log(str)
     const replaced = str.match(/\d+/);
     if (replaced !== "") {
       setVal(replaced[0]);
+
     }
+    // if (value.length <= 8) {
+    //   setVal(value);
+    // }
   };
   const portal = {
     position: "absolute",
@@ -460,7 +464,9 @@ const ProductDetails = (product) => {
             textAlign: "center",
             borderRadius: "3px",
           }}
+        //   maxLength={5}
         />
+
         <AddCircleRoundedIcon
           style={{ fontSize: "18px", cursor: "pointer" }}
           onClick={() => handleAddToCart()}

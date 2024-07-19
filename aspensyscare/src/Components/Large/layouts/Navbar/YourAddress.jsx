@@ -1,100 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { youraddress } from "../../../../Api/Api";
-// import "./navbar.css";
-// import { Helmet } from "react-helmet";
-
-// const YourAddress = () => {
-//   const [useraddress, setUseraddress] = useState([]);
-
-//   useEffect(() => {
-//     const user = sessionStorage.getItem("___user");
-//     if (user) {
-//       youraddress({ user_id: user })
-//         .then((res) => {
-//           setUseraddress(res);
-//           // console.log("Response is", res);
-//         })
-//         .catch((error) => {
-//           console.error("Error fetching order history:", error);
-//         });
-//     }
-//   }, []);
-
-//   if (!sessionStorage.getItem("___user")) {
-//     return (
-//       <div className="w-full flex flex-col flex-wrap min-h-[90vh] items-center justify-center p-5 bg-[#d2efff]">
-//         <Helmet>
-//           <title>{}</title>
-//           <meta name="description" content={""} />
-//         </Helmet>
-//         <div className="w-full lg:w-[40%] flex flex-col items-center justify-center gap-10">
-//           <img src="./Image/Poster/empty-wishlist-ACS2.jpg" alt="" />
-//           <button className="px-5 py-1 bg-white border-2 border-[blue]">
-//             Login
-//           </button>
-//         </div>
-//       </div>
-//     );
-//   } else {
-//     return (
-        
-//       <div className="flex items-center justify-center min-h-screen  bg-gray-100">
-        
-//         <div className="flex flex-col items-center justify-center gap-8 mb-[85px]">
-//         <h1 className="text-3xl font-medium mr-[77%] mt-8">Your Addresses</h1>
-//           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8">
-            
-//             {useraddress.map((profile) => (
-//               <div
-//                 key={profile.id}
-//                 className="bg-white p-6 border border-gray-300 rounded-lg shadow-lg boxe flex flex-col justify-center items-start mt-1 box-with-line relative"
-//                 style={{ boxShadow: "2px 2px 10px rgba(0, 195, 255, 0.5)" }}
-//               >
-//                 <div className="box-image">
-//                   <img
-//                     src={`${process.env.REACT_APP_IMAGE}/icons/addresslogo.png`}
-//                     alt=""
-//                     className=""
-//                   />
-//                 </div>
-//                 <div className="mb-1">{profile.name}</div>
-//                 <div className="mb-1">{profile.house_flat_office}</div>
-//                 <div>{profile.phoneNumber}</div>
-//                 <div>{profile.state}</div>
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* Example of another section, adjust as needed */}
-//           {/* <div className="flex justify-center gap-8">
-//         {useraddress.map(profile => (
-//           <div key={profile.id} className="bg-white p-6 border border-gray-300 rounded-lg shadow-lg boxe flex flex-col justify-center items-start mt-1 box-with-line relative">
-//             <div className="box-image">
-//               <img
-//                 src={`${process.env.REACT_APP_IMAGE}/icons/addresslogo.png`}
-//                 alt=""
-//                 className=""
-//               />
-//             </div>
-//             <div className="mb-1">{profile.name}</div>
-//             <div className="mb-1">{profile.address}</div>
-//             <div>{profile.phoneNumber}</div>
-//             <div>{profile.state}</div>
-//           </div>
-//         ))}
-//       </div> */}
-//         </div>
-//       </div>
-//     );
-//   }
-// };
-// export default YourAddress;
-
-
-
-
-// code with edit and remove button
-
 import React, { useEffect, useState } from "react";
 import { youraddress } from "../../../../Api/Api";
 import "./navbar.css";
@@ -136,7 +39,6 @@ const YourAddress = () => {
   };
 
   const handleSave = () => {
-    // Implement save functionality here
     const updatedAddress = [...useraddress];
     updatedAddress[editIndex] = {
       ...updatedAddress[editIndex],
@@ -151,7 +53,6 @@ const YourAddress = () => {
   };
 
   const handleRemove = (index) => {
-    // Implement remove functionality here
     const updatedAddress = useraddress.filter((_, idx) => idx !== index);
     setUseraddress(updatedAddress);
   };
@@ -229,12 +130,12 @@ const YourAddress = () => {
                       placeholder="State"
                     />
                     <div className="flex justify-end mt-2">
-                      {/* <button
+                      <button
                         className="px-3 py-1 bg-blue-500 text-white rounded-md mr-2"
                         onClick={handleSave}
                       >
                         Save
-                      </button> */}
+                      </button>
                     </div>
                   </>
                 ) : (
@@ -245,8 +146,8 @@ const YourAddress = () => {
                     <div><strong>State:  </strong> {profile.state}</div>
                     <div><strong>Pincode:  </strong> {profile.pincode}</div>
                     <div><strong>Email:  </strong> {profile.email}</div>
-                    <div className="absolute bottom-4 right-4 flex gap-2">
-                      {/* <button
+                    {/* <div className="absolute bottom-4 right-4 flex gap-2">
+                      <button
                         className="text-blue-500 underline"
                         onClick={() => handleEdit(index, profile)}
                       >
@@ -257,12 +158,19 @@ const YourAddress = () => {
                         onClick={() => handleRemove(index)}
                       >
                         Remove
-                      </button> */}
-                    </div>
+                      </button>
+                    </div> */}
                   </>
                 )}
               </div>
             ))}
+            {/* New div added here */}
+            {/* <div className="w-80 h-80 border-small-line flex flex-col items-center cursor-pointer opacity-50 justify-center rounded-lg">
+              <div className="flex flex-col mb-12 items-center">
+                <div className="text-8xl text-gray-500 opacity-50">+</div>
+                <div className="text-2xl font-bold text-darkest">Add address</div>
+              </div>
+            </div> */}
           </div>
         </div>
       </div>
