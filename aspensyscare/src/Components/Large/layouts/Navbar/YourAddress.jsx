@@ -146,7 +146,7 @@ const YourAddress = () => {
                     <div><strong>State:  </strong> {profile.state}</div>
                     <div><strong>Pincode:  </strong> {profile.pincode}</div>
                     <div><strong>Email:  </strong> {profile.email}</div>
-                    {/* <div className="absolute bottom-4 right-4 flex gap-2">
+                    <div className="absolute bottom-4 right-4 flex gap-2">
                       <button
                         className="text-blue-500 underline"
                         onClick={() => handleEdit(index, profile)}
@@ -159,18 +159,18 @@ const YourAddress = () => {
                       >
                         Remove
                       </button>
-                    </div> */}
+                    </div>
                   </>
                 )}
               </div>
             ))}
             {/* New div added here */}
-            {/* <div className="w-80 h-80 border-small-line flex flex-col items-center cursor-pointer opacity-50 justify-center rounded-lg">
+            <div className="w-80 h-80 border-small-line flex flex-col items-center cursor-pointer opacity-50 justify-center rounded-lg">
               <div className="flex flex-col mb-12 items-center">
-                <div className="text-8xl text-gray-500 opacity-50">+</div>
+                <div className="text-8xl font-bold text-gray-500 opacity-50">+</div>
                 <div className="text-2xl font-bold text-darkest">Add address</div>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
