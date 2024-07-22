@@ -590,6 +590,7 @@ const Cart = (props) => {
                               display: "flex",
                               flexDirection: "raw",
                               justifyContent: "space-between",
+                              gap:"10px"
                             }}
                           >
                             <p

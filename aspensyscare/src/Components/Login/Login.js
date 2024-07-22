@@ -150,7 +150,7 @@ const Signup = ({ openSignup }) => {
                 className="text-[#0112FE]"
                 href="https://apsensyscare.com/privacy-policy"
               >
-              Privacy Policy
+                Privacy Policy
               </a>
             </p>
             <button
@@ -176,7 +176,7 @@ const Signup = ({ openSignup }) => {
                 className="my-5  p-3 text-center text-[17px] cursor-pointer text-[#0112FE] hover:underline"
                 onClick={() => openSignup(true)}
               >
-                Login 
+                Login
               </a>
             </h2>
           </div>
@@ -392,7 +392,7 @@ const ResetPassword = ({ openResetPassword }) => {
               </div>
               <div className="mb-5">
                 <Field
-                    type="password"
+                  type="password"
                   name="confirmPassword"
                   placeholder="Enter Confirm Password"
                   required
@@ -681,19 +681,19 @@ const Login = ({ handelLogin }) => {
                     />
                   </div>
                   <p className="py-8 max-w-xl text-[16px]">
-                    By continuing, you agree to Apsensys Care 
+                    By continuing, you agree to Apsensys Care
                     <a
                       className="text-[#0112FE]"
                       href="https://apsensyscare.com/terms-condition"
                     >
-                       &nbsp;Terms of Use
+                      &nbsp;Terms of Use
                     </a>{" "}
                     and
                     <a
                       className="text-[#0112FE]"
                       href="https://apsensyscare.com/privacy-policy"
                     >
-                     &nbsp;Privacy Policy
+                      &nbsp;Privacy Policy
                     </a>
                   </p>
                   <p>
