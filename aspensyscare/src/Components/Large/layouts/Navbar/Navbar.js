@@ -596,8 +596,8 @@ const openConfirmation = () => {
                       <div className="bg-neutral text-white rounded-full w-[120px] flex flex-col inline text-[16px] shadow-inner">
                         <span>Hello,</span>
                         <div className="w-full flex ml-[27px]">{user}
-                       <ArrowDropDownIcon/>
                         </div>
+                       <ArrowDropDownIcon/>
                       
                       </div>
                     </div>
