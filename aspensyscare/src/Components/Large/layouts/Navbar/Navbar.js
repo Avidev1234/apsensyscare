@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,6 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 // import Button from '@mui/material/Button';
 import {
   Badge,
@@ -20,6 +21,12 @@ import {
   Menu,
   MenuItem,
   useScrollTrigger,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button
 } from "@mui/material";
 // import { AccountCircle } from '@mui/icons-material';
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
@@ -135,6 +142,7 @@ function Navbar(props) {
   const ref = React.useRef({
     render: false,
   });
+  const [open, setOpen] = useState(false);
   const [isCategory, setCategory] = React.useState(false);
 
   const handleClick = (e) => {
@@ -200,12 +208,14 @@ function Navbar(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setOpen(false);
   };
   // const handleCloseLang = () => {
   //   setleLang(null);
   // };
 
-  const handelLogout = () => {
+  const handleLogout = () => {
+    setOpen(false); // Close the dialog
     sessionStorage.clear();
     setAnchorEl(null);
     dispatch(clearAddress());
@@ -215,7 +225,10 @@ function Navbar(props) {
     Cookies.remove("u__r_t_____");
     localStorage.removeItem("___gaust_user_address");
   };
-
+const openConfirmation = () => {
+    setOpen(true); // Open the confirmation dialog
+  };
+  
   // getting data for cart
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -555,14 +568,14 @@ function Navbar(props) {
                   aria-label="account of current user"
                   color="black"
                 >
-                  <StyledBadge
+                  {/* <StyledBadge
                     badgeContent={cart.cartTotalQuantity}
                     color="secondary"
                   >
+                    </StyledBadge> */}
                     <HistoryIcon
                       style={{ color: "#fff", fontSize: "35px" }}
                     />
-                  </StyledBadge>
                 </IconButton>
                 {/* Cart */}
               </AvtarIcon>
@@ -580,8 +593,12 @@ function Navbar(props) {
                   >
                     {/* <AccountCircle style={{ fontSize: '37px', color: '#fff' }} /> */}
                     <div className="avatar placeholder">
-                      <div className="bg-neutral text-white rounded-full w-[120px]  inline text-[20px] shadow-inner">
-                        <span>Hello, {user}</span>
+                      <div className="bg-neutral text-white rounded-full w-[120px] flex flex-col inline text-[16px] shadow-inner">
+                        <span>Hello,</span>
+                        <div className="w-full flex ml-[27px]">{user}
+                       <ArrowDropDownIcon/>
+                        </div>
+                      
                       </div>
                     </div>
                   </IconButton>
@@ -605,14 +622,36 @@ function Navbar(props) {
                   {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
                   <MenuItem  className="hover-underline" onClick={() => {navigate("/profile"); handleClose();}}>Manage My Account</MenuItem>
                   <hr/>
-                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/manageaddress"); handleClose();}}>YourAddress</MenuItem>
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/manageaddress"); handleClose();}}>Addresses</MenuItem>
                   <MenuItem   className="hover-underline"  onClick={() => {navigate("/wishlist"); handleClose();}}>Wishlist</MenuItem>
-                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/history"); handleClose();}}>your orders</MenuItem>
+                  <MenuItem   className="hover-underline"  onClick={() => {navigate("/history"); handleClose();}}>Your orders</MenuItem>
                   <MenuItem   className="hover-underline"  onClick={() => {navigate("/category"); handleClose();}}>Explore products</MenuItem>
                   <MenuItem   className="hover-underline"  onClick={() => {navigate("/cart"); handleClose();}}>Shopping List</MenuItem>
                   <MenuItem   className="hover-underline"  onClick={() => {navigate("/privacy-policy"); handleClose();}}>Shipping and privacy policies</MenuItem>
                   <MenuItem   className="hover-underline"  onClick={() => {navigate("/contact-us"); handleClose();}}>Customer Services</MenuItem>
-                  <MenuItem   className="hover-underline"  onClick={handelLogout}>Logout</MenuItem>
+                  {/* <MenuItem   className="hover-underline"  onClick={handelLogout}>Logout</MenuItem> */}
+                  <MenuItem className="hover-underline" onClick={openConfirmation}>Logout</MenuItem>
+                  <Dialog
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="logout-dialog-title"
+                      aria-describedby="logout-dialog-description"
+                    >
+                      <DialogTitle id="logout-dialog-title">Logout Confirmation</DialogTitle>
+                      <DialogContent>
+                        <DialogContentText id="logout-dialog-description">
+                          Are you sure you want to logout?
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button className="" variant="outlined" onClick={handleClose} >
+                          Cancel
+                        </Button>
+                        <Button variant="contained" onClick={handleLogout} color="success">
+                          Logout
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                 </Menu>
               </div>
             ) : (

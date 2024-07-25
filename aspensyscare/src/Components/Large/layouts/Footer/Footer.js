@@ -92,7 +92,7 @@ const Footer = () => {
                         </div>
                         {/* <p className='text-white'>Apsensys care</p> */}
                         <div className='w-[30%] mt-[-18px]'>
-                            <h4 className="text-lg font-semibold">FOR ANY HELP, YOU MAY CALL US AT <span className='hover:text-[#080808] cursor-pointer'> <br/> +91 7996997979</span></h4><br />
+                            <h4 className="text-lg font-semibold">FOR ANY HELP, YOU MAY CALL US AT <span className=' cursor-pointer'> <br/> +91 7996997979</span></h4><br />
                             
                                 <h4 className=" w-[124%] text-base font-semibold">(Monday to Saturday, 9AM to 9PM and Sunday, 10AM to 7PM)</h4>
 

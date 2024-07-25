@@ -66,19 +66,20 @@ const ContactUS = () => {
               </div>
             </div>
             <div className="address-descri">
-              <PhoneIcon className="icon" />
+              <MailIcon className="icon" />
               <div>
-                <h4 className="font-bold tracking-wide text-xl">PHONE</h4>
-                <p className="pt-3">+91 7996997979</p>
+                <h4 className="font-bold tracking-wide text-xl">FOR ANY QUERIES & SUPPORT</h4>
+                <p className="pt-3"> <strong>Email - </strong>sales@apsensyscare.com</p>
               </div>
             </div>
             <div className="address-descri">
-              <MailIcon className="icon" />
+              <PhoneIcon className="icon" />
               <div>
-                <h4 className="font-bold tracking-wide text-xl">EMAIL</h4>
-                <p className="pt-3">sales@apsensyscare.com</p>
+                <h4 className="font-bold tracking-wide text-xl">CALL US AT</h4>
+                <p className="pt-3"> <strong> +91 7996997979 </strong></p>
               </div>
             </div>
+            
 
           </div>
         </div>

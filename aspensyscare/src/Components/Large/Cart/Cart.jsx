@@ -127,6 +127,40 @@ const Cart = (props) => {
       : []
   );
 
+  // remove n move to cart
+  const handleMouseEnter = (event) => {
+    const icons = event.currentTarget.querySelector(".icons");
+    const tooltip = event.currentTarget.querySelector(".tooltip");
+    // icon.style.opacity = "0";
+    tooltip.style.visibility = "visible";
+    tooltip.style.opacity = "1";
+  };
+
+  const handleMouseLeave = (event) => {
+    const icons = event.currentTarget.querySelector(".icons");
+    const tooltip = event.currentTarget.querySelector(".tooltip");
+
+    icons.style.opacity = "1";
+    tooltip.style.visibility = "hidden";
+
+    // tooltip.style.opacity = "0";
+  };
+  const handleMouseLeavetool = (event) => {
+    const icon = event.currentTarget.querySelector(".icon");
+    const tooltips = event.currentTarget.querySelector(".tooltips");
+
+    icon.style.opacity = "1";
+    tooltips.style.visibility = "hidden";
+
+    // tooltip1.style.opacity = "0";
+  };
+  const handleMouseEntertool = (event) => {
+    const icon = event.currentTarget.querySelector(".icon");
+    const tooltips = event.currentTarget.querySelector(".tooltips");
+    // icon.style.opacity = "0";
+    tooltips.style.visibility = "visible";
+    tooltips.style.opacity = "1";
+  };
   const cart = useSelector((state) => state.cart);
   // const sizes = useSelector((state) => state.size);
   // const size = sizes.sizes.size;
@@ -425,15 +459,13 @@ const Cart = (props) => {
       {cart.cartItems.length === 0 ? (
         <div className="w-full flex flex-col flex-wrap items-center justify-center">
           <div className="w-full flex justify-center">
-            {isLoggedIn?(
+            {isLoggedIn ? (
               <div>
                 <p className="w-full inline font-normal font-serif items-center text-4xl">
                   YOUR CART IS EMPTY !!
                 </p>
-              </div>):(
-                null
-              )
-            }
+              </div>
+            ) : null}
           </div>
           <div className="relative">
             {isLoggedIn ? (
@@ -575,7 +607,7 @@ const Cart = (props) => {
                           }}
                         >
                           <img
-                            width="auto"
+                            width="100%"
                             style={{
                               backgroundColor: "#bfdbfe",
                               borderRadius: "8px",
@@ -590,33 +622,37 @@ const Cart = (props) => {
                               display: "flex",
                               flexDirection: "raw",
                               justifyContent: "space-between",
-                              gap:"10px"
+                              gap: "15px",
                             }}
                           >
-                            <p
-                              variant="subtitle2"
-                              style={{
-                                fontSize: "12px",
-                                color: "red",
-                                cursor: "pointer",
-                              }}
-                              onClick={() => handleRemoveFromCart(cartItem)}
-                            >
-                              remove
-                            </p>
-                            <p
-                              onClick={() => {
-                                moveToWishList(cartItem);
-                              }}
-                              variant="subtitle2"
-                              style={{
-                                fontSize: "12px",
-                                color: "blue",
-                                cursor: "pointer",
-                              }}
-                            >
-                              move to wishlist
-                            </p>
+                            <div className="width-full flex items-center justify-center gap-[25px]">
+                              <div className="icon-wrappers" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={() => handleRemoveFromCart(cartItem)}>
+                                <svg
+                                  className="icons"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 64 64"
+                                  width="24px"
+                                  height="24px"
+                                >
+                                  <path d="M 28 6 C 25.791 6 24 7.791 24 10 L 24 12 L 23.599609 12 L 10 14 L 10 17 L 54 17 L 54 14 L 40.400391 12 L 40 12 L 40 10 C 40 7.791 38.209 6 36 6 L 28 6 z M 28 10 L 36 10 L 36 12 L 28 12 L 28 10 z M 12 19 L 14.701172 52.322266 C 14.869172 54.399266 16.605453 56 18.689453 56 L 45.3125 56 C 47.3965 56 49.129828 54.401219 49.298828 52.324219 L 51.923828 20 L 12 19 z M 20 26 C 21.105 26 22 26.895 22 28 L 22 51 L 19 51 L 18 28 C 18 26.895 18.895 26 20 26 z M 32 26 C 33.657 26 35 27.343 35 29 L 35 51 L 29 51 L 29 29 C 29 27.343 30.343 26 32 26 z M 44 26 C 45.105 26 46 26.895 46 28 L 45 51 L 42 51 L 42 28 C 42 26.895 42.895 26 44 26 z" />
+                                </svg>
+                                <span className="tooltip">Remove</span>
+                              </div>
+
+                              <div className="icon-wrapper" onMouseEnter={handleMouseEntertool} onMouseLeave={handleMouseLeavetool} onClick={() => {moveToWishList(cartItem)}}>
+                                <svg
+                                  className="icon"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24"
+                                  width="24"
+                                  height="24"
+                                >
+                                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                                </svg>
+                                <span className="tooltips">Move to Wishlist</span>
+                              </div>
+                            </div>
+
                           </div>
                         </div>
                         <p
@@ -685,7 +721,7 @@ const Cart = (props) => {
                         />
                         <div
                           style={{
-                            width: "30px",
+                            width: "auto",
                             height: "max-content",
                             textAlign: "center",
                           }}
@@ -760,102 +796,102 @@ const Cart = (props) => {
                   >
                     {address !== undefined && sessionStorage.getItem("___user")
                       ? address.map((items, idx) => {
-                          return (
-                            <div
-                              key={idx.toString()}
+                        return (
+                          <div
+                            key={idx.toString()}
+                            style={{
+                              width: "70%",
+                              height: "65px",
+                              overFlow: "hidden",
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "flex-start",
+                              alignItems: "flex-start",
+                              gap: "1rem",
+                            }}
+                          >
+                            {idx === 0 ? (
+                              <input
+                                type="radio"
+                                id={`${items.id}`}
+                                name="address"
+                                value={`${JSON.stringify(items)}`}
+                                className="h-10 radio radio-primary"
+                                checked
+                              />
+                            ) : (
+                              <input
+                                type="radio"
+                                id={`${items.id}`}
+                                name="address"
+                                value={`${JSON.stringify(items)}`}
+                                className="h-10 radio radio-primary"
+                              />
+                            )}
+                            <label
+                              htmlFor={`${items.id}`}
                               style={{
-                                width: "70%",
-                                height: "65px",
-                                overFlow: "hidden",
                                 display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "flex-start",
-                                alignItems: "flex-start",
-                                gap: "1rem",
+                                flexDirection: "column",
                               }}
                             >
-                              {idx === 0 ? (
-                                <input
-                                  type="radio"
-                                  id={`${items.id}`}
-                                  name="address"
-                                  value={`${JSON.stringify(items)}`}
-                                  className="h-10 radio radio-primary"
-                                  checked
-                                />
-                              ) : (
-                                <input
-                                  type="radio"
-                                  id={`${items.id}`}
-                                  name="address"
-                                  value={`${JSON.stringify(items)}`}
-                                  className="h-10 radio radio-primary"
-                                />
-                              )}
-                              <label
-                                htmlFor={`${items.id}`}
+                              <div
                                 style={{
                                   display: "flex",
-                                  flexDirection: "column",
+                                  flexDirection: "row",
+                                  gap: "1rem",
                                 }}
                               >
-                                <div
+                                <Typography
+                                  variant="h2"
                                   style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    gap: "1rem",
+                                    fontSize: "14px",
+                                    fontWeight: 600,
                                   }}
                                 >
-                                  <Typography
-                                    variant="h2"
-                                    style={{
-                                      fontSize: "14px",
-                                      fontWeight: 600,
-                                    }}
-                                  >
-                                    {items.name}
-                                  </Typography>
-                                  <Typography
-                                    variant="body"
-                                    style={{
-                                      height: "fit-content",
-                                      fontSize: "12px",
-                                      backgroundColor: "#d9d9d9",
-                                      padding: "0 4px",
-                                      borderRadius: "5px",
-                                    }}
-                                  >
-                                    Home
-                                  </Typography>
-                                  <Typography variant="body" style={{}}>
-                                    {items.contact}
-                                  </Typography>
-                                </div>
-                                <div
+                                  {items.name}
+                                </Typography>
+                                <Typography
+                                  variant="body"
                                   style={{
-                                    display: "flex",
-                                    flexDirection: "row",
+                                    height: "fit-content",
+                                    fontSize: "12px",
+                                    backgroundColor: "#d9d9d9",
+                                    padding: "0 4px",
+                                    borderRadius: "5px",
                                   }}
                                 >
-                                  <Typography
-                                    variant="h2"
-                                    style={{
-                                      fontSize: "12px",
-                                      fontWeight: 600,
-                                      color: "gray",
-                                    }}
-                                  >
-                                    {items.house_flat_office}{" "}
-                                    {items.area_landmark} {items.city}{" "}
-                                    {items.state} {items.pincode}
-                                  </Typography>
-                                </div>
-                              </label>
-                            </div>
-                          );
-                        })
+                                  Home
+                                </Typography>
+                                <Typography variant="body" style={{}}>
+                                  {items.contact}
+                                </Typography>
+                              </div>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "row",
+                                }}
+                              >
+                                <Typography
+                                  variant="h2"
+                                  style={{
+                                    fontSize: "12px",
+                                    fontWeight: 600,
+                                    color: "gray",
+                                  }}
+                                >
+                                  {items.house_flat_office}{" "}
+                                  {items.area_landmark} {items.city}{" "}
+                                  {items.state} {items.pincode}
+                                </Typography>
+                              </div>
+                            </label>
+                          </div>
+                        );
+                      })
                       : gaust_address !== null
-                      ? gaust_address.map((items, idx) => {
+                        ? gaust_address.map((items, idx) => {
                           return (
                             <div
                               key={idx.toString()}
@@ -950,7 +986,7 @@ const Cart = (props) => {
                             </div>
                           );
                         })
-                      : null}
+                        : null}
                   </FormControl>
                   <div
                     style={{

@@ -92,10 +92,10 @@ console.log("locationDetails",locationDetails);
     <div className="w-[15%] ">
       {/* Location box */}
       <div
-        id="locationBox"
-        className="flex items-center justify-end shadow-lg rounded p-4 max-w-sm  transparent-bg hover-border w-full h-[79px] gap-[18px] md:gap-[2px] sm:text-[1px] "
-        onClick={handleLocationBoxClick}
-      >
+      id="locationBox"
+      className="hidden md:flex items-center justify-end shadow-lg rounded p-4 max-w-sm transparent-bg hover-border w-full h-[79px] gap-[18px] md:gap-[2px]"
+      onClick={handleLocationBoxClick}
+    >
         <img
           src={`${process.env.REACT_APP_IMAGE}/icons/location.png`}
           alt="Location Icon"
